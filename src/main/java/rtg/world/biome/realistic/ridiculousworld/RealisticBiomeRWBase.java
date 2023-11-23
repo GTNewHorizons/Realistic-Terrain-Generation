@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.ridiculousworld;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.ridiculousworld.config.BiomeConfigRW;
@@ -7,11 +8,10 @@ import rtg.util.Logger;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
-import cpw.mods.fml.common.Loader;
 
 public class RealisticBiomeRWBase extends RealisticBiomeBase
 {
-    
+
     public static RealisticBiomeBase rwBotanicalGarden;
     public static RealisticBiomeBase rwMountainOfMadness;
     public static RealisticBiomeBase rwMurica;
@@ -19,23 +19,23 @@ public class RealisticBiomeRWBase extends RealisticBiomeBase
     public static RealisticBiomeBase rwRockCandyMountain;
     public static RealisticBiomeBase rwShadowFen;
     public static RealisticBiomeBase rwSpookyForest;
-    
+
     public RealisticBiomeRWBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
     {
-    
+
         super(config, b, riverbiome, t, s);
-        
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
     }
-    
+
     public static void addBiomes()
     {
-    
+
         if (Loader.isModLoaded("RidiculousWorld"))
         {
             BiomeGenBase[] b = BiomeGenBase.getBiomeGenArray();
-            
+
             for (int i = 0; i < 256; i++)
             {
                 if (b[i] != null)
@@ -44,11 +44,11 @@ public class RealisticBiomeRWBase extends RealisticBiomeBase
                         Logger.warn("Biome ID %d has no name.", b[i].biomeID);
                         continue;
                     }
-                    
+
                     BiomeGenBase rwBiome = b[i];
                     String biomeName = b[i].biomeName;
                     String biomeClass = b[i].getBiomeClass().getName();
-                    
+
                     if (biomeName == "Botanical Garden" && biomeClass == "fox.spiteful.ridiculous.biomes.BiomeGenBotania")
                     {
                         rwBotanicalGarden = new RealisticBiomeRWBotanicalGarden(rwBiome, BiomeConfigRW.biomeConfigRWBotanicalGarden);

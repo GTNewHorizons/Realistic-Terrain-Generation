@@ -1,12 +1,9 @@
 package highlands.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,14 +13,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockHLPlankSlab extends BlockSlab {
 
 	//protected final boolean isDoubleSlab;
 	private Block modelBlock;
-	
+
 	public BlockHLPlankSlab(boolean isDouble, Block model) {
 		super(isDouble, model.getMaterial());
 		//isDoubleSlab = isDouble;
@@ -32,8 +31,8 @@ public class BlockHLPlankSlab extends BlockSlab {
 		// fix lighting
 		this.setLightOpacity(0);
 	}
-	
-	
+
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int par1, int par2)
@@ -76,21 +75,21 @@ public class BlockHLPlankSlab extends BlockSlab {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister p_149651_1_) {}
-    
+
     // double slab code
     public boolean isDoubleSlab() {
     	return field_150004_a;
     }
-    
+
     @Override
     protected ItemStack createStackedBlock(int metadata){
     	return new ItemStack(Item.getItemFromBlock(HighlandsBlocks.hlplankhalf), 2, metadata & 7);
     }
-    
+
     public int slabsDropped() {
     	if (this.field_150004_a) {return 2;} else {return 1;}
     }
-    
+
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune){
     	ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
@@ -100,7 +99,7 @@ public class BlockHLPlankSlab extends BlockSlab {
     	}
     	return ret;
     }
-    
+
     @Override
     public int onBlockPlaced(World world, int x, int y, int z, int metadata, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {

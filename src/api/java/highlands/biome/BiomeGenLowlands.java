@@ -4,15 +4,14 @@ import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
 import highlands.worldgen.WorldGenTreeFir;
-
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenLowlands extends BiomeGenBaseHighlands
 {
@@ -21,7 +20,7 @@ public class BiomeGenLowlands extends BiomeGenBaseHighlands
 	public BiomeGenLowlands(int par1)
     {
         super(par1);
-        
+
         int trees = 2;
 	    int grass = 4;
 	    int flowers = 0;
@@ -31,9 +30,9 @@ public class BiomeGenLowlands extends BiomeGenBaseHighlands
         this.setHeight(biomeHeight);
         this.temperature = 0.5F;
         this.rainfall = 1.2F;
-        
+
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(3) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.cattail)
 				: (rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.cotton)

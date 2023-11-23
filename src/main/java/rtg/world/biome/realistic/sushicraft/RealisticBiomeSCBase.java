@@ -1,10 +1,8 @@
 package rtg.world.biome.realistic.sushicraft;
 
 
-import net.minecraft.world.biome.BiomeGenBase;
-
 import cpw.mods.fml.common.Loader;
-
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.sushicraft.config.BiomeConfigSC;
 import rtg.util.Logger;

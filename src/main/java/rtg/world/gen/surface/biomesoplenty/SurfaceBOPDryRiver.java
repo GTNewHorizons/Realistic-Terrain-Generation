@@ -1,24 +1,23 @@
 package rtg.world.gen.surface.biomesoplenty;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceBOPDryRiver extends SurfaceBase
 {
-	public SurfaceBOPDryRiver(BiomeConfig config) 
+	public SurfaceBOPDryRiver(BiomeConfig config)
 	{
 		super(config, Blocks.grass, (byte)0, Blocks.dirt, (byte)0);
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
@@ -35,7 +34,7 @@ public class SurfaceBOPDryRiver extends SurfaceBase
 	            else if(b != Blocks.water)
 	            {
 	            	depth++;
-	            	
+
 	        		if(depth == 0 && k > 61)
 	        		{
 	        			blocks[(y * 16 + x) * 256 + k] = Blocks.grass;

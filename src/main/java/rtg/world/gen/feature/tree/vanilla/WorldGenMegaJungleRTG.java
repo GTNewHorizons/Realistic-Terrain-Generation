@@ -1,12 +1,12 @@
 package rtg.world.gen.feature.tree.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
+
+import java.util.Random;
 
 public class WorldGenMegaJungleRTG extends WorldGenMegaJungle
 {
@@ -15,21 +15,21 @@ public class WorldGenMegaJungleRTG extends WorldGenMegaJungle
 	public int maxTrunkHeight;
 	public int minCrownHeight;
 	public int maxCrownHeight;
-	
+
     public WorldGenMegaJungleRTG(boolean doBlockNotify, int minTrunkHeight, int maxTrunkHeight, int minCrownHeight, int maxCrownHeight, int logMeta, int leavesMeta)
     {
         this(doBlockNotify, minTrunkHeight, minCrownHeight, logMeta, leavesMeta);
-        
+
     	this.minTrunkHeight = minTrunkHeight;
     	this.maxTrunkHeight = maxTrunkHeight;
     	this.minCrownHeight = minCrownHeight;
     	this.maxCrownHeight = maxCrownHeight;
     }
-    
+
     public WorldGenMegaJungleRTG(boolean doBlockNotify, int trunkHeight, int crownHeight, int logMeta, int leavesMeta)
     {
         super(doBlockNotify, trunkHeight, crownHeight, logMeta, leavesMeta);
-        
+
         this.minTrunkHeight = 0;
         this.maxTrunkHeight = 0;
         this.minCrownHeight = 0;
@@ -43,12 +43,12 @@ public class WorldGenMegaJungleRTG extends WorldGenMegaJungle
     	if (this.minTrunkHeight > 0 && this.maxTrunkHeight > 0) {
     		trunkHeight = this.minTrunkHeight + rand.nextInt(this.maxTrunkHeight - this.minTrunkHeight + 1);
     	}
-    	
+
     	int crownHeight = 0;
     	if (this.minCrownHeight > 0 && this.maxCrownHeight > 0) {
     		crownHeight = this.minCrownHeight + rand.nextInt(this.maxCrownHeight - this.minCrownHeight + 1);
     	}
-    	
+
         int treeHeight = trunkHeight + crownHeight;
 
         if (!this.func_150537_a(world, rand, worldX, worldY, worldZ, treeHeight))

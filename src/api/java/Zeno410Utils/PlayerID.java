@@ -4,12 +4,12 @@
  */
 
 package Zeno410Utils;
-import java.io.DataInput;
-import java.io.IOException;
-import java.io.DataOutput;
-
 
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 
 /**
  *
@@ -46,7 +46,7 @@ public class PlayerID {
 
     @Override
     public int hashCode() {return name.hashCode();}
-    
+
     @Override
     public boolean equals(Object compared) {
         if (compared == null) return false;
@@ -55,6 +55,6 @@ public class PlayerID {
         }
         return false;
     }
-    
+
 
 }

@@ -1,18 +1,18 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenHighlandsGroundcover extends WorldGenerator
 {
     /** Stores Block for WorldGenTallGrass */
     private BlockTallGrass tallGrass;
     private int tallGrassMetadata;
-    
+
     //Type 1 is Cliff (tall grass + cobble boulders), Type 2 is Outback (tall grass + grass blocks underneath on sand)
     private int type;
 

@@ -1,31 +1,30 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceRedDesert extends SurfaceBase
 {
 	private Block cliffBlock1;
 	private Block cliffBlock2;
 	private Block bottomBlock;
-	
+
 	public SurfaceRedDesert(BiomeConfig config)
 	{
 		super(config, Blocks.sand, (byte)1, Blocks.sand, (byte)1);
-		
-		bottomBlock = Blocks.sandstone; 
+
+		bottomBlock = Blocks.sandstone;
 		cliffBlock1 = Blocks.stained_hardened_clay;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
@@ -46,7 +45,7 @@ public class SurfaceRedDesert extends SurfaceBase
             	if(cliff)
             	{
             		if (depth < 6)
-            		{                			
+            		{
             			blocks[(y * 16 + x) * 256 + k] = cliffBlock1;
             			metadata[(y * 16 + x) * 256 + k] = (byte)14;
             		}

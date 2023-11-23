@@ -1,9 +1,5 @@
 package rtg.world.biome.deco;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
-
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenFlowers;
@@ -13,32 +9,36 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 
+import java.util.Random;
+
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
+
 /**
- * 
+ *
  * @author WhichOnesPink
  *
  */
 public class DecoMushrooms extends DecoBase
 {
-    
+
 	public float strengthFactor;
 	public int maxY;
 	public float randomFloat;
 	public RandomType randomType;
 	public int chance;
 	public int loops;
-	
+
 	public enum RandomType
 	{
 		ALWAYS_GENERATE,
 		USE_CHANCE_VALUE,
 		X_DIVIDED_BY_STRENGTH
 	}
-	
+
 	public DecoMushrooms()
 	{
 		super();
-		
+
 		/**
 		 * Default values.
 		 * These can be overridden when configuring the Deco object in the realistic biome.
@@ -49,35 +49,35 @@ public class DecoMushrooms extends DecoBase
 		this.randomFloat = 1f;
 		this.chance = 1;
 		this.loops = 1;
-		
+
 		this.addDecoTypes(DecoType.MUSHROOM);
 	}
-	
+
 	@Override
 	public void generate(RealisticBiomeBase biome, World world, Random rand, int chunkX, int chunkY, OpenSimplexNoise simplex, CellNoise cell, float strength, float river, boolean hasPlacedVillageBlocks)
 	{
 		if (this.allowed) {
-			
+
 			if (TerrainGen.decorate(world, rand, chunkX, chunkY, SHROOM)) {
-	            
+
 				// Let's figure out what the rand.nextInt() argument should be.
 				switch (this.randomType)
 				{
 					case ALWAYS_GENERATE:
 						this.chance = 1;
 						break;
-						
+
 					case USE_CHANCE_VALUE:
 						break;
-						
+
 					case X_DIVIDED_BY_STRENGTH:
 						this.chance = (int)(this.randomFloat / strength);
 						break;
-						
+
 					default:
 						break;
 				}
-				
+
 				WorldGenerator worldGeneratorBrownShrooms = new WorldGenFlowers(Blocks.brown_mushroom);
 				WorldGenerator worldGeneratorRedShrooms = new WorldGenFlowers(Blocks.red_mushroom);
 
@@ -85,11 +85,11 @@ public class DecoMushrooms extends DecoBase
 	            for (int i = 0; i < this.loops; i++)
 	            {
 	            	if (rand.nextInt(this.chance) == 0) {
-	            		
+
 		                int intX = chunkX + rand.nextInt(16);// + 8;
 		                int intY = rand.nextInt(this.maxY);
 		                int intZ = chunkY + rand.nextInt(16);// + 8;
-	
+
 		                if (intY <= this.maxY) {
 
 		                    if (rand.nextBoolean())

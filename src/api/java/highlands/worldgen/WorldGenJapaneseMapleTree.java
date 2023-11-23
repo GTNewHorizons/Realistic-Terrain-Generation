@@ -1,14 +1,13 @@
 package highlands.worldgen;
 
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public class WorldGenJapaneseMapleTree extends WorldGenHighlandsTreeBase
 {
@@ -25,11 +24,11 @@ public class WorldGenJapaneseMapleTree extends WorldGenHighlandsTreeBase
     public WorldGenJapaneseMapleTree(int lmd, int wmd, Block wb, Block lb, int minH, int maxH, boolean notify)
     {
     	super(lmd, wmd, wb, lb, notify);
-        
+
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenJapaneseMapleTree(int minH, int maxH, boolean notify){
     	this(1, 1, HighlandsBlocks.japaneseMapleWood, HighlandsBlocks.japaneseMapleLeaves, minH, maxH, notify);
     }

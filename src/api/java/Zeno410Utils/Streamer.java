@@ -1,7 +1,8 @@
 package Zeno410Utils;
+
 import java.io.DataInput;
-import java.io.IOException;
 import java.io.DataOutput;
+import java.io.IOException;
 
 /**
  *

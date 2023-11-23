@@ -1,12 +1,12 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import rtg.util.Logger;
+
+import java.util.Random;
 
 /**
  * Quercus Robur (Pedunculate Oak)
@@ -15,7 +15,7 @@ public class TreeRTGQuercusRobur extends TreeRTG
 {
 
     static final byte[] otherCoordPairs = new byte[] {(byte)2, (byte)0, (byte)0, (byte)1, (byte)2, (byte)1};
-    
+
     World world;
     Random rand;
     int[] basePos = new int[] {0, 0, 0};
@@ -46,12 +46,12 @@ public class TreeRTGQuercusRobur extends TreeRTG
 	 * decoTree.leavesMeta = (byte)0;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
     public TreeRTGQuercusRobur()
     {
     	super();
-    	
+
 		this.logBlock = Blocks.log;
 		this.logMeta = (byte)0;
 		this.leavesBlock = Blocks.leaves;
@@ -59,7 +59,7 @@ public class TreeRTGQuercusRobur extends TreeRTG
 		this.trunkSize = 4;
 		this.crownSize = 8;
     }
-    
+
     @Override
     public boolean generate(World world, Random rand, int x, int y, int z)
     {
@@ -80,11 +80,11 @@ public class TreeRTGQuercusRobur extends TreeRTG
             this.generateLeaves();
             this.generateTrunk();
             this.generateLeafNodeBases();
-            
+
             return true;
         }
     }
-	
+
     void generateLeafNodeList()
     {
         this.height = (int)((double)this.heightLimit * this.heightAttenuation);
@@ -205,7 +205,7 @@ public class TreeRTGQuercusRobur extends TreeRTG
                     	if (!this.noLeaves) {
                     	    this.placeLeavesBlock(this.world, var11[0], var11[1], var11[2], this.leavesBlock, this.leavesMeta, this.generateFlag);
                     	}
-                    	
+
                         ++var13;
                     }
                 }
@@ -474,15 +474,15 @@ public class TreeRTGQuercusRobur extends TreeRTG
         	Block checkBlock;
         	for (int h = this.basePos[1] + 1; h < (this.basePos[1] + this.heightLimit); h++) {
         		checkBlock = this.world.getBlock(this.basePos[0], h, this.basePos[2]);
-        		
+
         		if (checkBlock != Blocks.air && checkBlock != this.leavesBlock) {
         			Logger.debug("Invalid location (%d/%d/%d). Check block (%s) is not air or %s.", this.basePos[0], h, this.basePos[2], checkBlock.getLocalizedName(), this.leavesBlock.getLocalizedName());
         			return false;
         		}
         	}
-        	
+
         	return true;
-        	
+
 //            int blockLine = this.checkBlockLine(var1, var2);
 //
 //            if (blockLine == -1)
@@ -499,7 +499,7 @@ public class TreeRTGQuercusRobur extends TreeRTG
 //            {
 //                Logger.debug("Valid location! Height limit has been changed from %d to %d.", this.heightLimit, blockLine);
 //                this.heightLimit = blockLine;
-//                
+//
 //                return true;
 //            }
         }

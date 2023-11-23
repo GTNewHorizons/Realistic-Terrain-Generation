@@ -1,14 +1,13 @@
 package rtg.util;
 
+import net.minecraft.block.Block;
+import rtg.config.rtg.ConfigRTG;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.Block;
-
-import rtg.config.rtg.ConfigRTG;
-
 /**
- * 
+ *
  * @author topisani
  *
  */
@@ -58,7 +57,7 @@ public enum CanyonColour {
 		y1 = (y1 < 0)? 0 : (y1 > 255)? 255 : y1;
 		return colourBlocks.get(this)[Math.round(y1)];
 	}
-	
+
 	public byte getMetaForHeight(int x, int y, int z) {
 		return getMetaForHeight(x,(float)y,z);
 	}

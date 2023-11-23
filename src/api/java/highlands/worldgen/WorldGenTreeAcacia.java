@@ -2,12 +2,11 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreeAcacia extends WorldGenHighlandsTreeBase
 {
@@ -25,11 +24,11 @@ public class WorldGenTreeAcacia extends WorldGenHighlandsTreeBase
     public WorldGenTreeAcacia(int lmd, int wmd, Block wb, Block lb, int minH, int maxH, boolean notify)
     {
     	super(lmd, wmd, wb, lb, notify);
-        
+
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenTreeAcacia(int minH, int maxH, boolean notify){
     	this(0, 0, HighlandsBlocks.acaciaWood, HighlandsBlocks.acaciaLeaves, minH, maxH, notify);
     	if(Highlands.vanillaBlocksFlag){
@@ -42,19 +41,19 @@ public class WorldGenTreeAcacia extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
+
 
     	//locY = findTopBlock(locX, locZ);
-        
+
         if(!isLegalTreePosition(world, locX, locY, locZ))return false;
         if(!isCubeClear(locX, locY+3, locZ, 2, 6))return false;
-        
+
     	//generates the trunk
     	int treeHeight = minHeight + random.nextInt(maxHeight);
     	for(int i = 0; i < treeHeight; i++){
     		setBlockInWorld(locX, locY + i, locZ, this.wood, this.woodMeta);
     	}
-    	
+
     	int h = locY + treeHeight - 1;
     	//generate leaves above trunk
     	generateLeafLayerCircle(world, random, 5.5, locX, locZ, h);

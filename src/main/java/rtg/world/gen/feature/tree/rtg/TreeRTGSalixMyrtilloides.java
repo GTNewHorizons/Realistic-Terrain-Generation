@@ -1,12 +1,11 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-
 import rtg.config.rtg.ConfigRTG;
+
+import java.util.Random;
 
 /**
  * Salix Myrtilloides (Swamp Willow)
@@ -32,12 +31,12 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
 	 * decoTree.leavesMeta = (byte)0;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGSalixMyrtilloides()
 	{
 		super();
-		
+
 		this.setLogBlock(Blocks.log)
 			.setLogMeta((byte)0)
 			.setLeavesBlock(Blocks.leaves)
@@ -56,19 +55,19 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
         if (!this.isGroundValid(world, x, y, z, ConfigRTG.allowTreesToGenerateOnSand)) {
             return false;
         }
-    	
+
     	int height = 13;
     	int leaveheight = 5;
     	int branches = 6;
     	int branchLenght = 6;
-    	
+
     	for(int i = 0; i < height; i++)
     	{
     		this.placeLogBlock(world, x, y + i, z, this.logBlock, this.logMeta, this.generateFlag);
     	}
     	createLeavesAroundBranch(world, rand, x, y + height, z, 3, 2);
     	createTrunk(world, rand, x, y, z);
-    	
+
     	int dir = rand.nextInt((int)(360f / branches));
     	int bl;
     	float xd, yd, hd, c;
@@ -81,7 +80,7 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
 			xd = (float)Math.cos(dir * Math.PI / 180f);
 			yd = (float)Math.sin(dir * Math.PI / 180f);
 			m = false;
-    		
+
     		while(c < branchLenght)
     		{
     			if(c > branchLenght / 2 && !m)
@@ -95,10 +94,10 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
     		}
     		createLeavesAroundBranch(world, rand, x + (int)(c * xd), y + (int)hd, z + (int)(c * yd), 2, 1);
     	}
-    	
+
     	return true;
     }
-    
+
     private void createLeavesAroundBranch(World world, Random rand, int x, int y, int z, int s, int c)
     {
     	int l;
@@ -115,7 +114,7 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
     					if(world.isAirBlock(x + i, y + j, z + k) && (l < t - c || rand.nextBoolean()))
     					{
     						if (!this.noLeaves) {
-    							
+
 	    						this.placeLeavesBlock(world, x + i, y + j, z + k, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    						if(j < -(s - 2) && rand.nextInt(3) != 0)
 	    						{
@@ -128,7 +127,7 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
     		}
     	}
     }
-    
+
     private void createVine(World world, Random rand, int x, int y, int z)
     {
     	int r = rand.nextInt(3) + 5;
@@ -141,13 +140,13 @@ public class TreeRTGSalixMyrtilloides extends TreeRTG
 			this.placeLeavesBlock(world, x, y + i, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
     	}
     }
-    
+
     private void createTrunk(World world, Random rand, int x, int y, int z)
     {
     	int[] pos = new int[]{0,0, 1,0, 0,1, -1,0, 0,-1};
     	int sh;
     	for(int t = 0; t < 5; t++)
-    	{    	
+    	{
     		sh = rand.nextInt(3) + y;
     		while(sh > y - 3)
     		{

@@ -1,12 +1,11 @@
 package rtg.config.itd;
 
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
-
 import rtg.api.biome.itd.config.BiomeConfigITD;
 import rtg.config.BiomeConfigManager;
 import rtg.util.Logger;
+
+import java.io.File;
 
 public class ConfigITD
 {

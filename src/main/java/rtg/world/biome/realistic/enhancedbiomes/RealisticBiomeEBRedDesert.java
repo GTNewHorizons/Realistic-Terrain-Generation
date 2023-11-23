@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -7,8 +9,6 @@ import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBRedDesert;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBRedDesert;
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 
 public class RealisticBiomeEBRedDesert extends RealisticBiomeEBBase
 {
@@ -16,22 +16,22 @@ public class RealisticBiomeEBRedDesert extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.HARDENED_SANDSTONE, (byte)0),
         EBAPI.ebStonify(EBAPI.MARBLE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.HARDENED_SANDSTONE, (byte)0),
         EBAPI.ebStonify(EBAPI.MARBLE, (byte)0)
     };
-    
+
     private static Block ebTopBlock = Blocks.sand;
     private static byte ebTopByte = (byte)1;
     private static Block ebFillBlock = ebDominantStoneBlock[0];
@@ -44,33 +44,33 @@ public class RealisticBiomeEBRedDesert extends RealisticBiomeEBBase
     private static byte ebCliff1Byte = (byte)1;
     private static Block ebCliff2Block = Blocks.sand;
     private static byte ebCliff2Byte = (byte)1;
-    
+
     public RealisticBiomeEBRedDesert(BiomeGenBase ebBiome, BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             ebBiome, BiomeGenBase.river,
             new TerrainEBRedDesert(),
-            new SurfaceEBRedDesert(config, 
-                ebTopBlock, //Block top 
+            new SurfaceEBRedDesert(config,
+                ebTopBlock, //Block top
                 ebTopByte, //byte topByte
-                ebFillBlock, //Block filler, 
+                ebFillBlock, //Block filler,
                 ebFillByte, //byte fillerByte
-                ebMixTopBlock, //Block mixTop, 
-                ebMixTopByte, //byte mixTopByte, 
-                ebMixFillBlock, //Block mixFill, 
-                ebMixFillByte, //byte mixFillByte, 
-                ebCliff1Block, //Block cliff1, 
-                ebCliff1Byte, //byte cliff1Byte, 
-                ebCliff2Block, //Block cliff2, 
-                ebCliff2Byte, //byte cliff2Byte, 
-                1f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                2f, //float smallWidth, 
+                ebMixTopBlock, //Block mixTop,
+                ebMixTopByte, //byte mixTopByte,
+                ebMixFillBlock, //Block mixFill,
+                ebMixFillByte, //byte mixFillByte,
+                ebCliff1Block, //Block cliff1,
+                ebCliff1Byte, //byte cliff1Byte,
+                ebCliff2Block, //Block cliff2,
+                ebCliff2Byte, //byte cliff2Byte,
+                1f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                2f, //float smallWidth,
                 0.5f //float smallStrength
             )
         );
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
     }

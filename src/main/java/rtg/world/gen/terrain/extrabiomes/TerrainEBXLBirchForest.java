@@ -4,8 +4,8 @@ import rtg.world.gen.terrain.BlendedHillEffect;
 import rtg.world.gen.terrain.FunctionalTerrainBase;
 import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.HeightVariation;
-import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.HillsEverywhereEffect;
+import rtg.world.gen.terrain.JitterEffect;
 
 
 public class TerrainEBXLBirchForest extends FunctionalTerrainBase
@@ -15,7 +15,7 @@ public class TerrainEBXLBirchForest extends FunctionalTerrainBase
     public TerrainEBXLBirchForest()
     {
         base = 75;
-        
+
         // first some occasional hills
         BlendedHillEffect hillsOnHills = new BlendedHillEffect();
         hillsOnHills.height= 10;

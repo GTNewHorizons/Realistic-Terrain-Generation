@@ -1,23 +1,22 @@
 package rtg.world.gen.surface.enhancedbiomes;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.CliffCalculator;
-import rtg.util.OpenSimplexNoise;
 import enhancedbiomes.api.EBAPI;
 import enhancedbiomes.blocks.EnhancedBiomesBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.CliffCalculator;
+import rtg.util.OpenSimplexNoise;
+
+import java.util.Random;
 
 public class SurfaceEBStoneCanyon2 extends SurfaceEBBase
 {
 
-    
+
     private Block blockMixTop;
     private byte byteMixTop;
     private Block blockMixFiller;
@@ -30,25 +29,25 @@ public class SurfaceEBStoneCanyon2 extends SurfaceEBBase
     private float floMixHeight;
     private float floSmallWidth;
     private float floSmallStrength;
-    
+
     public SurfaceEBStoneCanyon2(BiomeConfig config, Block top, byte topByte, Block filler, byte fillerByte, Block mixTop, byte mixTopByte, Block mixFiller,
         byte mixFillerByte, Block cliff1, byte cliff1Byte, Block cliff2, byte cliff2Byte, float mixWidth, float mixHeight,
         float smallWidth, float smallStrength)
     {
-    
+
         super(config, top, topByte, filler, fillerByte);
-        
+
         blockMixTop = mixTop;
         byteMixTop = mixTopByte;
         blockMixFiller = mixFiller;
         byteMixFiller = mixFillerByte;
-        
+
         blockCliff1 = cliff1;
         byteCliff1 = cliff1Byte;
-        
+
         blockCliff2 = cliff2;
         byteCliff2 = cliff2Byte;
-        
+
         floMixWidth = mixWidth;
         floMixHeight = mixHeight;
         floSmallWidth = smallWidth;

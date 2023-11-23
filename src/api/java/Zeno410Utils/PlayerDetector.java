@@ -4,10 +4,11 @@ package Zeno410Utils;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import java.util.HashMap;
-import java.util.HashSet;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
+
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  *
@@ -25,7 +26,7 @@ public class PlayerDetector {
         FMLCommonHandler.instance().bus().register(dispatcher);
         MinecraftForge.EVENT_BUS.register(dispatcher);
     }
-    
+
 
     public void addLoginAction(Acceptor<EntityPlayerMP> action) {
         onLogin.add(action);

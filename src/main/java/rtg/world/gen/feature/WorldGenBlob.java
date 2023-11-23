@@ -1,7 +1,5 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -10,6 +8,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import rtg.config.rtg.ConfigRTG;
 import rtg.util.BoulderUtil;
 import rtg.util.RandomUtil;
+
+import java.util.Random;
 
 public class WorldGenBlob extends WorldGenerator
 {

@@ -1,22 +1,21 @@
 package rtg.config.thaumcraft;
 
-import java.io.File;
-
+import net.minecraftforge.common.config.Configuration;
 import rtg.api.biome.thaumcraft.config.BiomeConfigTC;
 import rtg.config.BiomeConfigManager;
 import rtg.util.Logger;
 
-import net.minecraftforge.common.config.Configuration;
+import java.io.File;
 
-public class ConfigTC 
+public class ConfigTC
 {
 	public static Configuration config;
 
-	public static void init(File configFile) 
+	public static void init(File configFile)
 	{
 		config = new Configuration(configFile);
-	
-		try 
+
+		try
 		{
 			config.load();
 
@@ -24,9 +23,9 @@ public class ConfigTC
 		}
 		catch (Exception e)
 		{
-		    Logger.error("RTG has had a problem loading Thaumcraft configuration.");	
+		    Logger.error("RTG has had a problem loading Thaumcraft configuration.");
 		}
-		finally 
+		finally
 		{
 			if (config.hasChanged())
 			{

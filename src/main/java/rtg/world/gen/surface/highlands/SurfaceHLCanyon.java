@@ -1,31 +1,30 @@
 package rtg.world.gen.surface.highlands;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceHLCanyon extends SurfaceBase
 {
 	private int[] claycolor = new int[100];
 	private int grassRaise = 0;
-	
+
 	public SurfaceHLCanyon(BiomeConfig config, Block top, byte topByte, Block fill, byte fillByte, int grassHeight)
 	{
 		super(config, top, topByte, fill, fillByte);
 		grassRaise = grassHeight;
-		
+
 		int[] c = new int[]{1, 8, 0};
 		OpenSimplexNoise simplex = new OpenSimplexNoise(2L);
-		
+
 		float n;
 		for(int i = 0; i < 100; i++)
 		{
@@ -34,20 +33,20 @@ public class SurfaceHLCanyon extends SurfaceBase
 			claycolor[i] = c[(int)n];
 		}
 	}
-	
+
 	public byte getClayColorForHeight(int k)
 	{
 		k -= 60;
 		k = k < 0 ? 0 : k > 99 ? 99 : k;
 		return (byte)claycolor[k];
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
 		float c = CliffCalculator.calc(x, y, noise);
 		boolean cliff = c > 1.3f ? true : false;
-		
+
 		for(int k = 255; k > -1; k--)
 		{
 			Block b = blocks[(y * 16 + x) * 256 + k];

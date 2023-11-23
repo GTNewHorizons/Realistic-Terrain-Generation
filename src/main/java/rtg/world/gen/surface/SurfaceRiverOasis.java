@@ -1,16 +1,15 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.config.rtg.ConfigRTG;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceRiverOasis extends SurfaceBase
 {
@@ -19,14 +18,14 @@ public class SurfaceRiverOasis extends SurfaceBase
 	// Cut-off noise amplitude. The bigger, the more effect cut-off is going to have in the grass
 	private float cutOffAmplitude;
 
-	public SurfaceRiverOasis(BiomeConfig config) 
+	public SurfaceRiverOasis(BiomeConfig config)
 	{
 		super(config, Blocks.grass, (byte)0, Blocks.dirt, (byte)0);
 
 		this.cutOffScale = ConfigRTG.riverCutOffScale;
 		this.cutOffAmplitude = ConfigRTG.riverCutOffAmplitude;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{

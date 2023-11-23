@@ -1,12 +1,13 @@
 
 package rtg.world.biome.deco.helper;
 
-import java.util.Random;
 import net.minecraft.world.World;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.deco.DecoBase;
 import rtg.world.biome.realistic.RealisticBiomeBase;
+
+import java.util.Random;
 
 /**
  *

@@ -5,23 +5,22 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api;
 
-import java.util.List;
-
+import com.shinoow.abyssalcraft.api.item.ACItems;
+import com.shinoow.abyssalcraft.api.item.ICrystal;
+import com.shinoow.abyssalcraft.api.recipe.EngraverRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.shinoow.abyssalcraft.api.item.ACItems;
-import com.shinoow.abyssalcraft.api.item.ICrystal;
-import com.shinoow.abyssalcraft.api.recipe.EngraverRecipes;
+import java.util.List;
 
 /**
  * Utilities for the AbyssalCraft API
@@ -35,7 +34,7 @@ public class APIUtils {
 	 * Checks if the ItemStack is a Crystal
 	 * @param item ItemStack to check
 	 * @return True if the ItemStack is a Crystal, otherwise false
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public static boolean isCrystal(ItemStack item){
@@ -50,7 +49,7 @@ public class APIUtils {
 	 * Checks if the ItemStack is a Coin
 	 * @param item ItemStack to check
 	 * @return True if the ItemStack is a Coin, otherwise false
-	 * 
+	 *
 	 * @since 1.5
 	 */
 	public static boolean isCoin(ItemStack item){
@@ -66,7 +65,7 @@ public class APIUtils {
 	 * (Copy of EntityUtil.hasNecronomicon())
 	 * @param player The Player to check
 	 * @return True if the Player has a Necronomicon, otherwise false
-	 * 
+	 *
 	 * @since 1.5
 	 */
 	public static boolean hasNecronomicon(EntityPlayer player){

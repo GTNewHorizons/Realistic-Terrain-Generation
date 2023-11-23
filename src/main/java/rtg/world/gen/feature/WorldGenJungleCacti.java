@@ -1,23 +1,23 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenJungleCacti extends WorldGenerator
 {
 	private boolean sand;
 	private byte sandByte;
 	private int eHeight;
-	
+
 	public WorldGenJungleCacti(boolean sandOnly)
 	{
 		this(sandOnly, 0, (byte)1);
 	}
-	
+
 	public WorldGenJungleCacti(boolean sandOnly, int extraHeight, byte sandMeta)
 	{
 		sand = sandOnly;
@@ -44,7 +44,7 @@ public class WorldGenJungleCacti extends WorldGenerator
 	                {
 	                	world.setBlock(i1, j1 - 1, k1, Blocks.sand, sandByte, 2);
 	                }
-	
+
 	                for (int i2 = 0; i2 < l1 + eHeight; ++i2)
 	                {
 	                    if (Blocks.cactus.canBlockStay(world, i1, j1 + i2, k1))

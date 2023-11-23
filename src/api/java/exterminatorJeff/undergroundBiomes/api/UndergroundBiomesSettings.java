@@ -1,7 +1,10 @@
 
 package exterminatorJeff.undergroundBiomes.api;
 
-import Zeno410Utils.*;
+import Zeno410Utils.Mutable;
+import Zeno410Utils.Settings;
+import Zeno410Utils.Streamer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -28,13 +31,13 @@ public final class UndergroundBiomesSettings extends Settings {
 
         };
     }
-    
+
     private final Category blockCategory = category("block");
     private final Category itemCategory = category("item");
 
     public final Mutable<Boolean> addOreDictRecipes = this.general().booleanSetting(
             "oreDictifyStone", true, "Modify all recipes to include Underground Biomes blocks");
-    
+
     public final Mutable<Boolean> vanillaStoneBiomes = this.general().booleanSetting(
                 "vanillaStoneBiomes", false, "Will cause sharp biome transitions if changed while playing the same world");
 
@@ -79,7 +82,7 @@ public final class UndergroundBiomesSettings extends Settings {
 
     public final Mutable<String> includeDimensions = this.general().stringSetting(
             "includeDimensionIDs", "*", "Comma-separated list of dimension IDs, put * to use exclude list");
-    
+
     public final Mutable<Integer>  generateHeight = this.general().intSetting(
             "generateHeight", 256, "Highest block to generated UB stone for");
 

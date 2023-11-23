@@ -1,13 +1,13 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 /**
  * Pinus Monticola (California Mountain Pine)
@@ -38,7 +38,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
 	 * decoTree.maxCrownSize = 12;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
     public TreeRTGPinusMonticola()
     {
@@ -51,7 +51,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
     	this.height = this.trunkSize + this.crownSize;
 
         this.trunkLogMeta = this.getTrunkLogMeta(this.logMeta);
-    	
+
         int l = p_76484_2_.nextInt(this.height * 2) + this.height * 2;
         int i1 = this.height + p_76484_2_.nextInt(this.height);
         int j1 = l - i1;
@@ -164,7 +164,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
                             this.placeLogBlock(p_76484_1_, p_76484_3_, p_76484_4_ + k2, p_76484_5_, this.logBlock, this.logMeta, this.generateFlag);
                         }
                     }
-                    
+
                     if(this.height > 4)
                     {
                     	buildTrunk(p_76484_1_, p_76484_2_, p_76484_3_, p_76484_4_, p_76484_5_);
@@ -183,7 +183,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
             return false;
         }
     }
-    
+
     @Override
     public void buildTrunk(World world, Random rand, int x, int y, int z)
     {
@@ -191,7 +191,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
     	int sh;
     	Block b;
     	for(int t = 0; t < (pos.length / 2); t++)
-    	{    	
+    	{
     		sh = rand.nextInt(4) + y - 2;
     		while(sh > y - 1)
     		{
@@ -204,7 +204,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
     		}
     	}
     }
-    
+
 	@Override
     public void buildBranch(World world, Random rand, int x, int y, int z, int dX, int dZ, int logLength, int leaveSize)
     {
@@ -212,7 +212,7 @@ public class TreeRTGPinusMonticola extends TreeRTG
     	{
     		logLength--;
     	}
-    	
+
     	for(int i = -1; i <= 1; i++)
     	{
     		for(int j = -1; j <= 1; j++)
@@ -226,18 +226,18 @@ public class TreeRTGPinusMonticola extends TreeRTG
     			}
     		}
     	}
-    	
+
     	for(int m = 1; m <= logLength; m++)
     	{
         	this.placeLogBlock(world, x + (dX * m), y, z + (dZ * m), this.logBlock, this.logMeta, this.generateFlag);
     	}
     }
-	
+
 	@Override
     public void buildLeaves(World world, int x, int y, int z)
     {
 		if (!this.noLeaves) {
-		
+
 	    	Block b = world.getBlock(x, y, z);
 	    	if(b.getMaterial() == Material.air)
 	    	{

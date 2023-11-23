@@ -5,21 +5,37 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.logging.log4j.Level;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.shinoow.abyssalcraft.api.block.ACBlocks;
+import com.shinoow.abyssalcraft.api.internal.DummyNecroDataHandler;
+import com.shinoow.abyssalcraft.api.internal.IInternalNecroDataHandler;
+import com.shinoow.abyssalcraft.api.item.ACItems;
+import com.shinoow.abyssalcraft.api.item.ItemEngraving;
+import com.shinoow.abyssalcraft.api.necronomicon.NecroData;
+import com.shinoow.abyssalcraft.api.recipe.CrystallizerRecipes;
+import com.shinoow.abyssalcraft.api.recipe.EngraverRecipes;
+import com.shinoow.abyssalcraft.api.recipe.Materialization;
+import com.shinoow.abyssalcraft.api.recipe.MaterializerRecipes;
+import com.shinoow.abyssalcraft.api.recipe.TransmutatorRecipes;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.LoaderState;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.entity.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.passive.EntityAmbientCreature;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -30,27 +46,16 @@ import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.logging.log4j.Level;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.shinoow.abyssalcraft.api.block.ACBlocks;
-import com.shinoow.abyssalcraft.api.internal.DummyNecroDataHandler;
-import com.shinoow.abyssalcraft.api.internal.IInternalNecroDataHandler;
-import com.shinoow.abyssalcraft.api.item.ACItems;
-import com.shinoow.abyssalcraft.api.item.ItemEngraving;
-import com.shinoow.abyssalcraft.api.necronomicon.NecroData;
-import com.shinoow.abyssalcraft.api.recipe.*;
-
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.LoaderState;
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Main API class for AbyssalCraft, has child classes for most features.<br>
  * Check {@link IMCHelper} for InterModComms registration
- * 
+ *
  * @author shinoow
  *
  */
@@ -191,7 +196,7 @@ public class AbyssalCraftAPI {
 	 * This description probably hardly makes any sense, deal with it.
 	 * @param id The potion id
 	 * @param requirements A bit sequence
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void addPotionRequirements(int id, String requirements){
@@ -203,7 +208,7 @@ public class AbyssalCraftAPI {
 	 * This description probably hardly makes any sense, deal with it.
 	 * @param id The potion id
 	 * @param amplifier The potion amplifier value (usually 5)
-	 * 
+	 *
 	 * @since 1.1
 	 */
 	public static void addPotionAmplifiers(int id, String amplifier){
@@ -216,7 +221,7 @@ public class AbyssalCraftAPI {
 	 * @param output1 The first crystal output
 	 * @param output2 The second crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addCrystallization(Block input, ItemStack output1, ItemStack output2, float xp){
@@ -229,7 +234,7 @@ public class AbyssalCraftAPI {
 	 * @param output1 The first crystal output
 	 * @param output2 The second crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addCrystallization(Item input, ItemStack output1, ItemStack output2, float xp){
@@ -242,7 +247,7 @@ public class AbyssalCraftAPI {
 	 * @param output1 The first crystal output
 	 * @param output2 The second crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addCrystallization(ItemStack input, ItemStack output1, ItemStack output2, float xp){
@@ -254,7 +259,7 @@ public class AbyssalCraftAPI {
 	 * @param input The block to crystallize
 	 * @param output The crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addSingleCrystallization(Block input, ItemStack output, float xp){
@@ -266,7 +271,7 @@ public class AbyssalCraftAPI {
 	 * @param input The item to crystallize
 	 * @param output The crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addSingleCrystallization(Item input, ItemStack output, float xp){
@@ -278,7 +283,7 @@ public class AbyssalCraftAPI {
 	 * @param input The itemstack to crystallize
 	 * @param output The crystal output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addSingleCrystallization(ItemStack input, ItemStack output, float xp){
@@ -290,7 +295,7 @@ public class AbyssalCraftAPI {
 	 * @param input The block to transmutate
 	 * @param output The transmutated output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addTransmutation(Block input, ItemStack output, float xp){
@@ -302,7 +307,7 @@ public class AbyssalCraftAPI {
 	 * @param input The item to transmutate
 	 * @param output The transmutated output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addTransmutation(Item input, ItemStack output, float xp){
@@ -314,7 +319,7 @@ public class AbyssalCraftAPI {
 	 * @param input The itemstack to transmutate
 	 * @param output The transmutated output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addTransmutation(ItemStack input, ItemStack output, float xp){
@@ -326,7 +331,7 @@ public class AbyssalCraftAPI {
 	 * @param input The ore input
 	 * @param output The ore output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addOreSmelting(String input, String output, float xp){
@@ -341,7 +346,7 @@ public class AbyssalCraftAPI {
 	 * @param output1 The first ore output
 	 * @param output2 The second ore output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addCrystallization(String input, String output1, String output2, float xp){
@@ -358,7 +363,7 @@ public class AbyssalCraftAPI {
 	 * @param output2 The second ore output
 	 * @param out2 Quantity of the second output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addCrystallization(String input, String output1, int out1, String output2, int out2, float xp){
@@ -377,7 +382,7 @@ public class AbyssalCraftAPI {
 	 * @param input The ore input
 	 * @param output The ore output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addSingleCrystallization(String input, String output, float xp){
@@ -392,7 +397,7 @@ public class AbyssalCraftAPI {
 	 * @param output The ore output
 	 * @param out The output quantity
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addSingleCrystallization(String input, String output, int out, float xp){
@@ -409,7 +414,7 @@ public class AbyssalCraftAPI {
 	 * @param input The ore input
 	 * @param output The ore output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addTransmutation(String input, String output, float xp){
@@ -424,7 +429,7 @@ public class AbyssalCraftAPI {
 	 * @param output The ore output
 	 * @param out The output quantity
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void addTransmutation(String input, String output, int out, float xp){
@@ -441,7 +446,7 @@ public class AbyssalCraftAPI {
 	 * Both regular coins and engraved coins should be registered here
 	 * to register the engraving template and engraved coin)
 	 * @param coin The ItemStack containing a coin
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static void addCoin(ItemStack coin){
@@ -455,7 +460,7 @@ public class AbyssalCraftAPI {
 	 * Both regular coins and engraved coins should be registered here
 	 * to register the engraving template and engraved coin)
 	 * @param coin The Item representing a coin
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static void addCoin(Item coin){
@@ -469,7 +474,7 @@ public class AbyssalCraftAPI {
 	 * @param coin The Engraved Coin
 	 * @param engraving The Engraving Template
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static void addEngraving(ItemStack coin, ItemEngraving engraving, float xp){
@@ -484,7 +489,7 @@ public class AbyssalCraftAPI {
 	 * @param coin The Engraved Coin
 	 * @param engraving The Engraving Template
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static void addEngraving(Item coin, ItemEngraving engraving, float xp){
@@ -500,7 +505,7 @@ public class AbyssalCraftAPI {
 	 * @param input An array of ItemStacks (maximum is 5)
 	 * @param output The output
 	 * @param xp Amount of exp given
-	 * 
+	 *
 	 * @since 1.4.5
 	 */
 	public static void addMaterialization(ItemStack[] input, ItemStack output){
@@ -516,7 +521,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Basic Materialization.
 	 * @param materialization A Materializer Recipe
-	 * 
+	 *
 	 * @since 1.5
 	 */
 	public static void addMaterialization(Materialization materialization){
@@ -536,7 +541,7 @@ public class AbyssalCraftAPI {
 	 * Registers a fuel handler for an AbyssalCraft fuel type
 	 * @param handler The file that implements {@link IFuelHandler}
 	 * @param type The fuel type
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static void registerFuelHandler(IFuelHandler handler, FuelType type){
@@ -557,7 +562,7 @@ public class AbyssalCraftAPI {
 	 * @param itemStack The ItemStack getting checked
 	 * @param type The fuel type
 	 * @return The fuel value for the specified machine
-	 * 
+	 *
 	 * @since 1.0
 	 */
 	public static int getFuelValue(ItemStack itemStack, FuelType type){
@@ -582,7 +587,7 @@ public class AbyssalCraftAPI {
 	 * (Note: It's useless to add your entity here if it extends {@link EntityAnimal}, {@link EntityAmbientCreature}, {@link EntityWaterMob} or {@link EntityTameable}).
 	 * If your Entity's superclass is a subclass of EntityTameable, you will need to add the superclass.
 	 * @param clazz The potential "food" for the Lesser Shoggoth
-	 * 
+	 *
 	 * @since 1.2
 	 */
 	public static void addShoggothFood(Class<? extends EntityLivingBase> clazz){
@@ -592,7 +597,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Used by the Lesser Shoggoth to fetch a list of things to eat
 	 * @return An ArrayList containing Entity classes
-	 * 
+	 *
 	 * @since 1.2
 	 */
 	public static List<Class<? extends EntityLivingBase>> getShoggothFood(){
@@ -604,7 +609,7 @@ public class AbyssalCraftAPI {
 	 * a fleshy soil when a Lesser Shoggoth walks over it
 	 * (Note: Any liquid block and tile entity block will automatically be blacklisted)
 	 * @param block The block to blacklist
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public static void addShoggothBlacklist(Block block){
@@ -615,7 +620,7 @@ public class AbyssalCraftAPI {
 	 * Used by the Lesser Shoggoth to fetch a list of blocks that won't be converted when
 	 * it walks over them
 	 * @return An ArrayList containing Blocks
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public static List<Block> getShoggothBlockBlacklist(){
@@ -625,7 +630,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Adds the ItemStack to the crystal list. Anything added to this list will function like a {@link ICrystal}
 	 * @param crystal The ItemStack to be added
-	 * 
+	 *
 	 * @since 1.3
 	 */
 	public static void addCrystal(ItemStack crystal){
@@ -635,7 +640,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Used by various things to fetch a list of ItemStacks that should function like {@link ICrystal}s
 	 * @return An ArrayList of ItemStacks
-	 * 
+	 *
 	 * @since 1.3
 	 */
 	public static List<ItemStack> getCrystals(){
@@ -653,7 +658,7 @@ public class AbyssalCraftAPI {
 	 * <li>3 = Omothol Necronomicon</li>
 	 * <li>4 = Abyssalnomicon</li>
 	 * </ul>
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static void registerNecronomiconData(NecroData data, int bookType){
@@ -665,7 +670,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Used by the Necronomicon for fetching pages made outside of AbyssalCraft
 	 * @return A HashMap of NecroDatas and Integers
-	 * 
+	 *
 	 * @since 1.3.5
 	 */
 	public static HashMap<NecroData,Integer> getNecronomiconData(){
@@ -674,7 +679,7 @@ public class AbyssalCraftAPI {
 
 	/**
 	 * Contains the names of all mobs added in AbyssalCraft.
-	 * 
+	 *
 	 * @author shinoow
 	 *
 	 */
@@ -736,7 +741,7 @@ public class AbyssalCraftAPI {
 	/**
 	 * Contains all potion effects added in AbyssalCraft.
 	 * You can reference them from here, or use the ID directly
-	 * 
+	 *
 	 * @author shinoow
 	 *
 	 */

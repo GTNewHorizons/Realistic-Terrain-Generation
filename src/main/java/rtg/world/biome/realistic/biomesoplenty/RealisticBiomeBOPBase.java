@@ -1,17 +1,17 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.biomesoplenty.config.BiomeConfigBOP;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
-import biomesoplenty.api.content.BOPCBiomes;
-import cpw.mods.fml.common.Loader;
 
 public class RealisticBiomeBOPBase extends RealisticBiomeBase
 {
-    
+
     //Overworld Biomes
     public static RealisticBiomeBase bopAlps;
     public static RealisticBiomeBase bopArctic;
@@ -71,7 +71,7 @@ public class RealisticBiomeBOPBase extends RealisticBiomeBase
     public static RealisticBiomeBase bopWetland;
     public static RealisticBiomeBase bopWoodland;
     public static RealisticBiomeBase bopXericShrubland;
-    
+
     //Sub Biomes
     public static RealisticBiomeBase bopAlpsForest;
     public static RealisticBiomeBase bopCanyonRavine;
@@ -88,27 +88,27 @@ public class RealisticBiomeBOPBase extends RealisticBiomeBase
     public static RealisticBiomeBase bopSpruceWoods;
     public static RealisticBiomeBase bopTropics;
     public static RealisticBiomeBase bopVolcano;
-    
+
     //Ocean Biomes
     public static RealisticBiomeBase bopCoralReef;
     public static RealisticBiomeBase bopKelpForest;
-    
+
     //River Biomes
     public static RealisticBiomeBase bopLushRiver;
     public static RealisticBiomeBase bopDryRiver;
 
     // true if it's the older version without Dense Forest, etc.
     public static boolean olderBoP = false;
-    
+
 
 	public RealisticBiomeBOPBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
 	{
 		super(config, b, riverbiome, t, s);
-		
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
 	}
-	
+
 	public static void addBiomes()
 	{
 		if (Loader.isModLoaded("BiomesOPlenty"))
@@ -130,7 +130,7 @@ public class RealisticBiomeBOPBase extends RealisticBiomeBase
 		    if (BOPCBiomes.deadForest != null) bopDeadForest = new RealisticBiomeBOPDeadForest(BiomeConfigBOP.biomeConfigBOPDeadForest);
 		    if (BOPCBiomes.deadSwamp != null) bopDeadSwamp = new RealisticBiomeBOPDeadSwamp(BiomeConfigBOP.biomeConfigBOPDeadSwamp);
 		    if (BOPCBiomes.deciduousForest != null) bopDeciduousForest = new RealisticBiomeBOPDeciduousForest(BiomeConfigBOP.biomeConfigBOPDeciduousForest);
-			
+
 			try {
 			    if (BOPCBiomes.denseForest != null) bopDenseForest = new RealisticBiomeBOPDenseForest(BiomeConfigBOP.biomeConfigBOPDenseForest);
 			    if (BOPCBiomes.eucalyptusForest != null) bopEucalyptusForest = new RealisticBiomeBOPEucalyptusForest(BiomeConfigBOP.biomeConfigBOPEucalyptusForest);
@@ -149,14 +149,14 @@ public class RealisticBiomeBOPBase extends RealisticBiomeBase
 			if (BOPCBiomes.heathland != null) bopHeathland = new RealisticBiomeBOPHeathland(BiomeConfigBOP.biomeConfigBOPHeathland);
 			if (BOPCBiomes.highland != null) bopHighland = new RealisticBiomeBOPHighland(BiomeConfigBOP.biomeConfigBOPHighland);
 			if (BOPCBiomes.jadeCliffs != null) bopJadeCliffs = new RealisticBiomeBOPJadeCliffs(BiomeConfigBOP.biomeConfigBOPJadeCliffs);
-			
+
             try {
                 if (BOPCBiomes.landOfLakes != null) bopLandOfLakes = new RealisticBiomeBOPLandOfLakes(BiomeConfigBOP.biomeConfigBOPLandOfLakes);
             }
             catch (NoSuchFieldError e) {
                 olderBoP = true;
             }
-            
+
             if (BOPCBiomes.lavenderFields != null) bopLavenderFields = new RealisticBiomeBOPLavenderFields(BiomeConfigBOP.biomeConfigBOPLavenderFields);
             if (BOPCBiomes.lushDesert != null) bopLushDesert = new RealisticBiomeBOPLushDesert(BiomeConfigBOP.biomeConfigBOPLushDesert);
             if (BOPCBiomes.lushSwamp != null) bopLushSwamp = new RealisticBiomeBOPLushSwamp(BiomeConfigBOP.biomeConfigBOPLushSwamp);
@@ -185,56 +185,56 @@ public class RealisticBiomeBOPBase extends RealisticBiomeBase
             if (BOPCBiomes.wasteland != null) bopWasteland = new RealisticBiomeBOPWasteland(BiomeConfigBOP.biomeConfigBOPWasteland);
             if (BOPCBiomes.wetland != null) bopWetland = new RealisticBiomeBOPWetland(BiomeConfigBOP.biomeConfigBOPWetland);
             if (BOPCBiomes.woodland != null) bopWoodland = new RealisticBiomeBOPWoodland(BiomeConfigBOP.biomeConfigBOPWoodland);
-			
+
             try {
                 if (BOPCBiomes.xericShrubland != null) bopXericShrubland = new RealisticBiomeBOPXericShrubland(BiomeConfigBOP.biomeConfigBOPXericShrubland);
             }
             catch (NoSuchFieldError e) {
                 olderBoP = true;
             }
-			
+
             //Sub Biomes
             if (BOPCBiomes.alpsForest != null) bopAlpsForest = new RealisticBiomeBOPAlpsForest(BiomeConfigBOP.biomeConfigBOPAlpsForest);
             if (BOPCBiomes.canyonRavine != null) bopCanyonRavine = new RealisticBiomeBOPCanyonRavine(BiomeConfigBOP.biomeConfigBOPCanyonRavine);
             if (BOPCBiomes.glacier != null) bopGlacier = new RealisticBiomeBOPGlacier(BiomeConfigBOP.biomeConfigBOPGlacier);
-			
+
             try {
                 if (BOPCBiomes.landOfLakesMarsh != null) bopLandOfLakesMarsh = new RealisticBiomeBOPLandOfLakesMarsh(BiomeConfigBOP.biomeConfigBOPLandOfLakesMarsh);
             }
             catch (NoSuchFieldError e) {
                 olderBoP = true;
             }
-            
+
             if (BOPCBiomes.mangrove != null) bopMangrove = new RealisticBiomeBOPMangrove(BiomeConfigBOP.biomeConfigBOPMangrove);
             if (BOPCBiomes.meadowForest != null) bopMeadowForest = new RealisticBiomeBOPMeadowForest(BiomeConfigBOP.biomeConfigBOPMeadowForest);
             if (BOPCBiomes.oasis != null) bopOasis = new RealisticBiomeBOPOasis(BiomeConfigBOP.biomeConfigBOPOasis);
             if (BOPCBiomes.orchard != null) bopOrchard = new RealisticBiomeBOPOrchard(BiomeConfigBOP.biomeConfigBOPOrchard);
             if (BOPCBiomes.quagmire != null) bopQuagmire = new RealisticBiomeBOPQuagmire(BiomeConfigBOP.biomeConfigBOPQuagmire);
             if (BOPCBiomes.scrubland != null) bopScrubland = new RealisticBiomeBOPScrubland(BiomeConfigBOP.biomeConfigBOPScrubland);
-			
+
             try {
                 if (BOPCBiomes.seasonalForestClearing != null) bopSeasonalForestClearing = new RealisticBiomeBOPSeasonalForestClearing(BiomeConfigBOP.biomeConfigBOPSeasonalForestClearing);
             }
             catch (NoSuchFieldError e) {
                 olderBoP = true;
             }
-			
+
             if (BOPCBiomes.silkglades != null) bopSilkglades = new RealisticBiomeBOPSilkglades(BiomeConfigBOP.biomeConfigBOPSilkglades);
             if (BOPCBiomes.spruceWoods != null) bopSpruceWoods = new RealisticBiomeBOPSpruceWoods(BiomeConfigBOP.biomeConfigBOPSpruceWoods);
             if (BOPCBiomes.tropics != null) bopTropics = new RealisticBiomeBOPTropics(BiomeConfigBOP.biomeConfigBOPTropics);
             if (BOPCBiomes.volcano != null) bopVolcano = new RealisticBiomeBOPVolcano(BiomeConfigBOP.biomeConfigBOPVolcano);
-			
+
 			//Ocean Biomes
             if (BOPCBiomes.coralReef != null) bopCoralReef = new RealisticBiomeBOPCoralReef(BiomeConfigBOP.biomeConfigBOPCoralReef);
             if (BOPCBiomes.kelpForest != null) bopKelpForest = new RealisticBiomeBOPKelpForest(BiomeConfigBOP.biomeConfigBOPKelpForest);
-			
+
 		    //River Biomes
-            
+
             /**
              * The two river biomes don't seem to get initialised in BOP, so the null checks below always fail.
              * Therefore, no realistic versions of these biomes get created.
              */
-            
+
             if (BOPCBiomes.lushRiver != null) bopLushRiver = new RealisticBiomeBOPLushRiver(BiomeConfigBOP.biomeConfigBOPLushRiver);
             if (BOPCBiomes.dryRiver != null) bopDryRiver = new RealisticBiomeBOPDryRiver(BiomeConfigBOP.biomeConfigBOPDryRiver);
 		}

@@ -1,7 +1,5 @@
 package rtg.world.gen.surface.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -12,6 +10,8 @@ import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
+
+import java.util.Random;
 
 public class SurfaceVanillaMesa extends SurfaceBase {
 	public SurfaceVanillaMesa(BiomeConfig config, Block top, byte topByte, Block fill, byte fillByte)

@@ -7,7 +7,6 @@ import rtg.world.gen.terrain.HeightEffect;
 import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.MountainsWithPassesEffect;
-import rtg.world.gen.terrain.ScatteredMountainsEffect;
 import rtg.world.gen.terrain.TerrainBase;
 
 public class TerrainEBSnowyRanges extends TerrainBase

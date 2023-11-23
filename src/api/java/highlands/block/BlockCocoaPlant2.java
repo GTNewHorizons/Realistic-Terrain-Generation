@@ -8,7 +8,6 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
-
 import org.apache.logging.log4j.Level;
 
 public class BlockCocoaPlant2 extends BlockCocoa
@@ -18,7 +17,7 @@ public class BlockCocoaPlant2 extends BlockCocoa
         super();
         this.setBlockTextureName("cocoa");
     }
-    
+
     /**
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */

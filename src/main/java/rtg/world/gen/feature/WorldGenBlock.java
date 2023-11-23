@@ -1,10 +1,10 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenBlock extends WorldGenerator
 {
@@ -33,28 +33,28 @@ public class WorldGenBlock extends WorldGenerator
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		Block targetBlock = world.getBlock(x, y, z);
-		
+
 		if (targetBlock != replaceBlock) {
 			//Logger.debug("Target block (%s) does not equal Replace block (%s)", targetBlock.getLocalizedName(), replaceBlock.getLocalizedName());
 			return false;
 		}
-		
+
 		if (!isAdjacent(world, x, y, z)) {
 			//Logger.debug("Target block (%s) is not adjacent to %s", targetBlock.getLocalizedName(), this.adjacentBlock.getLocalizedName());
 			return false;
 		}
-		
+
         world.setBlock(x, y, z, placeBlock, placeBlockMeta, 2);
-        
+
         //Logger.debug("COBWEB at %d, %d, %d !!!", x, y, z);
-        
+
         return true;
 	}
-	
+
 	protected boolean isAdjacent(World world, int x, int y, int z)
 	{
 		int adjacentCount = 0;
-		
+
 		if (world.getBlock(x + 1, y, z) == this.adjacentBlock) {
 			adjacentCount++;
 		}
@@ -62,19 +62,19 @@ public class WorldGenBlock extends WorldGenerator
 		if (world.getBlock(x - 1, y, z) == this.adjacentBlock) {
 			adjacentCount++;
 		}
-		
+
 		if (world.getBlock(x, y + 1, z) == this.adjacentBlock) {
 			adjacentCount++;
 		}
-		
+
 		if (world.getBlock(x, y - 1, z) == this.adjacentBlock) {
 			adjacentCount++;
 		}
-		
+
 		if (world.getBlock(x, y, z + 1) == this.adjacentBlock) {
 			adjacentCount++;
 		}
-		
+
 		if (world.getBlock(x, y, z - 1) == this.adjacentBlock) {
 			adjacentCount++;
 		}

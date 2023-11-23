@@ -1,10 +1,11 @@
 
 package Zeno410Utils;
 
+import net.minecraft.block.Block;
+
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Logger;
-import net.minecraft.block.Block;
 
 /**
  *

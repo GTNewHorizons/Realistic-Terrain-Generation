@@ -2,7 +2,6 @@ package rtg.world.gen.terrain.enhancedbiomes;
 
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
-import rtg.world.gen.terrain.BlendedHillEffect;
 import rtg.world.gen.terrain.HeightEffect;
 import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.JitterEffect;

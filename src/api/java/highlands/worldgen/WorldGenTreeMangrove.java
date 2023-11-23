@@ -2,12 +2,11 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreeMangrove extends WorldGenHighlandsTreeBase
 {
@@ -28,7 +27,7 @@ public class WorldGenTreeMangrove extends WorldGenHighlandsTreeBase
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenTreeMangrove(int minH, int maxH, boolean notify){
     	this(0, 0, HighlandsBlocks.mangroveWood, HighlandsBlocks.mangroveLeaves, minH, maxH, notify);
     	if(Highlands.vanillaBlocksFlag){
@@ -43,22 +42,22 @@ public class WorldGenTreeMangrove extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
+
     	if(locY < 62 && !notifyFlag) locY = 62;
-        
-        if(!(world.getBlock(locX, locY-1, locZ) == Blocks.grass 
+
+        if(!(world.getBlock(locX, locY-1, locZ) == Blocks.grass
         		|| world.getBlock(locX, locY-1, locZ) == Blocks.dirt
-                || world.getBlock(locX, locY-1, locZ) == Blocks.sand 
+                || world.getBlock(locX, locY-1, locZ) == Blocks.sand
                 || world.getBlock(locX, locY-1, locZ) == Blocks.water))return false;
         if(!isCubeClear(locX, locY+2, locZ, 0, 3))return false;
-    	
-        
+
+
         int waterH = 0;//height of water
-        for (boolean var6 = false; (world.isAirBlock(locX, locY-waterH, locZ) || world.getBlock(locX, locY-waterH, locZ) == Blocks.leaves 
+        for (boolean var6 = false; (world.isAirBlock(locX, locY-waterH, locZ) || world.getBlock(locX, locY-waterH, locZ) == Blocks.leaves
         		|| world.getBlock(locX, locY-waterH, locZ) == Blocks.water) && locY-waterH > 0; ++waterH);
         if(waterH > 4)return false;
-        
-        
+
+
     	//generates trunk
     	int treeHeight = minHeight + random.nextInt(maxHeight) - 2;
     	locY++;
@@ -82,7 +81,7 @@ public class WorldGenTreeMangrove extends WorldGenHighlandsTreeBase
 		this.worldObj = null;
     	return true;
     }
-    
+
 }
 
 

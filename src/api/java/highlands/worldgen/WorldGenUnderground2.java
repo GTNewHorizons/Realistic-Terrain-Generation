@@ -1,12 +1,12 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenUnderground2 extends WorldGenerator
 {
@@ -16,7 +16,7 @@ public class WorldGenUnderground2 extends WorldGenerator
 
     /** The number of blocks to generate. */
     private int numberOfBlocks;
-    
+
     private Block IDtoReplace;
 
     public WorldGenUnderground2(Block water, int par2)
@@ -25,7 +25,7 @@ public class WorldGenUnderground2 extends WorldGenerator
         this.numberOfBlocks = par2;
         this.IDtoReplace = Blocks.stone;
     }
-    
+
     public WorldGenUnderground2(Block dirt, int par2, Block sand)
     {
         this.minableBlockId = dirt;
@@ -75,7 +75,7 @@ public class WorldGenUnderground2 extends WorldGenerator
                                 double var45 = ((double)var44 + 0.5D - var24) / (var28 / 2.0D);
 
                                 Block block = par1World.getBlock(var38, var41, var44);
-                                if (var39 * var39 + var42 * var42 + var45 * var45 < 1.0D && (block != null && (block == IDtoReplace || 
+                                if (var39 * var39 + var42 * var42 + var45 * var45 < 1.0D && (block != null && (block == IDtoReplace ||
                                 		(IDtoReplace == Blocks.dirt && block == Blocks.grass))))
                                 {
                                 	if(par1World.isAirBlock(var38, var41+1, var44) && minableBlockId == Blocks.dirt)

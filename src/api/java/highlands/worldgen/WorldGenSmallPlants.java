@@ -1,17 +1,17 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.Random;
+
 public class WorldGenSmallPlants extends WorldGenerator
 {
     /** Stores ID for WorldGenTallGrass */
     private Block plant;
-    
+
     private int genAmount;
     private int radius;
 
@@ -21,7 +21,7 @@ public class WorldGenSmallPlants extends WorldGenerator
         this.genAmount = 36;
         this.radius = 8;
     }
-    
+
     public WorldGenSmallPlants(Block id, int amt)
     {
         this.plant = id;
@@ -34,7 +34,7 @@ public class WorldGenSmallPlants extends WorldGenerator
         int l;
 
         Block block = Blocks.air;
-        do 
+        do
         {
             block = par1World.getBlock(par3,par4, par5);
             if (par1World.isAirBlock(par3, par4, par5) && !block.isLeaves(par1World, par3, par4, par5))

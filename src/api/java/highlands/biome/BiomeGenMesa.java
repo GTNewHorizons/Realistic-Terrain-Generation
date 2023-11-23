@@ -3,14 +3,13 @@ package highlands.biome;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenSmallPlants;
 import highlands.worldgen.WorldGenTreeAcacia;
-
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenMesa extends BiomeGenBaseHighlands
 {
@@ -18,21 +17,21 @@ public class BiomeGenMesa extends BiomeGenBaseHighlands
 
 	public BiomeGenMesa(int par1){
 		super(par1);
-		
+
 		int trees = -100;
 	    int grass = 18;
 	    int flowers = 0;
 	    int plants = 2;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-        
+
         this.topBlock = Blocks.grass;
         this.fillerBlock = Blocks.dirt;
         this.setHeight(biomeHeight);
         this.temperature = 1.4F;
         this.rainfall = 0.1F;
-        
+
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)new WorldGenSmallPlants(HighlandsBlocks.thornbush);
 	}
@@ -44,7 +43,7 @@ public class BiomeGenMesa extends BiomeGenBaseHighlands
     {
         return new WorldGenTallGrass(Blocks.tallgrass, 1);
     }
-    
+
     @Override
     public WorldGenAbstractTree func_150567_a(Random par1Random)
     {
@@ -57,5 +56,5 @@ public class BiomeGenMesa extends BiomeGenBaseHighlands
 		this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
 		((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 2, this.theBiomeDecorator.goldGen, 0, 32);
     }
-	    
+
 }

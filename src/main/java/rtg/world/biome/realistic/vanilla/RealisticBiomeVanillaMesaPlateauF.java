@@ -1,28 +1,31 @@
 package rtg.world.biome.realistic.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
-import rtg.world.biome.deco.*;
+import rtg.world.biome.deco.DecoCactus;
+import rtg.world.biome.deco.DecoDeadBush;
+import rtg.world.biome.deco.DecoReed;
+import rtg.world.biome.deco.DecoShrub;
+import rtg.world.biome.deco.DecoTree;
 import rtg.world.biome.deco.DecoTree.TreeCondition;
 import rtg.world.biome.deco.DecoTree.TreeType;
 import rtg.world.gen.feature.tree.vanilla.WorldGenTreesRTG;
 import rtg.world.gen.surface.vanilla.SurfaceVanillaMesaPlateauF;
 import rtg.world.gen.terrain.vanilla.TerrainVanillaMesaPlateauF;
 
+import java.util.Random;
+
 public class RealisticBiomeVanillaMesaPlateauF extends RealisticBiomeVanillaBase
-{	
-    
+{
+
     public static Block topBlock = BiomeGenBase.mesaPlateau_F.topBlock;
 	public static Block fillerBlock = BiomeGenBase.mesaPlateau_F.fillerBlock;
-	
+
 	public RealisticBiomeVanillaMesaPlateauF(BiomeConfig config)
 	{
         super(config,

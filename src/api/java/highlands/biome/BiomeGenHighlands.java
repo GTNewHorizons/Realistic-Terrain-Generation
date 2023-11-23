@@ -3,9 +3,6 @@ package highlands.biome;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
@@ -15,29 +12,31 @@ import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.Random;
+
 public class BiomeGenHighlands extends BiomeGenBaseHighlands
 {
 	private static final Height biomeHeight = new Height(1.6F, 0.5F);
-	
+
 	public BiomeGenHighlands(int par1)
 	    {
 	        super(par1);
-	        
+
 	        this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
-	        
+
 		    int trees = 3;
 		    int grass = 12;
 		    int flowers = 0;
 		    int plants = 4;
 		    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-		    
+
 		    this.theBiomeDecorator.generateLakes = true;
 		    this.setHeight(biomeHeight);
 	        this.temperature = 0.6F;
 	        this.rainfall = 0.2F;
-	        
+
 	    }
-	
+
 	@Override
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random random){
 		return (WorldGenerator)(random.nextInt(3) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.thornbush)
@@ -61,7 +60,7 @@ public class BiomeGenHighlands extends BiomeGenBaseHighlands
 	{
 		return new WorldGenTallGrass(Blocks.tallgrass, 1);
 	}
-	
+
 	@Override
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;
@@ -80,7 +79,7 @@ public class BiomeGenHighlands extends BiomeGenBaseHighlands
 	            	world.setBlock(var7, var8, var9, Blocks.emerald_ore, 0, 2);
 	            }
 	        }
-	        
+
 	        ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 20, this.theBiomeDecorator.coalGen, 0, 128);
 	    }
 }

@@ -5,22 +5,21 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.energy.disruption;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
+import com.shinoow.abyssalcraft.api.energy.EnergyEnum.DeityType;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.shinoow.abyssalcraft.api.energy.EnergyEnum.DeityType;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * A Spawning Disruption Entry

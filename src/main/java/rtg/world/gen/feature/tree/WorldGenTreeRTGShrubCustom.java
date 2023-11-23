@@ -1,13 +1,13 @@
 package rtg.world.gen.feature.tree;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rtg.config.rtg.ConfigRTG;
+
+import java.util.Random;
 
 /**
  * @deprecated
@@ -30,7 +30,7 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
 	{
 		this(s, log, logByte, leav, leavByte, false);
 	}
-	
+
 	/**
 	 * @deprecated
 	 * @see rtg.world.gen.feature.WorldGenShrubRTG
@@ -42,23 +42,23 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
 
 		logBlock = log;
 		logMeta = logByte;
-		
+
 		leaveBlock = leav;
 		leaveMeta = leavByte;
 	}
-	
+
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) 
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		int width = size > 6 ? 6 : size;
 		int height = size > 3 ? 2 : 1;
-		
+
 		for(int i = 0; i < size; i++)
 		{
 			int rX = rand.nextInt(width * 2) - width;
 			int rY = rand.nextInt(height);
 			int rZ = rand.nextInt(width * 2) - width;
-			
+
 			if(i == 0 && size > 4)
 			{
 				buildLeaves(world, x + rX, y, z + rZ, 3);
@@ -74,7 +74,7 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
 		}
 		return true;
 	}
-	
+
 	public void buildLeaves(World world, int x, int y, int z, int size)
 	{
 		Block b = world.getBlock(x, y - 2, z);
@@ -83,13 +83,13 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
         if ((b == Blocks.sand || b1 == Blocks.sand) && !ConfigRTG.allowTreesToGenerateOnSand) {
             return;
         }
-		
+
 		if(b.getMaterial() == Material.grass || b.getMaterial() == Material.ground || (sand && b.getMaterial() == Material.sand))
 		{
 			if (b1 != Blocks.water)
 			{
 			    if (!ConfigRTG.allowShrubsToGenerateBelowSurface) {
-			        
+
                     if (b1.getMaterial() != Material.air &&
                         b1.getMaterial() != Material.vine &&
                         b1.getMaterial() != Material.plants &&
@@ -97,7 +97,7 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
                         return;
                     }
 			    }
-			    
+
 				for(int i = -size; i <= size; i++)
 				{
 					for(int j = -1; j <= 1; j++)
@@ -115,7 +115,7 @@ public class WorldGenTreeRTGShrubCustom extends WorldGenerator
 			}
 		}
 	}
-	
+
 	public void buildBlock(World world, int x, int y, int z, Block block, int meta)
 	{
 		Block b = world.getBlock(x, y, z);

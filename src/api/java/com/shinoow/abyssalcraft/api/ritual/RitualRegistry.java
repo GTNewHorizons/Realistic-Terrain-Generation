@@ -5,28 +5,25 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.ritual;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-
 import org.apache.logging.log4j.Level;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import cpw.mods.fml.common.FMLLog;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Registry class for Necronomicon Rituals
@@ -51,7 +48,7 @@ public class RitualRegistry {
 	 * Maps a dimension to a book type, in order to specify dimensions where a ritual of that book type can be performed
 	 * @param dim The Dimension ID
 	 * @param bookType The Necronomicon book type required
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public void addDimensionToBookType(int dim, int bookType){
@@ -66,7 +63,7 @@ public class RitualRegistry {
 	 * Maps a dimension to a name, in order to display it in the Necronomicon if rituals can only be performed in said dimension
 	 * @param dim The Dimension ID
 	 * @param name A String representing the name
-	 * 
+	 *
 	 * @since 1.4.5
 	 */
 	public void addDimensionToName(int dim, String name){
@@ -81,7 +78,7 @@ public class RitualRegistry {
 	 * @param dim The Dimension ID
 	 * @param bookType The Necronomicon book type required
 	 * @param name A String representing the name
-	 * 
+	 *
 	 * @since 1.4.5
 	 */
 	public void addDimensionToBookTypeAndName(int dim, int bookType, String name){
@@ -94,7 +91,7 @@ public class RitualRegistry {
 	 * @param dim The dimension ID
 	 * @param bookType The Necronomicon book type
 	 * @return True if the action can be performed, otherwise false
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public boolean canPerformAction(int dim, int bookType){
@@ -107,7 +104,7 @@ public class RitualRegistry {
 	 * @param dim The dimension ID
 	 * @param bookType The Necronomicon book type
 	 * @return True if the book types match, otherwise false
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public boolean sameBookType(int dim, int bookType){
@@ -118,7 +115,7 @@ public class RitualRegistry {
 	/**
 	 * Registers a Necronomicon Ritual
 	 * @param ritual The Ritual, contains all data used to perform it
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public void registerRitual(NecronomiconRitual ritual){
@@ -142,7 +139,7 @@ public class RitualRegistry {
 	/**
 	 * Used to fetch a list of rituals
 	 * @return An ArrayList containing all registered Necronomicon Rituals
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public List<NecronomiconRitual> getRituals(){
@@ -164,7 +161,7 @@ public class RitualRegistry {
 	 * @param offerings The provided offerings
 	 * @param sacrifice The provided sacrifice (object placed on the altar)
 	 * @return A Necronomicon Ritual, or null if none was found
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	public NecronomiconRitual getRitual(int dimension, int bookType, ItemStack[] offerings, ItemStack sacrifice){
@@ -183,7 +180,7 @@ public class RitualRegistry {
 	 * @param offerings The supplied offerings
 	 * @param sacrifice The supplied sacrifice
 	 * @return True if the rituals match, otherwise false
-	 * 
+	 *
 	 * @since 1.4
 	 */
 	private boolean areRitualsSame(NecronomiconRitual ritual, int dimension, int bookType, ItemStack[] offerings, ItemStack sacrifice){

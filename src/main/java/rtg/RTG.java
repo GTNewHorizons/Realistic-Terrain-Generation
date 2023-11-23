@@ -1,25 +1,19 @@
 package rtg;
 
-import java.util.ArrayList;
-
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-
-import net.minecraftforge.common.MinecraftForge;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
-
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.MinecraftForge;
 import rtg.api.event.BiomeConfigEvent;
 import rtg.config.BiomeConfigManager;
 import rtg.config.ConfigManager;
 import rtg.config.rtg.ConfigRTG;
 import rtg.event.EventManagerRTG;
 import rtg.event.WorldTypeMessageEventHandler;
-import rtg.reference.ModInfo;
 import rtg.util.RealisticBiomePresenceTester;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.realistic.abyssalcraft.RealisticBiomeACBase;
@@ -48,6 +42,8 @@ import rtg.world.biome.realistic.vampirism.RealisticBiomeVAMPBase;
 import rtg.world.biome.realistic.vanilla.RealisticBiomeVanillaBase;
 import rtg.world.gen.structure.MapGenScatteredFeatureRTG;
 import rtg.world.gen.structure.MapGenVillageRTG;
+
+import java.util.ArrayList;
 
 
 @Mod(modid = "RTG", name = "Realistic Terrain Generation", version = Tags.VERSION, dependencies = "after:abyssalcraft@[1.9.1.2,);" +
@@ -129,7 +125,7 @@ public class RTG {
     public void postInit(FMLPostInitializationEvent event)
     {
         RealisticBiomeVanillaBase.addBiomes();
-        
+
         RealisticBiomeBOPBase.addBiomes();
         RealisticBiomeEBBase.addBiomes();
         RealisticBiomeEBXLBase.addBiomes();
@@ -160,10 +156,10 @@ public class RTG {
     /*
     @EventHandler
     public void serverAboutToStart(FMLServerAboutToStartEvent event) {}
-    
+
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {}
-    
+
     @EventHandler
     public void serverStarted(FMLServerStartedEvent event) {}
 

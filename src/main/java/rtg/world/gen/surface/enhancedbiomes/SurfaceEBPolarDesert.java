@@ -1,22 +1,21 @@
 package rtg.world.gen.surface.enhancedbiomes;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
-import rtg.util.SnowHeightCalculator;
 import enhancedbiomes.api.EBAPI;
 import enhancedbiomes.blocks.EnhancedBiomesBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.OpenSimplexNoise;
+import rtg.util.SnowHeightCalculator;
+
+import java.util.Random;
 
 public class SurfaceEBPolarDesert extends SurfaceEBBase
 {
-    
+
     private Block blockMixTop;
     private byte byteMixTop;
     private Block blockMixFiller;
@@ -34,45 +33,45 @@ public class SurfaceEBPolarDesert extends SurfaceEBBase
         byte mixFillerByte, Block cliff1, byte cliff1Byte, Block cliff2, byte cliff2Byte, float mixWidth, float mixHeight,
         float smallWidth, float smallStrength)
     {
-    
+
         super(config, top, topByte, filler, fillerByte);
-        
+
         blockMixTop = mixTop;
         byteMixTop = mixTopByte;
         blockMixFiller = mixFiller;
         byteMixFiller = mixFillerByte;
-        
+
         blockCliff1 = cliff1;
         byteCliff1 = cliff1Byte;
-        
+
         blockCliff2 = cliff2;
         byteCliff2 = cliff2Byte;
-        
+
         floMixWidth = mixWidth;
         floMixHeight = mixHeight;
         floSmallWidth = smallWidth;
         floSmallStrength = smallStrength;
     }
-    
+
     @Override
     public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand,
         OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
     {
-    
+
         boolean water = false;
         boolean riverPaint = false;
         boolean grass = false;
-        
+
         if(river > 0.05f && river + (simplex.noise2(i / 10f, j / 10f) * 0.1f) > 0.86f)
         {
             riverPaint = true;
-            
+
             if(simplex.noise2(i / 12f, j / 12f) > 0.25f)
             {
                 grass = true;
             }
         }
-        
+
         Block b;
         for(int k = 255; k > -1; k--)
         {
@@ -100,12 +99,12 @@ public class SurfaceEBPolarDesert extends SurfaceEBBase
                     else if(depth == 0)
                     {
                         if (rand.nextInt(2) == 0) {
-                            
+
                             blocks[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, hcStone(world, i, j, x, y, k));
                             metadata[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EBAPI.RHYOLITE, hcStoneMeta(world, i, j, x, y, k));
                         }
                         else {
-                            
+
                             blocks[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, hcCobble(world, i, j, x, y, k));
                             metadata[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EBAPI.RHYOLITE, hcCobbleMeta(world, i, j, x, y, k));
                         }
@@ -115,7 +114,7 @@ public class SurfaceEBPolarDesert extends SurfaceEBBase
                 {
                     blocks[(y * 16 + x) * 256 + k] = topBlock;
                     metadata[(y * 16 + x) * 256 + k] = topBlockMeta;
-                    
+
                     if(depth == 0 && k > 61 && k < 254)
                     {
                         SnowHeightCalculator.calc(x, y, k, blocks, metadata, noise);

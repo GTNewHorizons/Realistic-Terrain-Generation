@@ -2,7 +2,6 @@ package exterminatorJeff.undergroundBiomes.api;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 
 public class NamedItem extends Names {

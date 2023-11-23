@@ -1,11 +1,10 @@
 package highlands.biome;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
@@ -14,8 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BiomeGenSteppe extends BiomeGenBaseHighlands
 {
@@ -24,20 +23,20 @@ public class BiomeGenSteppe extends BiomeGenBaseHighlands
 	public BiomeGenSteppe(int par1)
     {
         super(par1);
-        
+
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
-        
+
 	    int trees = 0;
 	    int grass = 12;
 	    int flowers = 0;
 	    int plants = 1;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers, plants);
-	    
+
         this.setHeight(biomeHeight);
         this.temperature = 0.6F;
         this.rainfall = 0.1F;
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.whiteFlower)
 				: new WorldGenSmallPlants(HighlandsBlocks.thornbush));
@@ -78,12 +77,12 @@ public class BiomeGenSteppe extends BiomeGenBaseHighlands
             	world.setBlock(var7, var8, var9, Blocks.emerald_ore, 0, 2);
             }
         }
-        
+
         //biomedec.genOreHighlandsNoCheck(par1World, par2Random, par3, par4, 6, HighlandsMain.HLrock, 62, 120);
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 20, this.theBiomeDecorator.ironGen, 0, 64);
     }
-    
-    
+
+
     @SideOnly(Side.CLIENT)
     @Override
     public int getBiomeGrassColor(int x, int y, int z)

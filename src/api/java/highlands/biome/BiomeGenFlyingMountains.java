@@ -1,26 +1,25 @@
 package highlands.biome;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.Highlands;
 import highlands.api.HighlandsBiomes;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BiomeGenFlyingMountains extends BiomeGenBaseHighlands
 {
 	private static final Height biomeHeight = new Height(-1.5F, 1.8F);//was 7.0F
-	
+
 	public BiomeGenFlyingMountains(int par1)
     {
         super(par1);
@@ -29,13 +28,13 @@ public class BiomeGenFlyingMountains extends BiomeGenBaseHighlands
 	    int flowers = 0;
 	    int plants = 4;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-	    
+
         this.setHeight(biomeHeight);
         this.temperature = 0.7F;
         this.rainfall = 1.2F;
         this.spawnableCreatureList.clear();
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)new WorldGenSmallPlants(HighlandsBlocks.blueFlower);
 	}
@@ -48,19 +47,19 @@ public class BiomeGenFlyingMountains extends BiomeGenBaseHighlands
     {
     	return (WorldGenAbstractTree)new WorldGenHighlandsShrub(0, 0);
     }
-	
+
     public WorldGenerator getRandomWorldGenForGrass(Random par1Random)
     {
         return new WorldGenTallGrass(Blocks.tallgrass, 2);
     }
-    
+
     @Override
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;
 		this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
 		((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 1, this.theBiomeDecorator.diamondGen, 0, 16);
 		((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 20, ((BiomeDecoratorHighlands)this.theBiomeDecorator).HLwater, 0, 128);
-        
+
         //random water sources on top of the mountains
         for(int i = 0; i < 16; i++){
     		for(int j = 0; j < 16; j++){
@@ -83,18 +82,18 @@ public class BiomeGenFlyingMountains extends BiomeGenBaseHighlands
     		}
     	}
     }
-    
+
     public int getBiomeFoliageColor(){
     	return 0x00BA78;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public int getBiomeGrassColor(int x, int y, int z)
     {
         return getModdedBiomeGrassColor(0x00BA78);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float par1)
     {

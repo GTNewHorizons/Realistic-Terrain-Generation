@@ -6,25 +6,24 @@
 
 package extrabiomes.api;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.base.Optional;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Collection;
 import java.util.Random;
 
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.google.common.base.Optional;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Allows direct access to Extrabiome's biomes. This class' members will be populated during the @Init event. If a biome is absent after the
  * Init event, then the Extrabiomes mod is not active or not installed.
  * <p>
  * <b>NOTE:</b> Make sure to only reference members of this class in the PostInit event or later.
- * 
+ *
  * @author ScottKillen
- * 
+ *
  */
 
 // The BiomeManager will be removed following release 3.6.0. Use extrabiomes.api.Biomes instead
@@ -32,12 +31,12 @@ import com.google.common.base.Optional;
 @Deprecated
 public abstract class BiomeManager
 {
-    
+
     protected enum GenType
     {
         TREE, GRASS;
     }
-    
+
     public static Optional<? extends BiomeGenBase>    alpine              = Optional.absent();
     public static Optional<? extends BiomeGenBase>    autumnwoods         = Optional.absent();
     public static Optional<? extends BiomeGenBase>    birchforest         = Optional.absent();
@@ -66,12 +65,12 @@ public abstract class BiomeManager
     public static Optional<? extends BiomeGenBase>    tundra              = Optional.absent();
     public static Optional<? extends BiomeGenBase>    wasteland           = Optional.absent();
     public static Optional<? extends BiomeGenBase>    woodlands           = Optional.absent();
-    
+
     protected static Optional<? extends BiomeManager> instance            = Optional.absent();
-    
+
     /**
      * This method allows the addition of grasses to custom biomes by weight.
-     * 
+     *
      * @param biome the biomes to add the tree to.
      * @param grassGen the grass generator
      * @param weight the relative probabilty of picking this grass to generate. To establish a relative priority, some function should be
@@ -85,10 +84,10 @@ public abstract class BiomeManager
         checkArgument(weight > 0, "Weight must be greater than zero.");
         instance.get().addBiomeGen(GenType.GRASS, biome, grassGen, weight);
     }
-    
+
     /**
      * This method allows the addition of trees to custom biomes by weight.
-     * 
+     *
      * @param biome the biomes to add the tree to.
      * @param treeGen the tree generator
      * @param weight the relative probabilty of picking this tree to generate. To establish a relative priority, some function should be
@@ -102,10 +101,10 @@ public abstract class BiomeManager
         checkArgument(weight > 0, "Weight must be greater than zero.");
         instance.get().addBiomeGen(GenType.TREE, biome, treeGen, weight);
     }
-    
+
     /**
      * Returns a random choice from the weighted list of grass generators
-     * 
+     *
      * @param biome The biome for which to select a grass gen
      * @return the selected grass generator.
      */
@@ -114,10 +113,10 @@ public abstract class BiomeManager
         return instance.get().chooseBiomeRandomGen(GenType.GRASS, rand,
                 biome);
     }
-    
+
     /**
      * Returns a random choice from the weighted list of tree generators
-     * 
+     *
      * @param biome The biome for which to select a tree gen
      * @return the selected tree generator.
      */
@@ -125,7 +124,7 @@ public abstract class BiomeManager
     {
         return instance.get().chooseBiomeRandomGen(GenType.TREE, rand, biome);
     }
-    
+
     /**
      * @return An immutable collection of this mod's biomes.
      */
@@ -134,7 +133,7 @@ public abstract class BiomeManager
         checkArgument(instance.isPresent(), "Biome list not available until after API is initialized.");
         return instance.get().getBiomeCollection();
     }
-    
+
     /**
      * @param biome The biome for which to calculate the total weight.
      * @return the total weight of all grassGen choices for a given biome
@@ -144,7 +143,7 @@ public abstract class BiomeManager
         checkNotNull(biome, "Biome is required.");
         return instance.get().getBiomeTotalWeight(GenType.GRASS, biome);
     }
-    
+
     /**
      * @param biome The biome for which to calculate the total weight.
      * @return the total weight of all treeGen choices for a given biome
@@ -154,17 +153,17 @@ public abstract class BiomeManager
         checkNotNull(biome, "Biome is required.");
         return instance.get().getBiomeTotalWeight(GenType.TREE, biome);
     }
-    
+
     static boolean isActive()
     {
         return instance.isPresent();
     }
-    
+
     protected abstract void addBiomeGen(GenType genType, BiomeGenBase biome, WorldGenerator treeGen, int weight);
-    
+
     protected abstract Optional<? extends WorldGenerator> chooseBiomeRandomGen(GenType genType, Random rand, BiomeGenBase biome);
-    
+
     protected abstract Collection<BiomeGenBase> getBiomeCollection();
-    
+
     protected abstract int getBiomeTotalWeight(GenType genType, BiomeGenBase biome);
 }

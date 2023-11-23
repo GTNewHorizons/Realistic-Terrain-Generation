@@ -1,7 +1,6 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -9,9 +8,10 @@ import rtg.config.rtg.ConfigRTG;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.util.TerrainMath;
-import cpw.mods.fml.common.registry.GameData;
 
-public class WorldGenVolcano 
+import java.util.Random;
+
+public class WorldGenVolcano
 {
     protected static Block volcanoBlock = GameData.getBlockRegistry().getObject(ConfigRTG.volcanoBlockId);
     protected static byte volcanoBlockMeta = (byte) ConfigRTG.volcanoBlockMeta;
@@ -169,12 +169,12 @@ public class WorldGenVolcano
                                     if(distanceEll < 70 + simplex.noise2(x/26f, y/26f) * 5)
                                     {
                                     	if (mapRand.nextInt(20) == 0) {
-                                    		
+
                                             b = volcanoPatchBlock3;
                                             meta = volcanoPatchBlockMeta3;
                                     	}
                                     	else {
-                                    		
+
                                             b = volcanoBlock;
                                             meta = volcanoBlockMeta;
                                     	}
@@ -186,12 +186,12 @@ public class WorldGenVolcano
                                         if(mapRand.nextInt(1+(int)Math.pow(Math.abs(distanceEll-(75 + simplex.noise2(x/26f, y/26f) * 5)),1.5+powerNoise)+1) == 0)
                                         {
                                         	if (mapRand.nextInt(20) == 0) {
-                                        		
+
                                                 b = volcanoPatchBlock2;
                                                 meta = volcanoPatchBlockMeta2;
                                         	}
                                         	else {
-                                        		
+
                                                 b = Blocks.stone; // Stone so that surfacing will run (so this usually becomes grass)
                                                 meta = (byte)0;
                                         	}

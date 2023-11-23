@@ -1,10 +1,9 @@
 package exterminatorJeff.undergroundBiomes.api;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class NamedBlock extends Names {
 

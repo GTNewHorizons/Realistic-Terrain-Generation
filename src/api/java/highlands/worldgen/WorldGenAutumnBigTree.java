@@ -1,12 +1,12 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import java.util.Random;
 
 public class WorldGenAutumnBigTree extends WorldGenAbstractTree
 {
@@ -47,12 +47,12 @@ public class WorldGenAutumnBigTree extends WorldGenAbstractTree
 
     /** Contains a list of a points at which to generate groups of leaves. */
     int[][] leafNodes;
-    
+
     int leafMeta;
     int woodMeta;
     Block leafID;
     Block woodID;
-    
+
     boolean hasLeaves;
 
     public WorldGenAutumnBigTree(boolean par1, boolean placeLeaves, int wmd, int lmd, Block log, Block autumnYellowLeaves, int trunkDiameter, int treeHeightLim)
@@ -66,11 +66,11 @@ public class WorldGenAutumnBigTree extends WorldGenAbstractTree
         trunkSize = trunkDiameter;
         heightLimit = treeHeightLim;
     }
-    
+
     public WorldGenAutumnBigTree(boolean notify, Block log, Block autumnYellowLeaves){
     	this(notify, true, 0, 0, log, autumnYellowLeaves, 1, 0);
     }
-    
+
     public boolean generateReplaceSapling(World world, Random random, int locX, int locY, int locZ){
     	Block id = world.getBlock(locX, locY, locZ);
     	int meta = world.getBlockMetadata(locX, locY, locZ);
@@ -192,7 +192,7 @@ public class WorldGenAutumnBigTree extends WorldGenAbstractTree
                 {
                     var11[var9] = var10[var9] + var13;
                     Block var14 = this.worldObj.getBlock(var11[0], var11[1], var11[2]);
-                    
+
 
                     if (worldObj.isAirBlock(var11[0], var11[1], var11[2]) && var14 != leafID)
                     {
@@ -378,7 +378,7 @@ public class WorldGenAutumnBigTree extends WorldGenAbstractTree
             var6[0] += -1;
             this.placeBlockLine(var5, var6, woodID);
         }
-        
+
     }
 
     /**
@@ -551,7 +551,7 @@ public class WorldGenAutumnBigTree extends WorldGenAbstractTree
         	}
         }
     }
-    
+
 }
 
 

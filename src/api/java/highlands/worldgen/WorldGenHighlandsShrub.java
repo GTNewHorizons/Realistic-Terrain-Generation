@@ -1,12 +1,12 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import java.util.Random;
 
 public class WorldGenHighlandsShrub extends WorldGenAbstractTree
 {
@@ -19,7 +19,7 @@ public class WorldGenHighlandsShrub extends WorldGenAbstractTree
         this.field_76526_b = par1;
         this.field_76527_a = par2;
     }
-    
+
     public boolean generateReplaceSapling(World world, Random random, int locX, int locY, int locZ){
     	Block id = world.getBlock(locX, locY, locZ);
     	int meta = world.getBlockMetadata(locX, locY, locZ);

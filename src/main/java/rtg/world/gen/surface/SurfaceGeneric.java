@@ -1,15 +1,14 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.OpenSimplexNoise;
+
+import java.util.Random;
 
 public class SurfaceGeneric extends SurfaceBase
 {
@@ -18,15 +17,15 @@ public class SurfaceGeneric extends SurfaceBase
 	{
 		super(config, top, (byte)0, filler, (byte)0);
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
-	    
+
 		for(int k = 255; k > -1; k--)
 		{
 			Block b = blocks[(y * 16 + x) * 256 + k];
-			
+
             if (b == Blocks.air)
             {
             	depth = -1;

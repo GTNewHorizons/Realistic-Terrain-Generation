@@ -5,12 +5,11 @@ package Zeno410Utils;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 
-import java.util.Collections;
-import java.util.Iterator;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
 
 public abstract class Maybe<T> implements Iterable<T> {
     public abstract boolean isKnown();

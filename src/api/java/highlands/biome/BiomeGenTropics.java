@@ -4,9 +4,6 @@ import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
 import highlands.worldgen.WorldGenTreeCanopy;
-
-import java.util.Random;
-
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.init.Blocks;
@@ -15,6 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenVines;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenTropics extends BiomeGenBaseHighlands
 {
@@ -30,24 +29,24 @@ public class BiomeGenTropics extends BiomeGenBaseHighlands
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
 
 	    this.theBiomeDecorator.generateLakes = true;
-	    
+
         this.spawnableMonsterList.add(new SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
         this.setHeight(biomeHeight);
         this.temperature = 1.2F;
         this.rainfall = 1.0F;
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)new WorldGenSmallPlants(HighlandsBlocks.leafyFern);
 	}
 
 
-	 
+
     @Override
     public WorldGenAbstractTree func_150567_a(Random par1Random)
     {
-        return (WorldGenAbstractTree)(par1Random.nextInt(2) == 0 ? 
+        return (WorldGenAbstractTree)(par1Random.nextInt(2) == 0 ?
         		(par1Random.nextInt(4) == 0 ? new WorldGenTreeCanopy(13, 6, false, true) :
         			new WorldGenTreeCanopy(13, 6, false, false)) :
         			new WorldGenHighlandsShrub(3, 0));
@@ -60,7 +59,7 @@ public class BiomeGenTropics extends BiomeGenBaseHighlands
         return new WorldGenTallGrass(Blocks.tallgrass, 2);
     }
 
-    
+
     @Override
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;
@@ -81,10 +80,10 @@ public class BiomeGenTropics extends BiomeGenBaseHighlands
             int var9 = z + random.nextInt(16) + 8;
             var5.generate(world, random, var7, var8, var9);
         }
-        
+
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 8, this.theBiomeDecorator.redstoneGen, 0, 16);
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 1, this.theBiomeDecorator.lapisGen, 0, 32);
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 10, ((BiomeDecoratorHighlands)this.theBiomeDecorator).HLsand, 0, 64);
     }
-    
+
 }

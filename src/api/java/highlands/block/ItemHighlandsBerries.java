@@ -1,11 +1,11 @@
 package highlands.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.Highlands;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemHighlandsBerries extends ItemFood{
 
@@ -22,7 +22,7 @@ public class ItemHighlandsBerries extends ItemFood{
     {
         return 16;
     }
-    
+
 	@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister par1IconRegister)

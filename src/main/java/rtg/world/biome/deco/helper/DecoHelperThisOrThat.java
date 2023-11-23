@@ -5,13 +5,14 @@ package rtg.world.biome.deco.helper;
  * This deco helper has a one in x chance of called a given deco
  * @author Zeno410
  */
-import java.util.Random;
 
 import net.minecraft.world.World;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.deco.DecoBase;
 import rtg.world.biome.realistic.RealisticBiomeBase;
+
+import java.util.Random;
 
 public class DecoHelperThisOrThat extends DecoBase
 {
@@ -45,34 +46,34 @@ public class DecoHelperThisOrThat extends DecoBase
 			switch (this.chanceType)
 			{
 				case EQUALS_ZERO:
-					
+
 					if (rand.nextInt(this.chance) == 0) {
 						this.decoThis.generate(biome, world, rand, chunkX, chunkY, simplex, cell, strength, river, hasPlacedVillageBlocks);
 		            }
 					else {
 						this.decoThat.generate(biome, world, rand, chunkX, chunkY, simplex, cell, strength, river, hasPlacedVillageBlocks);
 					}
-			
+
 					break;
-				
+
 				case NOT_EQUALS_ZERO:
-					
+
 					if (rand.nextInt(this.chance) != 0) {
 						this.decoThis.generate(biome, world, rand, chunkX, chunkY, simplex, cell, strength, river, hasPlacedVillageBlocks);
 		            }
 					else {
 						this.decoThat.generate(biome, world, rand, chunkX, chunkY, simplex, cell, strength, river, hasPlacedVillageBlocks);
 					}
-			
+
 					break;
-				
+
 				default:
 					break;
-				
+
 			}
         }
 	}
-	
+
 	public enum ChanceType
 	{
 		EQUALS_ZERO,

@@ -1,12 +1,12 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenLog extends WorldGenerator
 {
@@ -15,20 +15,20 @@ public class WorldGenLog extends WorldGenerator
 	private Block logBlock;
 	private Block leavesBlock;
 	private int logLength;
-	
+
     public WorldGenLog(int meta, int length, boolean leaves)
     {
         logBlock = meta > 2 ? Blocks.log2 : Blocks.log;
         leavesBlock = meta > 2 ? Blocks.leaves2 : Blocks.leaves;
         meta = meta > 2 ? meta - 2 : meta;
-        
+
         logMeta = meta;
         leavesMeta = leaves ? meta : -1;
         logLength = length < 2 ? 2 : length;
     }
-    
+
     /**
-     * 
+     *
      * @param blockLog
      * @param metaLog
      * @param blockLeaves
@@ -38,24 +38,24 @@ public class WorldGenLog extends WorldGenerator
     public WorldGenLog(Block blockLog, int metaLog, Block blockLeaves, int metaLeaves, int length)
     {
         logBlock = blockLog;
-        leavesBlock = blockLeaves;      
+        leavesBlock = blockLeaves;
         logMeta = metaLog;
         leavesMeta = metaLeaves;
         logLength = length;
     }
 
-	public boolean generate(World world, Random rand, int x, int y, int z) 
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
     	Block g = world.getBlock(x, y - 1, z);
     	if(g.getMaterial() != Material.ground && g.getMaterial() != Material.grass && g.getMaterial() != Material.sand && g.getMaterial() != Material.rock)
     	{
     		return false;
     	}
-    	
+
 		int dir = rand.nextInt(2);
 		int dirMeta = 4 + (dir * 4) + logMeta;
 		boolean leaves = leavesMeta > -1 ? true : false;
-		
+
 		int i;
 		Block b;
 		int air = 0;
@@ -66,16 +66,16 @@ public class WorldGenLog extends WorldGenerator
 			{
 				break;
 			}
-			
+
 			x -= dir == 0 ? 1 : 0;
 			z -= dir == 1 ? 1 : 0;
-			
+
 			if(airCheck(world, rand, x, y, z) > 0)
 			{
 				return false;
 			}
 		}
-		
+
 		for(i = 0; i < logLength * 2; i++)
 		{
 			b = world.getBlock(x + (dir == 0 ? 1 : 0), y, z + (dir == 1 ? 1 : 0));
@@ -83,7 +83,7 @@ public class WorldGenLog extends WorldGenerator
 			{
 				break;
 			}
-			
+
 			air += airCheck(world, rand, x, y, z);
 			if(air > 2)
 			{
@@ -96,14 +96,14 @@ public class WorldGenLog extends WorldGenerator
 			{
 				addLeaves(world, rand, dir, x, y, z);
 			}
-			
+
 			x += dir == 0 ? 1 : 0;
 			z += dir == 1 ? 1 : 0;
 		}
-		
+
 		return true;
 	}
-	
+
 	private int airCheck(World world, Random rand, int x, int y, int z)
 	{
 		Block b = world.getBlock(x, y - 1, z);
@@ -116,10 +116,10 @@ public class WorldGenLog extends WorldGenerator
 			}
 			return 1;
 		}
-		
+
 		return 0;
 	}
-	
+
 	private void addLeaves(World world, Random rand, int dir, int x, int y, int z)
 	{
 		Block b;

@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.enhancedbiomes.config.BiomeConfigEB;
@@ -7,7 +8,6 @@ import rtg.util.Logger;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
-import cpw.mods.fml.common.Loader;
 
 public class RealisticBiomeEBBase extends RealisticBiomeBase
 {
@@ -101,21 +101,21 @@ public class RealisticBiomeEBBase extends RealisticBiomeBase
     public static RealisticBiomeBase ebWoodlands;
     public static RealisticBiomeBase ebXericSavannah;
     public static RealisticBiomeBase ebXericShrubland;
-    
+
 	public RealisticBiomeEBBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
 	{
 		super(config, b, riverbiome, t, s);
-		
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
 	}
-	
+
 	public static void addBiomes()
 	{
 		if (Loader.isModLoaded("enhancedbiomes"))
 		{
 			BiomeGenBase[] b = BiomeGenBase.getBiomeGenArray();
-			
+
 			for (int i = 0; i < 256; i++)
 			{
 				if (b[i] != null)
@@ -124,16 +124,16 @@ public class RealisticBiomeEBBase extends RealisticBiomeBase
                         Logger.warn("Biome ID %d has no name.", b[i].biomeID);
                         continue;
                     }
-                    
+
 					BiomeGenBase ebBiome = b[i];
 					String biomeName = b[i].biomeName;
 					String biomeClass = b[i].getBiomeClass().getName();
-					
+
 					/**
 					 * Enhanced Biomes sometimes uses the same biome class to generate different biomes.
 					 * As such, we have to check both the biome name and the biome class to make sure we've got the right biome.
 					 */
-					
+
 					if (biomeName == "Alpine Mountains" && biomeClass == "enhancedbiomes.world.biome.snow.BiomeGenAlpine")
 					{
 					    ebAlpineMountains = new RealisticBiomeEBAlpineMountains(ebBiome, BiomeConfigEB.biomeConfigEBAlpineMountains);

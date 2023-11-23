@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -11,39 +12,38 @@ import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPSeasonalForest;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPSeasonalForest;
-import biomesoplenty.api.content.BOPCBiomes;
 
 public class RealisticBiomeBOPSeasonalForest extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.seasonalForest;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPSeasonalForest(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPSeasonalForest(15f, 80f, 68f, 170f),
 			new SurfaceBOPSeasonalForest(config,
-                topBlock, //Block top 
+                topBlock, //Block top
                 (byte)0, //byte topByte
-                fillerBlock, //Block filler, 
+                fillerBlock, //Block filler,
                 (byte)0, //byte fillerByte
-                topBlock, //Block mixTop, 
-                (byte)0, //byte mixTopByte, 
-                fillerBlock, //Block mixFill, 
+                topBlock, //Block mixTop,
+                (byte)0, //byte mixTopByte,
+                fillerBlock, //Block mixFill,
                 (byte)0, //byte mixFillByte,
-                0.5f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                0.5f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
-                
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.maxY = 80;

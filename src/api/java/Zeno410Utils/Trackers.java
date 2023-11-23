@@ -1,8 +1,9 @@
 
 package Zeno410Utils;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.ref.WeakReference;
 
 /**
  * @author Zeno410

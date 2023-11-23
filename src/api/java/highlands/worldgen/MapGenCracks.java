@@ -1,13 +1,13 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.MapGenBase;
+
+import java.util.Random;
 
 public class MapGenCracks extends MapGenBase
 {
@@ -241,9 +241,9 @@ public class MapGenCracks extends MapGenBase
     /**
      * Digs out the current block, default implementation removes stone, filler, and top block
      * Sets the block to lava if y is less then 10, and air other wise.
-     * If setting to air, it also checks to see if we've broken the surface and if so 
+     * If setting to air, it also checks to see if we've broken the surface and if so
      * tries to make the floor the biome's top block
-     * 
+     *
      * @param data Block data array
      * @param index Pre-calculated index into block data
      * @param x local X position

@@ -1,20 +1,17 @@
 package rtg.event;
 
-import java.io.File;
-import java.io.IOException;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiCreateWorld;
-
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.common.MinecraftForge;
-
-import rtg.client.gui.WorldTypeMessageGUI;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiCreateWorld;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.io.FileUtils;
+import rtg.client.gui.WorldTypeMessageGUI;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Handles the display of the notification screen when creating a new world.
@@ -27,7 +24,7 @@ import org.apache.commons.io.FileUtils;
 public class WorldTypeMessageEventHandler
 {
     public static WorldTypeMessageEventHandler instance = new WorldTypeMessageEventHandler();
-    
+
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void openCreateWorld(GuiOpenEvent event)
@@ -36,7 +33,7 @@ public class WorldTypeMessageEventHandler
         {
             File nameHashFile = new File(Minecraft.getMinecraft().mcDataDir.getPath() + File.separator + "settings.rtg");
             String nameHash = "" + Minecraft.getMinecraft().getSession().func_148256_e().hashCode();
-            
+
             try
             {
                 if (!nameHashFile.exists() || !FileUtils.readFileToString(nameHashFile).contains(nameHash + "StartupWarning".hashCode()))

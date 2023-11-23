@@ -1,25 +1,24 @@
 package highlands;
 
+import cpw.mods.fml.common.Loader;
 import highlands.api.HighlandsBiomes;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.structure.MapGenVillage;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.structure.MapGenVillage;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.common.Loader;
-
 public class MapGenStructureConfig {
 	 //Village Biomes lists
 	public static List hlvillagebiomes;
 	public static List defaultvillagebiomes;
-	
+
 	private static final String CATEGORY_BIOME_VILLAGE = "Biomes.Villages true/false?";
 	private static final String CATEGORY_BIOME_VILLAGE_VANILLA = "BiomesVanilla.Villages true/false?";
-	
+
 	public static void init () {
  		//add biomes to spawn strongholds in
 		for(BiomeGenBase i : HighlandsBiomes.biomesForDefault){
@@ -27,14 +26,14 @@ public class MapGenStructureConfig {
 				BiomeManager.strongHoldBiomes.add(i);
 		}
 	}
-	
+
 	public static void postInit () {
 		Configuration config = new Configuration(new File(Loader.instance().getConfigDir() + File.separator + "Highlands" + File.separator + "StructureConfig.cfg"));
 		config.load();
-		
+
 		defaultvillagebiomes = MapGenVillage.villageSpawnBiomes;
 		hlvillagebiomes = new ArrayList();
-		
+
 		// config settings to allow/disallow village generation in certain biomes
 		// Highland Biomes
 		if (config.get(CATEGORY_BIOME_VILLAGE, "Autumn Forest Village", true).getBoolean(true)) {
@@ -88,7 +87,7 @@ public class MapGenStructureConfig {
 		if (config.get(CATEGORY_BIOME_VILLAGE, "Windy Island", true).getBoolean(true)) {
 			hlvillagebiomes.add(HighlandsBiomes.windyIsland);
 		}
-		
+
 		//Vanilla Biomes
 		if (config.get(CATEGORY_BIOME_VILLAGE_VANILLA, "jungle", true).getBoolean(true)) {
 			hlvillagebiomes.add(BiomeGenBase.jungle);
@@ -105,7 +104,7 @@ public class MapGenStructureConfig {
 		if (config.get(CATEGORY_BIOME_VILLAGE_VANILLA, "icePlains", true).getBoolean(true)) {
 			hlvillagebiomes.add(BiomeGenBase.icePlains);
 		}
-		
+
 		config.save();
 	}
 }

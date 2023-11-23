@@ -1,10 +1,8 @@
 package rtg.world.biome.realistic.itd;
 
 
-import net.minecraft.world.biome.BiomeGenBase;
-
 import cpw.mods.fml.common.Loader;
-
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.itd.config.BiomeConfigITD;
 import rtg.util.Logger;

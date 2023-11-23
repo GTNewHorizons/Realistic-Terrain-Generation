@@ -1,9 +1,5 @@
 package rtg.world.biome.deco;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -17,8 +13,12 @@ import rtg.util.WorldUtil.SurroundCheckType;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.feature.tree.rtg.TreeRTG;
 
+import java.util.Random;
+
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
+
 /**
- * 
+ *
  * @author WhichOnesPink
  *
  */
@@ -50,11 +50,11 @@ public class DecoTree extends DecoBase
 	public int minCrownSize; // Min tree height (only used with certain tree presets)
 	public int maxCrownSize; // Max tree height (only used with certain tree presets)
 	public boolean noLeaves;
-	
+
 	public DecoTree()
 	{
 		super();
-		
+
 		/**
 		 * Default values.
 		 * These can be overridden when configuring the Deco object in the realistic biome.
@@ -84,10 +84,10 @@ public class DecoTree extends DecoBase
 		this.minCrownSize = 2;
 		this.maxCrownSize = 4;
 		this.noLeaves = false;
-		
+
 		this.addDecoTypes(DecoType.TREE);
 	}
-	
+
 	public DecoTree(DecoTree source) {
 		this();
 		this.loops = source.loops;
@@ -114,7 +114,7 @@ public class DecoTree extends DecoBase
 		this.maxCrownSize = source.maxCrownSize;
 		this.noLeaves = source.noLeaves;
 	}
-	
+
 	public DecoTree(TreeRTG tree)
 	{
 		this();
@@ -129,7 +129,7 @@ public class DecoTree extends DecoBase
 		this.maxCrownSize = tree.maxCrownSize;
 		this.noLeaves = tree.noLeaves;
 	}
-	
+
 	public DecoTree(WorldGenerator worldGen)
 	{
 		this();
@@ -142,14 +142,14 @@ public class DecoTree extends DecoBase
         }
         return super.properlyDefined();
     }
-    
+
 	@Override
 	public void generate(RealisticBiomeBase biome, World world, Random rand, int chunkX, int chunkY, OpenSimplexNoise simplex, CellNoise cell, float strength, float river, boolean hasPlacedVillageBlocks)
 	{
 		if (this.allowed) {
-			
+
 			if (TerrainGen.decorate(world, rand, chunkX, chunkY, TREE)) {
-				
+
 				WorldUtil worldUtil = new WorldUtil(world);
 				float noise = simplex.noise2(chunkX / this.distribution.noiseDivisor, chunkY / this.distribution.noiseDivisor) * this.distribution.noiseFactor + this.distribution.noiseAddend;
 
@@ -162,19 +162,19 @@ public class DecoTree extends DecoBase
 	                int intX = chunkX + rand.nextInt(16);// + 8;
 	                int intZ = chunkY + rand.nextInt(16);// + 8;
 	                int intY = world.getHeightValue(intX, intZ);
-	                
+
 	                if (intY <= this.maxY && intY >= this.minY && isValidTreeCondition(noise, rand, strength)) {
-	                
+
 		                // If we're in a village, check to make sure the tree has extra room to grow to avoid corrupting the village.
 		                if (hasPlacedVillageBlocks) {
 			                if (!worldUtil.isSurroundedByBlock(Blocks.air, 2, SurroundCheckType.CARDINAL, rand, intX, intY, intZ)) {
 			                	return;
 			                }
 		                }
-		                
+
 		            	switch (this.treeType)
 		            	{
-			            		
+
 			            	case RTG_TREE:
 
 		            			this.tree.setLogBlock(this.logBlock);
@@ -186,17 +186,17 @@ public class DecoTree extends DecoBase
 	            				this.tree.setNoLeaves(this.noLeaves);
 		                        this.tree.setScale(1.0D, 1.0D, 1.0D);
 		                        this.tree.generate(world, rand, intX, intY, intZ);
-			            		
+
 			            		break;
-			            		
+
 	                        case WORLDGEN:
 
                                 WorldGenerator worldgenerator = this.worldGen;
                                 worldgenerator.setScale(1.0D, 1.0D, 1.0D);
                                 worldgenerator.generate(world, rand, intX, intY, intZ);
-	
+
 	                            break;
-	
+
 			            	default:
 			            		break;
 		            	}
@@ -205,12 +205,12 @@ public class DecoTree extends DecoBase
 			}
 		}
 	}
-	
+
 	/**
 	 * Parameter object for noise calculations.
-	 * 
+	 *
 	 * simplex.noise2(chunkX / noiseDivisor, chunkY / noiseDivisor) * noiseFactor + noiseAddend;
-	 * 
+	 *
 	 * @author WhichOnesPink
 	 * @author Zeno410
 	 *
@@ -220,7 +220,7 @@ public class DecoTree extends DecoBase
 	    public float noiseDivisor;
 	    public float noiseFactor;
 	    public float noiseAddend;
-	    
+
 	    public Distribution(float noiseDivisor, float noiseFactor, float noiseAddend)
 	    {
 	    	this.noiseDivisor = noiseDivisor;
@@ -228,13 +228,13 @@ public class DecoTree extends DecoBase
 	    	this.noiseAddend = noiseAddend;
 	    }
 	}
-	
+
 	public enum TreeType
 	{
 		RTG_TREE,
 		WORLDGEN;
 	}
-	
+
 	public enum TreeCondition
 	{
 		ALWAYS_GENERATE,
@@ -242,20 +242,20 @@ public class DecoTree extends DecoBase
 		RANDOM_CHANCE,
 		X_DIVIDED_BY_STRENGTH;
 	}
-	
+
 	public boolean isValidTreeCondition(float noise, Random rand, float strength)
 	{
 		switch (this.treeCondition)
 		{
 			case ALWAYS_GENERATE:
 				return true;
-			
+
 			case NOISE_GREATER_AND_RANDOM_CHANCE:
 				return (noise > this.treeConditionNoise && rand.nextInt(this.treeConditionChance) == 0);
-				
+
 			case RANDOM_CHANCE:
 				return rand.nextInt(this.treeConditionChance) == 0;
-				
+
 			case X_DIVIDED_BY_STRENGTH:
 				return rand.nextInt((int) (this.treeConditionFloat / strength)) == 0;
 

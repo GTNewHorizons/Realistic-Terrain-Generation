@@ -1,12 +1,13 @@
 
 package rtg.util;
 
+import rtg.RTG;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import rtg.RTG;
 
 /**
  * A simple utility to track time spent in various procedures.

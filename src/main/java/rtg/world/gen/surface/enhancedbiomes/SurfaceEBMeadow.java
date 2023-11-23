@@ -1,22 +1,21 @@
 package rtg.world.gen.surface.enhancedbiomes;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.CliffCalculator;
-import rtg.util.OpenSimplexNoise;
 import enhancedbiomes.api.EBAPI;
 import enhancedbiomes.blocks.EnhancedBiomesBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.CliffCalculator;
+import rtg.util.OpenSimplexNoise;
+
+import java.util.Random;
 
 public class SurfaceEBMeadow extends SurfaceEBBase
 {
-    
+
     private Block blockMixTop;
     private byte byteMixTop;
     private Block blockMixFiller;
@@ -34,35 +33,35 @@ public class SurfaceEBMeadow extends SurfaceEBBase
         byte mixFillerByte, Block cliff1, byte cliff1Byte, Block cliff2, byte cliff2Byte, float mixWidth, float mixHeight,
         float smallWidth, float smallStrength)
     {
-    
+
         super(config, top, topByte, filler, fillerByte);
-        
+
         blockMixTop = mixTop;
         byteMixTop = mixTopByte;
         blockMixFiller = mixFiller;
         byteMixFiller = mixFillerByte;
-        
+
         blockCliff1 = cliff1;
         byteCliff1 = cliff1Byte;
-        
+
         blockCliff2 = cliff2;
         byteCliff2 = cliff2Byte;
-        
+
         floMixWidth = mixWidth;
         floMixHeight = mixHeight;
         floSmallWidth = smallWidth;
         floSmallStrength = smallStrength;
     }
-    
+
     @Override
     public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand,
         OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
     {
-    
+
         float c = CliffCalculator.calc(x, y, noise);
         boolean cliff = c > 1.4f ? true : false;
         boolean mix = false;
-        
+
         for (int k = 255; k > -1; k--)
         {
             Block b = blocks[(y * 16 + x) * 256 + k];
@@ -78,7 +77,7 @@ public class SurfaceEBMeadow extends SurfaceEBBase
                     blocks[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, hcStone(world, i, j, x, y, k));
                     metadata[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EBAPI.CHALK, hcStoneMeta(world, i, j, x, y, k));
                 }
-                
+
                 if (cliff)
                 {
                     if (depth > -1 && depth < 2)
@@ -91,7 +90,7 @@ public class SurfaceEBMeadow extends SurfaceEBBase
                             blocks[(y * 16 + x) * 256 + k] = blockCliff1;
                             metadata[(y * 16 + x) * 256 + k] = byteCliff1;
                         }
-                        
+
                     }
                     else if (depth < 10)
                     {
@@ -108,7 +107,7 @@ public class SurfaceEBMeadow extends SurfaceEBBase
                         {
                             blocks[(y * 16 + x) * 256 + k] = blockMixTop;
                             metadata[(y * 16 + x) * 256 + k] = byteMixTop;
-                            
+
                             mix = true;
                         }
                         else

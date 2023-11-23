@@ -1,7 +1,6 @@
 
 package rtg.world.gen.feature;
 
-import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -9,6 +8,8 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 /**
  *
@@ -26,7 +27,7 @@ public class WorldGenPond extends WorldGenerator {
     }
 
     /**
-     * 
+     *
      * @param world
      * @param random
      * @param x
@@ -176,7 +177,7 @@ public class WorldGenPond extends WorldGenerator {
 
             // set y to 3 below lake level so the top of the shore is the top of the lake level
             y = lakeLevel -4;
-            
+
             //not if anything will be left floating
 
             for (i1 = 0; i1 < 16; ++i1)

@@ -1,11 +1,9 @@
 package rtg.world.biome.realistic.eccentricbiomes;
 
-import net.minecraft.world.biome.BiomeGenBase;
-
 import cpw.mods.fml.common.Loader;
-
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
-import rtg.api.biome.eccentricbiomes.config.*;
+import rtg.api.biome.eccentricbiomes.config.BiomeConfigECC;
 import rtg.util.Logger;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
@@ -29,23 +27,23 @@ public class RealisticBiomeECCBase extends RealisticBiomeBase
     public static RealisticBiomeBase eccOcher;
     public static RealisticBiomeBase eccSnowyDesert;
     public static RealisticBiomeBase eccVoid;
-    
+
     public RealisticBiomeECCBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
     {
-    
+
         super(config, b, riverbiome, t, s);
-        
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
     }
-    
+
     public static void addBiomes()
     {
-    
+
         if (Loader.isModLoaded("mod_ebm"))
         {
             BiomeGenBase[] b = BiomeGenBase.getBiomeGenArray();
-            
+
             for (int i = 0; i < 256; i++)
             {
                 if (b[i] != null)
@@ -54,7 +52,7 @@ public class RealisticBiomeECCBase extends RealisticBiomeBase
                         Logger.warn("Biome ID %d has no name.", b[i].biomeID);
                         continue;
                     }
-                    
+
                     BiomeGenBase eccBiome = b[i];
                     String biomeName = b[i].biomeName;
                     String biomeClass = b[i].getBiomeClass().getName();

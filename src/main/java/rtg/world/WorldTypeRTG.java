@@ -1,14 +1,13 @@
 package rtg.world;
 
-import rtg.world.biome.WorldChunkManagerRTG;
-import rtg.world.gen.ChunkProviderRTG;
-
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderGenerate;
 import rtg.RTG;
+import rtg.world.biome.WorldChunkManagerRTG;
+import rtg.world.gen.ChunkProviderRTG;
 
 public class WorldTypeRTG extends WorldType
 {
@@ -39,11 +38,11 @@ public class WorldTypeRTG extends WorldType
 	public WorldTypeRTG(String name)
 	{
 		super(name);
-				
+
 //        DimensionManager.unregisterProviderType(0);
 //        DimensionManager.registerProviderType(0, WorldProviderSurfaceRTG.class, true);
 	}
-	
+
 	@Override
     public WorldChunkManager getChunkManager(World world)
     {
@@ -80,7 +79,7 @@ public class WorldTypeRTG extends WorldType
             return new ChunkProviderGenerate(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
         }
     }
-	
+
     @Override
     public float getCloudHeight()
     {

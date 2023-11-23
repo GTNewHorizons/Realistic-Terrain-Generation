@@ -4,15 +4,14 @@ import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsGroundcover;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenCliffs extends BiomeGenBaseHighlands
 {
@@ -26,12 +25,12 @@ public class BiomeGenCliffs extends BiomeGenBaseHighlands
 	    int flowers = 0;
 	    int plants = 1;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-	    
+
         this.setHeight(biomeHeight);
         this.temperature = 0.4F;
         this.rainfall = 0.4F;
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.thornbush)
 				: new WorldGenSmallPlants(HighlandsBlocks.blueberryBush));
@@ -72,7 +71,7 @@ public class BiomeGenCliffs extends BiomeGenBaseHighlands
             	world.setBlock(var7, var8, var9, Blocks.emerald_ore, 0, 2);
             }
         }
-        
+
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 20, this.theBiomeDecorator.ironGen, 64, 128);
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 8, this.theBiomeDecorator.redstoneGen, 16, 32);
         ((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 1, this.theBiomeDecorator.lapisGen, 32, 64);

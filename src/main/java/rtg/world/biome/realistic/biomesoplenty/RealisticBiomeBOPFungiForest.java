@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -10,36 +11,35 @@ import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPFungiForest;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPFungiForest;
-import biomesoplenty.api.content.BOPCBiomes;
 
 public class RealisticBiomeBOPFungiForest extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.fungiForest;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPFungiForest(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPFungiForest(),
 			new SurfaceBOPFungiForest(config,
-                topBlock, //Block top 
+                topBlock, //Block top
                 (byte)0, //byte topByte
-                fillerBlock, //Block filler, 
+                fillerBlock, //Block filler,
                 (byte)0, //byte fillerByte
-                Blocks.mycelium, //Block mixTop, 
-                (byte)0, //byte mixTopByte, 
-                fillerBlock, //Block mixFill, 
+                Blocks.mycelium, //Block mixTop,
+                (byte)0, //byte mixTopByte,
+                fillerBlock, //Block mixFill,
                 (byte)0, //byte mixFillByte,
-                40f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                40f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-		
+
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.distribution.noiseDivisor = 100f;
 		decoFallenTree.distribution.noiseFactor = 6f;

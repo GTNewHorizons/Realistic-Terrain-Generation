@@ -2,7 +2,6 @@
 package rtg.util;
 
 import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.WeakHashMap;
 
 /**
@@ -18,7 +17,7 @@ import java.util.WeakHashMap;
  * @author Zeno410
  */
 public class WeakHashCache<Key,Value> {
-    
+
     // we make our own
     private final Converter<Value,Key> keyer;
 

@@ -1,12 +1,12 @@
 package rtg.world.gen.feature;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenMinableRTG extends WorldGenerator
 {
@@ -37,7 +37,7 @@ public class WorldGenMinableRTG extends WorldGenerator
     public boolean generate(World p_76484_1_, Random p_76484_2_, int p_76484_3_, int p_76484_4_, int p_76484_5_)
     {
         int intBlocksPlaced = 0;
-        
+
         float f = p_76484_2_.nextFloat() * (float)Math.PI;
         double d0 = (double)((float)(p_76484_3_ + 8) + MathHelper.sin(f) * (float)this.numberOfBlocks / 8.0F);
         double d1 = (double)((float)(p_76484_3_ + 8) - MathHelper.sin(f) * (float)this.numberOfBlocks / 8.0F);
@@ -90,7 +90,7 @@ public class WorldGenMinableRTG extends WorldGenerator
         }
 
         //Logger.debug("%d blocks of %s placed.", intBlocksPlaced, this.field_150519_a.getUnlocalizedName());
-        
+
         return true;
     }
 }

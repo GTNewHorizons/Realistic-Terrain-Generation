@@ -1,31 +1,30 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.OpenSimplexNoise;
+
+import java.util.Random;
 
 public class SurfaceDuneValley extends SurfaceBase
 {
 	private float valley;
 	private boolean dirt;
 	private boolean mix;
-	
-	public SurfaceDuneValley(BiomeConfig config, Block top, Block fill, float valleySize, boolean d, boolean m) 
+
+	public SurfaceDuneValley(BiomeConfig config, Block top, Block fill, float valleySize, boolean d, boolean m)
 	{
 	    super(config, top, (byte)0, fill, (byte)0);
-		
+
 		valley = valleySize;
 		dirt = d;
 		mix = m;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
@@ -33,7 +32,7 @@ public class SurfaceDuneValley extends SurfaceBase
     	h = h < 1f ? 1f : h;
 		float m = simplex.noise2(i / 12f, j / 12f);
 		boolean sand = false;
-		
+
     	Block b;
 		for(int k = 255; k > -1; k--)
 		{
@@ -45,7 +44,7 @@ public class SurfaceDuneValley extends SurfaceBase
             else if(b == Blocks.stone)
             {
             	depth++;
-            	
+
             	if(depth == 0)
         		{
                 	if(k > 90f + simplex.noise2(i / 24f, j / 24f) * 10f - h || (m < -0.28f && mix))

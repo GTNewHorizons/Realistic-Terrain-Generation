@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -7,8 +9,6 @@ import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBIceSheet;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBIceSheet;
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 
 public class RealisticBiomeEBIceSheet extends RealisticBiomeEBBase
 {
@@ -16,22 +16,22 @@ public class RealisticBiomeEBIceSheet extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.DACITE, (byte)0),
         EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.DACITE, (byte)0),
         EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0)
     };
-    
+
     private static Block ebTopBlock = EBAPI.ebGrassify(Blocks.ice, Blocks.ice);
     private static byte ebTopByte = EBAPI.ebGrassify((byte)0, (byte)0);
     private static Block ebFillBlock = EBAPI.ebGrassify(Blocks.ice, Blocks.ice);
@@ -44,32 +44,32 @@ public class RealisticBiomeEBIceSheet extends RealisticBiomeEBBase
     private static byte ebCliff1Byte = EBAPI.ebStonify((byte)0, (byte)0);
     private static Block ebCliff2Block = EBAPI.ebStonify(Blocks.packed_ice, Blocks.packed_ice);
     private static byte ebCliff2Byte = EBAPI.ebStonify((byte)0, (byte)0);
-    
+
 	public RealisticBiomeEBIceSheet(BiomeGenBase ebBiome, BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			ebBiome, BiomeGenBase.frozenRiver,
 			new TerrainEBIceSheet(),
-			new SurfaceEBIceSheet(config, 
-                ebTopBlock, //Block top 
+			new SurfaceEBIceSheet(config,
+                ebTopBlock, //Block top
                 ebTopByte, //byte topByte
-                ebFillBlock, //Block filler, 
+                ebFillBlock, //Block filler,
                 ebFillByte, //byte fillerByte
-                ebMixTopBlock, //Block mixTop, 
-                ebMixTopByte, //byte mixTopByte, 
-                ebMixFillBlock, //Block mixFill, 
-                ebMixFillByte, //byte mixFillByte, 
-                ebCliff1Block, //Block cliff1, 
-                ebCliff1Byte, //byte cliff1Byte, 
-                ebCliff2Block, //Block cliff2, 
-                ebCliff2Byte, //byte cliff2Byte, 
-                80f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                ebMixTopBlock, //Block mixTop,
+                ebMixTopByte, //byte mixTopByte,
+                ebMixFillBlock, //Block mixFill,
+                ebMixFillByte, //byte mixFillByte,
+                ebCliff1Block, //Block cliff1,
+                ebCliff1Byte, //byte cliff1Byte,
+                ebCliff2Block, //Block cliff2,
+                ebCliff2Byte, //byte cliff2Byte,
+                80f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
     }

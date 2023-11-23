@@ -2,7 +2,6 @@ package rtg.world.gen.terrain.biomesoplenty;
 
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
-import rtg.world.gen.terrain.HeightEffect;
 import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.HillockEffect;
 import rtg.world.gen.terrain.TerrainBase;

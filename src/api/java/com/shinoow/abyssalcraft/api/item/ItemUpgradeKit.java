@@ -5,25 +5,25 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.item;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 /**
  * Use this class to create Upgrade Kits for tools/armor.
  * You will need to create a crafting recipe for the upgrade:
  * GameRegistry.addRecipe(new ItemStack(NewItem, 1),  new Object [] {"#", "@", '#', OldItem, '@', UpgradeKit);
- * 
+ *
  * @author shinoow
  *
  * @since 1.0

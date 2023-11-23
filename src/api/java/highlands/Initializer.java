@@ -1,5 +1,8 @@
 package highlands;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 import highlands.api.HighlandsBiomes;
 import highlands.api.HighlandsBlocks;
 import highlands.biome.BiomeGenAlps;
@@ -56,9 +59,6 @@ import highlands.block.ItemBlockMetadata;
 import highlands.block.ItemBlockPlanks;
 import highlands.block.ItemHighlandsBerries;
 import highlands.block.ItemSlabPlanks;
-
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -73,9 +73,8 @@ import net.minecraft.world.biome.BiomeGenTaiga;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
 
 
 public class Initializer
@@ -83,15 +82,15 @@ public class Initializer
 	private static String biomePrefix = "";
 	public static boolean tooManyBiomesInstalled;
 	private static boolean railcraftInstalled;
-	
+
 	public static void constructSettings()
 	{
-		
+
 		Highlands.HighlandsBiomeSizeDefault = Config.biomeSize.getInt();
 		Highlands.HighlandsBiomeSizeLB = Config.LBbiomeSize.getInt();
-		
+
 		Highlands.islandRarity = Config.islandRarity.getInt();
-		
+
 		int a = Config.moreOceans.getInt();
 		for(int i = 0; i < a; i++){
 			if(Highlands.improvedOceans && HighlandsBiomes.ocean2!= null) HighlandsBiomes.biomesForHighlands.add(HighlandsBiomes.ocean2);
@@ -100,24 +99,24 @@ public class Initializer
 				HighlandsBiomes.biomesForHighlands.add(BiomeGenBase.ocean);
 			}
 		}
-		
+
 		Highlands.mocreaturescomp = Config.mobModCompatibility.getBoolean(false);
-		
+
 		Highlands.skyColorFlag = Config.skyColors.getBoolean(false);
-		
+
 		Highlands.vanillaBlocksFlag = !Config.modWoodAndLeaves.getBoolean(true);
 		Highlands.plantsFlag = Config.smallPlants.getBoolean(true);
-		
+
 		Highlands.addBoPbiomes = Config.addBoPbiomes.getBoolean(false);
-		
+
 		Highlands.useOreGens = Config.genOre.getBoolean(true);
 		Highlands.useGenLayers = !Config.safeMode.getBoolean(false);
-		
+
 		tooManyBiomesInstalled = Loader.isModLoaded("TooManyBiomes");
 		railcraftInstalled = Loader.isModLoaded("Railcraft");
-	}	
-	
-	
+	}
+
+
 	public static void constructBlocks() {
 		//Saplings
 		HighlandsBlocks.acaciaSapling = new BlockHighlandsSapling(1).setHardness(0.0F)
@@ -152,10 +151,10 @@ public class Initializer
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_autumnOrangeSapling");
 		HighlandsBlocks.autumnYellowSapling = new BlockHighlandsSapling(15).setHardness(0.0F)
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_autumnYellowSapling");
-		
+
 		HighlandsBlocks.japaneseMapleSapling = new BlockHighlandsSapling2(1).setHardness(0.0F)
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_japaneseMapleSapling");
-		
+
 		//Wood
 		HighlandsBlocks.acaciaWood = new BlockHighlandsLog(1).setHardness(2.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_acaciaWood");
@@ -175,10 +174,10 @@ public class Initializer
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_mangroveWood");
 		HighlandsBlocks.ashWood = new BlockHighlandsLog(13).setHardness(2.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_ashWood");
-		
+
 		HighlandsBlocks.japaneseMapleWood = new BlockHighlandsLog2(1).setHardness(2.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_japaneseMapleWood");
-		
+
 		//Leaves
 		HighlandsBlocks.acaciaLeaves = new BlockHighlandsLeaves(1).setHardness(0.2F)
 				.setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("hl_acaciaLeaves");
@@ -202,10 +201,10 @@ public class Initializer
 				.setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("hl_autumnYellowLeaves");
 		HighlandsBlocks.autumnOrangeLeaves = new BlockHighlandsLeaves(15).setHardness(0.2F)
 				.setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("hl_autumnOrangeLeaves");
-		
+
 		HighlandsBlocks.japaneseMapleLeaves = new BlockHighlandsLeaves2(1).setHardness(0.2F)
 				.setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("hl_japaneseMapleLeaves");
-		
+
 		//Plants
 		HighlandsBlocks.blueFlower = new BlockHighlandsSmallPlants(0).setHardness(0.0F)
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_blueFlower");
@@ -225,42 +224,42 @@ public class Initializer
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_thornbush");
 		HighlandsBlocks.cotton = new BlockHighlandsSmallPlants(8).setHardness(0.0F)
 				.setStepSound(Block.soundTypeGrass).setBlockName("hl_cotton");
-		
+
 		HighlandsBlocks.berries = new ItemHighlandsBerries().setUnlocalizedName("hl_berries");
 		GameRegistry.registerItem(HighlandsBlocks.berries, "hl_berries");
-		
+
 		HighlandsBlocks.cocoa2 = new BlockCocoaPlant2().setBlockName("hl_cocoa");
 		GameRegistry.registerBlock(HighlandsBlocks.cocoa2, "hl_cocoa");
-		
+
 		//Planks and stairs
 		HighlandsBlocks.hlplanks = new BlockHighlandsPlanks().setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodPlanks");
 		GameRegistry.registerBlock(HighlandsBlocks.hlplanks, ItemBlockPlanks.class, "hl_woodPlanks");
-		
+
 		HighlandsBlocks.hlplankstairs0 = new BlockHighlandsStairs(HighlandsBlocks.hlplanks, 0).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodStairs0");
 		registerBlock(HighlandsBlocks.hlplankstairs0, "Yellow Wood Stairs");
-		
+
 		HighlandsBlocks.hlplankstairs1 = new BlockHighlandsStairs(HighlandsBlocks.hlplanks, 1).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodStairs1");
 		registerBlock(HighlandsBlocks.hlplankstairs1, "White Wood Stairs");
-		
+
 		HighlandsBlocks.hlplankstairs2 = new BlockHighlandsStairs(HighlandsBlocks.hlplanks, 2).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodStairs2");
 		registerBlock(HighlandsBlocks.hlplankstairs2, "Red Wood Stairs");
-		
+
 		HighlandsBlocks.hlplankstairs3 = new BlockHighlandsStairs(HighlandsBlocks.hlplanks, 3).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodStairs3");
 		registerBlock(HighlandsBlocks.hlplankstairs3, "Grey Wood Stairs");
-		
+
 		HighlandsBlocks.hlplankhalfdouble = new BlockHLPlankSlab(true, HighlandsBlocks.hlplanks).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodSlabDouble");
 		GameRegistry.registerBlock(HighlandsBlocks.hlplankhalfdouble, ItemSlabPlanks.class, "hl_woodDoubleSlab");
 		HighlandsBlocks.hlplankhalf = new BlockHLPlankSlab(false, HighlandsBlocks.hlplanks).setHardness(2.0F).setResistance(5.0F)
 				.setStepSound(Block.soundTypeWood).setBlockName("hl_woodSlab");
 		GameRegistry.registerBlock(HighlandsBlocks.hlplankhalf, ItemSlabPlanks.class, "hl_woodSlab");
-		
-		
+
+
 
 
 		HighlandsBlocks.saplings = new Block[]{
@@ -280,7 +279,7 @@ public class Initializer
 				HighlandsBlocks.ashSapling,
 				HighlandsBlocks.autumnYellowSapling,
 				HighlandsBlocks.autumnOrangeSapling,
-				
+
 				HighlandsBlocks.japaneseMapleSapling,
 		};
 
@@ -296,7 +295,7 @@ public class Initializer
 				HighlandsBlocks.ashLeaves,
 				HighlandsBlocks.autumnYellowLeaves,
 				HighlandsBlocks.autumnOrangeLeaves,
-				
+
 				HighlandsBlocks.japaneseMapleLeaves,
 		};
 
@@ -310,10 +309,10 @@ public class Initializer
 				HighlandsBlocks.ironWood,
 				HighlandsBlocks.mangroveWood,
 				HighlandsBlocks.ashWood,
-				
+
 				HighlandsBlocks.japaneseMapleWood,
 		};
-		
+
 		HighlandsBlocks.plants = new Block[]{
 			    HighlandsBlocks.blueFlower,
 			    HighlandsBlocks.leafyFern,
@@ -325,7 +324,7 @@ public class Initializer
 			    HighlandsBlocks.cotton,
 			    HighlandsBlocks.thornbush,
 		};
-		
+
 		HighlandsBlocks.planks = new Block[]{
 				HighlandsBlocks.hlplanks,
 				HighlandsBlocks.hlplankstairs0,
@@ -338,16 +337,16 @@ public class Initializer
 
 	}
 
-	
+
 	/*Height values for vanilla overrides*/
 	private static final Height desertIsle = new Height(0.1F, 0.1F);
 	private static final Height woodIsle = new Height(0.2F, 0.4F);
 	private static final Height windIsle = new Height(0.1F, 0.2F);
-	
+
 	public static void constructBiomes() {
-		
+
 		biomePrefix = Config.biomePrefix.getBoolean(false) ? "Highlands_" : "";
-		
+
 		//main biomes
 		if(Config.alpsID > -1) {
 			HighlandsBiomes.alps = new BiomeGenAlps(Config.alpsID).setBiomeName(biomePrefix+"Alps");
@@ -465,11 +464,11 @@ public class Initializer
 		if(Config.tundraID > -1) {
 			HighlandsBiomes.tundra = new BiomeGenTundra(Config.tundraID).setBiomeName(biomePrefix+"Tundra");
 			HighlandsBiomes.biomesForHighlands.add(HighlandsBiomes.tundra);
-		} 
+		}
 		if(Config.woodlandsID > -1) {
 			HighlandsBiomes.woodlands = new BiomeGenWoodlands(Config.woodlandsID).setBiomeName(biomePrefix+"Woodlands");
 			HighlandsBiomes.biomesForHighlands.add(HighlandsBiomes.woodlands);
-			
+
 		}
 		if(Config.woodlandMountainsID > -1) {
 			HighlandsBiomes.woodsMountains = new BiomeGenWoodsMountains(Config.woodlandMountainsID).setBiomeName(biomePrefix+"Woodland Mountains");
@@ -487,8 +486,8 @@ public class Initializer
 		 *  For custom ore generation, Coal and iron are common to China/Japan, so these would be best.
 		*/
 		//TODO: Inland Volcano Biome
-		//TODO: replacement for 
-		
+		//TODO: replacement for
+
 		//improved ocean biome
 		if(Config.ocean2ID > -1) {
 			HighlandsBiomes.ocean2 = new BiomeGenOcean2(Config.ocean2ID).setBiomeName(biomePrefix+"Ocean");
@@ -499,7 +498,7 @@ public class Initializer
 				FMLInterModComms.sendMessage("Railcraft", "geode-biome", ""+Config.ocean2ID);
 			}
 		}
-		
+
 		//sub-biomes
 		if(Config.desertIslandID > -1) {
 			HighlandsBiomes.desertIsland = new BiomeGenDesertIsland(Config.desertIslandID).setBiomeName(biomePrefix+"Desert Island").setHeight(desertIsle);
@@ -553,15 +552,15 @@ public class Initializer
 			HighlandsBiomes.canyon = new BiomeGenOutback(Config.canyonID).setBiomeName(biomePrefix+"Canyon");
 			HighlandsBiomes.subBiomes.add(HighlandsBiomes.canyon);
 		}
-		
+
 		//border biomes
 		if(Config.shrublandID > -1) {
 			HighlandsBiomes.shrubland = new BiomeGenShrubland(Config.shrublandID).setBiomeName(biomePrefix+"Shrubland");
 			Highlands.borderBiomeFlag = true;
 		}
-		
+
 		HighlandsBiomes.biomesForDefault = (ArrayList<BiomeGenBase>)HighlandsBiomes.biomesForHighlands.clone();
-		
+
 		//vanilla biomes
 		if(Config.plainsGenerate.getBoolean(true)) HighlandsBiomes.biomesForHighlands.add(BiomeGenBase.plains);
 		if(Config.desertGenerate.getBoolean(true)) HighlandsBiomes.biomesForHighlands.add(BiomeGenBase.desert);
@@ -572,13 +571,13 @@ public class Initializer
 		if(Config.icePlainsGenerate.getBoolean(true)) HighlandsBiomes.biomesForHighlands.add(BiomeGenBase.icePlains);
 		if(Config.taigaGenerate.getBoolean(true)) HighlandsBiomes.biomesForHighlands.add(BiomeGenBase.taiga);
 	}
-	
-	
-	
+
+
+
 	public static void initRecipes(){
-		
+
 		//SAPLINGS
-		
+
 		//Fir Sapling
 		if(HighlandsBlocks.firSapling != null){
 			registerBlock(HighlandsBlocks.firSapling, ItemBlockMetadata.class, "Fir Sapling");
@@ -679,10 +678,10 @@ public class Initializer
 			registerBlock(HighlandsBlocks.japaneseMapleSapling, "Japanese Maple Sapling");
 			GameRegistry.addShapelessRecipe(new ItemStack (HighlandsBlocks.japaneseMapleSapling), new ItemStack(Blocks.sapling, 1, 0), new ItemStack(Items.dye, 1, 15));
 		}
-		
-		
+
+
 		//WOODS
-		
+
 		//Fir Log
 		if(HighlandsBlocks.firWood != null){
 			registerBlock(HighlandsBlocks.firWood, "Fir Log");
@@ -746,7 +745,7 @@ public class Initializer
 			GameRegistry.addShapelessRecipe(new ItemStack (HighlandsBlocks.hlplanks, 4, 3), new ItemStack(HighlandsBlocks.ironWood, 1, 0));
 			GameRegistry.addSmelting(HighlandsBlocks.ironWood, new ItemStack(Items.coal, 1, 1), 0.15F);
 		}
-		
+
 		//Japanese Maple Log
 		if(HighlandsBlocks.japaneseMapleWood != null){
 			registerBlock(HighlandsBlocks.japaneseMapleWood, "Japanese Maple Log");
@@ -754,12 +753,12 @@ public class Initializer
 			GameRegistry.addShapelessRecipe(new ItemStack (HighlandsBlocks.hlplanks, 4, 3), new ItemStack(HighlandsBlocks.japaneseMapleWood, 1, 0));
 			GameRegistry.addSmelting(HighlandsBlocks.japaneseMapleWood, new ItemStack(Items.coal, 1, 1), 0.15F);
 		}
-		
+
 		//Highlands Planks
 		if(HighlandsBlocks.hlplanks != null){
 			OreDictionary.registerOre("plankWood", new ItemStack(HighlandsBlocks.hlplanks, 1, OreDictionary.WILDCARD_VALUE));
 		}
-		
+
 		//Planks - stairs
 		if(HighlandsBlocks.hlplanks != null && HighlandsBlocks.hlplankstairs0 != null){
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankstairs0, 4), new Object[] { "B  ", "BB ", "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 0)});
@@ -774,14 +773,14 @@ public class Initializer
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankstairs3, 4), new Object[] { "B  ", "BB ", "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 3)});
 		}
 
-		
+
 		//Planks - half blocks
 		if(HighlandsBlocks.hlplanks != null && HighlandsBlocks.hlplankhalf != null){
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankhalf, 6, 0), new Object[] { "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 0)});
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankhalf, 6, 1), new Object[] { "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 1)});
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankhalf, 6, 2), new Object[] { "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 2)});
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplankhalf, 6, 3), new Object[] { "BBB", Character.valueOf('B'), new ItemStack(HighlandsBlocks.hlplanks,1, 3)});
-			
+
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplanks, 1, 0), new Object[] { "P", "P", Character.valueOf('P'), new ItemStack(HighlandsBlocks.hlplankhalf,1, 0)});
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplanks, 1, 1), new Object[] { "P", "P", Character.valueOf('P'), new ItemStack(HighlandsBlocks.hlplankhalf,1, 1)});
 			GameRegistry.addRecipe(new ItemStack(HighlandsBlocks.hlplanks, 1, 2), new Object[] { "P", "P", Character.valueOf('P'), new ItemStack(HighlandsBlocks.hlplankhalf,1, 2)});
@@ -791,11 +790,11 @@ public class Initializer
 		if(HighlandsBlocks.hlplanks != null && HighlandsBlocks.hlplankhalfdouble != null){
 			//GameRegistry.registerBlock(HighlandsBlocks.hlplankhalfdouble, ItemBlockMetadata.class, "hl_woodDoubleSlab");
 		}
-		
-		
-		
+
+
+
 		//LEAVES
-		
+
 		//Fir Leaves
 		if(HighlandsBlocks.firLeaves != null){
 			registerBlock(HighlandsBlocks.firLeaves, "Fir Leaves");
@@ -844,9 +843,9 @@ public class Initializer
 		if (HighlandsBlocks.japaneseMapleLeaves != null){
 			registerBlock(HighlandsBlocks.japaneseMapleLeaves, "Japanese Maple Leaves");
 		}
-		
+
 		//PLANTS
-		
+
 		//Blue Flower
 		if(HighlandsBlocks.blueFlower != null){
 			registerBlock(HighlandsBlocks.blueFlower, "Blue Flower");
@@ -886,9 +885,9 @@ public class Initializer
 			registerBlock(HighlandsBlocks.cotton, "Cotton Plant");
 			GameRegistry.addShapelessRecipe(new ItemStack (Items.string, 1, 0), new ItemStack(HighlandsBlocks.cotton, 1, 0));
 		}
-		
+
 	}
-	
+
 	public static void registerBlock(Block b, String name){
 		GameRegistry.registerBlock(b, b.getUnlocalizedName());
 	}
@@ -896,14 +895,14 @@ public class Initializer
     {
         GameRegistry.registerBlock(block, itemBlockClass, name);
     }
-	
+
 	//sets up sub-biome lists after all biomes are initialized.
 	public static void setUpAllSubBiomes(){
 		ArrayList<BiomeGenBase> enabledBiomes = new ArrayList<BiomeGenBase>();
 		for(BiomeGenBase b : HighlandsBiomes.biomesForHighlands)enabledBiomes.add(b);
 		for(BiomeGenBase b : HighlandsBiomes.subBiomes)enabledBiomes.add(b);
-		
-		
+
+
 		addSubBiome(HighlandsBiomes.alps, HighlandsBiomes.tallPineForest, enabledBiomes);
 		addSubBiome(HighlandsBiomes.alps, HighlandsBiomes.glacier, enabledBiomes);
 		addSubBiome(HighlandsBiomes.alps, BiomeGenBase.frozenRiver, enabledBiomes);
@@ -954,13 +953,13 @@ public class Initializer
 		addSubBiome(HighlandsBiomes.tundra, HighlandsBiomes.alps, enabledBiomes);
 		addSubBiome(HighlandsBiomes.tundra, HighlandsBiomes.tallPineForest, enabledBiomes);
 	}
-	
+
 	public static void addSubBiome(BiomeGenBase parent, BiomeGenBase sub, ArrayList<BiomeGenBase> list){
 		if(parent != null && sub != null && list.contains(parent) && list.contains(sub)){
 			((BiomeGenBaseHighlands)parent).subBiomes.add(sub);
 		}
 	}
-	
+
 	public static void setFireProperties(Block block, int encouragement, int flammability) {
 		if (block != null)
 		Blocks.fire.setFireInfo(block, encouragement, flammability);

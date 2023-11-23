@@ -1,7 +1,5 @@
 package rtg.world.gen.feature.tree.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
@@ -10,6 +8,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraftforge.common.util.ForgeDirection;
 import rtg.config.rtg.ConfigRTG;
+
+import java.util.Random;
 
 public class WorldGenTreesRTG extends WorldGenTrees
 {

@@ -1,13 +1,13 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Picea Sitchensis (Sitka Spruce)
@@ -36,12 +36,12 @@ public class TreeRTGPiceaSitchensis extends TreeRTG
 	 * decoTree.maxCrownSize = 14;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGPiceaSitchensis()
 	{
 		super();
-		
+
 		this.logBlock = Blocks.log;
 		this.logMeta = (byte)1;
 		this.leavesBlock = Blocks.leaves;
@@ -49,7 +49,7 @@ public class TreeRTGPiceaSitchensis extends TreeRTG
 		this.trunkSize = 8;
 		this.crownSize = 10;
 		this.noLeaves = false;
-		
+
 		this.validGroundBlocks = new ArrayList<Block>(Arrays.asList(Blocks.grass, Blocks.dirt));
 	}
 
@@ -59,14 +59,14 @@ public class TreeRTGPiceaSitchensis extends TreeRTG
 
     	Block g = world.getBlock(x, y - 1, z);
     	boolean validGroundBlock = false;
-    	
+
     	for (int i = 0; i < this.validGroundBlocks.size(); i++) {
     		if (g == this.validGroundBlocks.get(i)) {
     			validGroundBlock = true;
     			break;
     		}
     	}
-    	
+
     	if (!validGroundBlock) {
     		return false;
     	}
@@ -128,7 +128,7 @@ public class TreeRTGPiceaSitchensis extends TreeRTG
 
     	return true;
     }
-	
+
 	@Override
     public void buildBranch(World world, Random rand, int x, int y, int z, int dX, int dZ, int logLength, int leaveSize)
     {
@@ -151,7 +151,7 @@ public class TreeRTGPiceaSitchensis extends TreeRTG
         	this.placeLogBlock(world, x + (dX * m), y, z + (dZ * m), this.logBlock, this.logMeta, this.generateFlag);
     	}
     }
-	
+
 	@Override
     public void buildLeaves(World world, int x, int y, int z)
     {

@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import biomesoplenty.api.content.BOPCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
@@ -9,11 +11,9 @@ import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPOminousWoods;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPOminousWoods;
-import biomesoplenty.api.content.BOPCBiomes;
-import biomesoplenty.api.content.BOPCBlocks;
 
 public class RealisticBiomeBOPOminousWoods extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.ominousWoods;
 
     public static Block topBlock = BOPCBlocks.newBopGrass;
@@ -21,15 +21,15 @@ public class RealisticBiomeBOPOminousWoods extends RealisticBiomeBOPBase
 
 	public RealisticBiomeBOPOminousWoods(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPOminousWoods(65f, 80f, 48f),
 			new SurfaceBOPOminousWoods(config, topBlock, fillerBlock)
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
-        
+
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.distribution.noiseDivisor = 80f;
 		decoFallenTree.distribution.noiseFactor = 60f;

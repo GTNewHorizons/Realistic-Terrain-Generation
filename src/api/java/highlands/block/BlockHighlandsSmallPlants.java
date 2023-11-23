@@ -1,14 +1,10 @@
 package highlands.block;
 
-import static net.minecraftforge.common.EnumPlantType.Plains;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,14 +20,18 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
 {
 	private int plantType;
-	
-	private String[] plantNames = 
+
+	private String[] plantNames =
 		{
 			"BlueFlower",
 			"GreenLeaf",
@@ -43,7 +43,7 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
 			"Thornbush",
 			"Cotton",
 		};
-	
+
     public BlockHighlandsSmallPlants(int type)
     {
         super(type);
@@ -52,7 +52,7 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
         this.setCreativeTab(Highlands.tabHighlands);
         plantType = type;
     }
-    
+
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
@@ -62,19 +62,19 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
 	    	Random rand = new Random();
 	    	//adds random plants of same type to surrounding blocks
 	    	new WorldGenSmallPlants(this, 10).generate(par1World, new Random(), par2, par3, par4);
-	    	
+
 	    	//reduce bonemeal stack size by one
 	    	if(player.capabilities.isCreativeMode != true)player.inventory.getCurrentItem().stackSize--;
 		    return true;
     	}
     	return false;
     }
-    
+
 	@Override
 	public int damageDropped (int metadata) {
 		return metadata;
 	}
-	
+
     /**
      * Returns the Item to drop on destruction.
      */
@@ -83,8 +83,8 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
     {
         return Blocks.dirt.getItemDropped(0, par2Random, par3);
     }
-    
-    @Override 
+
+    @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
@@ -96,15 +96,15 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
         }
         return ret;
     }
-    
-    
+
+
     /**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     @Override
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity entity)
     {
-    	if(plantType == 7) 
+    	if(plantType == 7)
     	if (plantType == 7 && (entity instanceof EntityCreature || entity instanceof EntityPlayer)) {
     		entity.attackEntityFrom(DamageSource.cactus, 1);
         	if (entity instanceof EntityCreature) {
@@ -122,15 +122,15 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
     {
         return Plains;
     }
-    
+
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
     	this.blockIcon = par1IconRegister.registerIcon("Highlands:plant"+plantNames[plantType]);
     }
-    
+
 	@Override
-	public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list) 
+	public void getSubBlocks(Item block, CreativeTabs creativeTabs, List list)
 	{
 		list.add(new ItemStack(block, 1, plantType));
 	}
@@ -140,5 +140,5 @@ public class BlockHighlandsSmallPlants extends BlockFlower implements IPlantable
 	{
 		return this.blockIcon;
 	}
-    
+
 }

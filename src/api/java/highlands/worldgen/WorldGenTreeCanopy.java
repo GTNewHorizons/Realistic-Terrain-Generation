@@ -2,16 +2,15 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class WorldGenTreeCanopy extends WorldGenHighlandsTreeBase
 {
-	
+
 	private boolean trunk2;
 
     /** Constructor - gets the generator for the correct highlands tree
@@ -27,12 +26,12 @@ public class WorldGenTreeCanopy extends WorldGenHighlandsTreeBase
     public WorldGenTreeCanopy(int lmd, int wmd, Block wb, Block lb, int minH, int maxH, boolean notify, boolean thickTrunk)
     {
     	super(lmd, wmd, wb, lb, notify);
-        
+
         this.minHeight = minH;
         this.maxHeight = maxH;
         this.trunk2 = thickTrunk;
     }
-    
+
     public WorldGenTreeCanopy(int minH, int maxH, boolean notify, boolean thickTrunk){
     	this(0, 0, HighlandsBlocks.canopyWood, HighlandsBlocks.canopyLeaves, minH, maxH, notify, thickTrunk);
     	if(Highlands.vanillaBlocksFlag){
@@ -45,21 +44,21 @@ public class WorldGenTreeCanopy extends WorldGenHighlandsTreeBase
 
     public boolean generate(World world, Random random, int locX, int locY, int locZ)
     {
-    	
+
     	this.worldObj = world;
     	this.random = random;
-    	
+
     	boolean isWide = (random.nextInt(3) == 0);
     	int treeHeight = minHeight + random.nextInt(maxHeight);
-        
+
         if(!isLegalTreePosition(world, locX, locY, locZ))return false;
         if(!isCubeClear(locX, locY+3, locZ, 2, 15))return false;
-    	
+
 		//generates the trunk
     	genTree(world, random, locX, locY, locZ, treeHeight, isWide);
-    	
-    	
-    	
+
+
+
     	if(this.trunk2){
     		treeHeight+= 3;
     		genTree(world, random, locX+1, locY, locZ, treeHeight, isWide);
@@ -71,15 +70,15 @@ public class WorldGenTreeCanopy extends WorldGenHighlandsTreeBase
     	this.worldObj = null;
     	return true;
     }
-    
-    
+
+
     //TREE GENERATORS
-    
+
 	private boolean genTree(World world, Random random, int locX, int locY, int locZ, int treeHeight, boolean isWide){
     	for(int i = 0; i < treeHeight; i++){
     		setBlockInWorld(locX, locY + i, locZ, this.wood, this.woodMeta);
     	}
-    	
+
     	int h = locY + treeHeight - 1;
     	//generate leaves above trunk
     	generateLeafLayerCircle(world, random, 5.5, locX, locZ, h);
@@ -93,7 +92,7 @@ public class WorldGenTreeCanopy extends WorldGenHighlandsTreeBase
 		generateLeafLayerCircle(world, random, 3.5, xyz[0], xyz[2], xyz[1]+1);
 		return true;
     }
-    	
+
 }
 
 

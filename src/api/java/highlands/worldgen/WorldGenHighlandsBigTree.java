@@ -1,11 +1,11 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
 {
@@ -46,13 +46,13 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
 
     /** Contains a list of a points at which to generate groups of leaves. */
     int[][] leafNodes;
-    
+
     int leafMeta = 0;
     int woodMeta;
     boolean hasLeaves;
 
     /**
-     * 
+     *
      * @param par1
      * @param placeLeaves
      * @param wmd wood metadata
@@ -69,7 +69,7 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
         trunkSize = trunkDiameter;
         heightLimit = treeHeightLimit;
     }
-    
+
     public boolean generateReplaceSapling(World world, Random random, int locX, int locY, int locZ){
     	Block id = world.getBlock(locX, locY, locZ);
     	int meta = world.getBlockMetadata(locX, locY, locZ);
@@ -376,7 +376,7 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
             var6[0] += -1;
             this.placeBlockLine(var5, var6, Blocks.log);
         }
-        
+
     }
 
     /**
@@ -472,7 +472,7 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
         int[] var1 = new int[] {this.basePos[0], this.basePos[1], this.basePos[2]};
         int[] var2 = new int[] {this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2]};
         Block var3 = this.worldObj.getBlock(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
-        
+
         if (var3 != Blocks.grass && var3 != Blocks.dirt)
         {
             //if(hasLeaves)return false;
@@ -488,7 +488,7 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
         	}
         	if (var3 != Blocks.grass && var3 != Blocks.dirt && var3 != Blocks.sand)return false;
         }
-        
+
         int var4 = this.checkBlockLine(var1, var2);
 
         if (var4 == -1)
@@ -566,7 +566,7 @@ public class WorldGenHighlandsBigTree extends WorldGenHighlandsTreeBase
         	}
         //}
     }
-    
+
 }
 
 

@@ -1,15 +1,13 @@
 package rtg.world.biome.realistic.abyssalcraft;
 
+import com.shinoow.abyssalcraft.api.biome.ACBiomes;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.abyssalcraft.config.BiomeConfigAC;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
-
-import com.shinoow.abyssalcraft.api.biome.ACBiomes;
-
-import cpw.mods.fml.common.Loader;
 
 public class RealisticBiomeACBase extends RealisticBiomeBase
 {
@@ -24,11 +22,11 @@ public class RealisticBiomeACBase extends RealisticBiomeBase
     public RealisticBiomeACBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
     {
         super(config, b, riverbiome, t, s);
-        
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
     }
-    
+
     public static void addBiomes()
     {
         if (Loader.isModLoaded("abyssalcraft"))

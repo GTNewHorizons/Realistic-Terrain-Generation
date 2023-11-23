@@ -4,9 +4,6 @@ import highlands.Highlands;
 import highlands.api.HighlandsBiomes;
 import highlands.worldgen.WorldGenUnderground2;
 import highlands.worldgen.WorldGenWatermelon;
-
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -15,10 +12,12 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.Random;
+
 public class BiomeDecoratorHighlands extends BiomeDecorator
 {
 	private int highlandsPlantsPerChunk;
-	
+
 	//Ore Generators
 	//Used in Biomes directly
 	public static WorldGenerator HLsand = new WorldGenMinable(Blocks.sand, 32);
@@ -28,7 +27,7 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
 	public static WorldGenerator HLdirt = new WorldGenUnderground2(Blocks.dirt, 72, Blocks.sand);
 	public static WorldGenerator HLrock = new WorldGenUnderground2(Blocks.stone, 72, Blocks.dirt);
 	public static WorldGenerator HLobsidian = new WorldGenMinable(Blocks.obsidian, 8);
-	
+
 	public BiomeDecoratorHighlands(BiomeGenBase par1BiomeGenBase, int trees, int grass, int flowers, int hlPlants) {
 		super();
 		this.treesPerChunk = trees;
@@ -39,16 +38,16 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
 		this.sandPerChunk = 15;
 		this.generateLakes = false;
 	}
-	
+
 	public BiomeDecoratorHighlands(BiomeGenBase par1BiomeGenBase, int trees, int grass, int flowers) {
 		this(par1BiomeGenBase, trees, grass, flowers, 0);
 	}
-	
+
 	@Override
 	public void decorateChunk (World world, Random random, BiomeGenBase biome, int x, int z) {
 		this.decorate(world, random, (BiomeGenBaseHighlands)biome, x, z);
 	}
-	
+
 	private void decorate(World par1World, Random par2Random, BiomeGenBaseHighlands biome, int x, int z){
 		if (this.currentWorld != null)
         {
@@ -57,13 +56,13 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
 
 		super.decorateChunk(par1World, par2Random, (BiomeGenBase)biome, x, z);
 		this.currentWorld = par1World;
-        this.randomGenerator = par2Random; 
-        
-		// 
-		
+        this.randomGenerator = par2Random;
+
+		//
+
 		this.chunk_X = x;
         this.chunk_Z = z;
-        
+
         if (biome == HighlandsBiomes.autumnForest || biome == HighlandsBiomes.bog)
         {
             int var2 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
@@ -71,7 +70,7 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
             int var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
         }
-        
+
         if (biome == HighlandsBiomes.tropics || biome == HighlandsBiomes.tropicalIslands)
         {
             int var2 = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
@@ -79,7 +78,7 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
             int var4 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             (new WorldGenWatermelon()).generate(this.currentWorld, this.randomGenerator, var2, var3, var4);
         }
-            
+
 		// highlands plants generator
         if(Highlands.plantsFlag){
 	        for (int j = 0; j < this.highlandsPlantsPerChunk; ++j)
@@ -91,8 +90,8 @@ public class BiomeDecoratorHighlands extends BiomeDecorator
 	            worldgenerator1.generate(this.currentWorld, this.randomGenerator, k, l, i1);
 	        }
         }
-        
-        
+
+
         // cleanup, prevents "Already decorating!!" crashes
         this.currentWorld = null;
         this.randomGenerator = null;

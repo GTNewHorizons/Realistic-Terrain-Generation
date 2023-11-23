@@ -1,10 +1,10 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * Ceiba Pentandra (White Silk-Cotton Tree)
@@ -39,18 +39,18 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 	 * decoTree.maxCrownSize = 24;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGCeibaPentandra()
 	{
 		super();
-		
+
 		this.length = 13f;
 		this.branch = 3;
 		this.verStart = 0.32f;
 		this.verRand = 0.1f;
 	}
-	
+
 	/**
 	 * <b>Ceiba Pentandra (White Silk-Cotton Tree)</b><br><br>
 	 * <u>Relevant variables:</u><br>
@@ -73,12 +73,12 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 	 * decoTree.maxCrownSize = 24;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGCeibaPentandra(float length, int branch, float verStart, float verRand)
 	{
 		this();
-		
+
 		this.length = length;
 		this.branch = branch;
 		this.verStart = verStart;
@@ -86,7 +86,7 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) 
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
     	Block b = world.getBlock(x, y - 1, z);
     	if(b != Blocks.grass && b != Blocks.dirt)
@@ -95,7 +95,7 @@ public class TreeRTGCeibaPentandra extends TreeRTG
     	}
 
 		this.trunkLogMeta = this.getTrunkLogMeta(this.logMeta);
-    	
+
     	if(this.trunkSize > 0)
     	{
 	    	for(int k = 0; k < 3; k++)
@@ -103,12 +103,12 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 	    		generateBranch(world, rand, x, y + this.trunkSize, z, (120 * k) - 40 + rand.nextInt(80), 1.6f + rand.nextFloat() * 0.1f, this.trunkSize * 1.7f, 1f, true);
 	    	}
     	}
-    	
+
     	for(int i = y + this.trunkSize; i < y + this.crownSize; i++)
     	{
     		this.placeLogBlock(world, x, i, z, this.logBlock, this.logMeta, this.generateFlag);
     	}
-    	
+
     	float horDir, verDir;
     	int eX, eY, eZ;
     	for(int j = 0; j < branch; j++)
@@ -116,20 +116,20 @@ public class TreeRTGCeibaPentandra extends TreeRTG
     		horDir = (120 * j) - 60 + rand.nextInt(120);
     		verDir = verStart + rand.nextFloat() * verRand;
         	generateBranch(world, rand, x, y + this.crownSize, z, horDir, verDir, length, 1f, false);
-        	
+
         	eX = x + (int)(Math.cos(horDir * Math.PI / 180D) * verDir * length);
         	eZ = z + (int)(Math.sin(horDir * Math.PI / 180D) * verDir * length);
         	eY = y + this.crownSize + (int)((1f - verDir) * length);
-        	
+
         	for(int m = 0; m < 1; m++)
         	{
             	generateLeaves(world, rand, eX, eY, eZ, 4f, 1.5f);
         	}
     	}
-		
+
 		return true;
 	}
-	
+
 	/*
 	 * horDir = number between -180D and 180D
 	 * verDir = number between 1F (horizontal) and 0F (vertical)
@@ -143,15 +143,15 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 
 		float c = 0f;
 		float velY = 1f - verDir;
-		
+
 		if(verDir > 1f)
 		{
 			verDir = 1f - (verDir - 1f);
 		}
-		
+
 		float velX = (float)Math.cos(horDir * Math.PI / 180D) * verDir;
 		float velZ = (float)Math.sin(horDir * Math.PI / 180D) * verDir;
-		
+
 		while(c < length)
 		{
 		    if (isTrunk) {
@@ -160,15 +160,15 @@ public class TreeRTGCeibaPentandra extends TreeRTG
             else {
                 this.placeLogBlock(world, (int)x, (int)y, (int)z, this.logBlock, this.logMeta, this.generateFlag);
             }
-			
+
 			x += velX;
 			y += velY;
 			z += velZ;
-			
+
 			c += speed;
 		}
 	}
-	
+
 	public void generateLeaves(World world, Random rand, int x, int y, int z, float size, float width)
 	{
 		float dist;
@@ -186,9 +186,9 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 						{
 							this.placeLogBlock(world, x + i, y + j, z + k, this.logBlock, this.logMeta, this.generateFlag);
 						}
-						
+
 						if (!this.noLeaves) {
-							
+
 							if(world.isAirBlock(x + i, y + j, z + k))
 							{
 								this.placeLeavesBlock(world, x + i, y + j, z + k, this.leavesBlock, this.leavesMeta, this.generateFlag);
@@ -199,25 +199,25 @@ public class TreeRTGCeibaPentandra extends TreeRTG
 			}
 		}
 	}
-	
+
 	public TreeRTGCeibaPentandra setLength(float length)
 	{
 		this.length = length;
 		return this;
 	}
-	
+
 	public TreeRTGCeibaPentandra setBranch(int branch)
 	{
 		this.branch = branch;
 		return this;
 	}
-	
+
 	public TreeRTGCeibaPentandra setVerStart(float verStart)
 	{
 		this.verStart = verStart;
 		return this;
 	}
-	
+
 	public TreeRTGCeibaPentandra setVerRand(float verRand)
 	{
 		this.verRand = verRand;

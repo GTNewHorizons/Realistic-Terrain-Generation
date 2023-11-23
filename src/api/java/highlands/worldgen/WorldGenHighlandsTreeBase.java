@@ -1,15 +1,14 @@
 package highlands.worldgen;
 
 import highlands.block.BlockHighlandsSapling;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+import java.util.Random;
 
 public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
 {
@@ -18,15 +17,15 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     protected int woodMeta;
     protected int leavesMeta;
     protected int type;
-    
+
     protected int minHeight;
     protected int maxHeight;
-    
+
     protected boolean notifyFlag;
-    
+
     protected World worldObj;
     protected Random random;
-    
+
     //this array is the 8 directions of x and y, used for palm trees.
     protected int[][]directions = {{1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}};
 
@@ -52,9 +51,9 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
 
     public abstract boolean generate(World world, Random random, int locX, int locY, int locZ);
 
-    
+
 	//UTILITY GENERATORS - LEAVES, BRANCHES, TRUNKS
-    
+
     //is the position of the tree dirt or grass?
     public boolean isLegalTreePosition(World world, int x, int y, int z){
     	//System.out.println("Tree Position " + x + " " + y + " "+ z +" is " + (world.getBlockId(x, y-1, z) == Block.grass.blockID ||
@@ -62,31 +61,31 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     	return (world.getBlock(x, y-1, z) == Blocks.grass ||
     			world.getBlock(x, y-1, z) == Blocks.dirt);
     }
-    
+
     public boolean generateReplaceSapling(World world, Random random, int locX, int locY, int locZ){
     	Block id = world.getBlock(locX, locY, locZ);
     	int meta = world.getBlockMetadata(locX, locY, locZ);
     	boolean flag = generate(world, random, locX, locY, locZ);
-    	if(!flag) 
+    	if(!flag)
     		world.setBlock(locX, locY, locZ, id, meta, 3);
     	return flag;
     }
-    
-    
+
+
     //generates a circular disk of leaves around a coordinate block, only overwriting air blocks.
     protected void generateLeafLayerCircle(World world, Random random, double radius, int xo, int zo, int h){
     	for(int x = (int)Math.ceil(xo - radius); x <= (int)Math.ceil(xo + radius); x++){
 			for(int z = (int)Math.ceil(zo - radius); z <= (int)Math.ceil(zo + radius); z++){
 				double xfr = z - zo;
 				double zfr = x- xo;
-				
+
 				if(xfr * xfr + zfr * zfr <= radius * radius){
 					setBlockInWorld(x, h, z, this.leaves, this.leavesMeta);
 				}
 			}
 		}
     }
-    
+
     //generates a circular disk of leaves around a coordinate block, only overwriting air blocks.
     //noise means the outer block has a 50% chance of generating
     protected void generateLeafLayerCircleNoise(World world, Random random, double radius, int xo, int zo, int h){
@@ -94,7 +93,7 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
 			for(int z = (int)Math.ceil(zo - radius); z <= (int)Math.ceil(zo + radius); z++){
 				double xfr = z - zo;
 				double zfr = x- xo;
-				
+
 				if(xfr * xfr + zfr * zfr <= radius * radius){
 					if(xfr * xfr + zfr * zfr <= (radius - 1) * (radius - 1) || random.nextInt(2) == 0){
 						setBlockInWorld(x, h, z, this.leaves, this.leavesMeta);
@@ -103,21 +102,21 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
 			}
 		}
     }
-    
+
     //generates a circular disk of wood around a coordinate block, only overwriting air and leaf blocks.
     protected void generateWoodLayerCircle(World world, Random random, double radius, int xo, int zo, int h){
     	for(int x = (int)Math.ceil(xo - radius); x <= (int)Math.ceil(xo + radius); x++){
 			for(int z = (int)Math.ceil(zo - radius); z <= (int)Math.ceil(zo + radius); z++){
 				double xfr = z - zo;
 				double zfr = x- xo;
-				
+
 				if(xfr * xfr + zfr * zfr <= radius * radius){
 					setBlockInWorld(x, h, z, this.wood, this.woodMeta);
 				}
 			}
 		}
     }
-    
+
     //generate a branch, can be any direction
     //startHeight is absolute, not relative to the tree.
     //dir = direction: 0 = north (+z) 1 = east (+x) 2 = south 3 = west
@@ -139,7 +138,7 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     		return new int[]{locX, locY+length, locZ+length*direction};
     	}
     }
-    
+
     //same as GenerateStraightBranch but downward
     protected int[] generateStraightBranchDown(World world, Random random, int length, int locX, int locY, int locZ, int dir){
     	int direction = -1;
@@ -187,7 +186,7 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
 				setBlockInWorld(xo+j, h, zo-i, this.wood, this.woodMeta+4);
 				setBlockInWorld(xo-j, h, zo-i, this.wood, this.woodMeta+4);
 			}
-			
+
 			//generate leaves for branches
 			if(i == length - 2){
 				double lr = 3.5;
@@ -210,10 +209,10 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     		}
 		}
 		*/
-    	
+
     }
-    
-    
+
+
     protected void setBlockInWorld(int x, int y, int z, Block block, int meta){
     	try{
     		Block bl = worldObj.getBlock(x, y, z);
@@ -238,9 +237,9 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     		//e.printStackTrace();
     	}
     }
-    
-    
-    
+
+
+
     protected boolean isCubeClear (int x, int y, int z, int radius, int height){
     	for(int i = x-radius; i <= x+radius; i++){
     		for(int j = z-radius; j <= z+radius; j++){
@@ -251,7 +250,7 @@ public abstract class WorldGenHighlandsTreeBase extends WorldGenAbstractTree
     	}
     	return true;
     }
-    
+
     //finds top block for the given x,z position (excluding leaves)
     protected int findTopBlock(int x, int z){
     	int y = 256;

@@ -1,11 +1,11 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * Betula Papyrifera (Paper Birch)
@@ -34,12 +34,12 @@ public class TreeRTGBetulaPapyrifera extends TreeRTG
 	 * decoTree.maxCrownSize = 24;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGBetulaPapyrifera()
 	{
 		super();
-		
+
 		this.logBlock = Blocks.log;
 		this.logMeta = (byte)2;
 		this.logBlock = Blocks.leaves;
@@ -138,7 +138,7 @@ public class TreeRTGBetulaPapyrifera extends TreeRTG
     public void buildLeaves(World world, int x, int y, int z)
     {
     	if (!this.noLeaves) {
-    		
+
 	    	Block b = world.getBlock(x, y, z);
 	    	if(b.getMaterial() == Material.air)
 	    	{

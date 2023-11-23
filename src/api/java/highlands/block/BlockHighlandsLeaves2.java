@@ -1,12 +1,9 @@
 package highlands.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
@@ -21,26 +18,28 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
 {
-	private String[] treeNames = 
+	private String[] treeNames =
 		{
 			"Hedge",
 			"JapaneseMaple",
 		};
-	
+
 	private int[] saplingRate = {
 			30, 20
 	};
-    
+
     private IIcon textureFast;
     private IIcon textureFancy;
-    
+
     private int treeType;
-    
+
     int[] adjacentTreeBlocks;
 
     public BlockHighlandsLeaves2(int type)
@@ -68,7 +67,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
     {
     	return 16777215;
     }
-    
+
     /**
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
@@ -105,7 +104,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
             }
         }
     }
-    
+
     /**
      * Ticks the block if it's been scheduled
      */
@@ -219,7 +218,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
             }
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
 
     /**
@@ -236,7 +235,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
             par1World.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
         }
     }
-    
+
     private void removeLeaves(World par1World, int par2, int par3, int par4)
     {
         this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
@@ -302,7 +301,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
             //this.func_150124_c(world, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, j1);
         }
     }
-    
+
     /**
      * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
      * block and l is the block's subtype/damage.
@@ -319,7 +318,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
     {
         return 0;
     }
-    
+
     /**
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
@@ -328,7 +327,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
     {
         return !this.field_150121_P;
     }
-    
+
     @SideOnly(Side.CLIENT)
     /**
      * Pass true to draw this block using fancy graphics, or false for fast graphics.
@@ -337,7 +336,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
     {
         this.field_150121_P = par1;
     }
-    
+
     /**
      * Called when a user uses the creative pick block button on this block
      *
@@ -349,7 +348,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
 //    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
 //    {
 //    	Block picked = target.
-//    	
+//
 //        if (target == Blocks.air)
 //        {
 //            return null;
@@ -373,17 +372,17 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
     public IIcon getBlockTextureFromSideAndMetadata(int par1, int par2)
     {
     	this.field_150121_P = Minecraft.getMinecraft().isFancyGraphicsEnabled();
-    	
+
     	if(this.field_150121_P)return textureFancy;
     	else return textureFast;
     }
-    
+
     //TODO- Better Leaves is not 1.7.x
 //    //BETTER LEAVES METHOD
 //    public Icon getIconFallingLeaves(int metadata) {
 //        return textureFast/* Your default opaque (fast) texture for the given metadata. */;
 //    }
-//    
+//
 //    //BETTER LEAVES METHOD
 //    public float getSpawnChanceFallingLeaves(int metadata) {
 //
@@ -391,12 +390,12 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
 //    	  // (0.0F = 0%; 1.0F = 100%; default is 0.008F)
 //    	  return (this.treeType == 14 || this.treeType == 15) ? 0.06F : 0.008F;
 //    }
-    
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int par1, int par2)
     {
     	this.field_150121_P = Minecraft.getMinecraft().isFancyGraphicsEnabled();
-    	
+
     	if(this.field_150121_P)return textureFancy;
     	else return textureFast;
     }
@@ -432,7 +431,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
         textureFancy = par1IconRegister.registerIcon("Highlands:leaves"+treeNames[treeType]);
         textureFast = par1IconRegister.registerIcon("Highlands:leaves"+treeNames[treeType]+"Fast");
     }
-    
+
 	@Override
 	public boolean isShearable(ItemStack item, IBlockAccess world, int x,
 			int y, int z) {
@@ -446,7 +445,7 @@ public class BlockHighlandsLeaves2 extends BlockLeavesBase implements IShearable
         ret.add(new ItemStack(this, 1, 0));
         return ret;
 	}
-    
+
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z)
     {

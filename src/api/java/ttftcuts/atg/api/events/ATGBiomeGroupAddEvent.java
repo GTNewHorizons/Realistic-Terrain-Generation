@@ -1,12 +1,12 @@
 package ttftcuts.atg.api.events;
 
-import ttftcuts.atg.api.ATGBiomes.BiomeType;
 import cpw.mods.fml.common.eventhandler.Event;
+import ttftcuts.atg.api.ATGBiomes.BiomeType;
 
 public class ATGBiomeGroupAddEvent extends Event {
 
 	public static enum ResponseType { NONE, OK, FAILED };
-	
+
 	public BiomeType type;
 	public ResponseType response;
 	public String name;
@@ -32,7 +32,7 @@ public class ATGBiomeGroupAddEvent extends Event {
 		this.suitability = suitability;
 		this.response = ResponseType.NONE;
 	}
-	
+
 	@Deprecated
 	public ATGBiomeGroupAddEvent( BiomeType type, String name, double temp, double moisture, double height, double minHeight, double maxHeight, long salt, boolean generate) {
 		this( type, name, temp, moisture, height, minHeight, maxHeight, salt, generate, 1.0);

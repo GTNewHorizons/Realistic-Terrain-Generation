@@ -1,12 +1,11 @@
 package highlands.biome;
 
 import highlands.api.HighlandsBiomes;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BiomeGenVolcanoIsland extends BiomeGenBaseHighlands
 {
@@ -15,25 +14,25 @@ public class BiomeGenVolcanoIsland extends BiomeGenBaseHighlands
 	public BiomeGenVolcanoIsland(int par1)
     {
         super(par1);
-        
+
         int trees = -100;
 	    int grass = 0;
 	    int flowers = 0;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-	    
+
         this.spawnableCreatureList.clear();
-        
+
         this.topBlock = Blocks.gravel;
         this.fillerBlock = Blocks.gravel;
         this.setHeight(biomeHeight);
         this.temperature = 0.8F;
         this.rainfall = 0.4F;
     }
-    
+
 	@Override
 	public void decorate(World world, Random random, int x, int z) {
 		this.theBiomeDecorator.decorateChunk(world, random, this, x, z);
-    	
+
     	for(int i = 0; i < 16; i++){
     		for(int j = 0; j < 16; j++){
     			if(world.getBiomeGenForCoords(x+i, z+j) == HighlandsBiomes.volcanoIsland){
@@ -45,7 +44,7 @@ public class BiomeGenVolcanoIsland extends BiomeGenBaseHighlands
 	    	        }
 	    	        if(topY > 65){
 		    			if(world.isAirBlock(x+i, topY, z+j))topY--;
-		    			
+
 		    			//TODO: huge problem with lava lake generation
 		    			// constantly generates chunks
 		    			/**
@@ -58,7 +57,7 @@ public class BiomeGenVolcanoIsland extends BiomeGenBaseHighlands
 		    				new WorldGenLakes(Blocks.lava).generate(world, random, x+i, topY, z+j);
 		    			}
 		    			*/
-		    			
+
 		    			int a = random.nextInt(10);
 		    			if(a == 9 && random.nextInt(5) == 0){
 		    				world.setBlock(x+i, topY, z+j, Blocks.flowing_lava, 0, 3);
@@ -71,7 +70,7 @@ public class BiomeGenVolcanoIsland extends BiomeGenBaseHighlands
 	    		}
     		}
     	}
-    	
+
     	((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 20, this.theBiomeDecorator.ironGen, 0, 64);
     	((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 12, this.theBiomeDecorator.redstoneGen, 0, 16);
     	((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 2, this.theBiomeDecorator.lapisGen, 0, 32);

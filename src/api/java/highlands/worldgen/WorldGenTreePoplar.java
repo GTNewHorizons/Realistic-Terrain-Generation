@@ -2,12 +2,11 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreePoplar extends WorldGenHighlandsTreeBase
 {
@@ -28,7 +27,7 @@ public class WorldGenTreePoplar extends WorldGenHighlandsTreeBase
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenTreePoplar(int minH, int maxH, boolean notify){
     	this(0, 0, HighlandsBlocks.poplarWood, HighlandsBlocks.poplarLeaves, minH, maxH, notify);
     	if(Highlands.vanillaBlocksFlag){
@@ -43,18 +42,18 @@ public class WorldGenTreePoplar extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
-    	
-        
+
+
+
         if(!isLegalTreePosition(world, locX, locY, locZ))return false;
         if(!isCubeClear(locX, locY+3, locZ, 1, 8))return false;
-    	
+
         //generates the trunk
     	int treeHeight = minHeight + random.nextInt(maxHeight);
     	for(int i = 0; i < treeHeight; i++){
     		setBlockInWorld(locX, locY + i, locZ, this.wood, this.woodMeta);
     	}
-    	
+
     	//generates the leaves.
     	int h = locY + 3;
     	generateLeafLayerCircle(world, random, 1, locX, locZ, h);
@@ -62,7 +61,7 @@ public class WorldGenTreePoplar extends WorldGenHighlandsTreeBase
     	generateLeafLayerCircle(world, random, 1.5, locX, locZ, h);
     	h++;
     	generateLeafLayerCircle(world, random, 2, locX, locZ, h);
-    	
+
     	for(h = h + 1; h < locY + treeHeight; h++){
     		generateLeafLayerCircleNoise(world, random, 2.8, locX, locZ, h);
     	}
@@ -78,7 +77,7 @@ public class WorldGenTreePoplar extends WorldGenHighlandsTreeBase
     	this.worldObj = null;
     	return true;
     }
-    
+
 }
 
 

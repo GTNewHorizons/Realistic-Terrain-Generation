@@ -1,32 +1,31 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceDesert extends SurfaceBase
 {
 	private Block cliffBlock1;
 	private Block cliffBlock2;
 	private Block bottomBlock;
-	
+
 	public SurfaceDesert(BiomeConfig config, Block top, Block filler, Block bottom, Block cliff1, Block cliff2)
 	{
 	    super(config, top, (byte)0, filler, (byte)0);
-		
-		bottomBlock = bottom; 
+
+		bottomBlock = bottom;
 		cliffBlock1 = cliff1;
 		cliffBlock2 = cliff2;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
@@ -48,7 +47,7 @@ public class SurfaceDesert extends SurfaceBase
             	{
             		if(depth > -1 && depth < 2)
             		{
-            			blocks[(y * 16 + x) * 256 + k] = rand.nextInt(3) == 0 ? cliffBlock2 : cliffBlock1; 
+            			blocks[(y * 16 + x) * 256 + k] = rand.nextInt(3) == 0 ? cliffBlock2 : cliffBlock1;
             		}
             		else if (depth < 10)
             		{

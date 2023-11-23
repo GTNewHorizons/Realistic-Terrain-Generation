@@ -1,7 +1,7 @@
 package rtg.world.gen;
 
-import java.util.*;
-
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -23,27 +23,47 @@ import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraft.world.gen.structure.MapGenVillage;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.event.world.ChunkEvent;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.*;
-
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.registry.GameData;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.config.rtg.ConfigRTG;
-import rtg.util.*;
+import rtg.util.AICWrapper;
+import rtg.util.Acceptor;
+import rtg.util.Accessor;
+import rtg.util.CanyonColour;
+import rtg.util.CellNoise;
+import rtg.util.Compass;
+import rtg.util.Converter;
+import rtg.util.Direction;
+import rtg.util.LimitedMap;
+import rtg.util.LimitedSet;
+import rtg.util.Logger;
+import rtg.util.OpenSimplexNoise;
+import rtg.util.PlaneLocation;
+import rtg.util.SimplexCellularNoise;
+import rtg.util.TimeTracker;
+import rtg.util.TimedHashSet;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.BiomeAnalyzer;
 import rtg.world.biome.RTGBiomeProvider;
 import rtg.world.biome.WorldChunkManagerRTG;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.biome.realistic.RealisticBiomePatcher;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
+import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.*;
 
 
 public class ChunkProviderRTG implements IChunkProvider
@@ -61,7 +81,7 @@ public class ChunkProviderRTG implements IChunkProvider
     private final int sampleArraySize;
     private BiomeAnalyzer analyzer = new BiomeAnalyzer();
     private int [] xyinverted = analyzer.xyinverted();
-    
+
     private Block bedrockBlock = GameData.getBlockRegistry().getObject(ConfigRTG.bedrockBlockId);
     private byte bedrockByte = (byte)ConfigRTG.bedrockBlockByte;
 
@@ -85,7 +105,7 @@ public class ChunkProviderRTG implements IChunkProvider
     private HashSet<PlaneLocation> toCheck = new HashSet<PlaneLocation>();
     private static String rtgTerrain = "RTG Terrain";
     private static String rtgNoise = "RTG Noise";
-    
+
     private AICWrapper aic;
     private boolean isAICExtendingBiomeIdsLimit;
     private Set<Long> serverLoadingChunks;
@@ -142,7 +162,7 @@ public class ChunkProviderRTG implements IChunkProvider
         else {
             caveGenerator = TerrainGen.getModdedMapGen(new MapGenCaves(), CAVE);
         }
-        
+
         if (isRTGWorld && ConfigRTG.enableRavineModifications) {
             ravineGenerator = TerrainGen.getModdedMapGen(new MapGenRavineRTG(), RAVINE);
         }
@@ -165,7 +185,7 @@ public class ChunkProviderRTG implements IChunkProvider
     	biomesGeneratedInChunk = new boolean[256];
     	borderNoise = new float[256];
     	biomePatcher = new RealisticBiomePatcher();
-    	
+
     	aic = new AICWrapper();
     	isAICExtendingBiomeIdsLimit = aic.isAICExtendingBiomeIdsLimit();
 
@@ -245,7 +265,7 @@ public class ChunkProviderRTG implements IChunkProvider
         }
 
         //if (everGenerated.contains(chunkLocation)) throw new RuntimeException();
-        
+
         TimeTracker.manager.start(rtgTerrain);
     	rand.setSeed((long)cx * 0x4f9939f508L + (long)cy * 0x1ef1565bd5L);
         Block[] blocks = new Block[65536];
@@ -343,7 +363,7 @@ public class ChunkProviderRTG implements IChunkProvider
         // store in the in process pile
         Chunk chunk = new Chunk(this.worldObj, blocks, metadata, cx, cy);
         inGeneration.put(chunkLocation, chunk);
-        
+
         if(isAICExtendingBiomeIdsLimit){
         	aic.setBiomeArray(chunk, baseBiomesList, xyinverted);
         } else {
@@ -386,7 +406,7 @@ public class ChunkProviderRTG implements IChunkProvider
         // see if otherwise surrounded besides the new chunk
         int cx = source.x() + fromNewChunk.xOffset;
         int cy = source.z() + fromNewChunk.zOffset;
-        
+
         // check to see if already decorated; shouldn't be but just in case
         probe.setX(cx);
         probe.setZ(cy);
@@ -485,7 +505,7 @@ public class ChunkProviderRTG implements IChunkProvider
     			int rough;
     			int flatBedrockLayers = (int) ConfigRTG.flatBedrockLayers;
     			flatBedrockLayers = flatBedrockLayers < 0 ? 0 : (flatBedrockLayers > 5 ? 5 : flatBedrockLayers);
-    			    			
+
     			if (flatBedrockLayers > 0) {
     			    for (int bl = 0; bl < flatBedrockLayers; bl++) {
     			        blocks[(j * 16 + i) * 256 + bl] = bedrockBlock;
@@ -493,22 +513,22 @@ public class ChunkProviderRTG implements IChunkProvider
     			    }
     			}
     			else {
-    			    
+
     			    blocks[(j * 16 + i) * 256] = bedrockBlock;
     			    metadata[(j * 16 + i) * 256] = bedrockByte;
-                    
+
                     rough = rand.nextInt(2);
                     blocks[(j * 16 + i) * 256 + rough] = bedrockBlock;
                     metadata[(j * 16 + i) * 256 + rough] = bedrockByte;
-                    
+
                     rough = rand.nextInt(3);
                     blocks[(j * 16 + i) * 256 + rough] = bedrockBlock;
                     metadata[(j * 16 + i) * 256 + rough] = bedrockByte;
-                    
+
                     rough = rand.nextInt(4);
                     blocks[(j * 16 + i) * 256 + rough] = bedrockBlock;
                     metadata[(j * 16 + i) * 256 + rough] = bedrockByte;
-                    
+
                     rough = rand.nextInt(5);
                     blocks[(j * 16 + i) * 256 + rough] = bedrockBlock;
                     metadata[(j * 16 + i) * 256 + rough] = bedrockByte;
@@ -560,7 +580,7 @@ public class ChunkProviderRTG implements IChunkProvider
         }
         clearDecorations(0);
     }
-    
+
     public Runnable clearOnServerClose() {
         return new Runnable () {
             public void run() {
@@ -768,14 +788,14 @@ public class ChunkProviderRTG implements IChunkProvider
 
         /**
          * What is this doing? And why does it need to be done here? - Pink
-         * Answer: building a frequency table of nearby biomes - Zeno. 
+         * Answer: building a frequency table of nearby biomes - Zeno.
          */
 
         final int adjust = 24;// seems off? but decorations aren't matching their chunks.
 
         TimeTracker.manager.start(biomeLayoutActivity);
         for (int bx = -4; bx <= 4; bx++) {
-            
+
         	for(int by = -4; by <= 4; by++)
         	{
         		borderNoise[landscapeGenerator.getBiomeDataAt(cmr,worldX + adjust + bx * 4, worldZ + adjust  + by * 4)] += 0.01234569f;
@@ -794,14 +814,14 @@ public class ChunkProviderRTG implements IChunkProvider
 
         //Initialise variables.
         float river = -cmr.getRiverStrength(worldX + 16, worldZ + 16);
-        
+
         //Clay.
         biome.rDecorateClay(worldObj, rand, chunkX, chunkZ, river, worldX, worldZ);
-        
+
         //Border noise. (Does this have to be done here? - Pink)
         RealisticBiomeBase realisticBiome;
         float snow = 0f;
-        
+
         for(int bn = 0; bn < 256; bn++)
         {
         	if(borderNoise[bn] > 0f)
@@ -812,13 +832,13 @@ public class ChunkProviderRTG implements IChunkProvider
         		}
 
                 realisticBiome = RealisticBiomeBase.getBiome(bn);
-                
+
                 // Do we need to patch the biome?
                 if (realisticBiome == null)
                 {
                     realisticBiome = biomePatcher.getPatchedRealisticBiome("NULL biome (" + bn + ") found when generating border noise.");
                 }
-                
+
                 /**
                  * When decorating the biome, we need to look at the biome configs to see if RTG is allowed to decorate it.
                  * If the biome configs don't allow it, then we try to let the base biome decorate itself.
@@ -830,9 +850,9 @@ public class ChunkProviderRTG implements IChunkProvider
                 	realisticBiome.decorateInAnOrderlyFashion(this.worldObj, this.rand, worldX, worldZ, simplex, cell, borderNoise[bn], river, hasPlacedVillageBlocks);
                 }
                 else {
-                    
+
                     try {
-                        
+
                         realisticBiome.baseBiome.decorate(this.worldObj, rand, worldX, worldZ);
                     }
                     catch (Exception e) {
@@ -852,7 +872,7 @@ public class ChunkProviderRTG implements IChunkProvider
                 borderNoise[bn] = 0f;
         	}
         }
-        
+
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldObj, rand, worldX, worldZ));
 
         TimeTracker.manager.stop("Decorations");
@@ -863,7 +883,7 @@ public class ChunkProviderRTG implements IChunkProvider
          */
         TimeTracker.manager.start("Post-decorations");
         biome.rPopulatePostDecorate(ichunkprovider, worldObj, rand, chunkX, chunkZ, hasPlacedVillageBlocks);
-        
+
         //Flowing water.
         if (ConfigRTG.flowingWaterChance > 0) {
 	        if (rand.nextInt(ConfigRTG.flowingWaterChance) == 0) {
@@ -909,11 +929,11 @@ public class ChunkProviderRTG implements IChunkProvider
         if (TerrainGen.populate(this, worldObj, rand, chunkX, chunkZ, hasPlacedVillageBlocks, PopulateChunkEvent.Populate.EventType.ICE)) {
 
             int k1, l1, i2;
-            
+
             for(k1 = 0; k1 < 16; ++k1) {
-                
+
                 for(l1 = 0; l1 < 16; ++l1) {
-                    
+
                     i2 = this.worldObj.getPrecipitationHeight(worldX + k1, worldZ + l1);
 
                     if(this.worldObj.isBlockFreezable(k1 + worldX, i2 - 1, l1 + worldZ)) {
@@ -990,7 +1010,7 @@ public class ChunkProviderRTG implements IChunkProvider
         if (!ConfigRTG.generateStrongholds) {
             return null;
         }
-        
+
         return "Stronghold".equals(par2Str) && this.strongholdGenerator != null ? this.strongholdGenerator.func_151545_a(par1World, par3, par4, par5) : null;
     }
 

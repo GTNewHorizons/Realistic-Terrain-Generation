@@ -1,11 +1,5 @@
 package rtg.world.gen.structure;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -21,9 +15,15 @@ import rtg.world.WorldTypeRTG;
 import rtg.world.biome.WorldChunkManagerRTG;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+
 public class MapGenVillageRTG extends MapGenVillage
 {
-    
+
     private int terrainType = ConfigRTG.villageSize;
     private int field_82665_g;
     private int field_82666_h;
@@ -32,7 +32,7 @@ public class MapGenVillageRTG extends MapGenVillage
     {
         int minDistanceVillages = ConfigRTG.minDistanceVillages;
         int maxDistanceVillages = ConfigRTG.maxDistanceVillages;
-        
+
         // Make sure these values are always greater than 0.
         if (minDistanceVillages < 1) {
         	minDistanceVillages = 8;
@@ -42,7 +42,7 @@ public class MapGenVillageRTG extends MapGenVillage
         	maxDistanceVillages = 32;
         	Logger.warn("Config warning: Maximum distance between villages must be greater than 0. Reverting to vanilla value (%d).", maxDistanceVillages);
         }
-                
+
         // If the min is greater than the max, then revert to vanilla values.
         if (minDistanceVillages > maxDistanceVillages) {
         	minDistanceVillages = 8;
@@ -54,10 +54,10 @@ public class MapGenVillageRTG extends MapGenVillage
         	maxDistanceVillages++;
         	Logger.warn("Config warning: Maximum distance between villages must be greater than minimum distance between villages. Increasing maximum to %d.", maxDistanceVillages);
         }
-        
+
         Logger.debug("minDistanceVillages = %d", minDistanceVillages);
         Logger.debug("maxDistanceVillages = %d", maxDistanceVillages);
-        
+
         this.field_82665_g = maxDistanceVillages;
         this.field_82666_h = minDistanceVillages;
     }
@@ -94,7 +94,7 @@ public class MapGenVillageRTG extends MapGenVillage
         boolean booRTGWorld = (worldObj.getWorldInfo().getTerrainType() instanceof WorldTypeRTG) ? true : false;
         boolean booRTGChunkManager = (worldObj.getWorldChunkManager() instanceof WorldChunkManagerRTG) ? true : false;
         boolean canSpawnVillage = false;
-        
+
         int k = par1;
         int l = par2;
 
@@ -119,7 +119,7 @@ public class MapGenVillageRTG extends MapGenVillage
         if (k == i1 && l == j1)
         {
             if (booRTGWorld && booRTGChunkManager) {
-                
+
                 WorldChunkManagerRTG cmr = (WorldChunkManagerRTG) worldObj.getWorldChunkManager();
                 int worldX = k * 16 + 8;
                 int worldZ = l * 16 + 8;
@@ -134,7 +134,7 @@ public class MapGenVillageRTG extends MapGenVillage
                 canSpawnVillage = this.worldObj.getWorldChunkManager().areBiomesViable(k * 16 + 8, l * 16 + 8, 0, villageSpawnBiomes);
             }
         }
-        
+
         return canSpawnVillage;
     }
 

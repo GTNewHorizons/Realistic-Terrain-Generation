@@ -1,24 +1,28 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
-import java.util.Random;
-
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
-import rtg.world.biome.deco.*;
+import rtg.world.biome.deco.DecoBase;
+import rtg.world.biome.deco.DecoBoulder;
+import rtg.world.biome.deco.DecoEBTree;
 import rtg.world.biome.deco.DecoEBTree.TreeType;
+import rtg.world.biome.deco.DecoFlowersRTG;
+import rtg.world.biome.deco.DecoGrassDoubleTallgrass;
+import rtg.world.biome.deco.DecoReed;
+import rtg.world.biome.deco.DecoShrub;
 import rtg.world.biome.deco.DecoTree.TreeCondition;
 import rtg.world.biome.deco.helper.DecoHelperRandomSplit;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBRockyHills;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBRockyHills;
+
+import java.util.Random;
 
 public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
 {
@@ -26,17 +30,17 @@ public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.CHERT, (byte)0),
         EBAPI.ebStonify(EBAPI.LIMESTONE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.CHERT, (byte)0),
         EBAPI.ebStonify(EBAPI.LIMESTONE, (byte)0)
@@ -44,8 +48,8 @@ public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
 
     public RealisticBiomeEBRockyHills(BiomeGenBase ebBiome, BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             ebBiome, BiomeGenBase.river,
             new TerrainEBRockyHills(100f, 35f,68f),
             new SurfaceEBRockyHills(config,
@@ -67,13 +71,13 @@ public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
                 0.08f
             )
         );
-        
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.maxY = 80;
 		decoBoulder.strengthFactor = 1f;
 		this.addDeco(decoBoulder);
-		
+
         DecoEBTree ebShrub = new DecoEBTree();
         ebShrub.checkRiver = true;
         ebShrub.minRiver = 0.86f;
@@ -84,26 +88,26 @@ public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
 		ebShrub.distribution.noiseAddend = -15f;
 		ebShrub.treeCondition = TreeCondition.ALWAYS_GENERATE;
 		ebShrub.maxY = 100;
-		
+
         DecoShrub decoShrub = new DecoShrub();
         decoShrub.checkRiver = true;
-        decoShrub.minRiver = 0.86f;            
+        decoShrub.minRiver = 0.86f;
         decoShrub.maxY = 100;
         decoShrub.chance = 1;
         decoShrub.strengthFactor = 10f;
-        
+
         DecoHelperRandomSplit decoHelperRandomSplit = new DecoHelperRandomSplit();
         decoHelperRandomSplit.decos = new DecoBase[]{decoShrub, ebShrub};
         decoHelperRandomSplit.chances = new int[]{4, 1};
         this.addDeco(decoHelperRandomSplit);
-        
+
         DecoReed decoReed = new DecoReed();
         decoReed.checkRiver = true;
         decoReed.minRiver = 0.7f;
 		decoReed.maxY = 68;
 		decoReed.strengthFactor = 2f;
-        this.addDeco(decoReed);            
-        
+        this.addDeco(decoReed);
+
 		DecoFlowersRTG decoFlowersRTG = new DecoFlowersRTG();
         decoReed.checkRiver = true;
         decoReed.minRiver = 0.7f;
@@ -111,7 +115,7 @@ public class RealisticBiomeEBRockyHills extends RealisticBiomeEBBase
 		decoFlowersRTG.maxY = 128;
 		decoFlowersRTG.loops = 3;
         this.addDeco(decoFlowersRTG);
-        
+
         DecoGrassDoubleTallgrass decoGrassDoubleTallgrass = new DecoGrassDoubleTallgrass();
         decoReed.checkRiver = true;
         decoReed.minRiver = 0.7f;

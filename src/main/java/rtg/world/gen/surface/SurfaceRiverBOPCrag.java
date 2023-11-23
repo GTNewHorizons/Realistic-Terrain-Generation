@@ -1,16 +1,15 @@
 package rtg.world.gen.surface;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceRiverBOPCrag extends SurfaceBase
 {
@@ -18,23 +17,23 @@ public class SurfaceRiverBOPCrag extends SurfaceBase
     private Block fillerBlock;
     private Block cliffBlock1;
     private Block cliffBlock2;
-    
-	public SurfaceRiverBOPCrag(BiomeConfig config, Block top, Block filler, Block cliff1, Block cliff2) 
+
+	public SurfaceRiverBOPCrag(BiomeConfig config, Block top, Block filler, Block cliff1, Block cliff2)
 	{
 		super(config, top, (byte)0, filler, (byte)0);
-		
+
 		topBlock = top;
 		fillerBlock = filler;
 		cliffBlock1 = cliff1;
 		cliffBlock2 = cliff2;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
         float c = CliffCalculator.calc(x, y, noise);
         boolean cliff = c > 1.4f ? true : false;
-        
+
         for(int k = 255; k > -1; k--)
         {
             Block b = blocks[(y * 16 + x) * 256 + k];
@@ -50,7 +49,7 @@ public class SurfaceRiverBOPCrag extends SurfaceBase
                 {
                     if(depth > -1 && depth < 2)
                     {
-                        blocks[(y * 16 + x) * 256 + k] = rand.nextInt(3) == 0 ? cliffBlock1 : cliffBlock2; 
+                        blocks[(y * 16 + x) * 256 + k] = rand.nextInt(3) == 0 ? cliffBlock1 : cliffBlock2;
                     }
                     else if (depth < 10)
                     {

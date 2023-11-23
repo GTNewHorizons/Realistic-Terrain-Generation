@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -7,8 +9,6 @@ import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBoulder;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBPolarDesert;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBPolarDesert;
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 
 public class RealisticBiomeEBPolarDesert extends RealisticBiomeEBBase
 {
@@ -16,22 +16,22 @@ public class RealisticBiomeEBPolarDesert extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0),
         EBAPI.ebStonify(EBAPI.DACITE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0),
         EBAPI.ebStonify(EBAPI.DACITE, (byte)0)
     };
-    
+
     private static Block ebTopBlock = EBAPI.ebGrassify(Blocks.snow, Blocks.snow);
     private static byte ebTopByte = EBAPI.ebGrassify((byte)0, (byte)0);
     private static Block ebFillBlock = EBAPI.ebGrassify(EnhancedBiomesBlocks.dirtEB, Blocks.dirt);
@@ -44,34 +44,34 @@ public class RealisticBiomeEBPolarDesert extends RealisticBiomeEBBase
     private static byte ebCliff1Byte = EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0);
     private static Block ebCliff2Block = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone);
     private static byte ebCliff2Byte = EBAPI.ebStonify(EBAPI.RHYOLITE, (byte)0);
-    
+
     public RealisticBiomeEBPolarDesert(BiomeGenBase ebBiome, BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             ebBiome, BiomeGenBase.frozenRiver,
             new TerrainEBPolarDesert(),
-            new SurfaceEBPolarDesert(config, 
-                ebTopBlock, //Block top 
+            new SurfaceEBPolarDesert(config,
+                ebTopBlock, //Block top
                 ebTopByte, //byte topByte
-                ebFillBlock, //Block filler, 
+                ebFillBlock, //Block filler,
                 ebFillByte, //byte fillerByte
-                ebMixTopBlock, //Block mixTop, 
-                ebMixTopByte, //byte mixTopByte, 
-                ebMixFillBlock, //Block mixFill, 
-                ebMixFillByte, //byte mixFillByte, 
-                ebCliff1Block, //Block cliff1, 
-                ebCliff1Byte, //byte cliff1Byte, 
-                ebCliff2Block, //Block cliff2, 
-                ebCliff2Byte, //byte cliff2Byte, 
-                80f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                ebMixTopBlock, //Block mixTop,
+                ebMixTopByte, //byte mixTopByte,
+                ebMixFillBlock, //Block mixFill,
+                ebMixFillByte, //byte mixFillByte,
+                ebCliff1Block, //Block cliff1,
+                ebCliff1Byte, //byte cliff1Byte,
+                ebCliff2Block, //Block cliff2,
+                ebCliff2Byte, //byte cliff2Byte,
+                80f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
         );
         noWaterFeatures = true;
-        
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.packed_ice;
 		decoBoulder.checkRiver = true;

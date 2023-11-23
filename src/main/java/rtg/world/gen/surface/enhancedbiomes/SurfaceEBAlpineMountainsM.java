@@ -1,55 +1,54 @@
 package rtg.world.gen.surface.enhancedbiomes;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.CliffCalculator;
-import rtg.util.OpenSimplexNoise;
 import enhancedbiomes.api.EBAPI;
 import enhancedbiomes.blocks.EnhancedBiomesBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
+import rtg.util.CliffCalculator;
+import rtg.util.OpenSimplexNoise;
+
+import java.util.Random;
 
 public class SurfaceEBAlpineMountainsM extends SurfaceEBBase
 {
 	private boolean beach;
 	private Block beachBlock;
 	private float min;
-	
+
 	private float sCliff = 1.5f;
 	private float sHeight = 60f;
 	private float sStrength = 65f;
 	private float cCliff = 1.5f;
-	
-	public SurfaceEBAlpineMountainsM(BiomeConfig config, Block top, byte topByte, Block fill, byte fillByte, boolean genBeach, Block genBeachBlock, float minCliff) 
+
+	public SurfaceEBAlpineMountainsM(BiomeConfig config, Block top, byte topByte, Block fill, byte fillByte, boolean genBeach, Block genBeachBlock, float minCliff)
 	{
 		super(config, top, topByte, fill, fillByte);
 		beach = genBeach;
 		beachBlock = genBeachBlock;
 		min = minCliff;
 	}
-	
+
 	public SurfaceEBAlpineMountainsM(BiomeConfig config, Block top, byte topMeta, Block fill, byte fillMeta, boolean genBeach, Block genBeachBlock, float minCliff, float stoneCliff, float stoneHeight, float stoneStrength, float clayCliff)
 	{
 		this(config, top, topMeta, fill, fillMeta, genBeach, genBeachBlock, minCliff);
-		
+
 		sCliff = stoneCliff;
 		sHeight = stoneHeight;
 		sStrength = stoneStrength;
 		cCliff = clayCliff;
 	}
-	
+
 	@Override
 	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
 	{
 		float c = CliffCalculator.calc(x, y, noise);
 		int cliff = 0;
 		boolean gravel = false;
-		
+
     	Block b;
 		for(int k = 255; k > -1; k--)
 		{
@@ -66,7 +65,7 @@ public class SurfaceEBAlpineMountainsM extends SurfaceEBBase
                     blocks[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, hcStone(world, i, j, x, y, k));
                     metadata[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EBAPI.CHERT, hcStoneMeta(world, i, j, x, y, k));
                 }
-            	
+
             	if(depth == 0)
             	{
             		if(k < 63)
@@ -86,7 +85,7 @@ public class SurfaceEBAlpineMountainsM extends SurfaceEBBase
         			{
         				cliff = 2;
         			}
-            		
+
             		if(cliff == 1)
             		{
                         blocks[(y * 16 + x) * 256 + k] = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, hcStone(world, i, j, x, y, k));

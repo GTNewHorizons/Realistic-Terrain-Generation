@@ -5,22 +5,19 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.necronomicon;
 
-import java.util.Map;
-
+import com.google.common.collect.Maps;
+import cpw.mods.fml.common.FMLLog;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import org.apache.logging.log4j.Level;
 
-import com.google.common.collect.Maps;
-
-import cpw.mods.fml.common.FMLLog;
+import java.util.Map;
 
 /**
  * Base data structure for Necronomicon information pages

@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -22,8 +24,6 @@ import rtg.world.gen.feature.tree.vanilla.WorldGenForestRTG;
 import rtg.world.gen.feature.tree.vanilla.WorldGenTreesRTG;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBCarr;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBCarr;
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 
 public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
 {
@@ -31,22 +31,22 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.SCHIST, (byte)0),
         EBAPI.ebStonify(EBAPI.SHALE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.SCHIST, (byte)0),
         EBAPI.ebStonify(EBAPI.SHALE, (byte)0)
     };
-    
+
     private static Block ebTopBlock = EBAPI.ebGrassify(EnhancedBiomesBlocks.grassEB, Blocks.grass);
     private static byte ebTopByte = EBAPI.ebGrassify(EBAPI.HISTOSOL, (byte)0);
     private static Block ebFillBlock = EBAPI.ebGrassify(EnhancedBiomesBlocks.dirtEB, Blocks.dirt);
@@ -59,33 +59,33 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
     private static byte ebCliff1Byte = EBAPI.ebStonify(EBAPI.SCHIST, (byte)0);
     private static Block ebCliff2Block = EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone);
     private static byte ebCliff2Byte = EBAPI.ebStonify(EBAPI.SCHIST, (byte)0);
-    
+
     public RealisticBiomeEBCarr(BiomeGenBase ebBiome, BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             ebBiome, BiomeGenBase.river,
             new TerrainEBCarr(),
             new SurfaceEBCarr(config,
-                ebTopBlock, //Block top 
+                ebTopBlock, //Block top
                 ebTopByte, //byte topByte
-                ebFillBlock, //Block filler, 
+                ebFillBlock, //Block filler,
                 ebFillByte, //byte fillerByte
-                ebMixTopBlock, //Block mixTop, 
-                ebMixTopByte, //byte mixTopByte, 
-                ebMixFillBlock, //Block mixFill, 
-                ebMixFillByte, //byte mixFillByte, 
-                ebCliff1Block, //Block cliff1, 
-                ebCliff1Byte, //byte cliff1Byte, 
-                ebCliff2Block, //Block cliff2, 
-                ebCliff2Byte, //byte cliff2Byte, 
-                80f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                ebMixTopBlock, //Block mixTop,
+                ebMixTopByte, //byte mixTopByte,
+                ebMixFillBlock, //Block mixFill,
+                ebMixFillByte, //byte mixFillByte,
+                ebCliff1Block, //Block cliff1,
+                ebCliff1Byte, //byte cliff1Byte,
+                ebCliff2Block, //Block cliff2,
+                ebCliff2Byte, //byte cliff2Byte,
+                80f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
         );
-        
+
         DecoEBTree ebTrees = new DecoEBTree();
 		ebTrees.treeType = rtg.world.biome.deco.DecoEBTree.TreeType.ALDER;
 		ebTrees.strengthNoiseFactorForLoops = true;
@@ -107,7 +107,7 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
     	sitchensisTree.minCrownSize = 6;
     	sitchensisTree.maxCrownSize = 14;
 		this.addTree(sitchensisTree);
-		
+
 		DecoTree oakPine = new DecoTree(sitchensisTree);
 		oakPine.strengthFactorForLoops = 3f;
     	oakPine.treeType = TreeType.RTG_TREE;
@@ -118,7 +118,7 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
 		oakPine.treeConditionNoise = 5f;
 		oakPine.treeConditionChance = 1;
 		oakPine.maxY = 120;
-        
+
         DecoTree vanillaTrees = new DecoTree(new WorldGenTreesRTG());
 		vanillaTrees.strengthFactorForLoops = 3f;
         vanillaTrees.treeType = TreeType.WORLDGEN;
@@ -129,7 +129,7 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
 		vanillaTrees.treeConditionNoise = 5f;
 		vanillaTrees.treeConditionChance = 1;
 		vanillaTrees.maxY = 120;
-        
+
         DecoTree vanillaForest = new DecoTree(new WorldGenForestRTG());
 		vanillaForest.strengthFactorForLoops = 3f;
         vanillaForest.treeType = TreeType.WORLDGEN;
@@ -140,7 +140,7 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
 		vanillaForest.treeConditionNoise = 5f;
 		vanillaForest.treeConditionChance = 1;
 		vanillaForest.maxY = 120;
-		
+
 		DecoHelperRandomSplit decoHelperRandomSplit = new DecoHelperRandomSplit();
 		decoHelperRandomSplit.decos = new DecoBase[]{oakPine, vanillaTrees, vanillaForest};
 		decoHelperRandomSplit.chances = new int[]{8, 4, 1};
@@ -153,21 +153,21 @@ public class RealisticBiomeEBCarr extends RealisticBiomeEBBase
         decoFallenTree.randomLogBlocks = new Block[]{EnhancedBiomesBlocks.logBirch, Blocks.log};
         decoFallenTree.randomLogMetas = new byte[]{0, 1};
         decoFallenTree.minSize = 3;
-        decoFallenTree.maxSize = 6;        
+        decoFallenTree.maxSize = 6;
 		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigEBCarr.decorationLogsId));
-        
+
         DecoShrub decoShrub = new DecoShrub();
         decoShrub.maxY = 110;
         decoShrub.chance = 1;
         decoShrub.strengthFactor = 3f;
 		this.addDeco(decoShrub);
-        
+
 		DecoFlowersRTG decoFlowersRTG = new DecoFlowersRTG();
 		decoFlowersRTG.flowers = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 		decoFlowersRTG.maxY = 128;
 		decoFlowersRTG.strengthFactor = 8f;
         this.addDeco(decoFlowersRTG);
-        
+
 		DecoGrass decoGrass = new DecoGrass();
 		decoGrass.maxY = 128;
 		decoGrass.strengthFactor = 12f;

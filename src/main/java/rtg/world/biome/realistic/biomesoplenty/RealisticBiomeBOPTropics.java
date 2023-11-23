@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import biomesoplenty.api.content.BOPCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -10,40 +12,38 @@ import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPTropics;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPTropics;
-import biomesoplenty.api.content.BOPCBiomes;
-import biomesoplenty.api.content.BOPCBlocks;
 
 public class RealisticBiomeBOPTropics extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.tropics;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPTropics(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPTropics(),
 			new SurfaceBOPTropics(config,
-                topBlock, //Block top 
+                topBlock, //Block top
                 (byte)0, //byte topByte
-                fillerBlock, //Block filler, 
+                fillerBlock, //Block filler,
                 (byte)0, //byte fillerByte
-                Blocks.sand, //Block mixTop, 
-                (byte)0, //byte mixTopByte, 
-                fillerBlock, //Block mixFill, 
+                Blocks.sand, //Block mixTop,
+                (byte)0, //byte mixTopByte,
+                fillerBlock, //Block mixFill,
                 (byte)0, //byte mixFillByte,
-                10f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                5f, //float smallWidth, 
+                10f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                5f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
-                
+
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.distribution.noiseDivisor = 80f;
 		decoFallenTree.distribution.noiseFactor = 60f;

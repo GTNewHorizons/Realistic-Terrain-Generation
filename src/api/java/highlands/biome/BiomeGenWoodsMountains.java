@@ -3,13 +3,12 @@ package highlands.biome;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsBigTree;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenWoodsMountains extends BiomeGenBaseHighlands
 {
@@ -23,13 +22,13 @@ public class BiomeGenWoodsMountains extends BiomeGenBaseHighlands
 	    int flowers = 0;
 	    int plants = 1;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-        
+
         this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
         this.setHeight(biomeHeight);
         this.temperature = 0.6F;
         this.rainfall = 0.5F;
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.raspberryBush)
 				: new WorldGenSmallPlants(HighlandsBlocks.thornbush));
@@ -58,7 +57,7 @@ public class BiomeGenWoodsMountains extends BiomeGenBaseHighlands
         return (WorldGenerator)(par1Random.nextInt(3) == 0 ? new WorldGenTaiga1() : new WorldGenTaiga2(false));
     }
     */
-    
+
     @Override
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;

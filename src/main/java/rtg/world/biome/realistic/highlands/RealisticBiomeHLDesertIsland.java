@@ -6,8 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.highlands.config.BiomeConfigHLDesertIsland;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.biome.deco.DecoTree;
@@ -21,24 +19,24 @@ import rtg.world.gen.terrain.highlands.TerrainHLDesertIsland;
 public class RealisticBiomeHLDesertIsland extends RealisticBiomeHLBase
 {
     public static BiomeGenBase hlBiome = HighlandsBiomes.desertIsland;
-    
+
     public static Block topBlock = hlBiome.topBlock;
     public static Block fillerBlock = hlBiome.fillerBlock;
-    
+
     public RealisticBiomeHLDesertIsland(BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             hlBiome, BiomeGenBase.river,
             new TerrainHLDesertIsland(90f, 180f, 13f, 100f, 38f, 260f, 71f),
             new SurfaceHLDesertIsland(config, topBlock, fillerBlock)
         );
         this.disallowStoneBeaches = true;
         this.waterSurfaceLakeChance = 0;
-		
+
         /**
          * We can't let the base biome decorate itself because of a console spam bug with the HL Cocoa plants.
-         * 
+         *
          * DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
          * this.addDeco(decoBaseBiomeDecorations);
          */
@@ -51,7 +49,7 @@ public class RealisticBiomeHLDesertIsland extends RealisticBiomeHLBase
 		highlandsPalmTrees.treeConditionChance = 4;
 		highlandsPalmTrees.maxY = 75;
 		this.addDeco(highlandsPalmTrees);
-		
+
 		TreeRTG nuciferaTree = new TreeRTGCocosNucifera();
 		nuciferaTree.logBlock = Blocks.log;
 		nuciferaTree.logMeta = (byte)3;
@@ -63,7 +61,7 @@ public class RealisticBiomeHLDesertIsland extends RealisticBiomeHLBase
 		nuciferaTree.maxCrownSize = 12;
 		nuciferaTree.noLeaves = false;
 		this.addTree(nuciferaTree);
-		
+
 		DecoTree vanillaPalmTrees = new DecoTree(nuciferaTree);
 		vanillaPalmTrees.treeType = DecoTree.TreeType.RTG_TREE;
 		vanillaPalmTrees.treeCondition = DecoTree.TreeCondition.NOISE_GREATER_AND_RANDOM_CHANCE;
@@ -71,8 +69,8 @@ public class RealisticBiomeHLDesertIsland extends RealisticBiomeHLBase
 		vanillaPalmTrees.treeConditionNoise = 0f;
 		vanillaPalmTrees.treeConditionChance = 8;
 		vanillaPalmTrees.maxY = 75;
-		this.addDeco(vanillaPalmTrees); 
-		
+		this.addDeco(vanillaPalmTrees);
+
 		// Jungle logs.
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.loops = 1;

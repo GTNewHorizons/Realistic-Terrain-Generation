@@ -1,14 +1,5 @@
 package rtg.world.gen.structure;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -23,49 +14,58 @@ import rtg.util.Logger;
 import rtg.util.ModPresenceTester;
 import sgcraft.api.SGCraftAPI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+
 /**
  * Author: Choonster (https://github.com/Choonster)
  * Source: https://github.com/Choonster/TestMod2/blob/1575b85ad8949381215f3aeb6ca76ea2368074de/src/main/java/com/choonster/testmod2/world/gen/structure/MapGenScatteredFeatureModBiomes.java
  * Modified by: WhichOnesPink (https://github.com/whichonespink44)
- * 
+ *
  * Allows scattered features (jungle/desert temples, witch huts) to spawn in modded biomes, equivalent to the vanilla biomes,
  * i.e. any biome registered as JUNGLE, SANDY or SWAMP
  * http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/modification-development/2471489-jungle-and-desert-temple-spawn-biome
- * 
+ *
  * This class was modified by WhichOnesPink on 2015-11-05 to allow the spawning of scattered features ONLY
  * in biomes that have been registered with multiple BiomeDictionary types that are shared by their vanilla counterparts.
  * For example, desert temples don't generate in SANDY biomes - they are only allowed to generate in biomes that
  * have been registered as HOT + DRY + SANDY.
- * 
+ *
  * This class has also been modified to resolve a very specific use case involving Thaumcraft world gen:
  * https://github.com/Team-RTG/Realistic-Terrain-Generation/issues/249
- * 
+ *
  */
 public class MapGenScatteredFeatureRTG extends MapGenScatteredFeature
 {
     private static List biomelist = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.swampland});
 
     private final static ModPresenceTester sgCraft = new ModPresenceTester("SGCraft");
-    
+
     /** contains possible spawns for scattered features */
     private List scatteredFeatureSpawnList;
-    
+
     /** the maximum distance between scattered features */
     private int maxDistanceBetweenScatteredFeatures;
-    
+
     /** the minimum distance between scattered features */
     private int minDistanceBetweenScatteredFeatures;
-    
+
     public MapGenScatteredFeatureRTG()
     {
         int minDistance = ConfigRTG.minDistanceScatteredFeatures;
         int maxDistance = ConfigRTG.maxDistanceScatteredFeatures;
-        
+
         if (minDistance > maxDistance) {
             minDistance = 8;
             maxDistance = 32;
         }
-        
+
         this.scatteredFeatureSpawnList = new ArrayList();
         this.maxDistanceBetweenScatteredFeatures = maxDistance;
         this.minDistanceBetweenScatteredFeatures = minDistance;
@@ -123,17 +123,17 @@ public class MapGenScatteredFeatureRTG extends MapGenScatteredFeature
             BiomeGenBase biomegenbase = this.worldObj.getWorldChunkManager().getBiomeGenAt(k * 16 + 8, l * 16 + 8);
 
             if (biomegenbase != null) {
-                
+
                 //Desert temple.
                 if (canSpawnDesertTemple(biomegenbase)) {
                     return true;
                 }
-                
+
                 //Jungle temple.
                 if (canSpawnJungleTemple(biomegenbase)) {
                     return true;
                 }
-                
+
                 //Witch hut.
                 if (canSpawnWitchHut(biomegenbase)) {
                     return true;
@@ -180,79 +180,79 @@ public class MapGenScatteredFeatureRTG extends MapGenScatteredFeature
         public Start() {}
 
         public Start(World worldIn, Random random, int chunkX, int chunkZ) {
-            
+
             super(worldIn, random, chunkX, chunkZ);
 
             LinkedList desertTempleComponents = new LinkedList();
             LinkedList jungleTempleComponents = new LinkedList();
             LinkedList witchHutComponents = new LinkedList();
-            
+
             BiomeGenBase biomegenbase = worldIn.getBiomeGenForCoords(chunkX * 16 + 8, chunkZ * 16 + 8);
 
             this.components.clear();
-            
+
             if (canSpawnDesertTemple(biomegenbase)) {
-            	
+
                 ComponentScatteredFeaturePieces.DesertPyramid desertpyramid = new ComponentScatteredFeaturePieces.DesertPyramid(random, chunkX * 16, chunkZ * 16);
                 desertTempleComponents.add(desertpyramid);
-                
+
                 if (sgCraft.present()) {
-                	
+
                 	SGCraftAPI sgCraftAPI = new SGCraftAPI();
                 	sgCraftAPI.addStargateToDesertTempleComponents(desertpyramid, desertTempleComponents);
                 }
-                
+
                 this.components.addAll(desertTempleComponents);
             }
             else if (canSpawnJungleTemple(biomegenbase)) {
-            	
+
                 ComponentScatteredFeaturePieces.JunglePyramid junglepyramid = new ComponentScatteredFeaturePieces.JunglePyramid(random, chunkX * 16, chunkZ * 16);
                 jungleTempleComponents.add(junglepyramid);
                 this.components.addAll(jungleTempleComponents);
             }
             else if (canSpawnWitchHut(biomegenbase)) {
-            	
+
                 ComponentScatteredFeaturePieces.SwampHut swamphut = new ComponentScatteredFeaturePieces.SwampHut(random, chunkX * 16, chunkZ * 16);
                 witchHutComponents.add(swamphut);
                 this.components.addAll(witchHutComponents);
             }
-            
+
             this.updateBoundingBox();
-            
+
             Logger.debug("Scattered feature candidate at %d, %d", chunkX * 16, chunkZ * 16);
         }
     }
-    
+
     private static boolean canSpawnDesertTemple(BiomeGenBase b)
     {
         boolean canSpawn = false;
-        
+
         if (BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.HOT) && BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.DRY) && BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SANDY)) {
             canSpawn = true;
         }
-        
+
         return canSpawn;
     }
-    
+
     private static boolean canSpawnJungleTemple(BiomeGenBase b)
     {
         boolean canSpawn = false;
-        
+
         if (BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.HOT) && BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.WET) && BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.JUNGLE)) {
             canSpawn = true;
         }
-        
+
         return canSpawn;
     }
-    
+
     private static boolean canSpawnWitchHut(BiomeGenBase b)
     {
         boolean canSpawn = false;
-        
+
         if (BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.WET) && BiomeDictionary.isBiomeOfType(b, BiomeDictionary.Type.SWAMP)) {
             canSpawn = true;
         }
-        
+
         return canSpawn;
     }
 }

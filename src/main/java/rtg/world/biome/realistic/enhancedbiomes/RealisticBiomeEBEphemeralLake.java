@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.enhancedbiomes;
 
+import enhancedbiomes.api.EBAPI;
+import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -14,8 +16,6 @@ import rtg.world.biome.deco.DecoShrub;
 import rtg.world.biome.deco.DecoTree.TreeCondition;
 import rtg.world.gen.surface.enhancedbiomes.SurfaceEBEphemeralLake;
 import rtg.world.gen.terrain.enhancedbiomes.TerrainEBEphemeralLake;
-import enhancedbiomes.api.EBAPI;
-import enhancedbiomes.blocks.EnhancedBiomesBlocks;
 
 public class RealisticBiomeEBEphemeralLake extends RealisticBiomeEBBase
 {
@@ -23,22 +23,22 @@ public class RealisticBiomeEBEphemeralLake extends RealisticBiomeEBBase
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneEB, Blocks.stone)
     };
-    
+
     public static byte[] ebDominantStoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.SCHIST, (byte)0),
         EBAPI.ebStonify(EBAPI.SHALE, (byte)0)
     };
-    
+
     public static Block[] ebDominantCobblestoneBlock = new Block[]{
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone),
         EBAPI.ebStonify(EnhancedBiomesBlocks.stoneCobbleEB, Blocks.cobblestone)
     };
-    
+
     public static byte[] ebDominantCobblestoneMeta = new byte[]{
         EBAPI.ebStonify(EBAPI.SCHIST, (byte)0),
         EBAPI.ebStonify(EBAPI.SHALE, (byte)0)
     };
-    
+
     private static Block ebTopBlock = EBAPI.ebGrassify(Blocks.sand, Blocks.sand);
     private static byte ebTopByte = EBAPI.ebGrassify((byte)0, (byte)0);
     private static Block ebFillBlock = EBAPI.ebGrassify(EnhancedBiomesBlocks.dirtEB, Blocks.dirt);
@@ -51,32 +51,32 @@ public class RealisticBiomeEBEphemeralLake extends RealisticBiomeEBBase
     private static byte ebCliff1Byte = EBAPI.ebStonify((byte)0, (byte)0);
     private static Block ebCliff2Block = EBAPI.ebStonify(Blocks.cobblestone, Blocks.cobblestone);
     private static byte ebCliff2Byte = EBAPI.ebStonify((byte)0, (byte)0);
-    
+
 	public RealisticBiomeEBEphemeralLake(BiomeGenBase ebBiome, BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			ebBiome, BiomeGenBase.river,
 			new TerrainEBEphemeralLake(),
 			new SurfaceEBEphemeralLake(config,
-                ebTopBlock, //Block top 
+                ebTopBlock, //Block top
                 ebTopByte, //byte topByte
-                ebFillBlock, //Block filler, 
+                ebFillBlock, //Block filler,
                 ebFillByte, //byte fillerByte
-                ebMixTopBlock, //Block mixTop, 
-                ebMixTopByte, //byte mixTopByte, 
-                ebMixFillBlock, //Block mixFill, 
-                ebMixFillByte, //byte mixFillByte, 
-                ebCliff1Block, //Block cliff1, 
-                ebCliff1Byte, //byte cliff1Byte, 
-                ebCliff2Block, //Block cliff2, 
-                ebCliff2Byte, //byte cliff2Byte, 
-                80f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                ebMixTopBlock, //Block mixTop,
+                ebMixTopByte, //byte mixTopByte,
+                ebMixFillBlock, //Block mixFill,
+                ebMixFillByte, //byte mixFillByte,
+                ebCliff1Block, //Block cliff1,
+                ebCliff1Byte, //byte cliff1Byte,
+                ebCliff2Block, //Block cliff2,
+                ebCliff2Byte, //byte cliff2Byte,
+                80f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-        
+
         DecoEBTree ebTrees = new DecoEBTree();
 		ebTrees.strengthNoiseFactorForLoops = true;
 		ebTrees.treeType = TreeType.DEAD;
@@ -85,8 +85,8 @@ public class RealisticBiomeEBEphemeralLake extends RealisticBiomeEBBase
 		ebTrees.distribution.noiseAddend = -15f;
 		ebTrees.treeCondition = TreeCondition.RANDOM_CHANCE;
 		ebTrees.maxY = 110;
-		this.addDeco(ebTrees);        
-        
+		this.addDeco(ebTrees);
+
         DecoFallenTree decoFallenTree = new DecoFallenTree();
         decoFallenTree.logCondition = LogCondition.X_DIVIDED_BY_STRENGTH;
         decoFallenTree.logConditionNoise = 8f;
@@ -96,15 +96,15 @@ public class RealisticBiomeEBEphemeralLake extends RealisticBiomeEBBase
         decoFallenTree.leavesBlock = EnhancedBiomesBlocks.leavesJungle;
         decoFallenTree.leavesMeta = (byte)-1;
         decoFallenTree.minSize = 3;
-        decoFallenTree.maxSize = 5;        
+        decoFallenTree.maxSize = 5;
 		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigEBEphemeralLake.decorationLogsId));
-        
+
         DecoShrub decoShrub = new DecoShrub();
         decoShrub.maxY = 110;
         decoShrub.chance = 4;
         decoShrub.strengthFactor = 3f;
 		this.addDeco(decoShrub);
-        
+
 		DecoGrass decoGrass = new DecoGrass();
 		decoGrass.maxY = 128;
 		decoGrass.strengthFactor = 12f;

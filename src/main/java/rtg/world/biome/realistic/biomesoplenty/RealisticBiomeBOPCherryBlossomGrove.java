@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import biomesoplenty.api.content.BOPCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -13,43 +15,41 @@ import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.biome.deco.helper.DecoHelperRandomSplit;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPCherryBlossomGrove;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPCherryBlossomGrove;
-import biomesoplenty.api.content.BOPCBiomes;
-import biomesoplenty.api.content.BOPCBlocks;
 
 public class RealisticBiomeBOPCherryBlossomGrove extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.cherryBlossomGrove;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPCherryBlossomGrove(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPCherryBlossomGrove(58f, 76f, 20f),
 			new SurfaceBOPCherryBlossomGrove(config,
-			    topBlock, //Block top 
+			    topBlock, //Block top
                 (byte)0, //byte topByte
-                fillerBlock, //Block filler, 
+                fillerBlock, //Block filler,
                 (byte)0, //byte fillerByte
-                topBlock, //Block mixTop, 
-                (byte)0, //byte mixTopByte, 
-                fillerBlock, //Block mixFill, 
+                topBlock, //Block mixTop,
+                (byte)0, //byte mixTopByte,
+                fillerBlock, //Block mixFill,
                 (byte)0, //byte mixFillByte,
-                80f, //float mixWidth, 
-                -0.15f, //float mixHeight, 
-                10f, //float smallWidth, 
+                80f, //float mixWidth,
+                -0.15f, //float mixHeight,
+                10f, //float smallWidth,
                 0.5f //float smallStrength
             )
 		);
-		
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.chance = 16;
 		decoBoulder.maxY = 95;
 		this.addDeco(decoBoulder);
-        
+
 		DecoFallenTree decoFallenTree1 = new DecoFallenTree();
 		decoFallenTree1.distribution.noiseDivisor = 100f;
 		decoFallenTree1.distribution.noiseFactor = 6f;
@@ -64,7 +64,7 @@ public class RealisticBiomeBOPCherryBlossomGrove extends RealisticBiomeBOPBase
 		decoFallenTree1.leavesMeta = (byte)-1;
 		decoFallenTree1.minSize = 3;
 		decoFallenTree1.maxSize = 5;
-		
+
 		DecoFallenTree decoFallenTree2 = new DecoFallenTree();
 		decoFallenTree1.distribution.noiseDivisor = 100f;
 		decoFallenTree1.distribution.noiseFactor = 6f;
@@ -79,12 +79,12 @@ public class RealisticBiomeBOPCherryBlossomGrove extends RealisticBiomeBOPBase
 		decoFallenTree2.leavesMeta = (byte)-1;
 		decoFallenTree2.minSize = 3;
 		decoFallenTree2.maxSize = 5;
-		
+
 		DecoHelperRandomSplit decoHelperRandomSplit = new DecoHelperRandomSplit();
 		decoHelperRandomSplit.decos = new DecoBase[]{decoFallenTree2, decoFallenTree1};
 		decoHelperRandomSplit.chances = new int[]{15, 1};
-		this.addDeco(decoHelperRandomSplit, this.config._boolean(BiomeConfigBOPCherryBlossomGrove.decorationLogsId));        
-        
+		this.addDeco(decoHelperRandomSplit, this.config._boolean(BiomeConfigBOPCherryBlossomGrove.decorationLogsId));
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
 	}

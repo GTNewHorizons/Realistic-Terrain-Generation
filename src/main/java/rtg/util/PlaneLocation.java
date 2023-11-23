@@ -3,7 +3,6 @@ package rtg.util;
 
 
 import java.util.Comparator;
-import net.minecraft.util.ChunkCoordinates;
 
 /**
  *

@@ -1,7 +1,9 @@
 package rtg.world.gen.surface.vanilla;
 
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.vanilla.config.BiomeConfigVanillaExtremeHillsEdge;
 import rtg.util.CellNoise;
@@ -9,14 +11,11 @@ import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import java.util.Random;
 
 public class SurfaceVanillaExtremeHillsEdge extends SurfaceBase
 {
-    
+
     private Block mixBlockTop;
     private byte mixBlockTopMeta;
     private Block mixBlockFill;
@@ -25,34 +24,34 @@ public class SurfaceVanillaExtremeHillsEdge extends SurfaceBase
     private float height;
     private float smallW;
     private float smallS;
-    
+
     public SurfaceVanillaExtremeHillsEdge(BiomeConfig config, Block top, Block filler, Block mixTop, Block mixFill, float mixWidth,
         float mixHeight, float smallWidth, float smallStrength)
     {
-    
+
         super(config, top, (byte)0, filler, (byte)0);
 
         mixBlockTop = this.getConfigBlock(config, BiomeConfigVanillaExtremeHillsEdge.surfaceMixBlockId, mixTop);
         mixBlockTopMeta = this.getConfigBlockMeta(config, BiomeConfigVanillaExtremeHillsEdge.surfaceMixBlockMetaId, (byte)0);
-        
+
         mixBlockFill = this.getConfigBlock(config, BiomeConfigVanillaExtremeHillsEdge.surfaceMixFillerBlockId, mixFill);
         mixBlockFillMeta = this.getConfigBlockMeta(config, BiomeConfigVanillaExtremeHillsEdge.surfaceMixFillerBlockMetaId, (byte)0);
-        
+
         width = mixWidth;
         height = mixHeight;
         smallW = smallWidth;
         smallS = smallStrength;
     }
-    
+
     @Override
     public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand,
         OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
     {
-    
+
         float c = CliffCalculator.calc(x, y, noise);
         boolean cliff = c > 1.4f ? true : false;
         boolean mix = false;
-        
+
         for (int k = 255; k > -1; k--)
         {
             Block b = blocks[(y * 16 + x) * 256 + k];
@@ -63,18 +62,18 @@ public class SurfaceVanillaExtremeHillsEdge extends SurfaceBase
             else if (b == Blocks.stone)
             {
                 depth++;
-                
+
                 if (cliff)
                 {
                     if (depth > -1 && depth < 2)
                     {
                         if (rand.nextInt(3) == 0) {
-                            
+
                             blocks[(y * 16 + x) * 256 + k] = hcCobble(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcCobbleMeta(world, i, j, x, y, k);
                         }
                         else {
-                            
+
                             blocks[(y * 16 + x) * 256 + k] = hcStone(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcStoneMeta(world, i, j, x, y, k);
                         }

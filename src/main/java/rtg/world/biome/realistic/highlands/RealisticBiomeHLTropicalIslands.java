@@ -8,8 +8,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.highlands.config.BiomeConfigHLTropicalIslands;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.deco.DecoBoulder;
 import rtg.world.biome.deco.DecoFallenTree;
 import rtg.world.biome.deco.DecoFallenTree.LogCondition;
@@ -29,25 +27,25 @@ import rtg.world.gen.terrain.highlands.TerrainHLTropicalIslands;
 
 public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
 {
-    
+
     public static BiomeGenBase hlBiome = HighlandsBiomes.tropicalIslands;
-    
+
     public static Block topBlock = hlBiome.topBlock;
     public static Block fillerBlock = hlBiome.fillerBlock;
-    
+
     public RealisticBiomeHLTropicalIslands(BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             hlBiome, BiomeGenBase.river,
             new TerrainHLTropicalIslands(90f, 180f, 13f, 100f, 1f, 260f, 59f),
             new SurfaceHLTropicalIslands(config, topBlock, fillerBlock)
         );
         this.waterSurfaceLakeChance = 4;
-		
+
         /**
          * We can't let the base biome decorate itself because of a console spam bug with the HL Cocoa plants.
-         * 
+         *
          * DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
          * this.addDeco(decoBaseBiomeDecorations);
          */
@@ -60,7 +58,7 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
 		highlandsPalmTrees.treeConditionChance = 1;
 		highlandsPalmTrees.maxY = 160;
 		this.addDeco(highlandsPalmTrees);
-		
+
 		TreeRTG nuciferaTree = new TreeRTGCocosNucifera();
 		nuciferaTree.logBlock = Blocks.log;
 		nuciferaTree.logMeta = (byte)3;
@@ -72,15 +70,15 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
 		nuciferaTree.maxCrownSize = 12;
 		nuciferaTree.noLeaves = false;
 		this.addTree(nuciferaTree);
-		
+
 		DecoTree vanillaPalmTrees = new DecoTree(nuciferaTree);
 		vanillaPalmTrees.treeType = DecoTree.TreeType.RTG_TREE;
 		vanillaPalmTrees.treeCondition = DecoTree.TreeCondition.NOISE_GREATER_AND_RANDOM_CHANCE;
 		vanillaPalmTrees.distribution = new DecoTree.Distribution(80f, 60f, -15f);
 		vanillaPalmTrees.treeConditionNoise = 0f;
 		vanillaPalmTrees.treeConditionChance = 4;
-		this.addDeco(vanillaPalmTrees); 
-		
+		this.addDeco(vanillaPalmTrees);
+
         DecoShrub decoShrubVanilla = new DecoShrub();
         decoShrubVanilla.logBlock = Blocks.log;
         decoShrubVanilla.logMeta = (byte)3;
@@ -89,7 +87,7 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
         decoShrubVanilla.maxY = 100;
         decoShrubVanilla.strengthFactor = 4f;
         decoShrubVanilla.chance = 3;
-        
+
         DecoShrub decoShrubHL = new DecoShrub();
         decoShrubHL.logBlock = Highlands.vanillaBlocksFlag ? Blocks.log : HighlandsBlocks.palmWood;
         decoShrubHL.logMeta = Highlands.vanillaBlocksFlag ? (byte)3 : (byte)0;
@@ -98,9 +96,9 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
         decoShrubHL.maxY = 100;
         decoShrubHL.strengthFactor = 4f;
         decoShrubHL.chance = 3;
-        
+
 		this.addDeco(new DecoHelperThisOrThat(4, ChanceType.NOT_EQUALS_ZERO, decoShrubVanilla, decoShrubHL));
-		
+
 		// Jungle logs.
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.loops = 1;
@@ -118,11 +116,11 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
 		decoFallenTree.minSize = 4;
 		decoFallenTree.maxSize = 8;
 		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigHLTropicalIslands.decorationLogsId));
-		
+
 		// A combo-deal of lilypads and vines. (This could probably be pulled out into individual decos.)
 		DecoJungleLilypadVines decoJungleLilypadVines = new DecoJungleLilypadVines();
 		this.addDeco(decoJungleLilypadVines);
-		
+
 		// Flowers.
 		DecoFlowersRTG decoFlowersRTG = new DecoFlowersRTG();
         decoFlowersRTG.flowers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}; // Only orange tulips fit in with the colour scheme.
@@ -130,7 +128,7 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
         decoFlowersRTG.maxY = 120;
         decoFlowersRTG.strengthFactor = 4f;
         this.addDeco(decoFlowersRTG);
-		
+
         // Mossy boulders for the green.
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.mossy_cobblestone;
@@ -138,12 +136,12 @@ public class RealisticBiomeHLTropicalIslands extends RealisticBiomeHLBase
 		decoBoulder.maxY = 95;
 		decoBoulder.strengthFactor = 1f;
 		this.addDeco(decoBoulder);
-		
+
 		DecoGrass decoFern = new DecoGrass(2);
 		decoFern.maxY = 128;
 		decoFern.strengthFactor = 10f;
         this.addDeco(decoFern);
-        
+
 		DecoGrass decoGrass = new DecoGrass();
 		decoGrass.maxY = 128;
 		decoGrass.strengthFactor = 4f;

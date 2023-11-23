@@ -1,26 +1,26 @@
 package highlands.biome;
 
-import java.util.Random;
-
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BiomeGenOcean2 extends BiomeGenBaseHighlands
 {
 	private static final Height biomeHeight = new Height(-1.5F, 0.4F);
-	
+
     public BiomeGenOcean2(int par1)
     {
         super(par1);
         this.spawnableCreatureList.clear();
-        
+
         int trees = 0;
 	    int grass = 3;
 	    int flowers = 1;
         this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-        
+
         this.setHeight(biomeHeight);
     }
-    
+
     @Override
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;

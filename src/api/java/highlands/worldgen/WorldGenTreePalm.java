@@ -2,13 +2,12 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.Direction;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreePalm extends WorldGenHighlandsTreeBase
 {
@@ -26,11 +25,11 @@ public class WorldGenTreePalm extends WorldGenHighlandsTreeBase
     public WorldGenTreePalm(int lmd, int wmd, Block wb, Block lb, int minH, int maxH, boolean notify)
     {
     	super(lmd, wmd, wb, lb, notify);
-        
+
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenTreePalm(int minH, int maxH, boolean notify){
     	this(0, 0, HighlandsBlocks.palmWood, HighlandsBlocks.palmLeaves, minH, maxH, notify);
     	if(Highlands.vanillaBlocksFlag){
@@ -45,9 +44,9 @@ public class WorldGenTreePalm extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
 
-        
+
+
         if(!isLegalTreePosition(world, locX, locY, locZ) && world.getBlock(locX, locY-1, locZ) != Blocks.sand){
         	this.worldObj = null;
         	return false;
@@ -55,7 +54,7 @@ public class WorldGenTreePalm extends WorldGenHighlandsTreeBase
         if(!isCubeClear(locX, locY+3, locZ, 1, 4)){
         	return false;
         }
-        
+
         //generates trunk
     	int treeHeight = minHeight + random.nextInt(maxHeight);
     	for(int i = 0; i < treeHeight; i++){
@@ -97,7 +96,7 @@ public class WorldGenTreePalm extends WorldGenHighlandsTreeBase
     	setBlockInWorld(locX-r, h, locZ, this.leaves, this.leavesMeta);
     	setBlockInWorld(locX, h, locZ+r, this.leaves, this.leavesMeta);
     	setBlockInWorld(locX, h, locZ-r, this.leaves, this.leavesMeta);
-    	
+
     	if(random.nextInt(3) == 0){
     		for (int k1 = 0; k1 < 4; ++k1)
             {

@@ -2,12 +2,11 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreeAsh extends WorldGenHighlandsTreeBase
 {
@@ -25,11 +24,11 @@ public class WorldGenTreeAsh extends WorldGenHighlandsTreeBase
     public WorldGenTreeAsh(int lmd, int wmd, Block wb, Block lb, int minH, int maxH, boolean notify)
     {
     	super(lmd, wmd, wb, lb, notify);
-        
+
         this.minHeight = minH;
         this.maxHeight = maxH;
     }
-    
+
     public WorldGenTreeAsh(int minH, int maxH, boolean notify){
     	this(0, 0, HighlandsBlocks.ashWood, HighlandsBlocks.ashLeaves, minH, maxH, notify);
     	if(Highlands.vanillaBlocksFlag){
@@ -42,8 +41,8 @@ public class WorldGenTreeAsh extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
-        
+
+
         if(!isLegalTreePosition(world, locX, locY, locZ)){
         	this.worldObj = null;
         	return false;
@@ -52,7 +51,7 @@ public class WorldGenTreeAsh extends WorldGenHighlandsTreeBase
         	this.worldObj = null;
         	return false;
         }
-        
+
       //generates trunk 2*2
     	int treeHeight = minHeight + random.nextInt(maxHeight);
     	for(int i = 0; i < treeHeight; i++){

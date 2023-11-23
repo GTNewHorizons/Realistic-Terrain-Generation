@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -19,23 +20,22 @@ import rtg.world.gen.feature.tree.rtg.TreeRTGBetulaPapyrifera;
 import rtg.world.gen.feature.tree.rtg.TreeRTGPiceaSitchensis;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPLandOfLakes;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPLandOfLakes;
-import biomesoplenty.api.content.BOPCBiomes;
 
 public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.landOfLakes;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPLandOfLakes(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPLandOfLakes(58f, 76f, 36f),
 			new SurfaceBOPLandOfLakes(config, Blocks.grass, Blocks.dirt, false, null, 0f, 1.5f, 60f, 65f, 1.5f, Blocks.stone, 0.10f)
 		);
-		
+
         TreeRTG birchTree = new TreeRTGBetulaPapyrifera();
 		birchTree.logBlock = Blocks.log;
 		birchTree.logMeta = (byte)2;
@@ -46,7 +46,7 @@ public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
 		birchTree.minCrownSize = 8;
 		birchTree.maxCrownSize = 19;
 		this.addTree(birchTree);
-		
+
 		DecoTree birchTrees = new DecoTree(birchTree);
 		birchTrees.strengthFactorForLoops = 9f;
 		birchTrees.treeType = TreeType.RTG_TREE;
@@ -57,7 +57,7 @@ public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
 		birchTrees.treeConditionChance = 1;
 		birchTrees.treeConditionNoise = 0f;
 		birchTrees.maxY = 120;
-		
+
 		TreeRTG sitchensisTree = new TreeRTGPiceaSitchensis();
     	sitchensisTree.logBlock = Blocks.log;
     	sitchensisTree.logMeta = (byte)1;
@@ -68,7 +68,7 @@ public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
     	sitchensisTree.minCrownSize = 5;
     	sitchensisTree.maxCrownSize = 14;
 		this.addTree(sitchensisTree);
-		
+
 		DecoTree smallPine = new DecoTree(sitchensisTree);
     	smallPine.strengthFactorForLoops = 9f;
     	smallPine.treeType = TreeType.RTG_TREE;
@@ -79,7 +79,7 @@ public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
     	smallPine.treeConditionChance = 1;
     	smallPine.treeConditionNoise = 0f;
     	smallPine.maxY = 120;
-    	
+
     	DecoHelper5050 decoHelper5050 = new DecoHelper5050(birchTrees, smallPine);
 
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
@@ -94,19 +94,19 @@ public class RealisticBiomeBOPLandOfLakes extends RealisticBiomeBOPBase
 		decoFallenTree.minSize = 8;
 		decoFallenTree.maxSize = 12;
 		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigBOPLandOfLakes.decorationLogsId));
-        
+
         DecoShrub decoShrub = new DecoShrub();
         decoShrub.maxY = 110;
         decoShrub.strengthFactor = 3f;
 		this.addDeco(decoShrub);
-        
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.maxY = 80;
 		decoBoulder.chance = 12;
 		decoBoulder.strengthFactor = 1f;
 		this.addDeco(decoBoulder);
-        
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
 	}

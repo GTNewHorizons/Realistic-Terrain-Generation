@@ -1,17 +1,17 @@
 package rtg.world.biome.deco;
 
-import java.util.Random;
-
+import enhancedbiomes.world.gen.WorldGenRockSpire;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.realistic.RealisticBiomeBase;
-import enhancedbiomes.world.gen.WorldGenRockSpire;
+
+import java.util.Random;
 
 /**
- * 
+ *
  * @author WhichOnesPink
  *
  */
@@ -26,11 +26,11 @@ public class DecoEBRockSpire extends DecoBase
 	public Block[] materials;
 	public byte[] meta;
 	public int height;
-	
+
 	public DecoEBRockSpire()
 	{
 		super();
-		
+
 		/**
 		 * Default values.
 		 * These can be overridden when configuring the Deco object in the realistic biome.
@@ -43,33 +43,33 @@ public class DecoEBRockSpire extends DecoBase
 		this.materials = new Block[]{};
 		this.meta = new byte[]{};
 		this.height = 10;
-		
+
 		this.addDecoTypes(DecoType.ROCK_SPIRE);
 	}
-	
+
 	@Override
 	public void generate(RealisticBiomeBase biome, World world, Random rand, int chunkX, int chunkY, OpenSimplexNoise simplex, CellNoise cell, float strength, float river, boolean hasPlacedVillageBlocks)
 	{
 		if (this.allowed) {
 
 			WorldGenerator worldGenerator = new WorldGenRockSpire(this.materials, this.meta, this.height);
-			
+
 			this.loops = (this.strengthFactor > 0f) ? (int)(this.strengthFactor * strength) : this.loops;
             for (int i = 0; i < this.loops; i++)
             {
                 int intX = chunkX + rand.nextInt(16) + 8;
                 int intZ = chunkY + rand.nextInt(16) + 8;
                 int intY = world.getTopSolidOrLiquidBlock(intX, intZ);
-				
+
                 if (this.notEqualsZeroChance > 1) {
-                	
+
 	                if (intY <= this.maxY && rand.nextInt(this.notEqualsZeroChance) != 0) {
-	                	
+
 	                    worldGenerator.generate(world, rand, intX, intY, intZ);
 	                }
                 }
                 else {
-                	
+
 	                if (intY <= this.maxY && rand.nextInt(this.chance) == 0) {
 
 	                    worldGenerator.generate(world, rand, intX, intY, intZ);

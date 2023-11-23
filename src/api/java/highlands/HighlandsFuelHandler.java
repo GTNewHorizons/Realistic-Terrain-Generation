@@ -1,16 +1,16 @@
 package highlands;
 
+import cpw.mods.fml.common.IFuelHandler;
 import highlands.api.HighlandsBlocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.IFuelHandler;
 
 public class HighlandsFuelHandler implements IFuelHandler
 {
 	public int getBurnTime(ItemStack fuel) {
-		
+
 		Item item = fuel.getItem();
-		
+
 		//TODO- all this ItemStack stuff makes me worry...
 		if(fuel == new ItemStack(HighlandsBlocks.firWood))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.acaciaWood))return 300;
@@ -21,14 +21,14 @@ public class HighlandsFuelHandler implements IFuelHandler
 		if(fuel == new ItemStack(HighlandsBlocks.ashWood))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.palmWood))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.ironWood))return 300;
-		
+
 		if(fuel == new ItemStack(HighlandsBlocks.hlplanks))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.hlplankstairs0))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.hlplankstairs1))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.hlplankstairs2))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.hlplankstairs3))return 300;
 		if(fuel == new ItemStack(HighlandsBlocks.hlplankhalf))return 150;
-		
+
 		if(fuel == new ItemStack(HighlandsBlocks.firSapling))return 100;
 	    if(fuel == new ItemStack(HighlandsBlocks.acaciaSapling))return 100;
 	    if(fuel == new ItemStack(HighlandsBlocks.redwoodSapling))return 100;
@@ -45,8 +45,8 @@ public class HighlandsFuelHandler implements IFuelHandler
 	    if(fuel == new ItemStack(HighlandsBlocks.ashSapling))return 100;
 	    if(fuel == new ItemStack(HighlandsBlocks.autumnYellowSapling))return 100;
 	    if(fuel == new ItemStack(HighlandsBlocks.autumnOrangeSapling))return 100;
-		
-		
+
+
 		return 0;
 	}
 }

@@ -1,21 +1,24 @@
 
 package rtg.util;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * A class for converting one type into another
  * @author Zeno410
  */
 public abstract class Converter<FromType,ToType> {
-    
+
     /** Creates a new instance of Converter */
     public Converter() {
     }
-    
+
     abstract public ToType result(FromType original);
-    
+
     public ToType of(FromType original) {return result(original);}
-    
+
 
     public Collection<ToType> listResult(Collection<FromType> source) {
         Collection<ToType> result = new ArrayList<ToType>(source.size());
@@ -23,7 +26,7 @@ public abstract class Converter<FromType,ToType> {
         while(sourceList.hasNext()) result.add(result(sourceList.next()));
         return result;
     }
-    
+
     class IteratorConverter implements Iterator<ToType> {
         Iterator<? extends FromType> source;
         IteratorConverter(Iterator<? extends FromType> theSource) {source = theSource;}
@@ -32,7 +35,7 @@ public abstract class Converter<FromType,ToType> {
         public void remove() {source.remove();}
     }
 
-    
+
     public Acceptor<FromType> acceptor(final Acceptor<ToType> target) {
         return new Acceptor<FromType>() {
             public void accept(FromType accepted) {target.accept(result(accepted));}
@@ -42,7 +45,7 @@ public abstract class Converter<FromType,ToType> {
     public <FinalType> Converter<FromType,FinalType> composedWith(Converter<ToType,FinalType> following) {
         return new ChainTo<FinalType>(following);
     }
-    
+
     public class ChainTo<FinalType> extends Converter<FromType,FinalType>{
         Converter<ToType,FinalType> finalizer;
         public ChainTo(Converter<ToType,FinalType> theFinalizer) {
@@ -50,8 +53,8 @@ public abstract class Converter<FromType,ToType> {
         }
         public FinalType result(FromType original)  {return finalizer.result(Converter.this.result(original));}
     }
-    
-    
+
+
     public Converter<Named<FromType>,Named<ToType>> namer() {
         return new NamedConverter<FromType,ToType>(this);
     }
@@ -78,5 +81,5 @@ class NamedConverter<FromType,ToType>
     public Named<ToType> result(Named<FromType> original) {
         return new Named<ToType>(original.name,handler.result(original.object));
     }
-    
+
 }

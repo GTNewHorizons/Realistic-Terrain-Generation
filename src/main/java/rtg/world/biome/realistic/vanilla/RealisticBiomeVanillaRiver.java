@@ -1,7 +1,5 @@
 package rtg.world.biome.realistic.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
@@ -11,13 +9,15 @@ import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.vanilla.SurfaceVanillaRiver;
 import rtg.world.gen.terrain.vanilla.TerrainVanillaRiver;
 
+import java.util.Random;
+
 public class RealisticBiomeVanillaRiver extends RealisticBiomeVanillaBase
 {
 	public static BiomeGenBase vanillaBiome = BiomeGenBase.river;
 
 	public RealisticBiomeVanillaRiver(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			vanillaBiome,
 			BiomeGenBase.river,
 			new TerrainVanillaRiver(),
@@ -26,7 +26,7 @@ public class RealisticBiomeVanillaRiver extends RealisticBiomeVanillaBase
 
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
 	}

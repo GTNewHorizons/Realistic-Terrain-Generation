@@ -1,10 +1,9 @@
 package sgcraft.api;
 
 import gcewing.sg.FeatureUnderDesertPyramid;
+import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
 
 import java.util.LinkedList;
-
-import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
 
 
 public class SGCraftAPI

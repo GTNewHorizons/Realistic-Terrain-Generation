@@ -12,8 +12,6 @@ import rtg.world.gen.surface.SurfaceBase;
 
 import java.util.Random;
 
-import static rtg.config.sushicraft.ConfigSC.config;
-
 /**
  * Created by VelocityRa on 15/4/2016.
  */

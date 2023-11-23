@@ -1,11 +1,11 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import rtg.config.rtg.ConfigRTG;
+
+import java.util.Random;
 
 /**
  * Rhizophora Mucronata (Asiatic Mangrove)
@@ -41,7 +41,7 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 	 * decoTree.maxCrownSize = 27;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGRhizophoraMucronata(int minBranches, int maxBranches, float branchLength, float verStart, float verRand)
 	{
@@ -53,7 +53,7 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 		this.verStart = verStart;
 		this.verRand = verRand;
 	}
-	
+
 	public TreeRTGRhizophoraMucronata()
 	{
 		super();
@@ -64,18 +64,18 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 		this.verStart = 0.32f;
 		this.verRand = 0.1f;
 	}
-	
+
 	@Override
-	public boolean generate(World world, Random rand, int x, int y, int z) 
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
     	Block b = world.getBlock(x, y - 1, z);
 
 		this.trunkLogMeta = this.getTrunkLogMeta(this.logMeta);
-    	
+
         if (b == Blocks.sand && !ConfigRTG.allowTreesToGenerateOnSand) {
             return false;
         }
-    	
+
     	if(b != Blocks.grass && b != Blocks.dirt && b != Blocks.sand)
     	{
     		if(!(b == Blocks.water && world.getBlock(x, y - 2, z) == Blocks.sand && world.getBlock(x, y, z) == Blocks.air))
@@ -83,9 +83,9 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
     			return false;
     		}
     	}
-    	
+
     	int branch = this.minBranches + rand.nextInt(this.maxBranches - this.minBranches + 1);
-    	
+
     	if(this.trunkSize > 0)
     	{
 	    	for(int k = 0; k < 3; k++)
@@ -93,12 +93,12 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 	    		generateBranch(world, rand, x, y + this.trunkSize, z, (120 * k) - 40 + rand.nextInt(80), 1.6f + rand.nextFloat() * 0.1f, this.trunkSize * 2f, 1f, true);
 	    	}
     	}
-    	
+
     	for(int i = y + this.trunkSize; i < y + this.crownSize; i++)
     	{
     		this.placeLogBlock(world, x, i, z, this.logBlock, this.logMeta, this.generateFlag);
     	}
-    	
+
     	float horDir, verDir;
     	int eX, eY, eZ;
     	for(int j = 0; j < branch; j++)
@@ -106,20 +106,20 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
     		horDir = (120 * j) - 60 + rand.nextInt(120);
     		verDir = verStart + rand.nextFloat() * verRand;
         	generateBranch(world, rand, x, y + this.crownSize, z, horDir, verDir, branchLength, 1f, false);
-        	
+
         	eX = x + (int)(Math.cos(horDir * Math.PI / 180D) * verDir * branchLength);
         	eZ = z + (int)(Math.sin(horDir * Math.PI / 180D) * verDir * branchLength);
         	eY = y + this.crownSize + (int)((1f - verDir) * branchLength);
-        	
+
         	for(int m = 0; m < 1; m++)
         	{
             	generateLeaves(world, rand, eX, eY, eZ, 4f, 1.2f);
         	}
     	}
-		
+
 		return true;
 	}
-	
+
 	/*
 	 * horDir = number between -180D and 180D
 	 * verDir = number between 1F (horizontal) and 0F (vertical)
@@ -133,15 +133,15 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 
 		float c = 0f;
 		float velY = 1f - verDir;
-		
+
 		if(verDir > 1f)
 		{
 			verDir = 1f - (verDir - 1f);
 		}
-		
+
 		float velX = (float)Math.cos(horDir * Math.PI / 180D) * verDir;
 		float velZ = (float)Math.sin(horDir * Math.PI / 180D) * verDir;
-		
+
 		while(c < length)
 		{
 		    if (isTrunk) {
@@ -150,15 +150,15 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
             else {
                 this.placeLogBlock(world, (int)x, (int)y, (int)z, this.logBlock, this.logMeta, this.generateFlag);
             }
-			
+
 			x += velX;
 			y += velY;
 			z += velZ;
-			
+
 			c += speed;
 		}
 	}
-	
+
 	public void generateLeaves(World world, Random rand, int x, int y, int z, float size, float width)
 	{
 		float dist;
@@ -176,9 +176,9 @@ public class TreeRTGRhizophoraMucronata extends TreeRTG
 						{
 							this.placeLogBlock(world, x + i, y + j, z + k, this.logBlock, this.logMeta, this.generateFlag);
 						}
-						
+
 						if (!this.noLeaves) {
-							
+
 							if(world.isAirBlock(x + i, y + j, z + k))
 							{
 								this.placeLeavesBlock(world, x + i, y + j, z + k, this.leavesBlock, this.leavesMeta, this.generateFlag);

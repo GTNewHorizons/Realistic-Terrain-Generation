@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import biomesoplenty.api.content.BOPCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -15,34 +17,32 @@ import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.biome.deco.helper.DecoHelper5050;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPShield;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPShield;
-import biomesoplenty.api.content.BOPCBiomes;
-import biomesoplenty.api.content.BOPCBlocks;
 
 public class RealisticBiomeBOPShield extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.shield;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPShield(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPShield(0f, 100f, 68f, 170f),
 			new SurfaceBOPShield(config, topBlock, fillerBlock)
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
-                
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.maxY = 80;
 		decoBoulder.chance = 16;
 		decoBoulder.strengthFactor = 1f;
-		this.addDeco(decoBoulder);        
-        
+		this.addDeco(decoBoulder);
+
 		DecoFallenTree decoFallenTree1 = new DecoFallenTree();
 		decoFallenTree1.distribution.noiseDivisor = 80f;
 		decoFallenTree1.distribution.noiseFactor = 60f;
@@ -57,7 +57,7 @@ public class RealisticBiomeBOPShield extends RealisticBiomeBOPBase
 		decoFallenTree1.leavesMeta = (byte)-1;
 		decoFallenTree1.minSize = 3;
 		decoFallenTree1.maxSize = 4;
-		
+
 		DecoFallenTree decoFallenTree2 = new DecoFallenTree();
 		decoFallenTree2.distribution.noiseDivisor = 80f;
 		decoFallenTree2.distribution.noiseFactor = 60f;
@@ -72,11 +72,11 @@ public class RealisticBiomeBOPShield extends RealisticBiomeBOPBase
 		decoFallenTree2.leavesMeta = (byte)-1;
 		decoFallenTree2.minSize = 3;
 		decoFallenTree2.maxSize = 4;
-		
+
 		DecoHelper5050 decoHelperHelper5050 = new DecoHelper5050(decoFallenTree1, decoFallenTree2);
-		this.addDeco(decoHelperHelper5050, this.config._boolean(BiomeConfigBOPShield.decorationLogsId)); 
+		this.addDeco(decoHelperHelper5050, this.config._boolean(BiomeConfigBOPShield.decorationLogsId));
 	}
-	
+
     private float lakeInterval = 80;
 
     public float lakePressure(OpenSimplexNoise simplex, CellNoise simplexCell,int x, int y, float border) {

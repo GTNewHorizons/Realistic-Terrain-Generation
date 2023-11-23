@@ -1,18 +1,16 @@
 package rtg.world.gen.surface.highlands;
 
-import java.util.Random;
-
-import rtg.api.biome.BiomeConfig;
-import rtg.util.CellNoise;
-import rtg.util.OpenSimplexNoise;
-import rtg.world.gen.surface.SurfaceBase;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import rtg.api.biome.vanilla.config.BiomeConfigVanillaExtremeHills;
+import rtg.api.biome.BiomeConfig;
+import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
+import rtg.util.OpenSimplexNoise;
+import rtg.world.gen.surface.SurfaceBase;
+
+import java.util.Random;
 
 public class SurfaceHLWindyIsland extends SurfaceBase
 {

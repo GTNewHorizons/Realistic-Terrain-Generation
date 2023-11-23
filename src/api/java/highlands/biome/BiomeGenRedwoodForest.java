@@ -4,15 +4,14 @@ import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
 import highlands.worldgen.WorldGenTreeRedwood;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenRedwoodForest extends BiomeGenBaseHighlands
 {
@@ -26,14 +25,14 @@ public class BiomeGenRedwoodForest extends BiomeGenBaseHighlands
 	    int flowers = 0;
 	    int plants = 1;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers, plants);
-        
+
 	    this.theBiomeDecorator.generateLakes = true;
 	    this.setHeight(biomeHeight);
         this.temperature = 0.6F;
         this.rainfall = 0.2F;
-        
+
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.thornbush)
 				: new WorldGenSmallPlants(HighlandsBlocks.raspberryBush));

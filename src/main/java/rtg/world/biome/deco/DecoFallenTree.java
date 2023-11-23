@@ -1,7 +1,5 @@
 package rtg.world.biome.deco;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -13,8 +11,10 @@ import rtg.util.WorldUtil.SurroundCheckType;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.feature.WorldGenLog;
 
+import java.util.Random;
+
 /**
- * 
+ *
  * @author WhichOnesPink
  *
  */
@@ -36,11 +36,11 @@ public class DecoFallenTree extends DecoBase
 	public Block[] randomLogBlocks;
 	public byte[] randomLogMetas;
 	protected boolean useRandomLogs;
-	
+
 	public DecoFallenTree()
 	{
 		super();
-		
+
 		/**
 		 * Default values.
 		 * These can be overridden when configuring the Deco object in the realistic biome.
@@ -60,10 +60,10 @@ public class DecoFallenTree extends DecoBase
 		this.randomLogBlocks = new Block[]{};
 		this.randomLogMetas = new byte[]{};
 		this.useRandomLogs = (this.randomLogBlocks.length > 0 && this.randomLogBlocks.length == this.randomLogMetas.length);
-		
+
 		this.addDecoTypes(DecoType.FALLEN_TREE);
 	}
-	
+
 	public DecoFallenTree(DecoFallenTree source) {
 		this();
 		this.loops = source.loops;
@@ -82,7 +82,7 @@ public class DecoFallenTree extends DecoBase
 		this.randomLogMetas = source.randomLogMetas;
 		this.useRandomLogs = source.useRandomLogs;
 	}
-	
+
 	@Override
 	public void generate(RealisticBiomeBase biome, World world, Random rand, int chunkX, int chunkY, OpenSimplexNoise simplex, CellNoise cell, float strength, float river, boolean hasPlacedVillageBlocks)
 	{
@@ -90,14 +90,14 @@ public class DecoFallenTree extends DecoBase
 
 			float noise = simplex.noise2(chunkX / this.distribution.noiseDivisor, chunkY / this.distribution.noiseDivisor) * this.distribution.noiseFactor + this.distribution.noiseAddend;
 			WorldUtil worldUtil = new WorldUtil(world);
-			
+
 			//Do we want to choose a random log?
 			if (this.useRandomLogs) {
-				
+
 				this.logBlock = this.randomLogBlocks[rand.nextInt(this.randomLogBlocks.length)];
 				this.logMeta = this.randomLogMetas[rand.nextInt(this.randomLogMetas.length)];
 			}
-			
+
 			WorldGenerator worldGenerator = null;
 			int finalSize = 4;
         	if (this.maxSize > this.minSize) {
@@ -111,7 +111,7 @@ public class DecoFallenTree extends DecoBase
         	else {
         		worldGenerator = new WorldGenLog(this.logBlock, this.logMeta, this.leavesBlock, this.leavesMeta, finalSize);
         	}
-			
+
             for (int i = 0; i < this.loops; i++)
             {
                 if (isValidLogCondition(noise, strength, rand))
@@ -119,28 +119,28 @@ public class DecoFallenTree extends DecoBase
                     int x22 = chunkX + rand.nextInt(16);// + 8;
                     int z22 = chunkY + rand.nextInt(16);// + 8;
                     int y22 = world.getHeightValue(x22, z22);
-                    
+
                     if (y22 <= this.maxY) {
-                    	
+
 		                // If we're in a village, check to make sure the log has extra room to grow to avoid corrupting the village.
 		                if (hasPlacedVillageBlocks) {
 			                if (!worldUtil.isSurroundedByBlock(Blocks.air, finalSize, SurroundCheckType.CARDINAL, rand, x22, y22, z22)) {
 			                	return;
 			                }
 		                }
-		                
+
                     	worldGenerator.generate(world, rand, x22, y22, z22);
                     }
                 }
             }
 		}
 	}
-	
+
 	/**
 	 * Parameter object for noise calculations.
-	 * 
+	 *
 	 * simplex.noise2(chunkX / noiseDivisor, chunkY / noiseDivisor) * noiseFactor + noiseAddend;
-	 * 
+	 *
 	 * @author WhichOnesPink
 	 * @author Zeno410
 	 *
@@ -150,7 +150,7 @@ public class DecoFallenTree extends DecoBase
 	    public float noiseDivisor;
 	    public float noiseFactor;
 	    public float noiseAddend;
-	    
+
 	    public Distribution(float noiseDivisor, float noiseFactor, float noiseAddend)
 	    {
 	    	this.noiseDivisor = noiseDivisor;
@@ -158,7 +158,7 @@ public class DecoFallenTree extends DecoBase
 	    	this.noiseAddend = noiseAddend;
 	    }
 	}
-	
+
 	public enum LogCondition
 	{
 		ALWAYS_GENERATE,
@@ -167,31 +167,31 @@ public class DecoFallenTree extends DecoBase
 		NOISE_LESS_AND_RANDOM_CHANCE,
 		X_DIVIDED_BY_STRENGTH;
 	}
-	
+
 	public boolean isValidLogCondition(float noise, float strength, Random rand)
 	{
 		switch (this.logCondition)
 		{
 			case ALWAYS_GENERATE:
-				
+
 				return true;
-				
+
 			case RANDOM_CHANCE:
-				
+
 				return (rand.nextInt(this.logConditionChance) == 0);
-			
+
 			case NOISE_GREATER_AND_RANDOM_CHANCE:
-				
+
 				return (noise > this.logConditionNoise && rand.nextInt(this.logConditionChance) == 0);
-				
+
 			case NOISE_LESS_AND_RANDOM_CHANCE:
-				
+
 				return (noise < this.logConditionNoise && rand.nextInt(this.logConditionChance) == 0);
-				
+
 			case X_DIVIDED_BY_STRENGTH:
-				
-				return (rand.nextInt((int) (this.logConditionNoise / strength)) == 0);				
-				
+
+				return (rand.nextInt((int) (this.logConditionNoise / strength)) == 0);
+
 			default:
 				return false;
 		}

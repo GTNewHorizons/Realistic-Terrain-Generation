@@ -1,14 +1,13 @@
 package highlands.biome;
 
 import highlands.worldgen.WorldGenTreePalm;
-
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenDesertIsland extends BiomeGenBaseHighlands
 {
@@ -20,13 +19,13 @@ public class BiomeGenDesertIsland extends BiomeGenBaseHighlands
 		    int grass = 0;
 		    int flowers = 0;
 		    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-		    
+
 	        this.topBlock = Blocks.sand;
 	        this.fillerBlock = Blocks.sand;
 	        this.setHeight(biomeHeight);
 	        this.temperature = 0.8F;
 	        this.rainfall = 0.4F;
-	        
+
 	    }
 
 	    /**
@@ -36,7 +35,7 @@ public class BiomeGenDesertIsland extends BiomeGenBaseHighlands
 	    {
 	        return new WorldGenTallGrass(Blocks.tallgrass, 1);
 	    }
-	    
+
 	    @Override
 	    public WorldGenAbstractTree func_150567_a(Random par1Random)
 	    {
@@ -49,5 +48,5 @@ public class BiomeGenDesertIsland extends BiomeGenBaseHighlands
 			this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
 			((BiomeDecoratorHighlands)this.theBiomeDecorator).genOreHighlands(world, random, x, z, 2, this.theBiomeDecorator.goldGen, 0, 32);
 	    }
-	    
+
 }

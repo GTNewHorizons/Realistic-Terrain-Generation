@@ -1,15 +1,14 @@
 package highlands.worldgen;
 
 import highlands.Highlands;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public class WorldGenAutumnTree extends WorldGenAbstractTree
 {
@@ -32,13 +31,13 @@ public class WorldGenAutumnTree extends WorldGenAbstractTree
         this.blockWood = log;
         this.blockLeaves = autumnYellowLeaves;
         this.vinesGrow = false;
-        
+
         if(Highlands.vanillaBlocksFlag){
         	blockWood = Blocks.log;
         	blockLeaves = Blocks.leaves;
         }
     }
-    
+
     public boolean generateReplaceSapling(World world, Random random, int locX, int locY, int locZ){
     	Block id = world.getBlock(locX, locY, locZ);
     	int meta = world.getBlockMetadata(locX, locY, locZ);
@@ -81,7 +80,7 @@ public class WorldGenAutumnTree extends WorldGenAbstractTree
                         {
                             Block block = par1World.getBlock(l1, i1, j1);
 
-                            if (!par1World.isAirBlock(l1, i1, j1) && 
+                            if (!par1World.isAirBlock(l1, i1, j1) &&
                             		!block.isLeaves(par1World, l1, i1, j1) &&
                             		block != Blocks.grass &&
                             				block != Blocks.dirt &&
@@ -131,7 +130,7 @@ public class WorldGenAutumnTree extends WorldGenAbstractTree
 
                                 if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || par2Random.nextInt(2) != 0 && k1 != 0)
                                 {
- 
+
                                     Block block = par1World.getBlock(j2, j1, l2);
 
                                     if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))

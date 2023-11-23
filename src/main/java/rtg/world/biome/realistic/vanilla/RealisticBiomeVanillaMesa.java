@@ -1,12 +1,9 @@
 package rtg.world.biome.realistic.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
@@ -18,24 +15,26 @@ import rtg.world.biome.deco.collection.DecoCollectionDesertRiver;
 import rtg.world.gen.surface.vanilla.SurfaceVanillaMesa;
 import rtg.world.gen.terrain.vanilla.TerrainVanillaMesa;
 
+import java.util.Random;
+
 public class RealisticBiomeVanillaMesa extends RealisticBiomeVanillaBase
 {
-    
+
     public static Block topBlock = BiomeGenBase.mesa.topBlock;
     public static Block fillerBlock = BiomeGenBase.mesa.fillerBlock;
 
     public RealisticBiomeVanillaMesa(BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             BiomeGenBase.mesa,
             BiomeGenBase.river,
             new TerrainVanillaMesa(),
             new SurfaceVanillaMesa(config, Blocks.sand, (byte)1, Blocks.sand, (byte)1)
         );
-        
+
         this.addDecoCollection(new DecoCollectionDesertRiver());
-        
+
 		DecoBoulder decoBoulder = new DecoBoulder();
 		decoBoulder.boulderBlock = Blocks.cobblestone;
 		decoBoulder.maxY = 83;
@@ -45,12 +44,12 @@ public class RealisticBiomeVanillaMesa extends RealisticBiomeVanillaBase
         decoShrub.loops = 3;
         decoShrub.maxY = 90;
         addDeco(decoShrub);
-        
+
         DecoDeadBush decoDeadBush = new DecoDeadBush();
 		decoDeadBush.maxY = 100;
 		decoDeadBush.loops = 3;
         this.addDeco(decoDeadBush);
-        
+
         DecoCactus decoCactus = new DecoCactus();
         decoCactus.soilBlock = Blocks.sand;
         decoCactus.soilMeta = (byte)1;

@@ -5,15 +5,13 @@
  * are made available under the terms of the GNU Lesser Public License v3
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/lgpl-3.0.txt
- * 
+ *
  * Contributors:
  *     Shinoow -  implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.ritual;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
+import com.shinoow.abyssalcraft.api.AbyssalCraftAPI.ACPotions;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +21,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-import com.shinoow.abyssalcraft.api.AbyssalCraftAPI.ACPotions;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * A Necronomicon Area-of-Effect Ritual

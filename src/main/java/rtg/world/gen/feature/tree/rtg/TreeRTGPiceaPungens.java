@@ -1,11 +1,11 @@
 package rtg.world.gen.feature.tree.rtg;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * Picea Pungens (Colorado Spruce)
@@ -34,7 +34,7 @@ public class TreeRTGPiceaPungens extends TreeRTG
 	 * decoTree.maxCrownSize = 17;<br>
 	 * decoTree.noLeaves = false;<br>
 	 * this.addDeco(decoTree);
-	 * 
+	 *
 	 */
 	public TreeRTGPiceaPungens()
 	{
@@ -49,10 +49,10 @@ public class TreeRTGPiceaPungens extends TreeRTG
     	{
     		return false;
     	}
-    	    	
+
     	int small = (int)Math.ceil((double)(this.crownSize / 2));
     	int large = small;
-    	
+
     	int i, j, k;
     	for(i = 0; i < this.trunkSize; i++)
     	{
@@ -63,7 +63,7 @@ public class TreeRTGPiceaPungens extends TreeRTG
     	for(i = 0; i < large; i++)
     	{
     		if (!this.noLeaves) {
-    			
+
 	    		for(j = -2; j <= 2; j++)
 	    		{
 	    			for(k = -2; k <= 2; k++)
@@ -78,11 +78,11 @@ public class TreeRTGPiceaPungens extends TreeRTG
     		this.placeLogBlock(world, x, y, z, this.logBlock, this.logMeta, this.generateFlag);
     		y++;
     	}
-    	
+
     	for(i = 0; i < small; i++)
     	{
     		if (!this.noLeaves) {
-    			
+
 	    		for(j = -1; j <= 1; j++)
 	    		{
 	    			for(k = -1; k <= 1; k++)
@@ -93,7 +93,7 @@ public class TreeRTGPiceaPungens extends TreeRTG
 	    				}
 	    			}
 	    		}
-	    		
+
 	    		if(i == 0)
 	    		{
 	    			this.placeLeavesBlock(world, x + 1, y, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
@@ -106,27 +106,27 @@ public class TreeRTGPiceaPungens extends TreeRTG
 	    	    	this.placeLeavesBlock(world, x, y, z - 2, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    		}
     		}
-    		
+
     		this.placeLogBlock(world, x, y, z, this.logBlock, this.logMeta, this.generateFlag);
     		y++;
     	}
-    	
+
 		this.placeLogBlock(world, x, y, z, this.logBlock, this.logMeta, this.generateFlag);
-		
+
 		if (!this.noLeaves) {
-			
+
 	    	this.placeLeavesBlock(world, x + 1, y, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    	this.placeLeavesBlock(world, x - 1, y, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    	this.placeLeavesBlock(world, x, y, z + 1, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    	this.placeLeavesBlock(world, x, y, z - 1, this.leavesBlock, this.leavesMeta, this.generateFlag);
-	    	
+
 	    	this.placeLeavesBlock(world, x, y + 1, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
 	    	this.placeLeavesBlock(world, x, y + 2, z, this.leavesBlock, this.leavesMeta, this.generateFlag);
 		}
-		
+
 		return true;
 	}
-	
+
 	@Override
     public void buildBranch(World world, Random rand, int x, int y, int z, int dX, int dZ, int logLength, int leaveSize)
     {
@@ -149,12 +149,12 @@ public class TreeRTGPiceaPungens extends TreeRTG
         	this.placeLogBlock(world, x + (dX * m), y, z + (dZ * m), this.logBlock, this.logMeta, this.generateFlag);
     	}
     }
-	
+
 	@Override
     public void buildLeaves(World world, int x, int y, int z)
     {
 		if (!this.noLeaves) {
-		
+
 	    	Block b = world.getBlock(x, y, z);
 	    	if(b.getMaterial() == Material.air)
 	    	{

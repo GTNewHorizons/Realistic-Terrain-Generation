@@ -6,27 +6,27 @@
 
 package extrabiomes.api;
 
-import java.util.Collection;
-
-import net.minecraft.world.WorldType;
 import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraft.world.WorldType;
+
+import java.util.Collection;
 
 /**
  * This event fires on the ExtrabiomesXL event bus when biomes are added to WorldTypes.
  */
 public class DiscoverWorldTypesEvent extends Event
 {
-    
+
     private final Collection<WorldType> worldTypes;
-    
+
     public DiscoverWorldTypesEvent(Collection<WorldType> worldTypes)
     {
         this.worldTypes = worldTypes;
     }
-    
+
     /**
      * Adds a WorldType to the list of WorldTypes to which ExtrabiomesXL will add its enabled biomes.
-     * 
+     *
      * @param worldType The WorldType to Add
      * @return true if worldType was successfully added
      */

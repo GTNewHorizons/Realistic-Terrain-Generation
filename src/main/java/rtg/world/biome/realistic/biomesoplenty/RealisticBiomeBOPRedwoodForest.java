@@ -1,5 +1,7 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
+import biomesoplenty.api.content.BOPCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -12,27 +14,25 @@ import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.biome.deco.helper.DecoHelper5050;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPRedwoodForest;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPRedwoodForest;
-import biomesoplenty.api.content.BOPCBiomes;
-import biomesoplenty.api.content.BOPCBlocks;
 
 public class RealisticBiomeBOPRedwoodForest extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.redwoodForest;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-	
+
 	public RealisticBiomeBOPRedwoodForest(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPRedwoodForest(58f, 80f, 30f),
 			new SurfaceBOPRedwoodForest(config, topBlock, fillerBlock, false, null, 0.4f)
 		);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
-                    
+
 		DecoBoulder decoBoulder1 = new DecoBoulder();
 		decoBoulder1.boulderBlock = Blocks.cobblestone;
 		decoBoulder1.maxY = 80;
@@ -45,7 +45,7 @@ public class RealisticBiomeBOPRedwoodForest extends RealisticBiomeBOPBase
 		decoBoulder2.strengthFactor = 1f;
 		DecoHelper5050 decoHelper5050 = new DecoHelper5050(decoBoulder1, decoBoulder2);
 		this.addDeco(decoHelper5050);
-        
+
 		DecoFallenTree decoFallenTree = new DecoFallenTree();
 		decoFallenTree.distribution.noiseDivisor = 80f;
 		decoFallenTree.distribution.noiseFactor = 60f;

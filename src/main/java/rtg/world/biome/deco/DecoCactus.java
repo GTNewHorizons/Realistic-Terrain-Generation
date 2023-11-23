@@ -1,9 +1,5 @@
 package rtg.world.biome.deco;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CACTUS;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -14,8 +10,12 @@ import rtg.util.OpenSimplexNoise;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.feature.WorldGenCacti;
 
+import java.util.Random;
+
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CACTUS;
+
 /**
- * 
+ *
  * @author WhichOnesPink
  *
  */
@@ -28,11 +28,11 @@ public class DecoCactus extends DecoBase
 	public boolean sandOnly;
     public Block soilBlock;
     public byte soilMeta;
-	
+
 	public DecoCactus()
 	{
 		super();
-		
+
 		/**
 		 * Default values.
 		 * These can be overridden when configuring the Deco object in the realistic biome.
@@ -47,16 +47,16 @@ public class DecoCactus extends DecoBase
 
 		this.addDecoTypes(DecoType.CACTUS);
 	}
-	
+
 	@Override
 	public void generate(RealisticBiomeBase biome, World world, Random rand, int chunkX, int chunkY, OpenSimplexNoise simplex, CellNoise cell, float strength, float river, boolean hasPlacedVillageBlocks)
 	{
 		if (this.allowed) {
-			
+
 			if (TerrainGen.decorate(world, rand, chunkX, chunkY, CACTUS)) {
-	            
+
 				WorldGenerator worldGenerator = new WorldGenCacti(this.sandOnly, 0, this.soilBlock, this.soilMeta);
-				
+
                 int loopCount = this.loops;
                 loopCount = (this.strengthFactor > 0f) ? (int)(this.strengthFactor * strength) : loopCount;
 	            for (int i = 0; i < loopCount*10; i++)

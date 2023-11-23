@@ -1,7 +1,7 @@
 package biomesoplenty.api;
 
-import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameData;
+import net.minecraft.block.Block;
 
 public class BOPBlockHelper
 {

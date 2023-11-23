@@ -1,7 +1,6 @@
 package rtg.config.sushicraft;
 
 import net.minecraftforge.common.config.Configuration;
-import rtg.api.biome.growthcraft.config.BiomeConfigGC;
 import rtg.api.biome.sushicraft.config.BiomeConfigSC;
 import rtg.config.BiomeConfigManager;
 import rtg.util.Logger;

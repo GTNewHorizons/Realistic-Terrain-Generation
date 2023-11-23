@@ -3,9 +3,6 @@ package highlands.biome;
 import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenHighlandsShrub;
 import highlands.worldgen.WorldGenSmallPlants;
-
-import java.util.Random;
-
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -14,6 +11,8 @@ import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import java.util.Random;
+
 public class BiomeGenShrubland extends BiomeGenBaseHighlands
 {
 	private static final Height biomeHeight = new Height(0.1F, 0.3F);
@@ -21,21 +20,21 @@ public class BiomeGenShrubland extends BiomeGenBaseHighlands
 	public BiomeGenShrubland(int par1)
     {
         super(par1);
-        
+
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
-        
+
 	    int trees = 2;
 	    int grass = 12;
 	    int flowers = 2;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-        
+
 	    this.theBiomeDecorator.generateLakes = true;
 	    this.setHeight(biomeHeight);
         this.temperature = 0.6F;
         this.rainfall = 0.5F;
-        
+
     }
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		int i = rand.nextInt(9);
 		switch(i){

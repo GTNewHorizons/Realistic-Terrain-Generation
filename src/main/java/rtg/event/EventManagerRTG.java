@@ -1,26 +1,23 @@
 package rtg.event;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.WeakHashMap;
-
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.*;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.OreGenEvent;
+import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent;
+import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
-
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-
 import rtg.config.rtg.ConfigRTG;
 import rtg.util.Acceptor;
 import rtg.util.Logger;
@@ -34,6 +31,10 @@ import rtg.world.gen.feature.tree.rtg.TreeRTG;
 import rtg.world.gen.genlayer.RiverRemover;
 import rtg.world.gen.structure.MapGenScatteredFeatureRTG;
 import rtg.world.gen.structure.MapGenVillageRTG;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.WeakHashMap;
 
 
 public class EventManagerRTG
@@ -207,7 +208,7 @@ public class EventManagerRTG
                 default:
                 	break;
             }
-            
+
             Logger.debug("event newGen = %s", event.newGen.toString());
         }
     }
@@ -380,7 +381,7 @@ public class EventManagerRTG
 
         @SubscribeEvent
         public void onWorldUnload(WorldEvent.Unload event) {
-        	
+
             // Reset the world seed so that it logs on the next server start if the seed is the same as the last load.
             worldSeed = 0;
         }

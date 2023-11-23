@@ -1,10 +1,10 @@
 package highlands.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenDeadBush2 extends WorldGenerator
 {
@@ -21,7 +21,7 @@ public class WorldGenDeadBush2 extends WorldGenerator
         int var11;
 
         Block block = null;
-        do 
+        do
         {
             block = par1World.getBlock(par3,  par4, par5);
             if (block != null && !block.isLeaves(par1World, par3, par4, par5))

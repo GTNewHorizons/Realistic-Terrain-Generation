@@ -1,5 +1,6 @@
 package rtg.world.biome.realistic.highlands;
 
+import cpw.mods.fml.common.Loader;
 import highlands.api.HighlandsBiomes;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
@@ -7,10 +8,9 @@ import rtg.api.biome.highlands.config.BiomeConfigHL;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
-import cpw.mods.fml.common.Loader;
 
 public class RealisticBiomeHLBase extends RealisticBiomeBase
-{	
+{
 	//Main biomes
 	public static RealisticBiomeBase hl_Alps;
 	public static RealisticBiomeBase hl_AutumnForest;
@@ -41,7 +41,7 @@ public class RealisticBiomeHLBase extends RealisticBiomeBase
 	public static RealisticBiomeBase hl_Tundra;
 	public static RealisticBiomeBase hl_Woodlands;
 	public static RealisticBiomeBase hl_WoodsMountains;
-    
+
     //Sub biomes
 	public static RealisticBiomeBase hl_BaldHill;
 	public static RealisticBiomeBase hl_Canyon;
@@ -56,18 +56,18 @@ public class RealisticBiomeHLBase extends RealisticBiomeBase
 	public static RealisticBiomeBase hl_Valley;
 	public static RealisticBiomeBase hl_VolcanoIsland;
 	public static RealisticBiomeBase hl_WindyIsland;
-    
+
     //Border biomes
 	public static RealisticBiomeBase hl_Shrubland;
-	
+
 	public RealisticBiomeHLBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
 	{
 		super(config, b, riverbiome, t, s);
-		
+
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
 	}
-	
+
 	public static void addBiomes()
 	{
 		if (Loader.isModLoaded("Highlands"))

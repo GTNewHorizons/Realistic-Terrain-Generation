@@ -2,12 +2,11 @@ package highlands.worldgen;
 
 import highlands.Highlands;
 import highlands.api.HighlandsBlocks;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
 {
@@ -30,7 +29,7 @@ public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
         this.maxHeight = maxH;
         this.trunk2 = thickTrunk;
     }
-    
+
     public WorldGenTreeFir(int minH, int maxH, boolean notify, boolean thickTrunk){
     	this(0, 0, HighlandsBlocks.firWood, HighlandsBlocks.firLeaves, minH, maxH, notify, thickTrunk);
     	if(Highlands.vanillaBlocksFlag){
@@ -45,20 +44,20 @@ public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
     {
     	this.worldObj = world;
     	this.random = random;
-    	
+
     	boolean isWide = (random.nextInt(3) == 0);
     	int treeHeight = minHeight + random.nextInt(maxHeight);
-    	
-        
-        if(!isLegalTreePosition(world, locX, locY, locZ) 
+
+
+        if(!isLegalTreePosition(world, locX, locY, locZ)
         		&& world.getBlock(locX, locY-1, locZ) != Blocks.snow)return false;
         if(!isCubeClear(locX, locY+3, locZ, 2, 10))return false;
-    	
+
 		//generates the trunk
     	genTree(world, random, locX, locY, locZ, treeHeight, isWide);
-    	
-    	
-    	
+
+
+
     	if(this.trunk2){
     		genTree(world, random, locX+1, locY, locZ, treeHeight, isWide);
     		genTree(world, random, locX, locY, locZ+1, treeHeight, isWide);
@@ -67,20 +66,20 @@ public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
     	this.worldObj = null;
     	return true;
     }
-    
-    
+
+
     //TREE GENERATORS
-    
+
 	private boolean genTree(World world, Random random, int locX, int locY, int locZ, int treeHeight, boolean isWide){
     	//generates the trunk
     	for(int i = 0; i < treeHeight; i++){
     		setBlockInWorld(locX, locY + i, locZ, this.wood, this.woodMeta);
     	}
-    	
+
     	//generates the leaves
     	double leafRadius = 4.5;
     	double finalRadius = 2.5;
-    	
+
     	int h0 = 6;
     	if(treeHeight < 16) h0 = 3;
     	int h;
@@ -100,9 +99,9 @@ public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
     			h++;
     			generateLeafLayerCircleNoise(world, random, leafRadius - 1.5, locX, locZ, h);
     		}
-    		
+
     		leafRadius -= (leafRadius - finalRadius)/3.0;
-    		
+
     	}
     	//generate top of tree
     	if(isWide){
@@ -118,7 +117,7 @@ public class WorldGenTreeFir extends WorldGenHighlandsTreeBase
     	setBlockInWorld(locX, h, locZ, this.leaves, this.leavesMeta);
     	return true;
     }
-    
+
 }
 
 

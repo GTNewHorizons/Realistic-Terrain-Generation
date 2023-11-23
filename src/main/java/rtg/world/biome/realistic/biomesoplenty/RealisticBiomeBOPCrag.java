@@ -1,25 +1,25 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
+import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
-import rtg.world.gen.surface.biomesoplenty.SurfaceBOPCrag;
-import rtg.world.gen.terrain.biomesoplenty.TerrainBOPCrag;
-import biomesoplenty.api.content.BOPCBiomes;
 import rtg.world.biome.deco.DecoPond;
 import rtg.world.biome.deco.helper.DecoHelperBorder;
+import rtg.world.gen.surface.biomesoplenty.SurfaceBOPCrag;
+import rtg.world.gen.terrain.biomesoplenty.TerrainBOPCrag;
 
 public class RealisticBiomeBOPCrag extends RealisticBiomeBOPBase
-{	
+{
 	public static BiomeGenBase bopBiome = BOPCBiomes.crag;
-	
+
 	public static Block topBlock = bopBiome.topBlock;
 	public static Block fillerBlock = bopBiome.fillerBlock;
-		
+
 	public RealisticBiomeBOPCrag(BiomeConfig config)
 	{
-		super(config, 
+		super(config,
 			bopBiome, BiomeGenBase.river,
 			new TerrainBOPCrag(90f),
 			new SurfaceBOPCrag(config, topBlock, fillerBlock, topBlock)

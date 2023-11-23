@@ -3,10 +3,13 @@ package rtg.world.biome.realistic.sugiforest;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.sugiforest.config.BiomeConfigSFSugiForest;
-import rtg.world.biome.deco.*;
+import rtg.world.biome.deco.DecoBaseBiomeDecorations;
+import rtg.world.biome.deco.DecoFallenTree;
+import rtg.world.biome.deco.DecoFlowersRTG;
+import rtg.world.biome.deco.DecoGrass;
+import rtg.world.biome.deco.DecoShrub;
 import rtg.world.gen.surface.sugiforest.SurfaceSFSugiForest;
 import rtg.world.gen.terrain.sugiforest.TerrainSFSugiForest;
 
@@ -17,8 +20,8 @@ public class RealisticBiomeSFSugiForest extends RealisticBiomeSFBase
 
     public RealisticBiomeSFSugiForest(BiomeGenBase sfBiome, BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             sfBiome, BiomeGenBase.river,
             new TerrainSFSugiForest(),
             new SurfaceSFSugiForest(config, sfBiome.topBlock, sfBiome.fillerBlock, false, null, 0f, 1.5f, 60f, 65f, 1.5f, Blocks.dirt, (byte)2, 0.10f)
@@ -43,7 +46,7 @@ public class RealisticBiomeSFSugiForest extends RealisticBiomeSFBase
         decoShrubSugi.strengthFactor = 4f;
         decoShrubSugi.chance = 4;
         this.addDeco(decoShrubSugi);
-		
+
 		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
 		this.addDeco(decoBaseBiomeDecorations);
 

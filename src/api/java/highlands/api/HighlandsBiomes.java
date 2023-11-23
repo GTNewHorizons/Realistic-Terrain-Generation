@@ -1,17 +1,17 @@
 package highlands.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /*
  * Highlands biomes - Highlands API
- * 
+ *
  * This class contains all of the biomes for Highlands.
  * Only access this class in Post Initialization!
  * The values are populated during Highlands initialization.
@@ -49,10 +49,10 @@ public class HighlandsBiomes {
     public static BiomeGenBase steppe;
     public static BiomeGenBase glacier;
     //public static BiomeGenBase everglades;
-    
+
     //improved ocean biome
     public static BiomeGenBase ocean2; //This biome is incompatible with RTG.
-    
+
     //Sub Biomes
     public static BiomeGenBase forestIsland;
     public static BiomeGenBase jungleIsland;
@@ -67,28 +67,28 @@ public class HighlandsBiomes {
     public static BiomeGenBase baldHill;
     public static BiomeGenBase oasis;
     public static BiomeGenBase canyon;
-    
+
     //Border Biomes
     public static BiomeGenBase shrubland;
-    
-    
+
+
     //ArrayList of biomes for the Highlands worldtype
     public static ArrayList<BiomeGenBase> biomesForHighlands;
-    
+
     //ArrayList of Highlands biomes (not including default ones, these will be added to the default world
     public static ArrayList<BiomeGenBase> biomesForDefault;
-    
+
     //ArrayList of all Highlands sub-biomes (not vanilla ones)
     public static ArrayList<BiomeGenBase> subBiomes;
-    
-    
+
+
     public static void initBiomeArrays(){
     	biomesForHighlands = new ArrayList<BiomeGenBase>();
     	biomesForDefault = new ArrayList<BiomeGenBase>();
     	subBiomes = new ArrayList<BiomeGenBase>();
     }
-    
-    
+
+
     /**
      * Adds a creature to spawn in a certain biome.  Not compatible with DrZhark's CustomMobSpawner.
      * @param biome the biome to add the creature to.  Only works with these biomes, not vanilla or other mods' biomes.
@@ -103,7 +103,7 @@ public class HighlandsBiomes {
 				biome.getSpawnableList(EnumCreatureType.waterCreature)
 				);
     }
-    
+
     public static void addMob(IHighlandsBiome biome, EntityMob mob){
     	List mobList = biome.getSpawnableList(EnumCreatureType.monster);
     	mobList.add(mob);
@@ -113,7 +113,7 @@ public class HighlandsBiomes {
 				biome.getSpawnableList(EnumCreatureType.waterCreature)
 				);
     }
-    
+
     public static void addWaterCreature(IHighlandsBiome biome, EntityCreature creature){
     	List waterCreatureList = biome.getSpawnableList(EnumCreatureType.waterCreature);
     	waterCreatureList.add(creature);

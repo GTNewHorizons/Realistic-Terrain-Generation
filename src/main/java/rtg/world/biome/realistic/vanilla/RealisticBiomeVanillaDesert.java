@@ -1,11 +1,8 @@
 package rtg.world.biome.realistic.vanilla;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
@@ -14,24 +11,26 @@ import rtg.world.biome.deco.collection.DecoCollectionDesertRiver;
 import rtg.world.gen.surface.vanilla.SurfaceVanillaDesert;
 import rtg.world.gen.terrain.vanilla.TerrainVanillaDesert;
 
+import java.util.Random;
+
 public class RealisticBiomeVanillaDesert extends RealisticBiomeVanillaBase
 {
-    
+
     public static Block topBlock = BiomeGenBase.desert.topBlock;
     public static Block fillerBlock = BiomeGenBase.desert.fillerBlock;
 
     public RealisticBiomeVanillaDesert(BiomeConfig config)
     {
-    
-        super(config, 
+
+        super(config,
             BiomeGenBase.desert,
             BiomeGenBase.river,
             new TerrainVanillaDesert(),
             new SurfaceVanillaDesert(config, topBlock, fillerBlock));
-        
+
         this.waterSurfaceLakeChance = 0;
         this.noLakes=true;
-        
+
 		this.addDecoCollection(new DecoCollectionDesertRiver());
 		this.addDecoCollection(new DecoCollectionDesert());
     }

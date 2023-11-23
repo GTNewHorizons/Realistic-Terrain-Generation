@@ -4,15 +4,14 @@ import highlands.api.HighlandsBlocks;
 import highlands.worldgen.WorldGenSmallPlants;
 import highlands.worldgen.WorldGenTreeMangrove;
 import highlands.worldgen.WorldGenTreePalm;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class BiomeGenEverglades extends BiomeGenBaseHighlands
 {
@@ -25,15 +24,15 @@ public class BiomeGenEverglades extends BiomeGenBaseHighlands
 	    int flowers = 0;
 	    int plants = 0;
 	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
-	    
+
         this.topBlock = Blocks.grass;
         this.fillerBlock = Blocks.dirt;
         this.setHeight(biomeHeight);
         this.temperature = 0.7F;
         this.rainfall = 1.2F;
-	        
+
 	}
-	
+
 	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
 		return (WorldGenerator)(rand.nextInt(2) == 0 ? new WorldGenSmallPlants(HighlandsBlocks.cattail)
 		: new WorldGenSmallPlants(HighlandsBlocks.leafyFern));
@@ -46,7 +45,7 @@ public class BiomeGenEverglades extends BiomeGenBaseHighlands
     {
         return new WorldGenTallGrass(Blocks.tallgrass, 1);
     }
-    
+
     @Override
     public WorldGenAbstractTree func_150567_a(Random par1Random)
     {
@@ -57,15 +56,15 @@ public class BiomeGenEverglades extends BiomeGenBaseHighlands
 	public void decorate(World world, Random random, int x, int z) {
 		BiomeGenBaseHighlands biome = this;
 		this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
-    	
+
     	boolean mangroves = random.nextInt(10) == 0;
     	/*
     	for(int i = par3; i < par3+16; i++){
     		for(int j = par4; i < par4+16; j++){
-    			
+
     			int k = 80;
     			for (boolean var6 = false; (world.getBlockId(i, k, j) == 0 || world.getBlockId(i, k, j) == Block.leaves.blockID) && k > 0; --k);
-    			
+
     			if(k < 64){
     				if(rand.nextInt(10) == 0 && mangroves)new WorldGenTreeMangrove(4, 2, false).generate(world, rand, i, k, j);
     			}
@@ -78,7 +77,7 @@ public class BiomeGenEverglades extends BiomeGenBaseHighlands
     				if(rand.nextInt(20) == 0)this.worldGeneratorSwamp.generate(world, rand, i, k, j);
     				if(rand.nextInt(8) == 0)this.getRandomWorldGenForHighlandsPlants(rand).generate(world, rand, i, k, j);
     			}
-    			
+
     		}
     	}
     	*/
@@ -115,7 +114,7 @@ public class BiomeGenEverglades extends BiomeGenBaseHighlands
     			}
     		}
     	}
-    	
+
     }
 }
 

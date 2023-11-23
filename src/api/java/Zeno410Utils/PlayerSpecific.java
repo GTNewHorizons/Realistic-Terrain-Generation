@@ -4,10 +4,12 @@
  */
 
 package Zeno410Utils;
-import java.io.DataInput;
-import java.io.IOException;
-import java.io.DataOutput;
+
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
 
 /**
  *
@@ -28,10 +30,10 @@ public class PlayerSpecific<Type> {
 
     public final PlayerID player() {return player;}
     public final Type item() {return item;}
-    
+
     public static <StreamType> Streamer<PlayerSpecific<StreamType>> streamer(
             final Streamer<StreamType> substreamer) {
-        
+
         return new Streamer<PlayerSpecific<StreamType>>() {
             PlayerID.PlayerIDStreamer playerStreamer = new PlayerID.PlayerIDStreamer();
 
