@@ -15,8 +15,7 @@ import rtg.world.biome.realistic.RealisticBiomeBase;
 public class MapGenRavineRTG extends MapGenRavine
 {
     private float[] field_75046_d = new float[1024];
-    private static final String __OBFID = "CL_00000390";
-    
+
     private boolean enableRavines;
     private int ravineFrequency;
 
@@ -209,27 +208,27 @@ public class MapGenRavineRTG extends MapGenRavine
         if (!enableRavines) {
             return;
         }
-        
+
         // Use the global settings by default.
         ravineFrequency = ConfigRTG.ravineFrequency;
-        
+
         // If the user has set biome-specific settings, let's use those instead.
         BiomeGenBase biome = world.getBiomeGenForCoords(this.rand.nextInt(16) + chunkX * 16, this.rand.nextInt(16) + chunkZ * 16);
-        
+
         if (biome != null) {
-            
+
 	        RealisticBiomeBase realisticBiome = RealisticBiomeBase.getBiome(biome.biomeID);
-	        
+
 	        if (realisticBiome != null) {
 	        	ravineFrequency = (realisticBiome.config._int(BiomeConfig.ravineFrequencyId) > -1) ? realisticBiome.config._int(BiomeConfig.ravineFrequencyId) : ravineFrequency;
 	        }
         }
-        
+
     	// Return early if ravines are disabled.
         if (ravineFrequency < 1) {
             return;
         }
-        
+
         if (this.rand.nextInt(ravineFrequency) == 0)
         {
             double d0 = (double)(chunkX * 16 + this.rand.nextInt(16));
@@ -267,7 +266,7 @@ public class MapGenRavineRTG extends MapGenRavine
 	        	return true;
 	        }
     	}
-        
+
         return false;
     }
 
@@ -282,9 +281,9 @@ public class MapGenRavineRTG extends MapGenRavine
     /**
      * Digs out the current block, default implementation removes stone, filler, and top block
      * Sets the block to lava if y is less then 10, and air other wise.
-     * If setting to air, it also checks to see if we've broken the surface and if so 
+     * If setting to air, it also checks to see if we've broken the surface and if so
      * tries to make the floor the biome's top block
-     * 
+     *
      * @param data Block data array
      * @param index Pre-calculated index into block data
      * @param x local X position
@@ -294,7 +293,7 @@ public class MapGenRavineRTG extends MapGenRavine
      * @param chunkZ Chunk Y position
      * @param foundTop True if we've encountered the biome's top block. Ideally if we've broken the surface.
      */
-    
+
     @Override
     protected void digBlock(Block[] data, int index, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {

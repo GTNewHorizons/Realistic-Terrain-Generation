@@ -1,14 +1,14 @@
 [{
-  "modid": "${modid}",
-  "name": "${name}",
-  "description": "${description}",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "${url}",
+  "modid": "${modId}",
+  "name": "${modName}",
+  "description": "Adds a new world type which generates realistic terrain for Overworld biomes.",
+  "version": "${modVersion}",
+  "mcversion": "${minecraftVersion}",
+  "url": "https://github.com/GTNewHorizons/Realistic-Terrain-Generation",
   "updateUrl": "",
-  "authorList": [${authorList}],
-  "credits": "${credits}",
-  "logoFile": "${logoFile}",
+  "authorList": ["Team RTG"],
+  "credits": "Forked from RWG by ted80. OpenSimplex Noise by KdotJPG.",
+  "logoFile": "assets/rtg/logo.png",
   "screenshots": [],
   "dependencies": []
 }]

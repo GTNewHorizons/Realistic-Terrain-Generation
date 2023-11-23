@@ -14,8 +14,7 @@ import rtg.world.biome.realistic.RealisticBiomeBase;
 
 public class MapGenCavesRTG extends MapGenCaves
 {
-    private static final String __OBFID = "CL_00000393";
-    
+
     private boolean enableCaves;
     private int caveDensity;
     private int caveFrequency;
@@ -218,37 +217,37 @@ public class MapGenCavesRTG extends MapGenCaves
         if (!enableCaves) {
             return;
         }
-        
+
         // Use the global settings by default.
         caveDensity = ConfigRTG.caveDensity;
         caveFrequency = ConfigRTG.caveFrequency;
 
         // If the user has set biome-specific settings, let's use those instead.
         BiomeGenBase biome = world.getBiomeGenForCoords(this.rand.nextInt(16) + chunkX * 16, this.rand.nextInt(16) + chunkZ * 16);
-        
+
         if (biome != null) {
-        
+
 	        RealisticBiomeBase realisticBiome = RealisticBiomeBase.getBiome(biome.biomeID);
-	        
+
 	        if (realisticBiome != null) {
 		        caveDensity = (realisticBiome.config._int(BiomeConfig.caveDensityId) > -1) ? realisticBiome.config._int(BiomeConfig.caveDensityId) : caveDensity;
 		        caveFrequency = (realisticBiome.config._int(BiomeConfig.caveFrequencyId) > -1) ? realisticBiome.config._int(BiomeConfig.caveFrequencyId) : caveFrequency;
 	        }
         }
-        
+
     	// Return early if caves are disabled.
         if (caveDensity < 1 || caveFrequency < 1) {
             return;
         }
-        
+
         caveDensity = (caveDensity < 1) ? 1 : ((caveDensity > 39) ? 39 : caveDensity);
         caveDensity += 1;
-        
+
         int i1 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(caveDensity) + 1) + 1);
 
         caveFrequency = (caveFrequency < 1) ? 1 : ((caveFrequency > 39) ? 39 : caveFrequency);
         caveFrequency += 1;
-        
+
         if (this.rand.nextInt(caveFrequency) != 0)
         {
             i1 = 0;
@@ -290,7 +289,7 @@ public class MapGenCavesRTG extends MapGenCaves
     }
 
     //Exception biomes to make sure we generate like vanilla
-    
+
     private boolean isExceptionBiome(BiomeGenBase biome)
     {
     	if (biome != null) {
@@ -304,13 +303,13 @@ public class MapGenCavesRTG extends MapGenCaves
 	        	return true;
 	        }
     	}
-        
+
         return false;
     }
 
     //Determine if the block at the specified location is the top block for the biome, we take into account
     //Vanilla bugs to make sure that we generate the map the same way vanilla does.
-    
+
     private boolean isTopBlock(Block[] data, int index, int x, int y, int z, int chunkX, int chunkZ)
     {
         BiomeGenBase biome = worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
@@ -320,9 +319,9 @@ public class MapGenCavesRTG extends MapGenCaves
     /**
      * Digs out the current block, default implementation removes stone, filler, and top block
      * Sets the block to lava if y is less then 10, and air other wise.
-     * If setting to air, it also checks to see if we've broken the surface and if so 
+     * If setting to air, it also checks to see if we've broken the surface and if so
      * tries to make the floor the biome's top block
-     * 
+     *
      * @param data Block data array
      * @param index Pre-calculated index into block data
      * @param x local X position
@@ -332,7 +331,7 @@ public class MapGenCavesRTG extends MapGenCaves
      * @param chunkZ Chunk Y position
      * @param foundTop True if we've encountered the biome's top block. Ideally if we've broken the surface.
      */
-    
+
     @Override
     protected void digBlock(Block[] data, int index, int x, int y, int z, int chunkX, int chunkZ, boolean foundTop)
     {

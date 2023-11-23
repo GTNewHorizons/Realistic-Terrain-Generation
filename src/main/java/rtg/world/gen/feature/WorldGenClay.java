@@ -12,7 +12,6 @@ public class WorldGenClay extends WorldGenerator
 {
     private Block field_150519_a;
     private int numberOfBlocks;
-    private static final String __OBFID = "CL_00000426";
     private int mineableBlockMeta;
 
     public WorldGenClay(Block block, int metadata, int amount)
@@ -32,7 +31,7 @@ public class WorldGenClay extends WorldGenerator
         double d4 = (double)(p_76484_4_ + p_76484_2_.nextInt(3) - 2);
         double d5 = (double)(p_76484_4_ + p_76484_2_.nextInt(3) - 2);
         Block b;
-        
+
         for (int l = 0; l <= this.numberOfBlocks; ++l)
         {
             double d6 = d0 + (d1 - d0) * (double)l / (double)this.numberOfBlocks;
@@ -64,7 +63,7 @@ public class WorldGenClay extends WorldGenerator
                             {
                                 double d14 = ((double)i3 + 0.5D - d8) / (d10 / 2.0D);
                                 b = p_76484_1_.getBlock(k2, l2, i3);
-                                
+
                                 if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (b == Blocks.grass || b == Blocks.dirt || b == Blocks.sand || b == Blocks.gravel))
                                 {
                                     p_76484_1_.setBlock(k2, l2, i3, this.field_150519_a, mineableBlockMeta, 2);

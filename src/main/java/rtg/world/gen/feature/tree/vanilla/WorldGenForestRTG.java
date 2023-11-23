@@ -15,15 +15,14 @@ public class WorldGenForestRTG extends WorldGenForest
 	public byte logMeta = 0;
 	public Block leavesBlock = Blocks.leaves;
 	public byte leavesMeta = 0;
-	
+
     private boolean field_150531_a;
-    private static final String __OBFID = "CL_00000401";
 
     public WorldGenForestRTG()
     {
         this(false, false);
     }
-    
+
     public WorldGenForestRTG(boolean doBlockNotify, boolean p_i45449_2_)
     {
         super(doBlockNotify, p_i45449_2_);

@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {url = "http://files.minecraftforge.net/maven"}
+        maven {url = "https://oss.sonatype.org/content/repositories/snapshots/"}
+    }
+    dependencies {classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'}
+}
+apply plugin: 'forge'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+ext.ref = parseprops(file('build.properties'))
+
+group = ref.package_base + '.' + ref.mod_id
+archivesBaseName = ref.mod_id
+version = (System.getenv("TRAVIS") ? "1.7.10-DEV-" + System.getenv('TRAVIS_BUILD_NUMBER') : ref.mc_version + '-' + ref.mod_version)
+def versionName = (System.getenv("TRAVIS") ? "1.7.10-" + ref.mod_version + "-DEV-" +  System.getenv('TRAVIS_BUILD_NUMBER') : version)
+
+minecraft {
+    version = ref.mcf_version + '-1.7.10'
+    runDir = ref.run_dir
+    replace '@MOD_NAME@', ref.mod_name
+    replace '@MOD_ID@', ref.mod_id
+    replace '@MOD_VERSION@', versionName
+    replace '@MCF_VERSION@', ref.mcf_version
+    if (ref.mod_deps != "") replace '@MOD_DEPS@', ";" + ref.mod_deps
+    else replace '@MOD_DEPS@', ''
+    replaceIn 'ModInfo.java'
+}
+
+dependencies {}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+		expand ([
+			'modid':ref.mod_id,
+			'name':ref.mod_name,
+			'description':ref.mod_desc,
+			'version':ref.mod_version,
+			'mcversion':ref.mc_version,
+			'url':ref.mod_url,
+			'authorList':ref.mod_author,
+			'credits':ref.mod_creds,
+			'logoFile':ref.mod_logo,
+		])
+	}
+	from(sourceSets.main.resources.srcDirs) {exclude 'mcmod.info'}
+}
+
+def parseprops(File cfg) {
+    cfg.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+// run 'gradle -DEBUG [runClient|runServer]' for a debug session
+allprojects {
+    tasks.withType(JavaExec) {
+        jvmArgs "-Xms2G", "-Xmx4G"
+        if (System.getProperty('EBUG', 'false') == 'true') {
+            jvmArgs '-agentlib:jdwp=transport=dt_socket,address=localhost:5005,server=y,suspend=y'
+        }
+    }
+}

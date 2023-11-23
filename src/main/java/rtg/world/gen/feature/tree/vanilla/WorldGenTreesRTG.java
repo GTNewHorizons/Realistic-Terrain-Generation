@@ -21,13 +21,12 @@ public class WorldGenTreesRTG extends WorldGenTrees
     private final int metaWood;
     /** The metadata value of the leaves to use in tree generation. */
     private final int metaLeaves;
-    private static final String __OBFID = "CL_00000438";
 
     public WorldGenTreesRTG()
     {
         this(false);
     }
-    
+
     public WorldGenTreesRTG(boolean doBlockNotify)
     {
         this(doBlockNotify, 4, 0, 0, false);
@@ -100,7 +99,7 @@ public class WorldGenTreesRTG extends WorldGenTrees
                 if (block2 == Blocks.sand && !ConfigRTG.allowTreesToGenerateOnSand) {
                     return false;
                 }
-                
+
                 boolean isSoil = block2.canSustainPlant(world, worldX, worldY - 1, worldZ, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
                 if (isSoil && worldY < 256 - l - 1)
                 {
@@ -240,7 +239,7 @@ public class WorldGenTreesRTG extends WorldGenTrees
 
     /**
      * Grows vines downward from the given block for a given length. Args: World, x, starty, z, vine-length
-     */    
+     */
     private void growVines(World world, int worldX, int worldY, int worldZ, int vineLength)
     {
         this.setBlockAndNotifyAdequately(world, worldX, worldY, worldZ, Blocks.vine, vineLength);
