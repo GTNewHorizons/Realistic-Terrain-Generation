@@ -34,5 +34,11 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
+    compileOnly("curse.maven:biomes-o-plenty-220318:2499612")
+    compileOnly("curse.maven:chromaticraft-235590:4721192")
+    compileOnly("curse.maven:extrabiomesxl-60041:2273301")
+    compileOnly("curse.maven:growthcraft-community-edition-235092:4464624")
+    compileOnly("curse.maven:highlands-221226:2227924")
+    compileOnly("curse.maven:undergroundbiomesconstructs-72744:2304497")
     compileOnly(deobf("https://www.dropbox.com/s/v5qlzx1ldmxwfxe/Enhanced%20Biomes%202.5%20for%20MC%201.7.10.jar?dl=1", "Enhanced Biomes 2.5 for MC 1.7.10.jar"))
 }
