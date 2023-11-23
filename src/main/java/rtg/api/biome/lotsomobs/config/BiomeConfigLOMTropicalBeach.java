@@ -1,10 +1,8 @@
 package rtg.api.biome.lotsomobs.config;
 
+public class BiomeConfigLOMTropicalBeach extends BiomeConfigLOMBase {
 
-public class BiomeConfigLOMTropicalBeach extends BiomeConfigLOMBase
-{
-    public BiomeConfigLOMTropicalBeach()
-    {
+    public BiomeConfigLOMTropicalBeach() {
         super("tropicalbeach");
     }
 }

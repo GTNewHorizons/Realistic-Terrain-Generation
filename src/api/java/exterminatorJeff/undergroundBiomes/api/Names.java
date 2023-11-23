@@ -1,6 +1,5 @@
 package exterminatorJeff.undergroundBiomes.api;
 
-
 public class Names {
 
     private final String internal;
@@ -27,5 +26,7 @@ public class Names {
     }
 
     @Override
-    public String toString() {return external();}
+    public String toString() {
+        return external();
+    }
 }

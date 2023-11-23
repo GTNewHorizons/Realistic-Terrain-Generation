@@ -1,19 +1,19 @@
 package rtg.world.gen.surface.biomesoplenty;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import java.util.Random;
-
-public class SurfaceBOPVolcano extends SurfaceBase
-{
+public class SurfaceBOPVolcano extends SurfaceBase {
 
     private Block blockMixTop;
     private byte byteMixTop;
@@ -24,9 +24,9 @@ public class SurfaceBOPVolcano extends SurfaceBase
     private float floSmallWidth;
     private float floSmallStrength;
 
-    public SurfaceBOPVolcano(BiomeConfig config, Block top, byte topByte, Block filler, byte fillerByte, Block mixTop, byte mixTopByte, Block mixFiller,
-        byte mixFillerByte, float mixWidth, float mixHeight, float smallWidth, float smallStrength)
-    {
+    public SurfaceBOPVolcano(BiomeConfig config, Block top, byte topByte, Block filler, byte fillerByte, Block mixTop,
+        byte mixTopByte, Block mixFiller, byte mixFillerByte, float mixWidth, float mixHeight, float smallWidth,
+        float smallStrength) {
 
         super(config, top, topByte, filler, fillerByte);
 
@@ -42,73 +42,52 @@ public class SurfaceBOPVolcano extends SurfaceBase
     }
 
     @Override
-    public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand,
-        OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
-    {
+    public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world,
+        Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base) {
 
         float c = CliffCalculator.calc(x, y, noise);
         boolean cliff = c > 1.4f ? true : false;
         boolean mix = false;
 
-        for (int k = 255; k > -1; k--)
-        {
+        for (int k = 255; k > -1; k--) {
             Block b = blocks[(y * 16 + x) * 256 + k];
-            if (b == Blocks.air)
-            {
+            if (b == Blocks.air) {
                 depth = -1;
-            }
-            else if (b == Blocks.stone)
-            {
+            } else if (b == Blocks.stone) {
                 depth++;
 
-                if (cliff)
-                {
-                    if (depth > -1 && depth < 2)
-                    {
+                if (cliff) {
+                    if (depth > -1 && depth < 2) {
                         if (rand.nextInt(3) == 0) {
 
                             blocks[(y * 16 + x) * 256 + k] = hcCobble(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcCobbleMeta(world, i, j, x, y, k);
-                        }
-                        else {
+                        } else {
 
                             blocks[(y * 16 + x) * 256 + k] = hcStone(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcStoneMeta(world, i, j, x, y, k);
                         }
-                    }
-                    else if (depth < 10)
-                    {
+                    } else if (depth < 10) {
                         blocks[(y * 16 + x) * 256 + k] = hcStone(world, i, j, x, y, k);
                         metadata[(y * 16 + x) * 256 + k] = hcStoneMeta(world, i, j, x, y, k);
                     }
-                }
-                else
-                {
-                    if (depth == 0 && k > 61)
-                    {
-                        if (simplex.noise2(i / floMixWidth, j / floMixWidth) + simplex.noise2(i / floSmallWidth, j / floSmallWidth)
-                            * floSmallStrength > floMixHeight)
-                        {
+                } else {
+                    if (depth == 0 && k > 61) {
+                        if (simplex.noise2(i / floMixWidth, j / floMixWidth)
+                            + simplex.noise2(i / floSmallWidth, j / floSmallWidth) * floSmallStrength > floMixHeight) {
                             blocks[(y * 16 + x) * 256 + k] = blockMixTop;
                             metadata[(y * 16 + x) * 256 + k] = byteMixTop;
 
                             mix = true;
-                        }
-                        else
-                        {
+                        } else {
                             blocks[(y * 16 + x) * 256 + k] = topBlock;
                             metadata[(y * 16 + x) * 256 + k] = topBlockMeta;
                         }
-                    }
-                    else if (depth < 4)
-                    {
-                        if (mix)
-                        {
+                    } else if (depth < 4) {
+                        if (mix) {
                             blocks[(y * 16 + x) * 256 + k] = blockMixFiller;
                             metadata[(y * 16 + x) * 256 + k] = byteMixFiller;
-                        }
-                        else
-                        {
+                        } else {
                             blocks[(y * 16 + x) * 256 + k] = fillerBlock;
                             metadata[(y * 16 + x) * 256 + k] = fillerBlockMeta;
                         }

@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLBadlands extends BiomeConfigHLBase {
 
-public class BiomeConfigHLBadlands extends BiomeConfigHLBase
-{
-    public BiomeConfigHLBadlands()
-    {
+    public BiomeConfigHLBadlands() {
         super("badlands");
     }
 }

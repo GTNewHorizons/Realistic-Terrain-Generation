@@ -10,11 +10,11 @@ import java.util.Set;
  *
  * @author Zeno410
  */
-public class TimedHashMap<Key,Value> implements Map<Key,Value> {
-    private final int holdMillis;
-    private  Map<Key,Value> map = new HashMap<Key,Value>();
-    private LinkTail link = new LinkTail();
+public class TimedHashMap<Key, Value> implements Map<Key, Value> {
 
+    private final int holdMillis;
+    private Map<Key, Value> map = new HashMap<Key, Value>();
+    private LinkTail link = new LinkTail();
 
     public TimedHashMap(int holdTicks) {
         this.holdMillis = holdTicks;
@@ -83,26 +83,38 @@ public class TimedHashMap<Key,Value> implements Map<Key,Value> {
     }
 
     abstract class LinkEntry {
+
         LinkEntry next;
+
         abstract boolean old();
+
         abstract void remove();
     }
 
-
     class LinkTail extends LinkEntry {
+
         LinkEntry latest;
+
         LinkTail() {
             this.latest = this;
             this.next = this;
         }
-        boolean old() {return false;}
-        void remove() {throw new RuntimeException();}
+
+        boolean old() {
+            return false;
+        }
+
+        void remove() {
+            throw new RuntimeException();
+        }
+
         void clear() {
             while (next.old()) {
                 next.remove();
                 next = next.next;
             }
         }
+
         void add(Key added) {
             LinkEntry toAdd = new Timed(added);
             toAdd.next = this;
@@ -112,9 +124,11 @@ public class TimedHashMap<Key,Value> implements Map<Key,Value> {
     }
 
     @SuppressWarnings("hiding")
-	class Timed<Key> extends LinkEntry {
+    class Timed<Key> extends LinkEntry {
+
         final long time;
         final Key timed;
+
         Timed(Key timed) {
             this.timed = timed;
             time = System.currentTimeMillis();
@@ -126,11 +140,9 @@ public class TimedHashMap<Key,Value> implements Map<Key,Value> {
 
         @Override
         boolean old() {
-            return (time + holdMillis<System.currentTimeMillis());
+            return (time + holdMillis < System.currentTimeMillis());
         }
-
 
     }
 
 }
-

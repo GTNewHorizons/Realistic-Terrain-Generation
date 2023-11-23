@@ -1,10 +1,8 @@
 package rtg.api.biome.thaumcraft.config;
 
+public class BiomeConfigTCEerie extends BiomeConfigTCBase {
 
-public class BiomeConfigTCEerie extends BiomeConfigTCBase
-{
-    public BiomeConfigTCEerie()
-    {
+    public BiomeConfigTCEerie() {
         super("eerie");
     }
 }

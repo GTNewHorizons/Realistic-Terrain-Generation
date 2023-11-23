@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPCanyon extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPCanyon extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPCanyon()
-    {
+    public BiomeConfigBOPCanyon() {
         super("canyon");
     }
 }

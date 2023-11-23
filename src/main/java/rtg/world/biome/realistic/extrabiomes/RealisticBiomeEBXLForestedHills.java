@@ -1,29 +1,30 @@
 package rtg.world.biome.realistic.extrabiomes;
 
-import extrabiomes.api.BiomeManager;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import extrabiomes.api.BiomeManager;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.extrabiomes.SurfaceEBXLForestedHills;
 import rtg.world.gen.terrain.extrabiomes.TerrainEBXLForestedHills;
 
-public class RealisticBiomeEBXLForestedHills extends RealisticBiomeEBXLBase
-{
-	public static BiomeGenBase ebxlBiome = BiomeManager.forestedhills.get();
+public class RealisticBiomeEBXLForestedHills extends RealisticBiomeEBXLBase {
 
-	public static Block topBlock = ebxlBiome.topBlock;
-	public static Block fillerBlock = ebxlBiome.fillerBlock;
+    public static BiomeGenBase ebxlBiome = BiomeManager.forestedhills.get();
 
-	public RealisticBiomeEBXLForestedHills(BiomeConfig config)
-	{
-		super(config,
-			ebxlBiome, BiomeGenBase.river,
-			new TerrainEBXLForestedHills(240f, 80f, 68f),
-			new SurfaceEBXLForestedHills(config, topBlock, fillerBlock, false, null,3f)
-		);
+    public static Block topBlock = ebxlBiome.topBlock;
+    public static Block fillerBlock = ebxlBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+    public RealisticBiomeEBXLForestedHills(BiomeConfig config) {
+        super(
+            config,
+            ebxlBiome,
+            BiomeGenBase.river,
+            new TerrainEBXLForestedHills(240f, 80f, 68f),
+            new SurfaceEBXLForestedHills(config, topBlock, fillerBlock, false, null, 3f));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

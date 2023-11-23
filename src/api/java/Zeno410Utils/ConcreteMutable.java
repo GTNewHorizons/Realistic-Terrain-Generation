@@ -6,6 +6,7 @@ package Zeno410Utils;
  * @author Zeno410
  */
 public class ConcreteMutable<Type> implements Mutable<Type> {
+
     private Type data;
     private final Trackers<Type> trackers = new Trackers<Type>();
 
@@ -14,9 +15,9 @@ public class ConcreteMutable<Type> implements Mutable<Type> {
     }
 
     public ConcreteMutable() {}
-    
+
     public void set(Type newValue) {
-        if ((data==null&&newValue != null)||(data.equals(value()))){
+        if ((data == null && newValue != null) || (data.equals(value()))) {
             data = newValue;
             trackers.update(data);
         }
@@ -33,6 +34,5 @@ public class ConcreteMutable<Type> implements Mutable<Type> {
     public void stopInforming(Acceptor<Type> target) {
         trackers.stopInforming(target);
     }
-
 
 }

@@ -4,15 +4,13 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainVanillaIceMountains extends TerrainBase
-{
+public class TerrainVanillaIceMountains extends TerrainBase {
 
     private float width;
     private float strength;
     private float terrainHeight;
 
-    public TerrainVanillaIceMountains(float mountainWidth, float mountainStrength, float height)
-    {
+    public TerrainVanillaIceMountains(float mountainWidth, float mountainStrength, float height) {
 
         width = mountainWidth;
         strength = mountainStrength;
@@ -20,8 +18,7 @@ public class TerrainVanillaIceMountains extends TerrainBase
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return terrainLonelyMountain(x, y, simplex, cell, river, strength, width, terrainHeight);
     }
 }

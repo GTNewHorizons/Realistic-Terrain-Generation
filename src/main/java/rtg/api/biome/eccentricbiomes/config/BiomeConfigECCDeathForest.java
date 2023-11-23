@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCDeathForest extends BiomeConfigECCBase {
 
-public class BiomeConfigECCDeathForest extends BiomeConfigECCBase
-{
-    public BiomeConfigECCDeathForest()
-    {
+    public BiomeConfigECCDeathForest() {
         super("deathforest");
     }
 }

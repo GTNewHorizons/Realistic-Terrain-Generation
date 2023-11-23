@@ -10,19 +10,20 @@ import rtg.world.gen.terrain.RaiseEffect;
 import rtg.world.gen.terrain.TerrainBase;
 import rtg.world.gen.terrain.VariableRuggednessEffect;
 
-public class TerrainEBXericShrubland extends TerrainBase
-{    private float minHeight;
+public class TerrainEBXericShrubland extends TerrainBase {
+
+    private float minHeight;
     private float mesaWavelength;
     private float hillStrength;
-    private float topBumpinessHeight=2;
+    private float topBumpinessHeight = 2;
     private float topBumpinessWavelength = 10;
     private HeightEffect height;
     private HeightEffect groundEffect;
 
     private float jitterAmplitude = 2f;
     private float jitterWavelength = 15f;
-	public TerrainEBXericShrubland()
-    {
+
+    public TerrainEBXericShrubland() {
         this.minHeight = 65f;
         this.mesaWavelength = 24f;
         this.hillStrength = 4f;
@@ -35,7 +36,6 @@ public class TerrainEBXericShrubland extends TerrainBase
         topVariation.octave = 1;
         topVariation.wavelength = VariableRuggednessEffect.STANDARD_RUGGEDNESS_WAVELENGTH;
 
-
         // create some bumpiness to disguise the cliff heights
         HeightVariation topBumpiness = new HeightVariation();
         topBumpiness.height = topBumpinessHeight;
@@ -43,16 +43,21 @@ public class TerrainEBXericShrubland extends TerrainBase
         topBumpiness.octave = 3;
 
         // now make the top only show up on mesa
-        height = new VariableRuggednessEffect(new RaiseEffect(0f),topVariation.plus(topBumpiness).plus(new RaiseEffect(hillStrength))
-                ,0.4f,0.3f,mesaWavelength);
+        height = new VariableRuggednessEffect(
+            new RaiseEffect(0f),
+            topVariation.plus(topBumpiness)
+                .plus(new RaiseEffect(hillStrength)),
+            0.4f,
+            0.3f,
+            mesaWavelength);
 
-        height = new JitterEffect(jitterAmplitude,jitterWavelength,height);
+        height = new JitterEffect(jitterAmplitude, jitterWavelength, height);
 
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
-        return riverized(minHeight+groundEffect.added(simplex, cell,x, y),river)+height.added(simplex,cell, x, y);
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        return riverized(minHeight + groundEffect.added(simplex, cell, x, y), river)
+            + height.added(simplex, cell, x, y);
     }
 }

@@ -7,9 +7,12 @@ package Zeno410Utils;
  */
 public class Bomb extends RuntimeException {
 
-    public Bomb() {super();}
+    public Bomb() {
+        super();
+    }
 
-
-    public Bomb(Exception e) {super(e);}
+    public Bomb(Exception e) {
+        super(e);
+    }
 
 }

@@ -9,20 +9,19 @@ import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.TerrainBase;
 import rtg.world.gen.terrain.VariableRuggednessEffect;
 
-public class TerrainEBCarr extends TerrainBase
-{
+public class TerrainEBCarr extends TerrainBase {
 
     private HeightEffect height;
-    public TerrainEBCarr()
-    {
+
+    public TerrainEBCarr() {
         base = 62.5f;
         HeightVariation waterLand = new HeightVariation();
         waterLand.height = 3f;
         waterLand.wavelength = 30;
-        waterLand.octave =VariableRuggednessEffect.STANDARD_RUGGEDNESS_OCTAVE;
+        waterLand.octave = VariableRuggednessEffect.STANDARD_RUGGEDNESS_OCTAVE;
 
-        height = new JitterEffect(15f,30f,waterLand);
-        height = new JitterEffect(5f,10f,height);
+        height = new JitterEffect(15f, 30f, waterLand);
+        height = new JitterEffect(5f, 10f, height);
 
         // add in some occasional hills
         BlendedHillEffect intermittentHills = new BlendedHillEffect();
@@ -30,16 +29,14 @@ public class TerrainEBCarr extends TerrainBase
         intermittentHills.hillBottomSimplexValue = 0.5f;// rarish
         intermittentHills.wavelength = 80f;
 
-        JitterEffect jitteredHills = new JitterEffect(5f,15f,intermittentHills);
+        JitterEffect jitteredHills = new JitterEffect(5f, 15f, intermittentHills);
 
         height = height.plus(jitteredHills);
-
 
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
-        return riverized(base+ height.added(simplex, cell,x, y),river);
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        return riverized(base + height.added(simplex, cell, x, y), river);
     }
 }

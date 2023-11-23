@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLValley extends BiomeConfigHLBase {
 
-public class BiomeConfigHLValley extends BiomeConfigHLBase
-{
-    public BiomeConfigHLValley()
-    {
+    public BiomeConfigHLValley() {
         super("valley");
     }
 }

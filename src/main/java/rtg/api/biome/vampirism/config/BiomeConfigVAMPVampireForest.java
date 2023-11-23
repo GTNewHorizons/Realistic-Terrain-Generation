@@ -1,10 +1,8 @@
 package rtg.api.biome.vampirism.config;
 
+public class BiomeConfigVAMPVampireForest extends BiomeConfigVAMPBase {
 
-public class BiomeConfigVAMPVampireForest extends BiomeConfigVAMPBase
-{
-    public BiomeConfigVAMPVampireForest()
-    {
+    public BiomeConfigVAMPVampireForest() {
         super("vampireforest");
     }
 }

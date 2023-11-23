@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLDunes extends BiomeConfigHLBase {
 
-public class BiomeConfigHLDunes extends BiomeConfigHLBase
-{
-    public BiomeConfigHLDunes()
-    {
+    public BiomeConfigHLDunes() {
         super("dunes");
     }
 }

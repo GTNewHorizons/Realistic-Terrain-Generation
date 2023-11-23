@@ -1,25 +1,23 @@
 package highlands.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /*
  * Highlands biomes - Highlands API
- *
  * This class contains all of the biomes for Highlands.
  * Only access this class in Post Initialization!
  * The values are populated during Highlands initialization.
  */
 public class HighlandsBiomes {
 
-	//main biomes
-	public static BiomeGenBase woodsMountains;
+    // main biomes
+    public static BiomeGenBase woodsMountains;
     public static BiomeGenBase highlandsb;
     public static BiomeGenBase tundra;
     public static BiomeGenBase cliffs;
@@ -48,12 +46,12 @@ public class HighlandsBiomes {
     public static BiomeGenBase desertMountains;
     public static BiomeGenBase steppe;
     public static BiomeGenBase glacier;
-    //public static BiomeGenBase everglades;
+    // public static BiomeGenBase everglades;
 
-    //improved ocean biome
-    public static BiomeGenBase ocean2; //This biome is incompatible with RTG.
+    // improved ocean biome
+    public static BiomeGenBase ocean2; // This biome is incompatible with RTG.
 
-    //Sub Biomes
+    // Sub Biomes
     public static BiomeGenBase forestIsland;
     public static BiomeGenBase jungleIsland;
     public static BiomeGenBase desertIsland;
@@ -68,66 +66,55 @@ public class HighlandsBiomes {
     public static BiomeGenBase oasis;
     public static BiomeGenBase canyon;
 
-    //Border Biomes
+    // Border Biomes
     public static BiomeGenBase shrubland;
 
-
-    //ArrayList of biomes for the Highlands worldtype
+    // ArrayList of biomes for the Highlands worldtype
     public static ArrayList<BiomeGenBase> biomesForHighlands;
 
-    //ArrayList of Highlands biomes (not including default ones, these will be added to the default world
+    // ArrayList of Highlands biomes (not including default ones, these will be added to the default world
     public static ArrayList<BiomeGenBase> biomesForDefault;
 
-    //ArrayList of all Highlands sub-biomes (not vanilla ones)
+    // ArrayList of all Highlands sub-biomes (not vanilla ones)
     public static ArrayList<BiomeGenBase> subBiomes;
 
-
-    public static void initBiomeArrays(){
-    	biomesForHighlands = new ArrayList<BiomeGenBase>();
-    	biomesForDefault = new ArrayList<BiomeGenBase>();
-    	subBiomes = new ArrayList<BiomeGenBase>();
+    public static void initBiomeArrays() {
+        biomesForHighlands = new ArrayList<BiomeGenBase>();
+        biomesForDefault = new ArrayList<BiomeGenBase>();
+        subBiomes = new ArrayList<BiomeGenBase>();
     }
-
 
     /**
-     * Adds a creature to spawn in a certain biome.  Not compatible with DrZhark's CustomMobSpawner.
-     * @param biome the biome to add the creature to.  Only works with these biomes, not vanilla or other mods' biomes.
+     * Adds a creature to spawn in a certain biome. Not compatible with DrZhark's CustomMobSpawner.
+     * 
+     * @param biome    the biome to add the creature to. Only works with these biomes, not vanilla or other mods'
+     *                 biomes.
      * @param creature the creature to add
      */
-    public static void addCreature(IHighlandsBiome biome, EntityCreature creature){
-    	List creatureList = biome.getSpawnableList(EnumCreatureType.creature);
-    	creatureList.add(creature);
-    	biome.setSpawnLists(
-				biome.getSpawnableList(EnumCreatureType.monster),
-				creatureList,
-				biome.getSpawnableList(EnumCreatureType.waterCreature)
-				);
+    public static void addCreature(IHighlandsBiome biome, EntityCreature creature) {
+        List creatureList = biome.getSpawnableList(EnumCreatureType.creature);
+        creatureList.add(creature);
+        biome.setSpawnLists(
+            biome.getSpawnableList(EnumCreatureType.monster),
+            creatureList,
+            biome.getSpawnableList(EnumCreatureType.waterCreature));
     }
 
-    public static void addMob(IHighlandsBiome biome, EntityMob mob){
-    	List mobList = biome.getSpawnableList(EnumCreatureType.monster);
-    	mobList.add(mob);
-    	biome.setSpawnLists(
-				mobList,
-				biome.getSpawnableList(EnumCreatureType.creature),
-				biome.getSpawnableList(EnumCreatureType.waterCreature)
-				);
+    public static void addMob(IHighlandsBiome biome, EntityMob mob) {
+        List mobList = biome.getSpawnableList(EnumCreatureType.monster);
+        mobList.add(mob);
+        biome.setSpawnLists(
+            mobList,
+            biome.getSpawnableList(EnumCreatureType.creature),
+            biome.getSpawnableList(EnumCreatureType.waterCreature));
     }
 
-    public static void addWaterCreature(IHighlandsBiome biome, EntityCreature creature){
-    	List waterCreatureList = biome.getSpawnableList(EnumCreatureType.waterCreature);
-    	waterCreatureList.add(creature);
-    	biome.setSpawnLists(
-				biome.getSpawnableList(EnumCreatureType.monster),
-				biome.getSpawnableList(EnumCreatureType.creature),
-				waterCreatureList
-				);
+    public static void addWaterCreature(IHighlandsBiome biome, EntityCreature creature) {
+        List waterCreatureList = biome.getSpawnableList(EnumCreatureType.waterCreature);
+        waterCreatureList.add(creature);
+        biome.setSpawnLists(
+            biome.getSpawnableList(EnumCreatureType.monster),
+            biome.getSpawnableList(EnumCreatureType.creature),
+            waterCreatureList);
     }
 }
-
-
-
-
-
-
-

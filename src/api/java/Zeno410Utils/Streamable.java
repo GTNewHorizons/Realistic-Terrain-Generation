@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 public interface Streamable {
 
-        abstract public void readFrom(DataInput input) throws IOException ;
-        abstract public void writeTo(DataOutput output) throws IOException;
+    abstract public void readFrom(DataInput input) throws IOException;
+
+    abstract public void writeTo(DataOutput output) throws IOException;
 }

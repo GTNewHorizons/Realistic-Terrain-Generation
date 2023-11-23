@@ -1,10 +1,8 @@
 package rtg.api.biome.forgottennature.config;
 
+public class BiomeConfigFNCrystalForest extends BiomeConfigFNBase {
 
-public class BiomeConfigFNCrystalForest extends BiomeConfigFNBase
-{
-    public BiomeConfigFNCrystalForest()
-    {
+    public BiomeConfigFNCrystalForest() {
         super("crystalforest");
     }
 }

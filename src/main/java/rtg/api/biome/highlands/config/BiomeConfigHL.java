@@ -2,8 +2,8 @@ package rtg.api.biome.highlands.config;
 
 import rtg.api.biome.BiomeConfig;
 
-public class BiomeConfigHL
-{
+public class BiomeConfigHL {
+
     public static BiomeConfig biomeConfigHLAlps;
     public static BiomeConfig biomeConfigHLAutumnForest;
     public static BiomeConfig biomeConfigHLBadlands;
@@ -47,55 +47,20 @@ public class BiomeConfigHL
     public static BiomeConfig biomeConfigHLWindyIsland;
     public static BiomeConfig biomeConfigHLWoodlands;
     public static BiomeConfig biomeConfigHLWoodsMountains;
-    
-    public static BiomeConfig[] getBiomeConfigs()
-    {
-        BiomeConfig[] biomeConfigs = new BiomeConfig[]{
-            biomeConfigHLAlps,
-            biomeConfigHLAutumnForest,
-            biomeConfigHLBadlands,
-            biomeConfigHLBaldHill,
-            biomeConfigHLBirchHills,
-            biomeConfigHLBog,
-            biomeConfigHLCanyon,
-            biomeConfigHLCliffs,
-            biomeConfigHLDesertIsland,
-            biomeConfigHLDesertMountains,
-            biomeConfigHLDunes,
-            biomeConfigHLEstuary,
-            biomeConfigHLFlyingMountains,
-            biomeConfigHLForestIsland,
-            biomeConfigHLGlacier,
-            biomeConfigHLHighlandsB,
-            biomeConfigHLJungleIsland,
-            biomeConfigHLLake,
-            biomeConfigHLLowlands,
-            biomeConfigHLMeadow,
-            biomeConfigHLMesa,
-            biomeConfigHLOasis,
-            biomeConfigHLOutback,
-            biomeConfigHLPinelands,
-            biomeConfigHLRainforest,
-            biomeConfigHLRedwoodForest,
-            biomeConfigHLRockIsland,
-            biomeConfigHLRockMountains,
-            biomeConfigHLSahel,
-            biomeConfigHLSavannah,
-            biomeConfigHLShrubland,
-            biomeConfigHLSnowIsland,
-            biomeConfigHLSnowMountains,
-            biomeConfigHLSteppe,
-            biomeConfigHLTallPineForest,
-            biomeConfigHLTropicalIslands,
-            biomeConfigHLTropics,
-            biomeConfigHLTundra,
-            biomeConfigHLValley,
-            biomeConfigHLVolcanoIsland,
-            biomeConfigHLWindyIsland,
-            biomeConfigHLWoodlands,
-            biomeConfigHLWoodsMountains
-        };
-        
+
+    public static BiomeConfig[] getBiomeConfigs() {
+        BiomeConfig[] biomeConfigs = new BiomeConfig[] { biomeConfigHLAlps, biomeConfigHLAutumnForest,
+            biomeConfigHLBadlands, biomeConfigHLBaldHill, biomeConfigHLBirchHills, biomeConfigHLBog,
+            biomeConfigHLCanyon, biomeConfigHLCliffs, biomeConfigHLDesertIsland, biomeConfigHLDesertMountains,
+            biomeConfigHLDunes, biomeConfigHLEstuary, biomeConfigHLFlyingMountains, biomeConfigHLForestIsland,
+            biomeConfigHLGlacier, biomeConfigHLHighlandsB, biomeConfigHLJungleIsland, biomeConfigHLLake,
+            biomeConfigHLLowlands, biomeConfigHLMeadow, biomeConfigHLMesa, biomeConfigHLOasis, biomeConfigHLOutback,
+            biomeConfigHLPinelands, biomeConfigHLRainforest, biomeConfigHLRedwoodForest, biomeConfigHLRockIsland,
+            biomeConfigHLRockMountains, biomeConfigHLSahel, biomeConfigHLSavannah, biomeConfigHLShrubland,
+            biomeConfigHLSnowIsland, biomeConfigHLSnowMountains, biomeConfigHLSteppe, biomeConfigHLTallPineForest,
+            biomeConfigHLTropicalIslands, biomeConfigHLTropics, biomeConfigHLTundra, biomeConfigHLValley,
+            biomeConfigHLVolcanoIsland, biomeConfigHLWindyIsland, biomeConfigHLWoodlands, biomeConfigHLWoodsMountains };
+
         return biomeConfigs;
     }
 }

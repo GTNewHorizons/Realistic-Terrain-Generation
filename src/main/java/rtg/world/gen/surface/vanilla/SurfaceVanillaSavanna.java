@@ -1,9 +1,12 @@
 package rtg.world.gen.surface.vanilla;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.vanilla.config.BiomeConfigVanillaSavanna;
 import rtg.config.rtg.ConfigRTG;
@@ -13,8 +16,6 @@ import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import java.util.Random;
-
 public class SurfaceVanillaSavanna extends SurfaceBase {
 
     private Block mixBlock;
@@ -22,27 +23,27 @@ public class SurfaceVanillaSavanna extends SurfaceBase {
     private float width;
     private float height;
 
-    public SurfaceVanillaSavanna(BiomeConfig config, Block top, Block filler, Block mix, float mixWidth, float mixHeight)
-    {
+    public SurfaceVanillaSavanna(BiomeConfig config, Block top, Block filler, Block mix, float mixWidth,
+        float mixHeight) {
 
-    	super(config, top, (byte)0, filler, (byte)0);
+        super(config, top, (byte) 0, filler, (byte) 0);
 
         mixBlock = this.getConfigBlock(config, BiomeConfigVanillaSavanna.surfaceMixBlockId, mix);
-        mixBlockMeta = this.getConfigBlockMeta(config, BiomeConfigVanillaSavanna.surfaceMixBlockMetaId, (byte)0);
+        mixBlockMeta = this.getConfigBlockMeta(config, BiomeConfigVanillaSavanna.surfaceMixBlockMetaId, (byte) 0);
 
         width = mixWidth;
         height = mixHeight;
     }
 
     @Override
-    public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
-    {
+    public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world,
+        Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base) {
 
         float c = CliffCalculator.calc(x, y, noise);
         boolean cliff = c > 1.4f;
 
         for (int k = 255; k > -1; k--) {
-        	Block b = blocks[(y * 16 + x) * 256 + k];
+            Block b = blocks[(y * 16 + x) * 256 + k];
             if (b == Blocks.air) {
                 depth = -1;
             } else if (b == Blocks.stone) {
@@ -50,8 +51,8 @@ public class SurfaceVanillaSavanna extends SurfaceBase {
 
                 if (cliff) {
                     if (!ConfigRTG.stoneSavannas) {
-        			    blocks[(y * 16 + x) * 256 + k] = CanyonColour.SAVANNA.getBlockForHeight(i, k,j);
-        		        metadata[(y * 16 + x) * 256 + k] = CanyonColour.SAVANNA.getMetaForHeight(i, k,j);
+                        blocks[(y * 16 + x) * 256 + k] = CanyonColour.SAVANNA.getBlockForHeight(i, k, j);
+                        metadata[(y * 16 + x) * 256 + k] = CanyonColour.SAVANNA.getMetaForHeight(i, k, j);
                     }
                 } else {
                     if (depth == 0 && k > 61) {

@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLCanyon extends BiomeConfigHLBase {
 
-public class BiomeConfigHLCanyon extends BiomeConfigHLBase
-{
-    public BiomeConfigHLCanyon()
-    {
+    public BiomeConfigHLCanyon() {
         super("canyon");
     }
 }

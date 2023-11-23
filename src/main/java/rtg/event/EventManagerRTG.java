@@ -1,9 +1,9 @@
 package rtg.event;
 
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.WeakHashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
@@ -18,6 +18,11 @@ import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent;
 import net.minecraftforge.event.terraingen.WorldTypeEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
+
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import rtg.config.rtg.ConfigRTG;
 import rtg.util.Acceptor;
 import rtg.util.Logger;
@@ -32,13 +37,8 @@ import rtg.world.gen.genlayer.RiverRemover;
 import rtg.world.gen.structure.MapGenScatteredFeatureRTG;
 import rtg.world.gen.structure.MapGenVillageRTG;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.WeakHashMap;
+public class EventManagerRTG {
 
-
-public class EventManagerRTG
-{
     // Event handlers.
     private final WorldEventRTG WORLD_EVENT_HANDLER = new WorldEventRTG();
     private final LoadChunkRTG LOAD_CHUNK_EVENT_HANDLER = new LoadChunkRTG();
@@ -56,8 +56,8 @@ public class EventManagerRTG
 
     }
 
-    public class LoadChunkRTG
-    {
+    public class LoadChunkRTG {
+
         LoadChunkRTG() {
             logEventMessage("Initialising LoadChunkRTG...");
         }
@@ -66,7 +66,8 @@ public class EventManagerRTG
         public void loadChunkRTG(ChunkEvent.Load event) {
 
             // Are we in an RTG world?
-            if (!(event.world.getWorldInfo().getTerrainType() instanceof WorldTypeRTG)) {
+            if (!(event.world.getWorldInfo()
+                .getTerrainType() instanceof WorldTypeRTG)) {
                 return;
             }
 
@@ -77,8 +78,8 @@ public class EventManagerRTG
         }
     }
 
-    public class GenerateMinableRTG
-    {
+    public class GenerateMinableRTG {
+
         GenerateMinableRTG() {
             logEventMessage("Initialising GenerateMinableRTG...");
         }
@@ -87,44 +88,57 @@ public class EventManagerRTG
         public void generateMinableRTG(OreGenEvent.GenerateMinable event) {
 
             // Are we in an RTG world?
-            if (!(event.world.getWorldInfo().getTerrainType() instanceof WorldTypeRTG)) {
+            if (!(event.world.getWorldInfo()
+                .getTerrainType() instanceof WorldTypeRTG)) {
                 return;
             }
 
             switch (event.type) {
 
                 case COAL:
-                    if (!ConfigRTG.generateOreCoal) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreCoal) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 case IRON:
-                    if (!ConfigRTG.generateOreIron) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreIron) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 case REDSTONE:
-                    if (!ConfigRTG.generateOreRedstone) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreRedstone) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 case GOLD:
-                    if (!ConfigRTG.generateOreGold) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreGold) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 case LAPIS:
-                    if (!ConfigRTG.generateOreLapis) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreLapis) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 case DIAMOND:
-                    if (!ConfigRTG.generateOreDiamond) { event.setResult(Result.DENY); }
+                    if (!ConfigRTG.generateOreDiamond) {
+                        event.setResult(Result.DENY);
+                    }
                     return;
 
                 default:
-                	break;
+                    break;
             }
         }
     }
 
-    public class InitBiomeGensRTG
-    {
+    public class InitBiomeGensRTG {
+
         InitBiomeGensRTG() {
             logEventMessage("Initialising InitBiomeGensRTG...");
         }
@@ -137,21 +151,23 @@ public class EventManagerRTG
                 return;
             }
 
-            if (event.newBiomeGens[0].getClass().getName().contains("GenLayerEB")) {
+            if (event.newBiomeGens[0].getClass()
+                .getName()
+                .contains("GenLayerEB")) {
                 return;
             }
 
             try {
                 event.newBiomeGens = new RiverRemover().riverLess(event.originalBiomeGens);
             } catch (ClassCastException ex) {
-                //throw ex;
+                // throw ex;
                 // failed attempt because the GenLayers don't end with GenLayerRiverMix
             }
         }
     }
 
-    public class InitMapGenRTG
-    {
+    public class InitMapGenRTG {
+
         InitMapGenRTG() {
             logEventMessage("Initialising InitMapGenRTG...");
         }
@@ -162,11 +178,13 @@ public class EventManagerRTG
             // If the Overworld isn't an RTG dimension, then we definitely don't want to get involved here.
             // We need to do a try/catch because sometimes this event gets fired before the Overworld has loaded.
             try {
-                if (!(MinecraftServer.getServer().worldServerForDimension(0).getWorldInfo().getTerrainType() instanceof WorldTypeRTG)) {
+                if (!(MinecraftServer.getServer()
+                    .worldServerForDimension(0)
+                    .getWorldInfo()
+                    .getTerrainType() instanceof WorldTypeRTG)) {
                     return;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
 
                 Logger.debug("Overworld not loaded... checking global variable.");
 
@@ -206,15 +224,15 @@ public class EventManagerRTG
                     break;
 
                 default:
-                	break;
+                    break;
             }
 
             Logger.debug("event newGen = %s", event.newGen.toString());
         }
     }
 
-    public class SaplingGrowTreeRTG
-    {
+    public class SaplingGrowTreeRTG {
+
         SaplingGrowTreeRTG() {
             logEventMessage("Initialising SaplingGrowTreeRTG...");
         }
@@ -228,7 +246,9 @@ public class EventManagerRTG
             }
 
             // Are we in an RTG world? Do we have RTG's chunk manager?
-            if (!(event.world.getWorldInfo().getTerrainType() instanceof WorldTypeRTG) || !(event.world.getWorldChunkManager() instanceof WorldChunkManagerRTG)) {
+            if (!(event.world.getWorldInfo()
+                .getTerrainType() instanceof WorldTypeRTG)
+                || !(event.world.getWorldChunkManager() instanceof WorldChunkManagerRTG)) {
                 return;
             }
 
@@ -248,7 +268,8 @@ public class EventManagerRTG
 
             Block saplingBlock = world.getBlock(x, y, z);
 
-            // Are we dealing with a sapling? Sounds like a silly question, but apparently it's one that needs to be asked.
+            // Are we dealing with a sapling? Sounds like a silly question, but apparently it's one that needs to be
+            // asked.
             if (!(saplingBlock instanceof BlockSapling)) {
                 Logger.debug("Cannot grow an RTG tree from a non-sapling block (%s).", saplingBlock.getLocalizedName());
                 return;
@@ -258,14 +279,13 @@ public class EventManagerRTG
             int saplingMeta;
             try {
                 saplingMeta = saplingBlock.getDamageValue(world, x, y, z);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Logger.debug("Could not get sapling meta from sapling block (%s).", saplingBlock.getLocalizedName());
                 saplingMeta = 0;
             }
 
             WorldChunkManagerRTG cmr = (WorldChunkManagerRTG) world.getWorldChunkManager();
-            //BiomeGenBase bgg = cmr.getBiomeGenAt(x, z);
+            // BiomeGenBase bgg = cmr.getBiomeGenAt(x, z);
             BiomeGenBase bgg = world.getBiomeGenForCoords(x, z);
             RealisticBiomeBase rb = RealisticBiomeBase.getBiome(bgg.biomeID);
 
@@ -288,14 +308,24 @@ public class EventManagerRTG
 
                 for (int i = 0; i < biomeTrees.size(); i++) {
 
-                    Logger.debug("Biome Tree #%d = %s", i, biomeTrees.get(i).getClass().getName());
-                    Logger.debug("Biome Tree #%d Sapling Block = %s", i, biomeTrees.get(i).saplingBlock.getClass().getName());
+                    Logger.debug(
+                        "Biome Tree #%d = %s",
+                        i,
+                        biomeTrees.get(i)
+                            .getClass()
+                            .getName());
+                    Logger.debug(
+                        "Biome Tree #%d Sapling Block = %s",
+                        i,
+                        biomeTrees.get(i).saplingBlock.getClass()
+                            .getName());
                     Logger.debug("Biome Tree #%d Sapling Meta = %d", i, biomeTrees.get(i).saplingMeta);
 
-                    if (saplingBlock == biomeTrees.get(i).saplingBlock && saplingMeta == biomeTrees.get(i).saplingMeta) {
+                    if (saplingBlock == biomeTrees.get(i).saplingBlock
+                        && saplingMeta == biomeTrees.get(i).saplingMeta) {
 
-                            validTrees.add(biomeTrees.get(i));
-                            Logger.debug("Valid tree found!");
+                        validTrees.add(biomeTrees.get(i));
+                        Logger.debug("Valid tree found!");
                     }
                 }
 
@@ -308,7 +338,10 @@ public class EventManagerRTG
                     // Get a random tree from the list of valid trees.
                     TreeRTG tree = validTrees.get(rand.nextInt(validTrees.size()));
 
-                    Logger.debug("Tree = %s", tree.getClass().getName());
+                    Logger.debug(
+                        "Tree = %s",
+                        tree.getClass()
+                            .getName());
 
                     // Set the trunk size if min/max values have been set.
                     if (tree.minTrunkSize > 0 && tree.maxTrunkSize > tree.minTrunkSize) {
@@ -336,7 +369,6 @@ public class EventManagerRTG
                     /*
                      * Set the generateFlag to what it needs to be for growing trees from saplings,
                      * generate the tree, and then set it back to what it was before.
-                     *
                      * TODO: Does this affect the generation of normal RTG trees? - Pink
                      */
                     int oldFlag = tree.generateFlag;
@@ -346,23 +378,24 @@ public class EventManagerRTG
 
                     if (generated) {
 
-                        // Sometimes we have to remove the sapling manually because some trees grow around it, leaving the original sapling.
+                        // Sometimes we have to remove the sapling manually because some trees grow around it, leaving
+                        // the original sapling.
                         if (world.getBlock(x, y, z) == saplingBlock) {
-                            world.setBlock(x, y, z, Blocks.air, (byte)0, 2);
+                            world.setBlock(x, y, z, Blocks.air, (byte) 0, 2);
                         }
                     }
-                }
-                else {
+                } else {
 
-                    Logger.debug("There are no RTG trees associated with the sapling on the ground." +
-                        " Generating a vanilla tree instead.");
+                    Logger.debug(
+                        "There are no RTG trees associated with the sapling on the ground."
+                            + " Generating a vanilla tree instead.");
                 }
             }
         }
     }
 
-    public class WorldEventRTG
-    {
+    public class WorldEventRTG {
+
         WorldEventRTG() {
             logEventMessage("Initialising WorldEventRTG...");
         }
@@ -387,23 +420,22 @@ public class EventManagerRTG
         }
     }
 
-    public class DecorateBiomeEventRTG
-    {
+    public class DecorateBiomeEventRTG {
+
         DecorateBiomeEventRTG() {
             logEventMessage("Initialising DecorateBiomeEventRTG...");
         }
 
         @SubscribeEvent
-        public void preBiomeDecorate(DecorateBiomeEvent.Pre event)
-        {
-            //Are we in an RTG world?
-            isWorldTypeRTG = (event.world.getWorldInfo().getTerrainType() instanceof WorldTypeRTG);
+        public void preBiomeDecorate(DecorateBiomeEvent.Pre event) {
+            // Are we in an RTG world?
+            isWorldTypeRTG = (event.world.getWorldInfo()
+                .getTerrainType() instanceof WorldTypeRTG);
         }
     }
 
     /*
      * This method registers most of RTG's event handlers.
-     *
      * We don't need to check if the event handlers are unregistered before registering them
      * because Forge already performs those checks. This means that we could execute this method a
      * million times, and each event handler would still only be registered once.

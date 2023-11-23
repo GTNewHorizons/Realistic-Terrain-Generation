@@ -1,10 +1,8 @@
 package rtg.api.biome.atg.config;
 
+public class BiomeConfigATGTropicalShrubland extends BiomeConfigATGBase {
 
-public class BiomeConfigATGTropicalShrubland extends BiomeConfigATGBase
-{
-    public BiomeConfigATGTropicalShrubland()
-    {
+    public BiomeConfigATGTropicalShrubland() {
         super("tropicalshrubland");
     }
 }

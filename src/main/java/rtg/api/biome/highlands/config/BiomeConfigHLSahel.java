@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLSahel extends BiomeConfigHLBase {
 
-public class BiomeConfigHLSahel extends BiomeConfigHLBase
-{
-    public BiomeConfigHLSahel()
-    {
+    public BiomeConfigHLSahel() {
         super("sahel");
     }
 }

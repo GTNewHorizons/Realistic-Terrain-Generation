@@ -9,17 +9,19 @@ import java.util.Set;
  * @author Zeno410
  */
 public class PlaneLocated<Type> {
-    private HashMap<PlaneLocation,Type> storedVals = new HashMap<PlaneLocation,Type>();
+
+    private HashMap<PlaneLocation, Type> storedVals = new HashMap<PlaneLocation, Type>();
 
     public final Type get(PlaneLocation location) {
         return storedVals.get(location);
     }
+
     public final void put(PlaneLocation location, Type stored) {
         storedVals.put(location, stored);
     }
 
-    public final void putAll(HashMap<PlaneLocation,Type> newValues) {
-        for (PlaneLocation location: newValues.keySet()) {
+    public final void putAll(HashMap<PlaneLocation, Type> newValues) {
+        for (PlaneLocation location : newValues.keySet()) {
             storedVals.put(location, newValues.get(location));
         }
     }
@@ -40,8 +42,12 @@ public class PlaneLocated<Type> {
         return true;
     }
 
-    public int size() {return storedVals.size();}
+    public int size() {
+        return storedVals.size();
+    }
 
-    public Set<PlaneLocation> locations() {return this.storedVals.keySet();}
+    public Set<PlaneLocation> locations() {
+        return this.storedVals.keySet();
+    }
 
 }

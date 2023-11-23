@@ -7,12 +7,11 @@ import rtg.world.gen.terrain.HeightEffect;
 import rtg.world.gen.terrain.HillockEffect;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBScrub extends TerrainBase
-{
+public class TerrainEBScrub extends TerrainBase {
 
     private HeightEffect height;
-    public TerrainEBScrub()
-    {
+
+    public TerrainEBScrub() {
         base = 65f;
         HillockEffect hills = new HillockEffect();
         hills.height = 10;
@@ -24,8 +23,7 @@ public class TerrainEBScrub extends TerrainBase
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
-        return riverized(height.added(simplex, cell, x, y)+ base,river);
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        return riverized(height.added(simplex, cell, x, y) + base, river);
     }
 }

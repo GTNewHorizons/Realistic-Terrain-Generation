@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLBirchForest extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLBirchForest extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLBirchForest()
-    {
+    public BiomeConfigEBXLBirchForest() {
         super("birchforest");
     }
 }

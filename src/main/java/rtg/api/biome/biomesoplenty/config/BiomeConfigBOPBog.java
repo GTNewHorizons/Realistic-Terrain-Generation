@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPBog extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPBog extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPBog()
-    {
+    public BiomeConfigBOPBog() {
         super("bog");
     }
 }

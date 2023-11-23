@@ -1,29 +1,30 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
-import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import biomesoplenty.api.content.BOPCBiomes;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPWasteland;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPWasteland;
 
-public class RealisticBiomeBOPWasteland extends RealisticBiomeBOPBase
-{
-	public static BiomeGenBase bopBiome = BOPCBiomes.wasteland;
+public class RealisticBiomeBOPWasteland extends RealisticBiomeBOPBase {
 
-	public static Block topBlock = bopBiome.topBlock;
-	public static Block fillerBlock = bopBiome.fillerBlock;
+    public static BiomeGenBase bopBiome = BOPCBiomes.wasteland;
 
-	public RealisticBiomeBOPWasteland(BiomeConfig config)
-	{
-		super(config,
-			bopBiome, BiomeGenBase.river,
-			new TerrainBOPWasteland(),
-			new SurfaceBOPWasteland(config, topBlock, fillerBlock)
-		);
+    public static Block topBlock = bopBiome.topBlock;
+    public static Block fillerBlock = bopBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+    public RealisticBiomeBOPWasteland(BiomeConfig config) {
+        super(
+            config,
+            bopBiome,
+            BiomeGenBase.river,
+            new TerrainBOPWasteland(),
+            new SurfaceBOPWasteland(config, topBlock, fillerBlock));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

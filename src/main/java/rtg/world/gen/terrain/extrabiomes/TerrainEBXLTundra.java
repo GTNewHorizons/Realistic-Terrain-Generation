@@ -5,11 +5,9 @@ import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.PlateauEffect;
 
-public class TerrainEBXLTundra extends FunctionalTerrainBase
-{
+public class TerrainEBXLTundra extends FunctionalTerrainBase {
 
-    public TerrainEBXLTundra()
-    {
+    public TerrainEBXLTundra() {
         base = 66;
         HeightVariation tops = new HeightVariation();
         tops.height = 4;

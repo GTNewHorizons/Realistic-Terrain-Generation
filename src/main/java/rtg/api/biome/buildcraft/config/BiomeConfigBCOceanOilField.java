@@ -1,12 +1,8 @@
 package rtg.api.biome.buildcraft.config;
 
+public class BiomeConfigBCOceanOilField extends BiomeConfigBCBase {
 
-
-
-public class BiomeConfigBCOceanOilField extends BiomeConfigBCBase
-{
-    public BiomeConfigBCOceanOilField()
-    {
+    public BiomeConfigBCOceanOilField() {
         super("oceanoilfield");
     }
 }

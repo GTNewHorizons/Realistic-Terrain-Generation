@@ -5,12 +5,9 @@ import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.HillsEverywhereEffect;
 import rtg.world.gen.terrain.JitterEffect;
 
+public class TerrainEBXLForestedIsland extends FunctionalTerrainBase {
 
-public class TerrainEBXLForestedIsland extends FunctionalTerrainBase
-{
-
-	public TerrainEBXLForestedIsland()
-	{
+    public TerrainEBXLForestedIsland() {
         base = 66;
 
         HillsEverywhereEffect smallHills = new HillsEverywhereEffect();
@@ -20,7 +17,7 @@ public class TerrainEBXLForestedIsland extends FunctionalTerrainBase
 
         HillsEverywhereEffect largerHills = new HillsEverywhereEffect();
         largerHills.height = 8;
-        largerHills.octave =1;
+        largerHills.octave = 1;
         largerHills.wavelength = 20;
         largerHills.modified = smallHills;
 
@@ -31,6 +28,6 @@ public class TerrainEBXLForestedIsland extends FunctionalTerrainBase
 
         height = disguising.plus(new GroundEffect(4));
 
-	}
+    }
 
 }

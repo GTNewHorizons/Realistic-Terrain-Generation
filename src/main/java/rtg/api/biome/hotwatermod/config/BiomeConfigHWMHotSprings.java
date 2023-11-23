@@ -1,10 +1,8 @@
 package rtg.api.biome.hotwatermod.config;
 
+public class BiomeConfigHWMHotSprings extends BiomeConfigHWMBase {
 
-public class BiomeConfigHWMHotSprings extends BiomeConfigHWMBase
-{
-    public BiomeConfigHWMHotSprings()
-    {
+    public BiomeConfigHWMHotSprings() {
         super("hotsprings");
     }
 }

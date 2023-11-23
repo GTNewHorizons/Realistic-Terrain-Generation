@@ -12,6 +12,7 @@ import java.util.Set;
  * @author Zeno410
  */
 public class LimitedSet<Type> implements Set<Type>, Iterable<Type> {
+
     private HashSet<Type> members = new HashSet<Type>();
     private ArrayList<Type> limiting;
     private int nextIndex;
@@ -19,7 +20,7 @@ public class LimitedSet<Type> implements Set<Type>, Iterable<Type> {
     private boolean full = false;
 
     public LimitedSet(int maxSize) {
-        limiting = new ArrayList<Type> (maxSize);
+        limiting = new ArrayList<Type>(maxSize);
         this.maxSize = maxSize;
     }
 
@@ -36,7 +37,7 @@ public class LimitedSet<Type> implements Set<Type>, Iterable<Type> {
     }
 
     public Iterator<Type> iterator() {
-       return members.iterator();
+        return members.iterator();
     }
 
     public Object[] toArray() {
@@ -48,13 +49,13 @@ public class LimitedSet<Type> implements Set<Type>, Iterable<Type> {
     }
 
     public boolean add(Type arg0) {
-        if (full){
+        if (full) {
             members.remove(limiting.get(nextIndex));
             limiting.set(nextIndex, arg0);
-        }  else {
+        } else {
             limiting.add(arg0);
         }
-        nextIndex ++;
+        nextIndex++;
         if (nextIndex >= maxSize) {
             nextIndex = 0;
             full = true;
@@ -71,7 +72,7 @@ public class LimitedSet<Type> implements Set<Type>, Iterable<Type> {
     }
 
     public boolean addAll(Collection<? extends Type> arg0) {
-        for (Type added: arg0) {
+        for (Type added : arg0) {
             add(added);
         }
         return true;

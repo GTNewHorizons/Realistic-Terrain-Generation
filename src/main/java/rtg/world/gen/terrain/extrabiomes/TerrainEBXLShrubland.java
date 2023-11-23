@@ -6,11 +6,9 @@ import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.PlateauEffect;
 
-public class TerrainEBXLShrubland extends FunctionalTerrainBase
-{
+public class TerrainEBXLShrubland extends FunctionalTerrainBase {
 
-    public TerrainEBXLShrubland()
-    {
+    public TerrainEBXLShrubland() {
         base = 66;
         HeightVariation tops = new HeightVariation();
         tops.height = 3;

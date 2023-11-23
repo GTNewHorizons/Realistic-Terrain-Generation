@@ -4,11 +4,9 @@ import rtg.world.gen.terrain.BumpyHillsEffect;
 import rtg.world.gen.terrain.FunctionalTerrainBase;
 import rtg.world.gen.terrain.JitterEffect;
 
-public class TerrainEBXLAutumnWoods extends FunctionalTerrainBase
-{
+public class TerrainEBXLAutumnWoods extends FunctionalTerrainBase {
 
-    public TerrainEBXLAutumnWoods()
-    {
+    public TerrainEBXLAutumnWoods() {
         BumpyHillsEffect hills = new BumpyHillsEffect();
         hills.hillHeight = 60;
         hills.hillWavelength = 150;
@@ -29,6 +27,5 @@ public class TerrainEBXLAutumnWoods extends FunctionalTerrainBase
         base = 73;
 
     }
-
 
 }

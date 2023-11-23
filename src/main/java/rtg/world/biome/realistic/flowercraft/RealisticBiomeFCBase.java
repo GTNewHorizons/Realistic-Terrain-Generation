@@ -1,7 +1,8 @@
 package rtg.world.biome.realistic.flowercraft;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import cpw.mods.fml.common.Loader;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.flowercraft.config.BiomeConfigFC;
 import rtg.util.Logger;
@@ -13,7 +14,8 @@ public class RealisticBiomeFCBase extends RealisticBiomeBase {
 
     public static RealisticBiomeBase fcPhantasia;
 
-    public RealisticBiomeFCBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s) {
+    public RealisticBiomeFCBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t,
+        SurfaceBase s) {
 
         super(config, b, riverbiome, t, s);
 
@@ -35,7 +37,8 @@ public class RealisticBiomeFCBase extends RealisticBiomeBase {
 
                     BiomeGenBase fcBiome = b[i];
                     String biomeName = b[i].biomeName;
-                    String biomeClass = b[i].getBiomeClass().getName();
+                    String biomeClass = b[i].getBiomeClass()
+                        .getName();
 
                     if (biomeName == "Phantasia" && biomeClass == "flowercraftmod.world.biome.BiomeGenFCPhantasia") {
                         fcPhantasia = new RealisticBiomeFCPhantasia(fcBiome, BiomeConfigFC.biomeConfigFCPhantasia);

@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLExtremeJungle extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLExtremeJungle extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLExtremeJungle()
-    {
+    public BiomeConfigEBXLExtremeJungle() {
         super("extremejungle");
     }
 }

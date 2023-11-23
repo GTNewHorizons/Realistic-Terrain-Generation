@@ -7,19 +7,18 @@
 package extrabiomes.api;
 
 import com.google.common.base.Optional;
+
 import cpw.mods.fml.common.eventhandler.EventBus;
 
 /*
  * @author ScottKillen
  */
-public class Api
-{
+public class Api {
 
-    private static final EventBus       eventBus  = new EventBus();
+    private static final EventBus eventBus = new EventBus();
     protected static Optional<EventBus> pluginBus = Optional.of(new EventBus());
 
-    public static EventBus getExtrabiomesXLEventBus()
-    {
+    public static EventBus getExtrabiomesXLEventBus() {
         return eventBus;
     }
 
@@ -28,8 +27,7 @@ public class Api
      * @deprecated Use {@link #isExtrabiomesXLActive()} instead
      */
     @Deprecated
-    public static boolean isActive()
-    {
+    public static boolean isActive() {
         return isExtrabiomesXLActive();
     }
 
@@ -37,15 +35,13 @@ public class Api
      * @return true if ExtrtabiomesXL is installed and active
      */
     @SuppressWarnings("deprecation")
-    public static boolean isExtrabiomesXLActive()
-    {
+    public static boolean isExtrabiomesXLActive() {
         return BiomeManager.isActive();
     }
 
-    public static void registerPlugin(Object plugin)
-    {
-        if (pluginBus.isPresent())
-            pluginBus.get().register(plugin);
+    public static void registerPlugin(Object plugin) {
+        if (pluginBus.isPresent()) pluginBus.get()
+            .register(plugin);
     }
 
 }

@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCObsidianForest extends BiomeConfigECCBase {
 
-public class BiomeConfigECCObsidianForest extends BiomeConfigECCBase
-{
-    public BiomeConfigECCObsidianForest()
-    {
+    public BiomeConfigECCObsidianForest() {
         super("obsidianforest");
     }
 }

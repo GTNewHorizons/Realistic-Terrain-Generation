@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPArctic extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPArctic extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPArctic()
-    {
+    public BiomeConfigBOPArctic() {
         super("arctic");
     }
 }

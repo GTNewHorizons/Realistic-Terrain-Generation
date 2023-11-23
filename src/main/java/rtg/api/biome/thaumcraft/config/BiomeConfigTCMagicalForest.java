@@ -1,10 +1,8 @@
 package rtg.api.biome.thaumcraft.config;
 
+public class BiomeConfigTCMagicalForest extends BiomeConfigTCBase {
 
-public class BiomeConfigTCMagicalForest extends BiomeConfigTCBase
-{
-    public BiomeConfigTCMagicalForest()
-    {
+    public BiomeConfigTCMagicalForest() {
         super("magicalforest");
     }
 }

@@ -6,15 +6,15 @@ import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.HillockEffect;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainBOPBog extends TerrainBase
-{
+public class TerrainBOPBog extends TerrainBase {
+
     private final float bottom = 58f;
     private final HeightVariation bottomVariation;
     private final HillockEffect smallHills;
     private final HillockEffect mediumHills;
+
     // surprisingly the BoP version is mostly above water and kind of hilly
-	public TerrainBOPBog()
-	{
+    public TerrainBOPBog() {
         bottomVariation = new HeightVariation();
         bottomVariation.height = 2;
         bottomVariation.octave = 0;
@@ -32,13 +32,12 @@ public class TerrainBOPBog extends TerrainBase
         mediumHills.minimumSimplex = 0.2f;
         mediumHills.octave = 2;
 
-	}
+    }
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
-        float increment = bottomVariation.added(simplex,cell, x, y) + smallHills.added(simplex, cell,x, y) ;
-        increment += mediumHills.added(simplex, cell,x, y);
-        return riverized(bottom + increment,river);
-	}
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        float increment = bottomVariation.added(simplex, cell, x, y) + smallHills.added(simplex, cell, x, y);
+        increment += mediumHills.added(simplex, cell, x, y);
+        return riverized(bottom + increment, river);
+    }
 }

@@ -14,9 +14,8 @@ import cpw.mods.fml.common.eventhandler.Event;
  * @author Scott
  * 
  */
-public class GetBiomeIDEvent extends Event
-{
-    
+public class GetBiomeIDEvent extends Event {
+
     /**
      * Valid values:
      * 
@@ -52,11 +51,10 @@ public class GetBiomeIDEvent extends Event
      * </pre>
      */
     public final String targetBiome;
-    public int          biomeID;
-    
-    public GetBiomeIDEvent(String targetBiome)
-    {
+    public int biomeID;
+
+    public GetBiomeIDEvent(String targetBiome) {
         this.targetBiome = targetBiome;
     }
-    
+
 }

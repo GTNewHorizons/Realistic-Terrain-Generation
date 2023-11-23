@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLRedwoodForest extends BiomeConfigHLBase {
 
-public class BiomeConfigHLRedwoodForest extends BiomeConfigHLBase
-{
-    public BiomeConfigHLRedwoodForest()
-    {
+    public BiomeConfigHLRedwoodForest() {
         super("redwoodforest");
     }
 }

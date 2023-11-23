@@ -2,8 +2,8 @@ package rtg.api.biome.biomesoplenty.config;
 
 import rtg.api.biome.BiomeConfig;
 
-public class BiomeConfigBOP
-{
+public class BiomeConfigBOP {
+
     public static BiomeConfig biomeConfigBOPAlps;
     public static BiomeConfig biomeConfigBOPArctic;
     public static BiomeConfig biomeConfigBOPBambooForest;
@@ -64,8 +64,8 @@ public class BiomeConfigBOP
     public static BiomeConfig biomeConfigBOPWetland;
     public static BiomeConfig biomeConfigBOPWoodland;
     public static BiomeConfig biomeConfigBOPXericShrubland;
-    
-    //Sub Biomes (treated as normal biomes in RTG)
+
+    // Sub Biomes (treated as normal biomes in RTG)
     public static BiomeConfig biomeConfigBOPAlpsForest;
     public static BiomeConfig biomeConfigBOPCanyonRavine;
     public static BiomeConfig biomeConfigBOPGlacier;
@@ -81,93 +81,35 @@ public class BiomeConfigBOP
     public static BiomeConfig biomeConfigBOPSpruceWoods;
     public static BiomeConfig biomeConfigBOPTropics;
     public static BiomeConfig biomeConfigBOPVolcano;
-    
-    //Ocean Biomes
+
+    // Ocean Biomes
     public static BiomeConfig biomeConfigBOPCoralReef;
     public static BiomeConfig biomeConfigBOPKelpForest;
-    
-    public static BiomeConfig[] getBiomeConfigs()
-    {
-        BiomeConfig[] biomeConfigs = new BiomeConfig[]{
-            biomeConfigBOPAlps,
-            biomeConfigBOPAlpsForest,
-            biomeConfigBOPArctic,
-            biomeConfigBOPBambooForest,
-            biomeConfigBOPBayou,
-            biomeConfigBOPBog,
-            biomeConfigBOPBorealForest,
-            biomeConfigBOPBrushland,
-            biomeConfigBOPCanyon,
-            biomeConfigBOPCanyonRavine,
-            biomeConfigBOPChaparral,
-            biomeConfigBOPCherryBlossomGrove,
-            biomeConfigBOPConiferousForest,
-            biomeConfigBOPCoralReef,
-            biomeConfigBOPCrag,
-            biomeConfigBOPDeadForest,
-            biomeConfigBOPDeadSwamp,
-            biomeConfigBOPDeciduousForest,
-            biomeConfigBOPDenseForest,
-            biomeConfigBOPDryRiver,
-            biomeConfigBOPEucalyptusForest,
-            biomeConfigBOPFen,
-            biomeConfigBOPFlowerField,
-            biomeConfigBOPFrostForest,
-            biomeConfigBOPFungiForest,
-            biomeConfigBOPGarden,
-            biomeConfigBOPGlacier,
-            biomeConfigBOPGrassland,
-            biomeConfigBOPGrove,
-            biomeConfigBOPHeathland,
-            biomeConfigBOPHighland,
-            biomeConfigBOPJadeCliffs,
-            biomeConfigBOPKelpForest,
-            biomeConfigBOPLandOfLakes,
-            biomeConfigBOPLandOfLakesMarsh,
-            biomeConfigBOPLavenderFields,
-            biomeConfigBOPLushDesert,
-            biomeConfigBOPLushRiver,
-            biomeConfigBOPLushSwamp,
-            biomeConfigBOPMangrove,
-            biomeConfigBOPMapleWoods,
-            biomeConfigBOPMarsh,
-            biomeConfigBOPMeadow,
-            biomeConfigBOPMeadowForest,
-            biomeConfigBOPMoor,
-            biomeConfigBOPMountain,
-            biomeConfigBOPMysticGrove,
-            biomeConfigBOPOasis,
-            biomeConfigBOPOminousWoods,
-            biomeConfigBOPOrchard,
-            biomeConfigBOPOriginValley,
-            biomeConfigBOPOutback,
-            biomeConfigBOPPrairie,
-            biomeConfigBOPQuagmire,
-            biomeConfigBOPRainforest,
-            biomeConfigBOPRedwoodForest,
-            biomeConfigBOPSacredSprings,
-            biomeConfigBOPScrubland,
-            biomeConfigBOPSeasonalForest,
-            biomeConfigBOPSeasonalForestClearing,
-            biomeConfigBOPShield,
-            biomeConfigBOPShrubland,
-            biomeConfigBOPSilkglades,
-            biomeConfigBOPSludgepit,
-            biomeConfigBOPSnowyConiferousForest,
-            biomeConfigBOPSpruceWoods,
-            biomeConfigBOPSteppe,
-            biomeConfigBOPTemperateRainforest,
-            biomeConfigBOPThicket,
-            biomeConfigBOPTropicalRainforest,
-            biomeConfigBOPTropics,
-            biomeConfigBOPTundra,
-            biomeConfigBOPVolcano,
-            biomeConfigBOPWasteland,
-            biomeConfigBOPWetland,
-            biomeConfigBOPWoodland,
-            biomeConfigBOPXericShrubland
-        };
-        
+
+    public static BiomeConfig[] getBiomeConfigs() {
+        BiomeConfig[] biomeConfigs = new BiomeConfig[] { biomeConfigBOPAlps, biomeConfigBOPAlpsForest,
+            biomeConfigBOPArctic, biomeConfigBOPBambooForest, biomeConfigBOPBayou, biomeConfigBOPBog,
+            biomeConfigBOPBorealForest, biomeConfigBOPBrushland, biomeConfigBOPCanyon, biomeConfigBOPCanyonRavine,
+            biomeConfigBOPChaparral, biomeConfigBOPCherryBlossomGrove, biomeConfigBOPConiferousForest,
+            biomeConfigBOPCoralReef, biomeConfigBOPCrag, biomeConfigBOPDeadForest, biomeConfigBOPDeadSwamp,
+            biomeConfigBOPDeciduousForest, biomeConfigBOPDenseForest, biomeConfigBOPDryRiver,
+            biomeConfigBOPEucalyptusForest, biomeConfigBOPFen, biomeConfigBOPFlowerField, biomeConfigBOPFrostForest,
+            biomeConfigBOPFungiForest, biomeConfigBOPGarden, biomeConfigBOPGlacier, biomeConfigBOPGrassland,
+            biomeConfigBOPGrove, biomeConfigBOPHeathland, biomeConfigBOPHighland, biomeConfigBOPJadeCliffs,
+            biomeConfigBOPKelpForest, biomeConfigBOPLandOfLakes, biomeConfigBOPLandOfLakesMarsh,
+            biomeConfigBOPLavenderFields, biomeConfigBOPLushDesert, biomeConfigBOPLushRiver, biomeConfigBOPLushSwamp,
+            biomeConfigBOPMangrove, biomeConfigBOPMapleWoods, biomeConfigBOPMarsh, biomeConfigBOPMeadow,
+            biomeConfigBOPMeadowForest, biomeConfigBOPMoor, biomeConfigBOPMountain, biomeConfigBOPMysticGrove,
+            biomeConfigBOPOasis, biomeConfigBOPOminousWoods, biomeConfigBOPOrchard, biomeConfigBOPOriginValley,
+            biomeConfigBOPOutback, biomeConfigBOPPrairie, biomeConfigBOPQuagmire, biomeConfigBOPRainforest,
+            biomeConfigBOPRedwoodForest, biomeConfigBOPSacredSprings, biomeConfigBOPScrubland,
+            biomeConfigBOPSeasonalForest, biomeConfigBOPSeasonalForestClearing, biomeConfigBOPShield,
+            biomeConfigBOPShrubland, biomeConfigBOPSilkglades, biomeConfigBOPSludgepit,
+            biomeConfigBOPSnowyConiferousForest, biomeConfigBOPSpruceWoods, biomeConfigBOPSteppe,
+            biomeConfigBOPTemperateRainforest, biomeConfigBOPThicket, biomeConfigBOPTropicalRainforest,
+            biomeConfigBOPTropics, biomeConfigBOPTundra, biomeConfigBOPVolcano, biomeConfigBOPWasteland,
+            biomeConfigBOPWetland, biomeConfigBOPWoodland, biomeConfigBOPXericShrubland };
+
         return biomeConfigs;
     }
 }

@@ -4,20 +4,18 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBXLExtremeJungle extends TerrainBase
-{
-	private float heigth;
-	private float width;
+public class TerrainEBXLExtremeJungle extends TerrainBase {
 
-	public TerrainEBXLExtremeJungle(float mountainHeight, float mountainWidth)
-	{
-		heigth = mountainHeight;
-		width = mountainWidth;
-	}
+    private float heigth;
+    private float width;
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
+    public TerrainEBXLExtremeJungle(float mountainHeight, float mountainWidth) {
+        heigth = mountainHeight;
+        width = mountainWidth;
+    }
+
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return terrainSwampMountain(x, y, simplex, cell, river, width, heigth, 150f, 32f, 56f);
-	}
+    }
 }

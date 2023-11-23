@@ -7,12 +7,9 @@ import rtg.world.gen.terrain.HillsEverywhereEffect;
 import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.PlateauEffect;
 
+public class TerrainEBXLGreenHills extends FunctionalTerrainBase {
 
-public class TerrainEBXLGreenHills extends FunctionalTerrainBase
-{
-
-	public TerrainEBXLGreenHills()
-	{
+    public TerrainEBXLGreenHills() {
         base = 72;
 
         BlendedHillEffect bumps = new BlendedHillEffect();
@@ -33,14 +30,16 @@ public class TerrainEBXLGreenHills extends FunctionalTerrainBase
         multiplier.height = 0;
         multiplier.octave = 3;
         multiplier.subordinate = hills;
-        multiplier.wavelength= 80;
-
-        /*HillsEverywhereEffect multiplier = new HillsEverywhereEffect();
-        multiplier.height = 0;// just using it for a multiplier
         multiplier.wavelength = 80;
-        multiplier.modified = hills;
-        multiplier.octave = 3;
-        hills.hillBottomSimplexValue = 0f;*/
+
+        /*
+         * HillsEverywhereEffect multiplier = new HillsEverywhereEffect();
+         * multiplier.height = 0;// just using it for a multiplier
+         * multiplier.wavelength = 80;
+         * multiplier.modified = hills;
+         * multiplier.octave = 3;
+         * hills.hillBottomSimplexValue = 0f;
+         */
 
         JitterEffect disguise = new JitterEffect();
         disguise.amplitude = 6;
@@ -49,6 +48,6 @@ public class TerrainEBXLGreenHills extends FunctionalTerrainBase
 
         height = disguise.plus(new GroundEffect(2));
 
-	}
+    }
 
 }

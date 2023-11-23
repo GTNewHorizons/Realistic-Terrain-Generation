@@ -1,7 +1,6 @@
 
 package rtg.util;
 
-
 import java.util.Comparator;
 
 /**
@@ -10,14 +9,13 @@ import java.util.Comparator;
  */
 public abstract class PlaneLocation {
 
-
     public abstract int x();
+
     public abstract int z();
 
-
     public float distance(PlaneLocation location) {
-        return ((float)(x()-location.x()))*((float)(x()-location.x()))+
-                ((float)(z()-location.z())*((float)(z()-location.z())));
+        return ((float) (x() - location.x())) * ((float) (x() - location.x()))
+            + ((float) (z() - location.z()) * ((float) (z() - location.z())));
     }
 
     public <Type extends Provider> Type closest(Iterable<Type> choices) {
@@ -25,9 +23,9 @@ public abstract class PlaneLocation {
         float bestDistance = Float.MAX_VALUE;
         float distance;
 
-        for (Type tested: choices) {
+        for (Type tested : choices) {
             distance = this.distance(tested.planeLocation());
-            if (distance<bestDistance) {
+            if (distance < bestDistance) {
                 result = tested;
             }
         }
@@ -35,8 +33,10 @@ public abstract class PlaneLocation {
     }
 
     public abstract class Provider {
+
         abstract public PlaneLocation planeLocation();
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -65,33 +65,46 @@ public abstract class PlaneLocation {
 
     @Override
     public String toString() {
-        return "("+x()+ "," + z() + ")";
+        return "(" + x() + "," + z() + ")";
     }
-     /**
+
+    /**
      * A subclass of PlaneLocation which allows the vars to be changed.
      * Intended for probing hash sets and maps
      */
     public static class Probe extends PlaneLocation {
+
         private int x;
         private int z;
+
         public Probe(int _x, int _z) {
             x = _x;
             z = _z;
         }
 
-        public int x() {return x;}
-        public int z() {return z;}
+        public int x() {
+            return x;
+        }
 
-        public  void setX(int newX) {x = newX;}
-        public void setZ(int newZ) {z = newZ;}
+        public int z() {
+            return z;
+        }
+
+        public void setX(int newX) {
+            x = newX;
+        }
+
+        public void setZ(int newZ) {
+            z = newZ;
+        }
     }
 
     public static Comparator<PlaneLocation> topLefttoBottomRight() {
-        return new Comparator<PlaneLocation>(){
+        return new Comparator<PlaneLocation>() {
 
             public int compare(PlaneLocation arg0, PlaneLocation arg1) {
-                int result = arg0.x()-arg1.x();
-                if (result == 0) return arg0.z()-arg1.z();
+                int result = arg0.x() - arg1.x();
+                if (result == 0) return arg0.z() - arg1.z();
                 return result;
             }
 
@@ -99,6 +112,7 @@ public abstract class PlaneLocation {
     }
 
     public static class Invariant extends PlaneLocation {
+
         private final int x;
         private final int z;
 
@@ -107,8 +121,13 @@ public abstract class PlaneLocation {
             z = _z;
         }
 
-        public int x() {return x;}
-        public int z() {return z;}
+        public int x() {
+            return x;
+        }
+
+        public int z() {
+            return z;
+        }
 
     }
 }

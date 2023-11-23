@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPOriginValley extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPOriginValley extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPOriginValley()
-    {
+    public BiomeConfigBOPOriginValley() {
         super("originvalley");
     }
 }

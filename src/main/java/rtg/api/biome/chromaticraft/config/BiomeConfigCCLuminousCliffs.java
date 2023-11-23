@@ -1,10 +1,8 @@
 package rtg.api.biome.chromaticraft.config;
 
+public class BiomeConfigCCLuminousCliffs extends BiomeConfigCCBase {
 
-public class BiomeConfigCCLuminousCliffs extends BiomeConfigCCBase
-{
-    public BiomeConfigCCLuminousCliffs()
-    {
+    public BiomeConfigCCLuminousCliffs() {
         super("luminouscliffs");
     }
 }

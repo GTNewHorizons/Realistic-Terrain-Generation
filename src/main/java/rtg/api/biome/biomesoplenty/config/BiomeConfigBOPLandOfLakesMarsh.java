@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPLandOfLakesMarsh extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPLandOfLakesMarsh extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPLandOfLakesMarsh()
-    {
+    public BiomeConfigBOPLandOfLakesMarsh() {
         super("landoflakesmarsh");
     }
 }

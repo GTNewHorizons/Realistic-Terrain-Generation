@@ -1,29 +1,30 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
-import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import biomesoplenty.api.content.BOPCBiomes;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPOriginValley;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPOriginValley;
 
-public class RealisticBiomeBOPOriginValley extends RealisticBiomeBOPBase
-{
-	public static BiomeGenBase bopBiome = BOPCBiomes.originValley;
+public class RealisticBiomeBOPOriginValley extends RealisticBiomeBOPBase {
 
-	public static Block topBlock = bopBiome.topBlock;
-	public static Block fillerBlock = bopBiome.fillerBlock;
+    public static BiomeGenBase bopBiome = BOPCBiomes.originValley;
 
-	public RealisticBiomeBOPOriginValley(BiomeConfig config)
-	{
-		super(config,
-			bopBiome, BiomeGenBase.river,
-			new TerrainBOPOriginValley(65f, 80f, 30f),
-			new SurfaceBOPOriginValley(config, topBlock, fillerBlock)
-		);
+    public static Block topBlock = bopBiome.topBlock;
+    public static Block fillerBlock = bopBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+    public RealisticBiomeBOPOriginValley(BiomeConfig config) {
+        super(
+            config,
+            bopBiome,
+            BiomeGenBase.river,
+            new TerrainBOPOriginValley(65f, 80f, 30f),
+            new SurfaceBOPOriginValley(config, topBlock, fillerBlock));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

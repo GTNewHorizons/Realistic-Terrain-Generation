@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLTundra extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLTundra extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLTundra()
-    {
+    public BiomeConfigEBXLTundra() {
         super("tundra");
     }
 }

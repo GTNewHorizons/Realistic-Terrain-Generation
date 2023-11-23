@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLRockIsland extends BiomeConfigHLBase {
 
-public class BiomeConfigHLRockIsland extends BiomeConfigHLBase
-{
-    public BiomeConfigHLRockIsland()
-    {
+    public BiomeConfigHLRockIsland() {
         super("rockisland");
     }
 }

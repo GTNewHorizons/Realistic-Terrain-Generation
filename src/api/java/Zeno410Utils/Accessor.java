@@ -1,13 +1,16 @@
 package Zeno410Utils;
 
 import java.lang.reflect.Field;
+
 /**
  *
  * @author Zeno410
  */
-public class Accessor<ObjectType,FieldType>{
+public class Accessor<ObjectType, FieldType> {
+
     private Field field;
     private final String fieldName;
+
     public Accessor(String _fieldName) {
         fieldName = _fieldName;
     }
@@ -15,21 +18,23 @@ public class Accessor<ObjectType,FieldType>{
     private Field field(ObjectType example) {
         Class classObject = example.getClass();
         if (field == null) {
-            try {setField(classObject);}
-            catch(IllegalAccessException e) {
+            try {
+                setField(classObject);
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
         return field;
     }
 
-    private void setField(Class classObject) throws IllegalAccessException{
+    private void setField(Class classObject) throws IllegalAccessException {
         // hunts through the class object and all superclasses looking for the field name
-        Field [] fields;
+        Field[] fields;
         do {
             fields = classObject.getDeclaredFields();
-            for (int i = 0; i < fields.length;i ++) {
-                if (fields[i].getName().contains(fieldName)) {
+            for (int i = 0; i < fields.length; i++) {
+                if (fields[i].getName()
+                    .contains(fieldName)) {
                     field = fields[i];
                     field.setAccessible(true);
                     return;
@@ -37,12 +42,12 @@ public class Accessor<ObjectType,FieldType>{
             }
             classObject = classObject.getSuperclass();
         } while (classObject != Object.class);
-        throw new RuntimeException(fieldName +" not found in class "+classObject.getName());
+        throw new RuntimeException(fieldName + " not found in class " + classObject.getName());
     }
 
     public FieldType get(ObjectType object) {
         try {
-             return (FieldType)(field(object).get(object));
+            return (FieldType) (field(object).get(object));
         } catch (IllegalArgumentException ex) {
             throw new RuntimeException(ex);
         } catch (IllegalAccessException ex) {
@@ -50,7 +55,7 @@ public class Accessor<ObjectType,FieldType>{
         }
     }
 
-    public void setField(ObjectType object,FieldType fieldValue) {
+    public void setField(ObjectType object, FieldType fieldValue) {
         try {
             field(object).set(object, fieldValue);
         } catch (IllegalArgumentException ex) {

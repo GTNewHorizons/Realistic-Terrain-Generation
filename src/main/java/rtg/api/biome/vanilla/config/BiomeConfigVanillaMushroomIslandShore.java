@@ -1,10 +1,8 @@
 package rtg.api.biome.vanilla.config;
 
+public class BiomeConfigVanillaMushroomIslandShore extends BiomeConfigVanillaBase {
 
-public class BiomeConfigVanillaMushroomIslandShore extends BiomeConfigVanillaBase
-{
-    public BiomeConfigVanillaMushroomIslandShore()
-    {
+    public BiomeConfigVanillaMushroomIslandShore() {
         super("mushroomislandshore");
     }
 }

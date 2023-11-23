@@ -1,10 +1,8 @@
 package rtg.api.biome.vanilla.config;
 
+public class BiomeConfigVanillaStoneBeach extends BiomeConfigVanillaBase {
 
-public class BiomeConfigVanillaStoneBeach extends BiomeConfigVanillaBase
-{
-    public BiomeConfigVanillaStoneBeach()
-    {
+    public BiomeConfigVanillaStoneBeach() {
         super("stonebeach");
     }
 }

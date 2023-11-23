@@ -8,13 +8,12 @@ import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.TerrainBase;
 import rtg.world.gen.terrain.VariableRuggednessEffect;
 
-public class TerrainEBPrairie extends TerrainBase
-{
+public class TerrainEBPrairie extends TerrainBase {
 
     private HeightEffect height;
     private float rollHeight = 4f;
-    public TerrainEBPrairie()
-    {
+
+    public TerrainEBPrairie() {
         base = 69f;
         HeightVariation roll = new HeightVariation();
         roll.height = rollHeight;
@@ -25,8 +24,7 @@ public class TerrainEBPrairie extends TerrainBase
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
-        return riverized(height.added(simplex, cell, x, y)+base,river);
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        return riverized(height.added(simplex, cell, x, y) + base, river);
     }
 }

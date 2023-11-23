@@ -7,7 +7,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.integration;
 
@@ -24,34 +24,36 @@ package com.shinoow.abyssalcraft.api.integration;
  */
 public interface IACPlugin {
 
-	/**
-	 * Used to fetch the mod name
-	 * @return A String representing the mod's name
-	 */
-	public String getModName();
+    /**
+     * Used to fetch the mod name
+     * 
+     * @return A String representing the mod's name
+     */
+    public String getModName();
 
-	/**
-	 * Determines whether or not this plugin can be loaded.<br>
-	 * Should normally just return true, but can have a different<br>
-	 * return value depending on factors (like a config option to load<br>
-	 * the plugin, or just checking if the mod the plugin's for is present).
-	 * @return True if the plugin can be loaded, otherwise false.
-	 */
-	public boolean canLoad();
+    /**
+     * Determines whether or not this plugin can be loaded.<br>
+     * Should normally just return true, but can have a different<br>
+     * return value depending on factors (like a config option to load<br>
+     * the plugin, or just checking if the mod the plugin's for is present).
+     * 
+     * @return True if the plugin can be loaded, otherwise false.
+     */
+    public boolean canLoad();
 
-	/**
-	 * Won't be called by AbyssalCraft, allowing you to register any new Item/Block/Entity<br>
-	 * your plugin might add. Should be called at the pre-init stage.
-	 */
-	public void preInit();
+    /**
+     * Won't be called by AbyssalCraft, allowing you to register any new Item/Block/Entity<br>
+     * your plugin might add. Should be called at the pre-init stage.
+     */
+    public void preInit();
 
-	/**
-	 * Will be called at the end of the init stage
-	 */
-	public void init();
+    /**
+     * Will be called at the end of the init stage
+     */
+    public void init();
 
-	/**
-	 * Will be called at the post-init stage
-	 */
-	public void postInit();
+    /**
+     * Will be called at the post-init stage
+     */
+    public void postInit();
 }

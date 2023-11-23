@@ -1,32 +1,31 @@
 package highlands.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import highlands.Highlands;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
-public class ItemHighlandsBerries extends ItemFood{
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import highlands.Highlands;
 
-	public ItemHighlandsBerries() {
-		super(2, false);//id, 1 whole porkchop (hunger), wolves don't eat it.
-		this.setCreativeTab(Highlands.tabHighlands);
-	}
+public class ItemHighlandsBerries extends ItemFood {
 
-	/**
+    public ItemHighlandsBerries() {
+        super(2, false);// id, 1 whole porkchop (hunger), wolves don't eat it.
+        this.setCreativeTab(Highlands.tabHighlands);
+    }
+
+    /**
      * How long it takes to use or consume an item
      */
-	@Override
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
-    {
+    @Override
+    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
         return 16;
     }
 
-	@Override
+    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister par1IconRegister)
-    {
+    public void registerIcons(IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon("Highlands:itemBerries");
     }
 }

@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCArctic extends BiomeConfigECCBase {
 
-public class BiomeConfigECCArctic extends BiomeConfigECCBase
-{
-    public BiomeConfigECCArctic()
-    {
+    public BiomeConfigECCArctic() {
         super("arctic");
     }
 }

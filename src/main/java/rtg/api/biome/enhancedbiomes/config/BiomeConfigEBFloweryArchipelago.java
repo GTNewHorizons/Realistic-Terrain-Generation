@@ -1,9 +1,8 @@
 package rtg.api.biome.enhancedbiomes.config;
 
-public class BiomeConfigEBFloweryArchipelago extends BiomeConfigEBBase
-{
-    public BiomeConfigEBFloweryArchipelago()
-    {
+public class BiomeConfigEBFloweryArchipelago extends BiomeConfigEBBase {
+
+    public BiomeConfigEBFloweryArchipelago() {
         super("floweryarchipelago");
     }
 }

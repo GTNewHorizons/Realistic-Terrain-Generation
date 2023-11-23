@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCFertile extends BiomeConfigECCBase {
 
-public class BiomeConfigECCFertile extends BiomeConfigECCBase
-{
-    public BiomeConfigECCFertile()
-    {
+    public BiomeConfigECCFertile() {
         super("fertile");
     }
 }

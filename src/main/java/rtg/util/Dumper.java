@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class Dumper {
+
     private static Dumper instance = new Dumper();
 
     protected static Dumper getInstance() {
@@ -12,6 +13,7 @@ public class Dumper {
     }
 
     class DumpContext {
+
         int maxDepth = 0;
         int maxArrayElements = 0;
         int callCount = 0;
@@ -31,8 +33,7 @@ public class Dumper {
         if (ignoreList != null) {
             for (int i = 0; i < Array.getLength(ignoreList); i++) {
                 int colonIdx = ignoreList[i].indexOf(':');
-                if (colonIdx == -1)
-                    ignoreList[i] = ignoreList[i] + ":";
+                if (colonIdx == -1) ignoreList[i] = ignoreList[i] + ":";
                 ctx.ignoreList.put(ignoreList[i], ignoreList[i]);
             }
         }
@@ -55,14 +56,16 @@ public class Dumper {
 
         String oSimpleName = getSimpleNameWithoutArrayQualifier(oClass);
 
-        if (ctx.ignoreList.get(oSimpleName + ":") != null)
-            return "<Ignored>";
+        if (ctx.ignoreList.get(oSimpleName + ":") != null) return "<Ignored>";
 
         if (oClass.isArray()) {
             buffer.append("\n");
-            buffer.append(tabs.toString().substring(1));
+            buffer.append(
+                tabs.toString()
+                    .substring(1));
             buffer.append("[\n");
-            int rowCount = ctx.maxArrayElements == 0 ? Array.getLength(o) : Math.min(ctx.maxArrayElements, Array.getLength(o));
+            int rowCount = ctx.maxArrayElements == 0 ? Array.getLength(o)
+                : Math.min(ctx.maxArrayElements, Array.getLength(o));
             for (int i = 0; i < rowCount; i++) {
                 buffer.append(tabs.toString());
                 try {
@@ -71,8 +74,7 @@ public class Dumper {
                 } catch (Exception e) {
                     buffer.append(e.getMessage());
                 }
-                if (i < Array.getLength(o) - 1)
-                    buffer.append(",");
+                if (i < Array.getLength(o) - 1) buffer.append(",");
                 buffer.append("\n");
             }
             if (rowCount < Array.getLength(o)) {
@@ -80,11 +82,15 @@ public class Dumper {
                 buffer.append(Array.getLength(o) - rowCount + " more array elements...");
                 buffer.append("\n");
             }
-            buffer.append(tabs.toString().substring(1));
+            buffer.append(
+                tabs.toString()
+                    .substring(1));
             buffer.append("]");
         } else {
             buffer.append("\n");
-            buffer.append(tabs.toString().substring(1));
+            buffer.append(
+                tabs.toString()
+                    .substring(1));
             buffer.append("{\n");
             buffer.append(tabs.toString());
             buffer.append("hashCode: " + o.hashCode());
@@ -94,7 +100,9 @@ public class Dumper {
 
                 if (ctx.ignoreList.get(oClass.getSimpleName()) == null) {
                     if (oClass != o.getClass()) {
-                        buffer.append(tabs.toString().substring(1));
+                        buffer.append(
+                            tabs.toString()
+                                .substring(1));
                         buffer.append("  Inherited from superclass " + oSimpleName + ":\n");
                     }
 
@@ -108,9 +116,9 @@ public class Dumper {
                         buffer.append(fName + "(" + fSimpleName + ")");
                         buffer.append("=");
 
-                        if (ctx.ignoreList.get(":" + fName) == null &&
-                            ctx.ignoreList.get(fSimpleName + ":" + fName) == null &&
-                            ctx.ignoreList.get(fSimpleName + ":") == null) {
+                        if (ctx.ignoreList.get(":" + fName) == null
+                            && ctx.ignoreList.get(fSimpleName + ":" + fName) == null
+                            && ctx.ignoreList.get(fSimpleName + ":") == null) {
 
                             try {
                                 Object value = fields[i].get(o);
@@ -119,21 +127,21 @@ public class Dumper {
                                 buffer.append(e.getMessage());
                             }
                             buffer.append("\n");
-                        }
-                        else {
+                        } else {
                             buffer.append("<Ignored>");
                             buffer.append("\n");
                         }
                     }
                     oClass = oClass.getSuperclass();
                     oSimpleName = oClass.getSimpleName();
-                }
-                else {
+                } else {
                     oClass = null;
                     oSimpleName = "";
                 }
             }
-            buffer.append(tabs.toString().substring(1));
+            buffer.append(
+                tabs.toString()
+                    .substring(1));
             buffer.append("}");
         }
         ctx.callCount--;
@@ -144,18 +152,19 @@ public class Dumper {
         if (value == null) {
             return "<null>";
         }
-        if (value.getClass().isPrimitive() ||
-            value.getClass() == java.lang.Short.class ||
-            value.getClass() == java.lang.Long.class ||
-            value.getClass() == java.lang.String.class ||
-            value.getClass() == java.lang.Integer.class ||
-            value.getClass() == java.lang.Float.class ||
-            value.getClass() == java.lang.Byte.class ||
-            value.getClass() == java.lang.Character.class ||
-            value.getClass() == java.lang.Double.class ||
-            value.getClass() == java.lang.Boolean.class ||
-            value.getClass() == java.util.Date.class ||
-            value.getClass().isEnum()) {
+        if (value.getClass()
+            .isPrimitive() || value.getClass() == java.lang.Short.class
+            || value.getClass() == java.lang.Long.class
+            || value.getClass() == java.lang.String.class
+            || value.getClass() == java.lang.Integer.class
+            || value.getClass() == java.lang.Float.class
+            || value.getClass() == java.lang.Byte.class
+            || value.getClass() == java.lang.Character.class
+            || value.getClass() == java.lang.Double.class
+            || value.getClass() == java.lang.Boolean.class
+            || value.getClass() == java.util.Date.class
+            || value.getClass()
+                .isEnum()) {
 
             return value.toString();
 
@@ -166,23 +175,19 @@ public class Dumper {
                 ctx.visited.put(value, ctx.callCount);
                 if (ctx.maxDepth == 0 || ctx.callCount < ctx.maxDepth) {
                     return dump(value, ctx);
-                }
-                else {
+                } else {
                     return "<Reached max recursion depth>";
                 }
-            }
-            else {
+            } else {
                 return "<Previously visited - see hashCode " + value.hashCode() + ">";
             }
         }
     }
 
-
     private static String getSimpleNameWithoutArrayQualifier(Class clazz) {
         String simpleName = clazz.getSimpleName();
-        int indexOfBracket = simpleName.indexOf('['); 
-        if (indexOfBracket != -1)
-            return simpleName.substring(0, indexOfBracket);
+        int indexOfBracket = simpleName.indexOf('[');
+        if (indexOfBracket != -1) return simpleName.substring(0, indexOfBracket);
         return simpleName;
     }
 }

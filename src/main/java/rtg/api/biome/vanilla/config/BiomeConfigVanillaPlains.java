@@ -1,10 +1,8 @@
 package rtg.api.biome.vanilla.config;
 
+public class BiomeConfigVanillaPlains extends BiomeConfigVanillaBase {
 
-public class BiomeConfigVanillaPlains extends BiomeConfigVanillaBase
-{
-    public BiomeConfigVanillaPlains()
-    {
+    public BiomeConfigVanillaPlains() {
         super("plains");
     }
 }

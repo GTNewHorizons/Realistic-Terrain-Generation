@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPThicket extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPThicket extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPThicket()
-    {
+    public BiomeConfigBOPThicket() {
         super("thicket");
     }
 }

@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPMangrove extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPMangrove extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPMangrove()
-    {
+    public BiomeConfigBOPMangrove() {
         super("mangrove");
     }
 }

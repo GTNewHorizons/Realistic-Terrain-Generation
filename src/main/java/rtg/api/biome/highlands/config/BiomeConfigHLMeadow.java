@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLMeadow extends BiomeConfigHLBase {
 
-public class BiomeConfigHLMeadow extends BiomeConfigHLBase
-{
-    public BiomeConfigHLMeadow()
-    {
+    public BiomeConfigHLMeadow() {
         super("meadow");
     }
 }

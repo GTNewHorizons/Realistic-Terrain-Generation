@@ -14,14 +14,14 @@ public class NamedItem extends Names {
     }
 
     public NamedItem(NamedBlock block) {
-        this (block.internal());
+        this(block.internal());
     }
 
     public void register(int _id, Item _item) {
 
         // not reregistring in general for now
-        //Registrar.instance.add(this,_id,_item);
-        reRegister(_id,_item);
+        // Registrar.instance.add(this,_id,_item);
+        reRegister(_id, _item);
     }
 
     public void reRegister(int _id, Item _item) {
@@ -35,21 +35,21 @@ public class NamedItem extends Names {
 
     public Item cachedItem() {
         if (item == null) {
-            item = (Item)(Item.itemRegistry.getObject(this.external()));
-            if (item == null) throw new RuntimeException(this.internal()+ " has no item");
+            item = (Item) (Item.itemRegistry.getObject(this.external()));
+            if (item == null) throw new RuntimeException(this.internal() + " has no item");
         }
         return item;
     }
 
     public Item registeredItem() {
-        Item result =  (Item)(Item.itemRegistry.getObject(internal()));
+        Item result = (Item) (Item.itemRegistry.getObject(internal()));
         if (result == null) {
-            result =  (Item)(Item.itemRegistry.getObject(external()));
+            result = (Item) (Item.itemRegistry.getObject(external()));
             if (result == null) {
-                for (Object key: Item.itemRegistry.getKeys()) {
-                    //UndergroundBiomes.logger.info(key.toString());
+                for (Object key : Item.itemRegistry.getKeys()) {
+                    // UndergroundBiomes.logger.info(key.toString());
                 }
-                //UndergroundBiomes.logger.info(external());
+                // UndergroundBiomes.logger.info(external());
                 throw new RuntimeException();
             }
         }

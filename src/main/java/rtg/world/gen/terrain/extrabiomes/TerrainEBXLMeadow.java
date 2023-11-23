@@ -5,11 +5,9 @@ import rtg.world.gen.terrain.FunctionalTerrainBase;
 import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.PlateauEffect;
 
+public class TerrainEBXLMeadow extends FunctionalTerrainBase {
 
-public class TerrainEBXLMeadow extends FunctionalTerrainBase
-{
-	public TerrainEBXLMeadow()
-    {
+    public TerrainEBXLMeadow() {
         base = 66;
 
         BlendedHillEffect bumps = new BlendedHillEffect();

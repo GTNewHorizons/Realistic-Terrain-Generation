@@ -7,7 +7,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.energy;
 
@@ -24,29 +24,33 @@ import net.minecraft.item.ItemStack;
  */
 public interface IEnergyTransporter {
 
-	/**
-	 * Gets the Potential Energy contained within the item
-	 * @param stack ItemStack containing the item
-	 */
-	public float getContainedEnergy(ItemStack stack);
+    /**
+     * Gets the Potential Energy contained within the item
+     * 
+     * @param stack ItemStack containing the item
+     */
+    public float getContainedEnergy(ItemStack stack);
 
-	/**
-	 * Gets the maximum Potential Energy the item can hold
-	 * @param stack ItemStack containing the item
-	 */
-	public int getMaxEnergy(ItemStack stack);
+    /**
+     * Gets the maximum Potential Energy the item can hold
+     * 
+     * @param stack ItemStack containing the item
+     */
+    public int getMaxEnergy(ItemStack stack);
 
-	/**
-	 * Adds Potential Energy to the item
-	 * @param stack ItemStack containing the item
-	 * @param energy Energy quanta to add
-	 */
-	public void addEnergy(ItemStack stack, float energy);
+    /**
+     * Adds Potential Energy to the item
+     * 
+     * @param stack  ItemStack containing the item
+     * @param energy Energy quanta to add
+     */
+    public void addEnergy(ItemStack stack, float energy);
 
-	/**
-	 * Consumes (removes) Potential Energy from the item
-	 * @param stack ItemStack containing the item
-	 * @param energy Energy quanta to consume
-	 */
-	public void consumeEnergy(ItemStack stack, float energy);
+    /**
+     * Consumes (removes) Potential Energy from the item
+     * 
+     * @param stack  ItemStack containing the item
+     * @param energy Energy quanta to consume
+     */
+    public void consumeEnergy(ItemStack stack, float energy);
 }

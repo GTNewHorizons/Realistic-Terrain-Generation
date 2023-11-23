@@ -1,10 +1,8 @@
 package rtg.api.biome.ridiculousworld.config;
 
+public class BiomeConfigRWRockCandyMountain extends BiomeConfigRWBase {
 
-public class BiomeConfigRWRockCandyMountain extends BiomeConfigRWBase
-{
-    public BiomeConfigRWRockCandyMountain()
-    {
+    public BiomeConfigRWRockCandyMountain() {
         super("rockcandymountain");
     }
 }

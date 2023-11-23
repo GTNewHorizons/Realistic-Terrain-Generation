@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPOutback extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPOutback extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPOutback()
-    {
+    public BiomeConfigBOPOutback() {
         super("outback");
     }
 }

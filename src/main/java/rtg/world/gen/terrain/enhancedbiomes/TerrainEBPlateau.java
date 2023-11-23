@@ -4,23 +4,20 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBPlateau extends TerrainBase
-{
+public class TerrainEBPlateau extends TerrainBase {
+
     private float plateauHeight;
-    public TerrainEBPlateau(float plateauHeight, float baseHeight)
-    {
+
+    public TerrainEBPlateau(float plateauHeight, float baseHeight) {
 
         this.plateauHeight = plateauHeight;
         base = baseHeight;
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return riverized(
-                borderAdjusted(plateauHeight, border, 0.7f, 0.5f)
-                + this.groundNoise(x, y, 2f, simplex)
-                + base
-                ,river);
+            borderAdjusted(plateauHeight, border, 0.7f, 0.5f) + this.groundNoise(x, y, 2f, simplex) + base,
+            river);
     }
 }

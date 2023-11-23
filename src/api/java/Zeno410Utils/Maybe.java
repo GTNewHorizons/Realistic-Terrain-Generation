@@ -2,31 +2,38 @@
 package Zeno410Utils;
 // code by Nat Price
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+
 public abstract class Maybe<T> implements Iterable<T> {
+
     public abstract boolean isKnown();
+
     public abstract T otherwise(T defaultValue);
+
     public abstract Maybe<T> otherwise(Maybe<T> maybeDefaultValue);
+
     public abstract <U> Maybe<U> to(Function<? super T, ? extends U> mapping);
+
     public abstract Maybe<Boolean> query(Predicate<? super T> mapping);
 
     public static <T> Maybe<T> unknown() {
         return new Maybe<T>() {
+
             @Override
             public boolean isKnown() {
                 return false;
             }
 
             public Iterator<T> iterator() {
-                return Collections.<T>emptyList().iterator();
+                return Collections.<T>emptyList()
+                    .iterator();
             }
 
             @Override
@@ -72,6 +79,7 @@ public abstract class Maybe<T> implements Iterable<T> {
     }
 
     private static class DefiniteValue<T> extends Maybe<T> {
+
         private final T theValue;
 
         public DefiniteValue(T theValue) {
@@ -84,7 +92,8 @@ public abstract class Maybe<T> implements Iterable<T> {
         }
 
         public Iterator<T> iterator() {
-            return Collections.singleton(theValue).iterator();
+            return Collections.singleton(theValue)
+                .iterator();
         }
 
         @Override
@@ -134,7 +143,9 @@ public abstract class Maybe<T> implements Iterable<T> {
     }
 
     public static class MaybeStreamer<Type> extends Streamer<Maybe<Type>> {
+
         private final Streamer<Type> streamer;
+
         public MaybeStreamer(Streamer<Type> streamer) {
             this.streamer = streamer;
         }
@@ -151,7 +162,10 @@ public abstract class Maybe<T> implements Iterable<T> {
             Iterator<Type> toWrite = written.iterator();
             if (toWrite.hasNext()) {
                 target.writeBoolean(true);
-                streamer.writeTo(written.iterator().next(), target);
+                streamer.writeTo(
+                    written.iterator()
+                        .next(),
+                    target);
             } else {
                 target.writeBoolean(false);
             }

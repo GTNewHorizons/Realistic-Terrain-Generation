@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCDeadLand extends BiomeConfigECCBase {
 
-public class BiomeConfigECCDeadLand extends BiomeConfigECCBase
-{
-    public BiomeConfigECCDeadLand()
-    {
+    public BiomeConfigECCDeadLand() {
         super("deadland");
     }
 }

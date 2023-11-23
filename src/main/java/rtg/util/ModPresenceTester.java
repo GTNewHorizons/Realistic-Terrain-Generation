@@ -8,6 +8,7 @@ import cpw.mods.fml.common.Loader;
  * @author Zeno410
  */
 public class ModPresenceTester {
+
     public final String name;
     private boolean unknown = true;
     private boolean present;

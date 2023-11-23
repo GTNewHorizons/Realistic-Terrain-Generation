@@ -1,10 +1,8 @@
 package rtg.api.biome.atg.config;
 
+public class BiomeConfigATGGravelBeach extends BiomeConfigATGBase {
 
-public class BiomeConfigATGGravelBeach extends BiomeConfigATGBase
-{
-    public BiomeConfigATGGravelBeach()
-    {
+    public BiomeConfigATGGravelBeach() {
         super("gravelbeach");
     }
 }

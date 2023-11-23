@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCHighLands extends BiomeConfigECCBase {
 
-public class BiomeConfigECCHighLands extends BiomeConfigECCBase
-{
-    public BiomeConfigECCHighLands()
-    {
+    public BiomeConfigECCHighLands() {
         super("highlands");
     }
 }

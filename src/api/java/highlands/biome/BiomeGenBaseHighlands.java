@@ -1,33 +1,33 @@
 package highlands.biome;
 
-import highlands.api.IHighlandsBiome;
-import highlands.worldgen.WorldGenSmallPlants;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BiomeGenBaseHighlands extends BiomeGenBase implements IHighlandsBiome
-{
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
-	public ArrayList<BiomeGenBase> subBiomes;
+import highlands.api.IHighlandsBiome;
+import highlands.worldgen.WorldGenSmallPlants;
 
-	public BiomeGenBaseHighlands(int id){
-		super(id);
-		subBiomes = new ArrayList<BiomeGenBase>();
-	}
+public abstract class BiomeGenBaseHighlands extends BiomeGenBase implements IHighlandsBiome {
 
-	//TODO- could be crashy...
-	public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand){
-		return (WorldGenerator)new WorldGenSmallPlants(null);
-	}
+    public ArrayList<BiomeGenBase> subBiomes;
 
-	public void setSpawnLists(List monster, List creature, List waterCreature){
-		this.spawnableCreatureList = creature;
-		this.spawnableMonsterList = monster;
-		this.spawnableWaterCreatureList = waterCreature;
-	}
+    public BiomeGenBaseHighlands(int id) {
+        super(id);
+        subBiomes = new ArrayList<BiomeGenBase>();
+    }
+
+    // TODO- could be crashy...
+    public WorldGenerator getRandomWorldGenForHighlandsPlants(Random rand) {
+        return (WorldGenerator) new WorldGenSmallPlants(null);
+    }
+
+    public void setSpawnLists(List monster, List creature, List waterCreature) {
+        this.spawnableCreatureList = creature;
+        this.spawnableMonsterList = monster;
+        this.spawnableWaterCreatureList = waterCreature;
+    }
 
 }

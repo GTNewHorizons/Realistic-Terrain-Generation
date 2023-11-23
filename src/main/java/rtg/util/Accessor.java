@@ -1,6 +1,5 @@
 package rtg.util;
 
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 
@@ -11,6 +10,7 @@ import java.util.Arrays;
  *         Updated and ported to 1.7.10 by srs_bsns
  */
 public class Accessor<ObjectType, FieldType> {
+
     private final String[] fieldNames;
     private Field field;
 
@@ -46,7 +46,8 @@ public class Accessor<ObjectType, FieldType> {
             fields = classObject.getDeclaredFields();
             for (Field field1 : fields) {
                 for (String fieldName : fieldNames) {
-                    if (field1.getName().contains(fieldName)) {
+                    if (field1.getName()
+                        .contains(fieldName)) {
                         field = field1;
                         field.setAccessible(true);
                         return;
@@ -55,7 +56,8 @@ public class Accessor<ObjectType, FieldType> {
             }
             classObject = classObject.getSuperclass();
         } while (classObject != Object.class);
-        throw new RuntimeException("None of " + Arrays.toString(fieldNames) + " found in class " + classObject.getName());
+        throw new RuntimeException(
+            "None of " + Arrays.toString(fieldNames) + " found in class " + classObject.getName());
     }
 
     public void setField(ObjectType object, FieldType fieldValue) {

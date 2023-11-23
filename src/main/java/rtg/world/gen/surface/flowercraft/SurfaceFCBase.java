@@ -1,9 +1,9 @@
 package rtg.world.gen.surface.flowercraft;
 
 import net.minecraft.block.Block;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.world.gen.surface.SurfaceBase;
-
 
 public class SurfaceFCBase extends SurfaceBase {
 

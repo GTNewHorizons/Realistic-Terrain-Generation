@@ -1,17 +1,16 @@
 package exterminatorJeff.undergroundBiomes.api;
 
-
 /**
  *
  * @author Zeno410
  */
 public class NamedVanillaItem extends NamedItem {
+
     public NamedVanillaItem(String name) {
         super(name);
         id = UBIDs.itemID(name);
         item = UBIDs.itemNamed(name);
     }
-
 
     public final static NamedItem axeStone = new NamedVanillaItem("stone_pickaxe");
     public final static NamedItem blazeRod = new NamedVanillaItem("blaze_rod");

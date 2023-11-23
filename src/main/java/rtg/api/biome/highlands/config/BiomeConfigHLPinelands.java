@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLPinelands extends BiomeConfigHLBase {
 
-public class BiomeConfigHLPinelands extends BiomeConfigHLBase
-{
-    public BiomeConfigHLPinelands()
-    {
+    public BiomeConfigHLPinelands() {
         super("pinelands");
     }
 }

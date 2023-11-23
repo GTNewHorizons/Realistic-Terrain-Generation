@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLMountainRidge extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLMountainRidge extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLMountainRidge()
-    {
+    public BiomeConfigEBXLMountainRidge() {
         super("mountainridge");
     }
 }

@@ -8,10 +8,10 @@ import net.minecraft.world.biome.BiomeGenBase;
  */
 public class BiomeSet {
 
-    private boolean [] biomes = new boolean[256];
-
+    private boolean[] biomes = new boolean[256];
 
     public class Water {
+
         public Water() {
             biomes[BiomeGenBase.deepOcean.biomeID] = true;
             biomes[BiomeGenBase.frozenOcean.biomeID] = true;

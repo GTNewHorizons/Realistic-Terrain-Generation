@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLGreenSwamp extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLGreenSwamp extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLGreenSwamp()
-    {
+    public BiomeConfigEBXLGreenSwamp() {
         super("greenswamp");
     }
 }

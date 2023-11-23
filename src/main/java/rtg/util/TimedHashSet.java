@@ -11,13 +11,15 @@ import java.util.Set;
  * @author Zeno410
  */
 public class TimedHashSet<Type> implements Set<Type> {
+
     private final int holdMillis;
-    private  Set<Type> map = new HashSet<Type>();
+    private Set<Type> map = new HashSet<Type>();
     private LinkTail link = new LinkTail();
 
     public TimedHashSet(int holdTicks) {
         this.holdMillis = holdTicks;
     }
+
     public int size() {
         return map.size();
     }
@@ -78,25 +80,38 @@ public class TimedHashSet<Type> implements Set<Type> {
     }
 
     private abstract class LinkEntry {
+
         LinkEntry next;
+
         abstract boolean old();
+
         abstract void remove();
     }
 
     private class LinkTail extends LinkEntry {
+
         LinkEntry latest;
+
         LinkTail() {
             this.latest = this;
             this.next = this;
         }
-        boolean old() {return false;}
-        void remove() {throw new RuntimeException();}
+
+        boolean old() {
+            return false;
+        }
+
+        void remove() {
+            throw new RuntimeException();
+        }
+
         void clear() {
             while (next.old()) {
                 next.remove();
                 next = next.next;
             }
         }
+
         void add(Type added) {
             LinkEntry toAdd = new Timed(added);
             toAdd.next = this;
@@ -105,9 +120,11 @@ public class TimedHashSet<Type> implements Set<Type> {
         }
     }
 
-	private class Timed<Key> extends LinkEntry {
+    private class Timed<Key> extends LinkEntry {
+
         final long time;
         final Key timed;
+
         Timed(Key timed) {
             this.timed = timed;
             time = System.currentTimeMillis();
@@ -119,7 +136,7 @@ public class TimedHashSet<Type> implements Set<Type> {
 
         @Override
         boolean old() {
-            return (time + holdMillis<System.currentTimeMillis());
+            return (time + holdMillis < System.currentTimeMillis());
         }
     }
 }

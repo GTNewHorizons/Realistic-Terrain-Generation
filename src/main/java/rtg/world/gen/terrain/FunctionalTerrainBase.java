@@ -13,8 +13,7 @@ public class FunctionalTerrainBase extends TerrainBase {
     protected HeightEffect height;
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return riverized(height.added(simplex, cell, x, y) + base, river);
     }
 

@@ -7,7 +7,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.item;
 

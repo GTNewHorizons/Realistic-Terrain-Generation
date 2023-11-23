@@ -1,9 +1,10 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
-import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import biomesoplenty.api.content.BOPCBiomes;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.biomesoplenty.config.BiomeConfigBOPSeasonalForest;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
@@ -13,54 +14,55 @@ import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPSeasonalForest;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPSeasonalForest;
 
-public class RealisticBiomeBOPSeasonalForest extends RealisticBiomeBOPBase
-{
-	public static BiomeGenBase bopBiome = BOPCBiomes.seasonalForest;
+public class RealisticBiomeBOPSeasonalForest extends RealisticBiomeBOPBase {
 
-	public static Block topBlock = bopBiome.topBlock;
-	public static Block fillerBlock = bopBiome.fillerBlock;
+    public static BiomeGenBase bopBiome = BOPCBiomes.seasonalForest;
 
-	public RealisticBiomeBOPSeasonalForest(BiomeConfig config)
-	{
-		super(config,
-			bopBiome, BiomeGenBase.river,
-			new TerrainBOPSeasonalForest(15f, 80f, 68f, 170f),
-			new SurfaceBOPSeasonalForest(config,
-                topBlock, //Block top
-                (byte)0, //byte topByte
-                fillerBlock, //Block filler,
-                (byte)0, //byte fillerByte
-                topBlock, //Block mixTop,
-                (byte)0, //byte mixTopByte,
-                fillerBlock, //Block mixFill,
-                (byte)0, //byte mixFillByte,
-                0.5f, //float mixWidth,
-                -0.15f, //float mixHeight,
-                10f, //float smallWidth,
-                0.5f //float smallStrength
-            )
-		);
+    public static Block topBlock = bopBiome.topBlock;
+    public static Block fillerBlock = bopBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
+    public RealisticBiomeBOPSeasonalForest(BiomeConfig config) {
+        super(
+            config,
+            bopBiome,
+            BiomeGenBase.river,
+            new TerrainBOPSeasonalForest(15f, 80f, 68f, 170f),
+            new SurfaceBOPSeasonalForest(
+                config,
+                topBlock, // Block top
+                (byte) 0, // byte topByte
+                fillerBlock, // Block filler,
+                (byte) 0, // byte fillerByte
+                topBlock, // Block mixTop,
+                (byte) 0, // byte mixTopByte,
+                fillerBlock, // Block mixFill,
+                (byte) 0, // byte mixFillByte,
+                0.5f, // float mixWidth,
+                -0.15f, // float mixHeight,
+                10f, // float smallWidth,
+                0.5f // float smallStrength
+            ));
 
-		DecoBoulder decoBoulder = new DecoBoulder();
-		decoBoulder.boulderBlock = Blocks.cobblestone;
-		decoBoulder.maxY = 80;
-		decoBoulder.chance = 16;
-		decoBoulder.strengthFactor = 1f;
-		this.addDeco(decoBoulder);
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
 
-		DecoFallenTree decoFallenTree = new DecoFallenTree();
-		decoFallenTree.distribution.noiseDivisor = 80f;
-		decoFallenTree.distribution.noiseFactor = 60f;
-		decoFallenTree.distribution.noiseAddend = -15f;
-		decoFallenTree.logCondition = LogCondition.RANDOM_CHANCE;
-		decoFallenTree.logConditionChance = 6;
-		decoFallenTree.randomLogBlocks = new Block[]{Blocks.log2, Blocks.log, Blocks.log};
-		decoFallenTree.randomLogMetas = new byte[]{1, 0, 2};
-		decoFallenTree.minSize = 3;
-		decoFallenTree.maxSize = 4;
-		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigBOPSeasonalForest.decorationLogsId));
-	}
+        DecoBoulder decoBoulder = new DecoBoulder();
+        decoBoulder.boulderBlock = Blocks.cobblestone;
+        decoBoulder.maxY = 80;
+        decoBoulder.chance = 16;
+        decoBoulder.strengthFactor = 1f;
+        this.addDeco(decoBoulder);
+
+        DecoFallenTree decoFallenTree = new DecoFallenTree();
+        decoFallenTree.distribution.noiseDivisor = 80f;
+        decoFallenTree.distribution.noiseFactor = 60f;
+        decoFallenTree.distribution.noiseAddend = -15f;
+        decoFallenTree.logCondition = LogCondition.RANDOM_CHANCE;
+        decoFallenTree.logConditionChance = 6;
+        decoFallenTree.randomLogBlocks = new Block[] { Blocks.log2, Blocks.log, Blocks.log };
+        decoFallenTree.randomLogMetas = new byte[] { 1, 0, 2 };
+        decoFallenTree.minSize = 3;
+        decoFallenTree.maxSize = 4;
+        this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigBOPSeasonalForest.decorationLogsId));
+    }
 }

@@ -1,23 +1,24 @@
 
 package rtg.util;
 
-import rtg.RTG;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
+import rtg.RTG;
+
 /**
  * A simple utility to track time spent in various procedures.
  * Crashes in re-entrant procedures, which is desired
  * That would require a much more complex system.
+ * 
  * @author Zeno410
  */
 public class TimeTracker {
 
-    //private boolean started;
+    // private boolean started;
     private boolean stopped;
     private int depth;
     private int maxDepth;
@@ -27,17 +28,17 @@ public class TimeTracker {
     private long totalOff = 0;
     public static final Manager manager = new Manager();
 
-    public String report () {
-        return new String(" on proportion "+((float)totalOn/(float)(totalOn+totalOff+1))+ " max depth " +
-                maxDepth);
+    public String report() {
+        return new String(
+            " on proportion " + ((float) totalOn / (float) (totalOn + totalOff + 1)) + " max depth " + maxDepth);
     }
 
     public void start() {
-        //if (started) throw new RuntimeException();
+        // if (started) throw new RuntimeException();
         startTime = System.currentTimeMillis();
-        //started = true;
+        // started = true;
         depth++;
-        if (depth>maxDepth) maxDepth++;
+        if (depth > maxDepth) maxDepth++;
         if (stopped) {
             totalOff += startTime - stopTime;
             stopped = false;
@@ -45,24 +46,27 @@ public class TimeTracker {
     }
 
     public void stop() {
-        //if (!started) throw new RuntimeException();
+        // if (!started) throw new RuntimeException();
         depth--;
         if (depth == 0) {
             stopTime = System.currentTimeMillis();
             stopped = true;
             totalOn += stopTime - startTime;
         }
-        //started = false;
+        // started = false;
     }
 
     public static class Manager {
-        private HashMap<String,TimeTracker> trackers = new HashMap<String,TimeTracker>();
+
+        private HashMap<String, TimeTracker> trackers = new HashMap<String, TimeTracker>();
+
         private Manager() {
             RTG.instance.runOnServerClose(runReport());
         }
 
         private Runnable runReport() {
             return new Runnable() {
+
                 public void run() {
                     report();
                 }
@@ -71,7 +75,7 @@ public class TimeTracker {
 
         private TimeTracker tracker(String name) {
             TimeTracker result = trackers.get(name);
-            if (result == null){
+            if (result == null) {
                 result = new TimeTracker();
                 trackers.put(name, result);
             }
@@ -87,19 +91,23 @@ public class TimeTracker {
         }
 
         public void report() {
-            if (trackers.size()<1) return;
+            if (trackers.size() < 1) return;
             StringWriter output = StringWriter.from("TimeUsage.txt");
-            for (String name: trackers.keySet()) {
-                output.accept(name + " " + trackers.get(name).report());
+            for (String name : trackers.keySet()) {
+                output.accept(
+                    name + " "
+                        + trackers.get(name)
+                            .report());
             }
             output.done();
-            //trackers.clear();
+            // trackers.clear();
         }
     }
 
 }
 
 class StringWriter {
+
     BufferedWriter output;
     boolean started = false;
 
@@ -109,8 +117,11 @@ class StringWriter {
     }
 
     public static StringWriter from(File file) {
-        try{ return new StringWriter(file);}
-        catch (IOException e) {throw new RuntimeException();}
+        try {
+            return new StringWriter(file);
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 
     public static StringWriter from(String fileName) {

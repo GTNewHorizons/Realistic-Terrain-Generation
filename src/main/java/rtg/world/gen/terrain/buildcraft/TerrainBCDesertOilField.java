@@ -5,27 +5,26 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainBCDesertOilField extends TerrainBase
-{
-	public TerrainBCDesertOilField()
-	{
-		super(64);
-	}
+public class TerrainBCDesertOilField extends TerrainBase {
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
-        //return terrainPolar(x, y, simplex, river);
-		float duneHeight = (minDuneHeight + (float) ConfigRTG.duneHeight);
+    public TerrainBCDesertOilField() {
+        super(64);
+    }
 
-		duneHeight *= (1f + simplex.octave(2).noise2((float)x / 330f, (float)y / 330f)) / 2f;
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        // return terrainPolar(x, y, simplex, river);
+        float duneHeight = (minDuneHeight + (float) ConfigRTG.duneHeight);
 
-		float stPitch = 200f;	// The higher this is, the more smoothly dunes blend with the terrain
-		float stFactor = duneHeight;
-		float hPitch = 70;	// Dune scale
-		float hDivisor = 40;
+        duneHeight *= (1f + simplex.octave(2)
+            .noise2((float) x / 330f, (float) y / 330f)) / 2f;
 
-		return terrainPolar(x, y, simplex, river, stPitch, stFactor, hPitch, hDivisor, base) +
-				groundNoise(x,y, 1f, simplex);
-	}
+        float stPitch = 200f; // The higher this is, the more smoothly dunes blend with the terrain
+        float stFactor = duneHeight;
+        float hPitch = 70; // Dune scale
+        float hDivisor = 40;
+
+        return terrainPolar(x, y, simplex, river, stPitch, stFactor, hPitch, hDivisor, base)
+            + groundNoise(x, y, 1f, simplex);
+    }
 }

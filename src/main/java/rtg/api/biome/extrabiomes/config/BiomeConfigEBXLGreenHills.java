@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLGreenHills extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLGreenHills extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLGreenHills()
-    {
+    public BiomeConfigEBXLGreenHills() {
         super("greenhills");
     }
 }

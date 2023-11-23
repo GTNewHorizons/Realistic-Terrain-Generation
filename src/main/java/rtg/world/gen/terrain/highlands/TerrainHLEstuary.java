@@ -5,19 +5,16 @@ import rtg.world.gen.terrain.HeightVariation;
 import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.VariableRuggednessEffect;
 
+public class TerrainHLEstuary extends FunctionalTerrainBase {
 
-public class TerrainHLEstuary extends FunctionalTerrainBase
-{
-
-    public TerrainHLEstuary()
-    {
+    public TerrainHLEstuary() {
         base = 60.5f;
         HeightVariation waterLand = new HeightVariation();
         waterLand.height = 3f;
         waterLand.wavelength = 40f;
-        waterLand.octave =VariableRuggednessEffect.STANDARD_RUGGEDNESS_OCTAVE;
+        waterLand.octave = VariableRuggednessEffect.STANDARD_RUGGEDNESS_OCTAVE;
 
-        height = new JitterEffect(20f,40f,waterLand);
+        height = new JitterEffect(20f, 40f, waterLand);
 
     }
 

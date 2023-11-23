@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLGlacier extends BiomeConfigHLBase {
 
-public class BiomeConfigHLGlacier extends BiomeConfigHLBase
-{
-    public BiomeConfigHLGlacier()
-    {
+    public BiomeConfigHLGlacier() {
         super("glacier");
     }
 }

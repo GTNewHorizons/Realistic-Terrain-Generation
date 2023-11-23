@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPBrushland extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPBrushland extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPBrushland()
-    {
+    public BiomeConfigBOPBrushland() {
         super("brushland");
     }
 }

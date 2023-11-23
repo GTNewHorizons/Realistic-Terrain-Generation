@@ -13,7 +13,8 @@ public class TerrainVanillaMesa extends TerrainBase {
 
     @Override
     public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
-        return riverized(68f + groundEffect.added(simplex, cell, x, y),river);
+        return riverized(68f + groundEffect.added(simplex, cell, x, y), river);
     }
+
     private GroundEffect groundEffect = new GroundEffect(4f);
 }

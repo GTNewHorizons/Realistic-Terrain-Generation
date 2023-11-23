@@ -4,13 +4,12 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBColdPineForest extends TerrainBase
-{
-	private TerrainBase parent = new TerrainEBPineForest();
+public class TerrainEBColdPineForest extends TerrainBase {
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
+    private TerrainBase parent = new TerrainEBPineForest();
+
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return parent.generateNoise(simplex, cell, x, y, border, river);
-	}
+    }
 }

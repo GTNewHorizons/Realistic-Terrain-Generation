@@ -4,23 +4,22 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainFNTropicalForest extends TerrainBase
-{
+public class TerrainFNTropicalForest extends TerrainBase {
+
     private float hillStrength = 10f;// this needs to be linked to the
-    public TerrainFNTropicalForest()
-    {
+
+    public TerrainFNTropicalForest() {
 
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         groundNoise = groundNoise(x, y, groundVariation, simplex);
 
         float m = hills(x, y, hillStrength, simplex, river);
 
         float floNoise = 65f + groundNoise + m;
 
-        return riverized(floNoise,river);
+        return riverized(floNoise, river);
     }
 }

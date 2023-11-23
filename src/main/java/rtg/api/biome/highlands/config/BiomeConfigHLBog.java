@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLBog extends BiomeConfigHLBase {
 
-public class BiomeConfigHLBog extends BiomeConfigHLBase
-{
-    public BiomeConfigHLBog()
-    {
+    public BiomeConfigHLBog() {
         super("bog");
     }
 }

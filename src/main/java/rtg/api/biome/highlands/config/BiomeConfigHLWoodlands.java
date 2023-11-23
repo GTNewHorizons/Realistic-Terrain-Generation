@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLWoodlands extends BiomeConfigHLBase {
 
-public class BiomeConfigHLWoodlands extends BiomeConfigHLBase
-{
-    public BiomeConfigHLWoodlands()
-    {
+    public BiomeConfigHLWoodlands() {
         super("woodlands");
     }
 }

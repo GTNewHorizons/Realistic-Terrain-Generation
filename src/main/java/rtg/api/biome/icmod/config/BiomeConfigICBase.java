@@ -7,6 +7,8 @@ import rtg.api.biome.BiomeConfig;
  */
 public class BiomeConfigICBase extends BiomeConfig {
 
-    public BiomeConfigICBase(String biomeSlug) { super("ICMod", biomeSlug); }
+    public BiomeConfigICBase(String biomeSlug) {
+        super("ICMod", biomeSlug);
+    }
 
 }

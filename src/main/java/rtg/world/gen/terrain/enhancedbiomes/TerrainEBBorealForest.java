@@ -7,15 +7,14 @@ import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.HeightEffect;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBBorealForest extends TerrainBase
-{
+public class TerrainEBBorealForest extends TerrainBase {
 
     float hillStrength = 15;
     float baseHeight = 65;
 
     HeightEffect height;
-	public TerrainEBBorealForest()
-	{
+
+    public TerrainEBBorealForest() {
         BlendedHillEffect hillEffect = new BlendedHillEffect();
         hillEffect.height = hillStrength;
         hillEffect.hillBottomSimplexValue = 0.3f;
@@ -23,11 +22,10 @@ public class TerrainEBBorealForest extends TerrainBase
         hillEffect.wavelength = 50;
 
         height = hillEffect.plus(new GroundEffect(3f));
-	}
+    }
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
-        return riverized(height.added(simplex, cell, x, y)+baseHeight,river);
-	}
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
+        return riverized(height.added(simplex, cell, x, y) + baseHeight, river);
+    }
 }

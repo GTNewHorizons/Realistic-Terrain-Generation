@@ -6,13 +6,9 @@ import rtg.world.gen.terrain.HillockEffect;
 import rtg.world.gen.terrain.HillsEverywhereEffect;
 import rtg.world.gen.terrain.JitterEffect;
 
+public class TerrainHLBog extends FunctionalTerrainBase {
 
-
-public class TerrainHLBog extends FunctionalTerrainBase
-{
-
-    public TerrainHLBog()
-    {
+    public TerrainHLBog() {
         this.base = 59f;
         HillsEverywhereEffect small = new HillsEverywhereEffect();
         small.height = 7;
@@ -28,8 +24,8 @@ public class TerrainHLBog extends FunctionalTerrainBase
 
         height = small.plus(large);
 
-        height = new JitterEffect(30,40,height);
-        height = new JitterEffect(10,15,height);
+        height = new JitterEffect(30, 40, height);
+        height = new JitterEffect(10, 15, height);
         height = height.plus(new GroundEffect(2));
 
     }

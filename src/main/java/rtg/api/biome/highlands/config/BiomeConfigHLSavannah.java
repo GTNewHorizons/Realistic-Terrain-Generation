@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLSavannah extends BiomeConfigHLBase {
 
-public class BiomeConfigHLSavannah extends BiomeConfigHLBase
-{
-    public BiomeConfigHLSavannah()
-    {
+    public BiomeConfigHLSavannah() {
         super("savannah");
     }
 }

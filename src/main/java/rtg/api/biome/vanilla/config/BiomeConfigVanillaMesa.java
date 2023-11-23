@@ -1,10 +1,8 @@
 package rtg.api.biome.vanilla.config;
 
+public class BiomeConfigVanillaMesa extends BiomeConfigVanillaBase {
 
-public class BiomeConfigVanillaMesa extends BiomeConfigVanillaBase
-{
-    public BiomeConfigVanillaMesa()
-    {
+    public BiomeConfigVanillaMesa() {
         super("mesa");
     }
 }

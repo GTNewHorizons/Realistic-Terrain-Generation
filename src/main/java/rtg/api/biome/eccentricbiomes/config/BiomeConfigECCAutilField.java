@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCAutilField extends BiomeConfigECCBase {
 
-public class BiomeConfigECCAutilField extends BiomeConfigECCBase
-{
-    public BiomeConfigECCAutilField()
-    {
+    public BiomeConfigECCAutilField() {
         super("autilfield");
     }
 }

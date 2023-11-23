@@ -1,6 +1,9 @@
 package rtg.config;
 
+import java.util.ArrayList;
+
 import net.minecraftforge.common.config.Configuration;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.BiomeConfigProperty;
 import rtg.api.biome.abyssalcraft.config.BiomeConfigAC;
@@ -401,13 +404,9 @@ import rtg.api.biome.vanilla.config.BiomeConfigVanillaTaiga;
 import rtg.api.biome.vanilla.config.BiomeConfigVanillaTaigaHills;
 import rtg.api.biome.vanilla.config.BiomeConfigVanillaTaigaM;
 
-import java.util.ArrayList;
+public class BiomeConfigManager {
 
-public class BiomeConfigManager
-{
-
-    public static void initBiomeConfigs()
-    {
+    public static void initBiomeConfigs() {
         initBiomeConfigsAC();
         initBiomeConfigsAM();
         initBiomeConfigsATG();
@@ -434,8 +433,7 @@ public class BiomeConfigManager
         initBiomeConfigsVanilla();
     }
 
-    public static void initBiomeConfigsAC()
-    {
+    public static void initBiomeConfigsAC() {
         BiomeConfigAC.biomeConfigACCoraliumInfestedSwamp = new BiomeConfigACCoraliumInfestedSwamp();
         BiomeConfigAC.biomeConfigACDarklands = new BiomeConfigACDarklands();
         BiomeConfigAC.biomeConfigACDarklandsForest = new BiomeConfigACDarklandsForest();
@@ -444,13 +442,11 @@ public class BiomeConfigManager
         BiomeConfigAC.biomeConfigACDarklandsPlains = new BiomeConfigACDarklandsPlains();
     }
 
-    public static void initBiomeConfigsAM()
-    {
+    public static void initBiomeConfigsAM() {
         BiomeConfigAM.biomeConfigAMWitchwoodForest = new BiomeConfigAMWitchwoodForest();
     }
 
-    public static void initBiomeConfigsATG()
-    {
+    public static void initBiomeConfigsATG() {
         BiomeConfigATG.biomeConfigATGGravelBeach = new BiomeConfigATGGravelBeach();
         BiomeConfigATG.biomeConfigATGRockySteppe = new BiomeConfigATGRockySteppe();
         BiomeConfigATG.biomeConfigATGShrubland = new BiomeConfigATGShrubland();
@@ -461,8 +457,7 @@ public class BiomeConfigManager
         BiomeConfigATG.biomeConfigATGWoodland = new BiomeConfigATGWoodland();
     }
 
-    public static void initBiomeConfigsBOP()
-    {
+    public static void initBiomeConfigsBOP() {
         BiomeConfigBOP.biomeConfigBOPAlps = new BiomeConfigBOPAlps();
         BiomeConfigBOP.biomeConfigBOPArctic = new BiomeConfigBOPArctic();
         BiomeConfigBOP.biomeConfigBOPBambooForest = new BiomeConfigBOPBambooForest();
@@ -542,21 +537,18 @@ public class BiomeConfigManager
         BiomeConfigBOP.biomeConfigBOPKelpForest = new BiomeConfigBOPKelpForest();
     }
 
-    public static void initBiomeConfigsBC()
-    {
+    public static void initBiomeConfigsBC() {
         BiomeConfigBC.biomeConfigBCDesertOilField = new BiomeConfigBCDesertOilField();
         BiomeConfigBC.biomeConfigBCOceanOilField = new BiomeConfigBCOceanOilField();
     }
 
-    public static void initBiomeConfigsCC()
-    {
+    public static void initBiomeConfigsCC() {
         BiomeConfigCC.biomeConfigCCEnderForest = new BiomeConfigCCEnderForest();
         BiomeConfigCC.biomeConfigCCLuminousCliffs = new BiomeConfigCCLuminousCliffs();
         BiomeConfigCC.biomeConfigCCRainbowForest = new BiomeConfigCCRainbowForest();
     }
 
-    public static void initBiomeConfigsEB()
-    {
+    public static void initBiomeConfigsEB() {
         BiomeConfigEB.biomeConfigEBAlpineMountains = new BiomeConfigEBAlpineMountains();
         BiomeConfigEB.biomeConfigEBAlpineMountainsEdge = new BiomeConfigEBAlpineMountainsEdge();
         BiomeConfigEB.biomeConfigEBAlpineMountainsM = new BiomeConfigEBAlpineMountainsM();
@@ -649,8 +641,7 @@ public class BiomeConfigManager
         BiomeConfigEB.biomeConfigEBXericShrubland = new BiomeConfigEBXericShrubland();
     }
 
-    public static void initBiomeConfigsEBXL()
-    {
+    public static void initBiomeConfigsEBXL() {
         BiomeConfigEBXL.biomeConfigEBXLAlpine = new BiomeConfigEBXLAlpine();
         BiomeConfigEBXL.biomeConfigEBXLAutumnWoods = new BiomeConfigEBXLAutumnWoods();
         BiomeConfigEBXL.biomeConfigEBXLBirchForest = new BiomeConfigEBXLBirchForest();
@@ -681,8 +672,7 @@ public class BiomeConfigManager
         BiomeConfigEBXL.biomeConfigEBXLWoodlands = new BiomeConfigEBXLWoodlands();
     }
 
-    public static void initBiomeConfigsECC()
-    {
+    public static void initBiomeConfigsECC() {
         BiomeConfigECC.biomeConfigECCAmethyst = new BiomeConfigECCAmethyst();
         BiomeConfigECC.biomeConfigECCAmethystGrove = new BiomeConfigECCAmethystGrove();
         BiomeConfigECC.biomeConfigECCArctic = new BiomeConfigECCArctic();
@@ -701,18 +691,15 @@ public class BiomeConfigManager
         BiomeConfigECC.biomeConfigECCVoid = new BiomeConfigECCVoid();
     }
 
-    public static void initBiomeConfigsGC()
-    {
+    public static void initBiomeConfigsGC() {
         BiomeConfigGC.biomeConfigGCBambooForest = new BiomeConfigGCBambooForest();
     }
 
-    public static void initBiomeConfigsFC()
-    {
+    public static void initBiomeConfigsFC() {
         BiomeConfigFC.biomeConfigFCPhantasia = new BiomeConfigFCPhantasia();
     }
 
-    public static void initBiomeConfigsHL()
-    {
+    public static void initBiomeConfigsHL() {
         BiomeConfigHL.biomeConfigHLAlps = new BiomeConfigHLAlps();
         BiomeConfigHL.biomeConfigHLAutumnForest = new BiomeConfigHLAutumnForest();
         BiomeConfigHL.biomeConfigHLBadlands = new BiomeConfigHLBadlands();
@@ -758,30 +745,25 @@ public class BiomeConfigManager
         BiomeConfigHL.biomeConfigHLWoodsMountains = new BiomeConfigHLWoodsMountains();
     }
 
-    public static void initBiomeConfigsHWM()
-    {
+    public static void initBiomeConfigsHWM() {
         BiomeConfigHWM.biomeConfigHWMHotSprings = new BiomeConfigHWMHotSprings();
     }
 
-    public static void initBiomeConfigsIC()
-    {
+    public static void initBiomeConfigsIC() {
         BiomeConfigIC.biomeConfigICIceCream = new BiomeConfigICIceCream();
     }
 
-    public static void initBiomeConfigsIDT()
-    {
+    public static void initBiomeConfigsIDT() {
         BiomeConfigIDT.biomeConfigIDTEbonyForest = new BiomeConfigIDTEbonyForest();
         BiomeConfigIDT.biomeConfigIDTSilkwoodForest = new BiomeConfigIDTSilkwoodForest();
         BiomeConfigIDT.biomeConfigIDTWillowForest = new BiomeConfigIDTWillowForest();
     }
 
-    public static void initBiomeConfigsITD()
-    {
+    public static void initBiomeConfigsITD() {
         BiomeConfigITD.biomeConfigITDDarkForest = new BiomeConfigITDDarkForest();
     }
 
-    public static void initBiomeConfigsRW()
-    {
+    public static void initBiomeConfigsRW() {
         BiomeConfigRW.biomeConfigRWBotanicalGarden = new BiomeConfigRWBotanicalGarden();
         BiomeConfigRW.biomeConfigRWMurica = new BiomeConfigRWMurica();
         BiomeConfigRW.biomeConfigRWMountainOfMadness = new BiomeConfigRWMountainOfMadness();
@@ -791,31 +773,26 @@ public class BiomeConfigManager
         BiomeConfigRW.biomeConfigRWSpookyForest = new BiomeConfigRWSpookyForest();
     }
 
-    public static void initBiomeConfigsSF()
-    {
+    public static void initBiomeConfigsSF() {
         BiomeConfigSF.biomeConfigSFSugiForest = new BiomeConfigSFSugiForest();
     }
 
-    public static void initBiomeConfigsTC()
-    {
+    public static void initBiomeConfigsTC() {
         BiomeConfigTC.biomeConfigTCEerie = new BiomeConfigTCEerie();
         BiomeConfigTC.biomeConfigTCMagicalForest = new BiomeConfigTCMagicalForest();
         BiomeConfigTC.biomeConfigTCTaintedLand = new BiomeConfigTCTaintedLand();
     }
 
-    public static void initBiomeConfigsLOM()
-    {
+    public static void initBiomeConfigsLOM() {
         BiomeConfigLOM.biomeConfigLOMAntartica = new BiomeConfigLOMAntartica();
         BiomeConfigLOM.biomeConfigLOMTropicalBeach = new BiomeConfigLOMTropicalBeach();
     }
 
-    public static void initBiomeConfigsVAMP()
-    {
+    public static void initBiomeConfigsVAMP() {
         BiomeConfigVAMP.biomeConfigVAMPVampireForest = new BiomeConfigVAMPVampireForest();
     }
 
-    public static void initBiomeConfigsTOFU()
-    {
+    public static void initBiomeConfigsTOFU() {
 
         BiomeConfigTOFU.biomeConfigTOFULeekPlains = new BiomeConfigTOFULeekPlains();
         BiomeConfigTOFU.biomeConfigTOFUTofuBuildings = new BiomeConfigTOFUTofuBuildings();
@@ -828,8 +805,7 @@ public class BiomeConfigManager
         BiomeConfigTOFU.biomeConfigTOFUTofuRiver = new BiomeConfigTOFUTofuRiver();
     }
 
-    public static void initBiomeConfigsFN()
-    {
+    public static void initBiomeConfigsFN() {
 
         BiomeConfigFN.biomeConfigFNCherryBlossomWoodland = new BiomeConfigFNCherryBlossomWoodland();
         BiomeConfigFN.biomeConfigFNCrystalForest = new BiomeConfigFNCrystalForest();
@@ -842,8 +818,7 @@ public class BiomeConfigManager
         BiomeConfigFN.biomeConfigFNTropicalForestHills = new BiomeConfigFNTropicalForestHills();
     }
 
-    public static void initBiomeConfigsVanilla()
-    {
+    public static void initBiomeConfigsVanilla() {
         BiomeConfigVanilla.biomeConfigVanillaBeach = new BiomeConfigVanillaBeach();
         BiomeConfigVanilla.biomeConfigVanillaBirchForest = new BiomeConfigVanillaBirchForest();
         BiomeConfigVanilla.biomeConfigVanillaBirchForestHills = new BiomeConfigVanillaBirchForestHills();
@@ -905,8 +880,7 @@ public class BiomeConfigManager
         BiomeConfigVanilla.biomeConfigVanillaMesaPlateauM = new BiomeConfigVanillaMesaPlateauM();
     }
 
-    public static void setBiomeConfigsFromUserConfigs(BiomeConfig[] biomeConfigs, Configuration config)
-    {
+    public static void setBiomeConfigsFromUserConfigs(BiomeConfig[] biomeConfigs, Configuration config) {
 
         for (int i = 0; i < biomeConfigs.length; i++) {
 
@@ -927,30 +901,21 @@ public class BiomeConfigManager
                             prop.valueInt,
                             prop.minValue,
                             prop.maxValue,
-                            prop.description
-                        );
+                            prop.description);
 
                         break;
 
                     case BOOLEAN:
 
-                        prop.valueBoolean = config.getBoolean(
-                            prop.name,
-                            categoryName,
-                            prop.valueBoolean,
-                            prop.description
-                        );
+                        prop.valueBoolean = config
+                            .getBoolean(prop.name, categoryName, prop.valueBoolean, prop.description);
 
                         break;
 
                     case STRING:
 
-                        prop.valueString = config.getString(
-                            prop.name,
-                            categoryName,
-                            prop.valueString,
-                            prop.description
-                        );
+                        prop.valueString = config
+                            .getString(prop.name, categoryName, prop.valueString, prop.description);
 
                         break;
 

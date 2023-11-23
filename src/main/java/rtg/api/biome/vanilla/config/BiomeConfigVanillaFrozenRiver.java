@@ -1,10 +1,8 @@
 package rtg.api.biome.vanilla.config;
 
+public class BiomeConfigVanillaFrozenRiver extends BiomeConfigVanillaBase {
 
-public class BiomeConfigVanillaFrozenRiver extends BiomeConfigVanillaBase
-{
-    public BiomeConfigVanillaFrozenRiver()
-    {
+    public BiomeConfigVanillaFrozenRiver() {
         super("frozenriver");
     }
 }

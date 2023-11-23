@@ -1,10 +1,8 @@
 package rtg.api.biome.atg.config;
 
+public class BiomeConfigATGWoodland extends BiomeConfigATGBase {
 
-public class BiomeConfigATGWoodland extends BiomeConfigATGBase
-{
-    public BiomeConfigATGWoodland()
-    {
+    public BiomeConfigATGWoodland() {
         super("woodland");
     }
 }

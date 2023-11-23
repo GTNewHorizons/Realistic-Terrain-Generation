@@ -1,22 +1,21 @@
 package highlands.biome;
 
+import java.util.Random;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-import java.util.Random;
+public class BiomeGenRockIsland extends BiomeGenBaseHighlands {
 
-public class BiomeGenRockIsland extends BiomeGenBaseHighlands
-{
-	private static final Height biomeHeight = new Height(0.0F, 0.4F);
+    private static final Height biomeHeight = new Height(0.0F, 0.4F);
 
-	public BiomeGenRockIsland(int par1)
-    {
+    public BiomeGenRockIsland(int par1) {
         super(par1);
 
         int trees = -100;
-	    int grass = 0;
-	    int flowers = 0;
-	    this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
+        int grass = 0;
+        int flowers = 0;
+        this.theBiomeDecorator = new BiomeDecoratorHighlands(this, trees, grass, flowers);
         this.spawnableCreatureList.clear();
 
         this.topBlock = Blocks.stone;
@@ -26,9 +25,9 @@ public class BiomeGenRockIsland extends BiomeGenBaseHighlands
         this.rainfall = 0.4F;
     }
 
-	@Override
-	public void decorate(World world, Random random, int x, int z) {
-		BiomeGenBaseHighlands biome = this;
-		this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
+    @Override
+    public void decorate(World world, Random random, int x, int z) {
+        BiomeGenBaseHighlands biome = this;
+        this.theBiomeDecorator.decorateChunk(world, random, biome, x, z);
     }
 }

@@ -6,11 +6,9 @@ import rtg.world.gen.terrain.GroundEffect;
 import rtg.world.gen.terrain.HillsEverywhereEffect;
 import rtg.world.gen.terrain.JitterEffect;
 
-public class TerrainEBXLRedwoodForest extends FunctionalTerrainBase
-{
+public class TerrainEBXLRedwoodForest extends FunctionalTerrainBase {
 
-    public TerrainEBXLRedwoodForest()
-    {
+    public TerrainEBXLRedwoodForest() {
         base = 78;
 
         BlendedHillEffect bumps = new BlendedHillEffect();

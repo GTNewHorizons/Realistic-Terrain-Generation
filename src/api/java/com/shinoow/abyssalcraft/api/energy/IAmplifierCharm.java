@@ -7,13 +7,14 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  *
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.energy;
 
+import net.minecraft.item.ItemStack;
+
 import com.shinoow.abyssalcraft.api.energy.EnergyEnum.AmplifierType;
 import com.shinoow.abyssalcraft.api.energy.EnergyEnum.DeityType;
-import net.minecraft.item.ItemStack;
 
 /**
  * Interface to use on items that can amplify a {@link IEnergyManipulator} (WIP)<br>
@@ -26,15 +27,17 @@ import net.minecraft.item.ItemStack;
  */
 public interface IAmplifierCharm {
 
-	/**
-	 * Gets the amplifier associated with the item
-	 * @param stack ItemStack containing the item
-	 */
-	public AmplifierType getAmplifier(ItemStack stack);
+    /**
+     * Gets the amplifier associated with the item
+     * 
+     * @param stack ItemStack containing the item
+     */
+    public AmplifierType getAmplifier(ItemStack stack);
 
-	/**
-	 * Gets the deity associated with the item (can be null)
-	 * @param stack ItemStack containing the item
-	 */
-	public DeityType getDeity(ItemStack stack);
+    /**
+     * Gets the deity associated with the item (can be null)
+     * 
+     * @param stack ItemStack containing the item
+     */
+    public DeityType getDeity(ItemStack stack);
 }

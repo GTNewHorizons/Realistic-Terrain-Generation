@@ -1,5 +1,7 @@
 package rtg.config;
 
+import java.io.File;
+
 import rtg.config.abyssalcraft.ConfigAC;
 import rtg.config.arsmagica.ConfigAM;
 import rtg.config.atg.ConfigATG;
@@ -25,10 +27,7 @@ import rtg.config.tofucraft.ConfigTOFU;
 import rtg.config.vampirism.ConfigVAMP;
 import rtg.config.vanilla.ConfigVanilla;
 
-import java.io.File;
-
-public class ConfigManager
-{
+public class ConfigManager {
 
     public static File rtgConfigFile;
     public static File vanillaConfigFile;
@@ -56,12 +55,12 @@ public class ConfigManager
     public static File sfConfigFile;
 
     private ConfigRTG configRTG = new ConfigRTG();
+
     public ConfigRTG rtg() {
         return configRTG;
     }
 
-    public static void init(String configpath)
-    {
+    public static void init(String configpath) {
 
         rtgConfigFile = new File(configpath + "rtg.cfg");
         vanillaConfigFile = new File(configpath + "biomes/vanilla.cfg");

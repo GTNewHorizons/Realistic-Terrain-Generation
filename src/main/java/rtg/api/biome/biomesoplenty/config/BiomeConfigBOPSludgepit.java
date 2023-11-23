@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPSludgepit extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPSludgepit extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPSludgepit()
-    {
+    public BiomeConfigBOPSludgepit() {
         super("sludgepit");
     }
 }

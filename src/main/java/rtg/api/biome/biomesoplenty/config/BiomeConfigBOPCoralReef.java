@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPCoralReef extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPCoralReef extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPCoralReef()
-    {
+    public BiomeConfigBOPCoralReef() {
         super("coralreef");
     }
 }

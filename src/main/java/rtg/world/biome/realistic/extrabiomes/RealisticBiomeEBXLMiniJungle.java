@@ -1,29 +1,30 @@
 package rtg.world.biome.realistic.extrabiomes;
 
-import extrabiomes.api.BiomeManager;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import extrabiomes.api.BiomeManager;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.extrabiomes.SurfaceEBXLMiniJungle;
 import rtg.world.gen.terrain.extrabiomes.TerrainEBXLMiniJungle;
 
-public class RealisticBiomeEBXLMiniJungle extends RealisticBiomeEBXLBase
-{
-	public static BiomeGenBase ebxlBiome = BiomeManager.minijungle.get();
+public class RealisticBiomeEBXLMiniJungle extends RealisticBiomeEBXLBase {
 
-	public static Block topBlock = ebxlBiome.topBlock;
-	public static Block fillerBlock = ebxlBiome.fillerBlock;
+    public static BiomeGenBase ebxlBiome = BiomeManager.minijungle.get();
 
-	public RealisticBiomeEBXLMiniJungle(BiomeConfig config)
-	{
-		super(config,
-			ebxlBiome, BiomeGenBase.river,
-			new TerrainEBXLMiniJungle(),
-			new SurfaceEBXLMiniJungle(config, topBlock, fillerBlock)
-		);
+    public static Block topBlock = ebxlBiome.topBlock;
+    public static Block fillerBlock = ebxlBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+    public RealisticBiomeEBXLMiniJungle(BiomeConfig config) {
+        super(
+            config,
+            ebxlBiome,
+            BiomeGenBase.river,
+            new TerrainEBXLMiniJungle(),
+            new SurfaceEBXLMiniJungle(config, topBlock, fillerBlock));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

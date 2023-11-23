@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLRainforest extends BiomeConfigHLBase {
 
-public class BiomeConfigHLRainforest extends BiomeConfigHLBase
-{
-    public BiomeConfigHLRainforest()
-    {
+    public BiomeConfigHLRainforest() {
         super("rainforest");
     }
 }

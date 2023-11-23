@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLWindyIsland extends BiomeConfigHLBase {
 
-public class BiomeConfigHLWindyIsland extends BiomeConfigHLBase
-{
-    public BiomeConfigHLWindyIsland()
-    {
+    public BiomeConfigHLWindyIsland() {
         super("windyisland");
     }
 }

@@ -1,29 +1,30 @@
 package rtg.world.biome.realistic.extrabiomes;
 
-import extrabiomes.api.BiomeManager;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import extrabiomes.api.BiomeManager;
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.extrabiomes.SurfaceEBXLGreenSwamp;
 import rtg.world.gen.terrain.extrabiomes.TerrainEBXLGreenSwamp;
 
-public class RealisticBiomeEBXLGreenSwamp extends RealisticBiomeEBXLBase
-{
-	public static BiomeGenBase ebxlBiome = BiomeManager.greenswamp.get();
+public class RealisticBiomeEBXLGreenSwamp extends RealisticBiomeEBXLBase {
 
-	public static Block topBlock = ebxlBiome.topBlock;
-	public static Block fillerBlock = ebxlBiome.fillerBlock;
+    public static BiomeGenBase ebxlBiome = BiomeManager.greenswamp.get();
 
-	public RealisticBiomeEBXLGreenSwamp(BiomeConfig config)
-	{
-		super(config,
-			ebxlBiome, BiomeGenBase.river,
-			new TerrainEBXLGreenSwamp(),
-			new SurfaceEBXLGreenSwamp(config, topBlock, fillerBlock)
-		);
+    public static Block topBlock = ebxlBiome.topBlock;
+    public static Block fillerBlock = ebxlBiome.fillerBlock;
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+    public RealisticBiomeEBXLGreenSwamp(BiomeConfig config) {
+        super(
+            config,
+            ebxlBiome,
+            BiomeGenBase.river,
+            new TerrainEBXLGreenSwamp(),
+            new SurfaceEBXLGreenSwamp(config, topBlock, fillerBlock));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

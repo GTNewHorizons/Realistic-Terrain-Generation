@@ -11,9 +11,9 @@ import net.minecraft.world.chunk.Chunk;
  */
 public class BlockForcer {
 
-    public void placeBlock(World target, int x,  int y , int z, Block placed, int metadata) {
+    public void placeBlock(World target, int x, int y, int z, Block placed, int metadata) {
         Chunk chunk = target.getChunkFromBlockCoords(x, z);
-        chunk.func_150807_a(x&15, y, z&15, placed, metadata);
+        chunk.func_150807_a(x & 15, y, z & 15, placed, metadata);
     }
 
 }

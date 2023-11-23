@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLForestedIsland extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLForestedIsland extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLForestedIsland()
-    {
+    public BiomeConfigEBXLForestedIsland() {
         super("forestedisland");
     }
 }

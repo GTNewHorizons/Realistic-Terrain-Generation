@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPLushRiver extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPLushRiver extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPLushRiver()
-    {
+    public BiomeConfigBOPLushRiver() {
         super("lushriver");
     }
 }

@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLMeadow extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLMeadow extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLMeadow()
-    {
+    public BiomeConfigEBXLMeadow() {
         super("meadow");
     }
 }

@@ -1,40 +1,37 @@
 package rtg.world.biome.realistic.sushicraft;
 
+import net.minecraft.world.biome.BiomeGenBase;
 
 import cpw.mods.fml.common.Loader;
-import net.minecraft.world.biome.BiomeGenBase;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.sushicraft.config.BiomeConfigSC;
 import rtg.util.Logger;
 import rtg.world.biome.realistic.RealisticBiomeBase;
 import rtg.world.gen.surface.SurfaceBase;
 import rtg.world.gen.terrain.TerrainBase;
+
 /**
  * Created by VelocityRa on 15/4/2016.
  */
 
-public class RealisticBiomeSCBase extends RealisticBiomeBase
-{
+public class RealisticBiomeSCBase extends RealisticBiomeBase {
+
     public static RealisticBiomeBase scSakuraForest;
 
-    public RealisticBiomeSCBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t, SurfaceBase s)
-    {
+    public RealisticBiomeSCBase(BiomeConfig config, BiomeGenBase b, BiomeGenBase riverbiome, TerrainBase t,
+        SurfaceBase s) {
         super(config, b, riverbiome, t, s);
 
         this.waterSurfaceLakeChance = 0;
         this.lavaSurfaceLakeChance = 0;
     }
 
-    public static void addBiomes()
-    {
-        if (Loader.isModLoaded("sushicraft"))
-        {
+    public static void addBiomes() {
+        if (Loader.isModLoaded("sushicraft")) {
             BiomeGenBase[] b = BiomeGenBase.getBiomeGenArray();
 
-            for(int i = 0; i < 256; i++)
-            {
-                if(b[i] != null)
-                {
+            for (int i = 0; i < 256; i++) {
+                if (b[i] != null) {
                     if (b[i].biomeName == null) {
                         Logger.warn("Biome ID %d has no name.", b[i].biomeID);
                         continue;
@@ -42,11 +39,14 @@ public class RealisticBiomeSCBase extends RealisticBiomeBase
 
                     BiomeGenBase scBiome = b[i];
                     String biomeName = scBiome.biomeName;
-                    String biomeClass = scBiome.getBiomeClass().getName();
+                    String biomeClass = scBiome.getBiomeClass()
+                        .getName();
 
-                    if (biomeName == "Sakura Forest" && biomeClass == "fr.kingstone.sushicraft.world.biome.BiomeGenSakura")
-                    {
-                        scSakuraForest = new RealisticBiomeSCSakuraForest(scBiome, BiomeConfigSC.biomeConfigSCSakuraForest);
+                    if (biomeName == "Sakura Forest"
+                        && biomeClass == "fr.kingstone.sushicraft.world.biome.BiomeGenSakura") {
+                        scSakuraForest = new RealisticBiomeSCSakuraForest(
+                            scBiome,
+                            BiomeConfigSC.biomeConfigSCSakuraForest);
                     }
                 }
             }

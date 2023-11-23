@@ -1,10 +1,8 @@
 package rtg.api.biome.ridiculousworld.config;
 
+public class BiomeConfigRWOssuary extends BiomeConfigRWBase {
 
-public class BiomeConfigRWOssuary extends BiomeConfigRWBase
-{
-    public BiomeConfigRWOssuary()
-    {
+    public BiomeConfigRWOssuary() {
         super("ossuary");
     }
 }

@@ -8,30 +8,29 @@ import rtg.world.gen.terrain.HillockEffect;
 import rtg.world.gen.terrain.JitterEffect;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainEBXericSavanna extends TerrainBase
-{
+public class TerrainEBXericSavanna extends TerrainBase {
+
     private HeightEffect height;
     private float hillHeight = 6f;
     private float hillWavelength = 40;
-	public TerrainEBXericSavanna()
-	{
+
+    public TerrainEBXericSavanna() {
         base = 68f;
         HillockEffect smallHills = new HillockEffect();
         smallHills.height = hillHeight;
         smallHills.minimumSimplex = 0.3f;
-        smallHills.wavelength =hillWavelength;
+        smallHills.wavelength = hillWavelength;
 
         JitterEffect jittered = new JitterEffect();
         jittered.amplitude = 2f;
         jittered.wavelength = 25f;
         jittered.jittered = smallHills;;
 
-        height  = jittered.plus(new GroundEffect(2f));
-	}
+        height = jittered.plus(new GroundEffect(2f));
+    }
 
-	@Override
-	public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-	{
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return riverized(height.added(simplex, cell, x, y) + base, river);
-	}
+    }
 }

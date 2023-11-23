@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCFlamage extends BiomeConfigECCBase {
 
-public class BiomeConfigECCFlamage extends BiomeConfigECCBase
-{
-    public BiomeConfigECCFlamage()
-    {
+    public BiomeConfigECCFlamage() {
         super("flamage");
     }
 }

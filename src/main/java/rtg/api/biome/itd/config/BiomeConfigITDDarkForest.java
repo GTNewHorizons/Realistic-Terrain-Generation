@@ -1,10 +1,8 @@
 package rtg.api.biome.itd.config;
 
+public class BiomeConfigITDDarkForest extends BiomeConfigITDBase {
 
-public class BiomeConfigITDDarkForest extends BiomeConfigITDBase
-{
-    public BiomeConfigITDDarkForest()
-    {
+    public BiomeConfigITDDarkForest() {
         super("darkforest");
     }
 }

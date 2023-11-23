@@ -4,15 +4,14 @@ import rtg.util.CellNoise;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.terrain.TerrainBase;
 
-public class TerrainATGTundra extends TerrainBase
-{
-	public TerrainATGTundra()
-	{
+public class TerrainATGTundra extends TerrainBase {
 
-	}
-	@Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public TerrainATGTundra() {
+
+    }
+
+    @Override
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         return terrainPlains(x, y, simplex, river, 160f, 10f, 60f, 100f, 66f);
     }
 }

@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCOcher extends BiomeConfigECCBase {
 
-public class BiomeConfigECCOcher extends BiomeConfigECCBase
-{
-    public BiomeConfigECCOcher()
-    {
+    public BiomeConfigECCOcher() {
         super("ocher");
     }
 }

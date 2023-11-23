@@ -1,10 +1,8 @@
 package rtg.api.biome.tofucraft.config;
 
+public class BiomeConfigTOFUTofuForestHills extends BiomeConfigTOFUBase {
 
-public class BiomeConfigTOFUTofuForestHills extends BiomeConfigTOFUBase
-{
-    public BiomeConfigTOFUTofuForestHills()
-    {
+    public BiomeConfigTOFUTofuForestHills() {
         super("tofuforesthills");
     }
 }

@@ -1,10 +1,8 @@
 package rtg.api.biome.atg.config;
 
+public class BiomeConfigATGTundra extends BiomeConfigATGBase {
 
-public class BiomeConfigATGTundra extends BiomeConfigATGBase
-{
-    public BiomeConfigATGTundra()
-    {
+    public BiomeConfigATGTundra() {
         super("tundra");
     }
 }

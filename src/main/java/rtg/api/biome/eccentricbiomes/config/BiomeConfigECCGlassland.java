@@ -1,10 +1,8 @@
 package rtg.api.biome.eccentricbiomes.config;
 
+public class BiomeConfigECCGlassland extends BiomeConfigECCBase {
 
-public class BiomeConfigECCGlassland extends BiomeConfigECCBase
-{
-    public BiomeConfigECCGlassland()
-    {
+    public BiomeConfigECCGlassland() {
         super("glassland");
     }
 }

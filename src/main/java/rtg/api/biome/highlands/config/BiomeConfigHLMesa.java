@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLMesa extends BiomeConfigHLBase {
 
-public class BiomeConfigHLMesa extends BiomeConfigHLBase
-{
-    public BiomeConfigHLMesa()
-    {
+    public BiomeConfigHLMesa() {
         super("mesa");
     }
 }

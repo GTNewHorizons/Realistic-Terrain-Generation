@@ -3,6 +3,7 @@ package rtg.world.biome.realistic.sugiforest;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.sugiforest.config.BiomeConfigSFSugiForest;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
@@ -13,28 +14,41 @@ import rtg.world.biome.deco.DecoShrub;
 import rtg.world.gen.surface.sugiforest.SurfaceSFSugiForest;
 import rtg.world.gen.terrain.sugiforest.TerrainSFSugiForest;
 
-public class RealisticBiomeSFSugiForest extends RealisticBiomeSFBase
-{
+public class RealisticBiomeSFSugiForest extends RealisticBiomeSFBase {
+
     private static Block sugiLogBlock = Block.getBlockFromName("kegare.sugiforest:sugi_log");
     private static Block sugiLeavesBlock = Block.getBlockFromName("kegare.sugiforest:sugi_leaves");
 
-    public RealisticBiomeSFSugiForest(BiomeGenBase sfBiome, BiomeConfig config)
-    {
+    public RealisticBiomeSFSugiForest(BiomeGenBase sfBiome, BiomeConfig config) {
 
-        super(config,
-            sfBiome, BiomeGenBase.river,
+        super(
+            config,
+            sfBiome,
+            BiomeGenBase.river,
             new TerrainSFSugiForest(),
-            new SurfaceSFSugiForest(config, sfBiome.topBlock, sfBiome.fillerBlock, false, null, 0f, 1.5f, 60f, 65f, 1.5f, Blocks.dirt, (byte)2, 0.10f)
-        );
+            new SurfaceSFSugiForest(
+                config,
+                sfBiome.topBlock,
+                sfBiome.fillerBlock,
+                false,
+                null,
+                0f,
+                1.5f,
+                60f,
+                65f,
+                1.5f,
+                Blocks.dirt,
+                (byte) 2,
+                0.10f));
 
         DecoFallenTree decoFallenSugi = new DecoFallenTree();
         decoFallenSugi.logCondition = DecoFallenTree.LogCondition.RANDOM_CHANCE;
         decoFallenSugi.logConditionChance = 16;
         decoFallenSugi.maxY = 80;
         decoFallenSugi.logBlock = sugiLogBlock;
-        decoFallenSugi.logMeta = (byte)0;
+        decoFallenSugi.logMeta = (byte) 0;
         decoFallenSugi.leavesBlock = sugiLeavesBlock;
-        decoFallenSugi.leavesMeta = (byte)-1;
+        decoFallenSugi.leavesMeta = (byte) -1;
         decoFallenSugi.minSize = 3;
         decoFallenSugi.maxSize = 6;
         this.addDeco(decoFallenSugi, this.config._boolean(BiomeConfigSFSugiForest.decorationLogsId));
@@ -47,11 +61,11 @@ public class RealisticBiomeSFSugiForest extends RealisticBiomeSFBase
         decoShrubSugi.chance = 4;
         this.addDeco(decoShrubSugi);
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
 
         DecoFlowersRTG decoFlowersRTG = new DecoFlowersRTG();
-        decoFlowersRTG.flowers = new int[] {6, 6, 6, 6};
+        decoFlowersRTG.flowers = new int[] { 6, 6, 6, 6 };
         decoFlowersRTG.maxY = 128;
         decoFlowersRTG.strengthFactor = 3f;
         this.addDeco(decoFlowersRTG);

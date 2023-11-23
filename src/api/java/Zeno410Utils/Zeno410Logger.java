@@ -14,27 +14,51 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Zeno410Logger {
-  static private FileHandler fileTxt;
-  static private SimpleFormatter formatterTxt;
 
-  public static final boolean suppress  = true;
+    static private FileHandler fileTxt;
+    static private SimpleFormatter formatterTxt;
 
-  public static void crashIfRecording(RuntimeException toThrow) {
-      if (suppress) return;
-      throw toThrow;
-  }
+    public static final boolean suppress = true;
 
-  private Logger logger;
+    public static void crashIfRecording(RuntimeException toThrow) {
+        if (suppress) return;
+        throw toThrow;
+    }
 
-  static public Logger globalLogger() {
+    private Logger logger;
 
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    static public Logger globalLogger() {
 
-    logger.setLevel(Level.ALL);
-    if (!suppress) {
+        Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+        logger.setLevel(Level.ALL);
+        if (!suppress) {
+            try {
+                fileTxt = new FileHandler("/Zeno410Logging.txt");
+                // Create txt Formatter
+                formatterTxt = new SimpleFormatter();
+                fileTxt.setFormatter(formatterTxt);
+                logger.addHandler(fileTxt);
+            } catch (IOException ex) {
+                ex.printStackTrace(System.err);
+            } catch (SecurityException ex) {
+                ex.printStackTrace(System.err);
+            }
+        }
+        logger.info("Starting");
+        return logger;
+    }
+
+    public Logger logger() {
+        return logger;
+    }
+
+    public Zeno410Logger(String name) {
+        logger = Logger.getLogger(name);
+        // if logging is off make the loggers do nothing
+        if (suppress) return;
         try {
-            fileTxt = new FileHandler("/Zeno410Logging.txt");
-             // Create txt Formatter
+            fileTxt = new FileHandler("/" + name + ".txt");
             formatterTxt = new SimpleFormatter();
             fileTxt.setFormatter(formatterTxt);
             logger.addHandler(fileTxt);
@@ -44,25 +68,4 @@ public class Zeno410Logger {
             ex.printStackTrace(System.err);
         }
     }
-    logger.info("Starting");
-    return logger;
-  }
-
-  public Logger logger() {return logger;}
-
-  public Zeno410Logger(String name) {
-       logger = Logger.getLogger(name);
-       // if logging is off make the loggers do nothing
-       if (suppress) return;
-        try {
-            fileTxt = new FileHandler("/"+name+".txt");
-            formatterTxt = new SimpleFormatter();
-            fileTxt.setFormatter(formatterTxt);
-            logger.addHandler(fileTxt);
-        } catch (IOException ex) {
-            ex.printStackTrace(System.err);
-        } catch (SecurityException ex) {
-            ex.printStackTrace(System.err);
-        }
-  }
 }

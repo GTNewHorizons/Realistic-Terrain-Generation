@@ -1,10 +1,8 @@
 package rtg.api.biome.forgottennature.config;
 
+public class BiomeConfigFNRedwoodForest extends BiomeConfigFNBase {
 
-public class BiomeConfigFNRedwoodForest extends BiomeConfigFNBase
-{
-    public BiomeConfigFNRedwoodForest()
-    {
+    public BiomeConfigFNRedwoodForest() {
         super("redwoodforest");
     }
 }

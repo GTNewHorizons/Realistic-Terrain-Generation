@@ -1,9 +1,10 @@
 package rtg.world.biome.realistic.biomesoplenty;
 
-import biomesoplenty.api.content.BOPCBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import biomesoplenty.api.content.BOPCBiomes;
 import rtg.api.biome.BiomeConfig;
 import rtg.api.biome.biomesoplenty.config.BiomeConfigBOPHeathland;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
@@ -12,37 +13,37 @@ import rtg.world.biome.deco.DecoFallenTree.LogCondition;
 import rtg.world.gen.surface.biomesoplenty.SurfaceBOPHeathland;
 import rtg.world.gen.terrain.biomesoplenty.TerrainBOPHeathland;
 
-public class RealisticBiomeBOPHeathland extends RealisticBiomeBOPBase
-{
-	public static BiomeGenBase bopBiome = BOPCBiomes.heathland;
+public class RealisticBiomeBOPHeathland extends RealisticBiomeBOPBase {
 
-	public static Block topBlock = bopBiome.topBlock;
-	public static Block fillerBlock = bopBiome.fillerBlock;
+    public static BiomeGenBase bopBiome = BOPCBiomes.heathland;
 
-	public RealisticBiomeBOPHeathland(BiomeConfig config)
-	{
-		super(config,
-			bopBiome, BiomeGenBase.river,
-			new TerrainBOPHeathland(),
-			new SurfaceBOPHeathland(config, topBlock, fillerBlock)
-		);
+    public static Block topBlock = bopBiome.topBlock;
+    public static Block fillerBlock = bopBiome.fillerBlock;
 
-		DecoFallenTree decoFallenTree = new DecoFallenTree();
-		decoFallenTree.distribution.noiseDivisor = 80f;
-		decoFallenTree.distribution.noiseFactor = 60f;
-		decoFallenTree.distribution.noiseAddend = -15f;
-		decoFallenTree.logCondition = LogCondition.X_DIVIDED_BY_STRENGTH;
-		decoFallenTree.logConditionNoise = 8f;
-		decoFallenTree.logConditionChance = 1;
-		decoFallenTree.logBlock = Blocks.log;
-		decoFallenTree.logMeta = (byte)0;
-		decoFallenTree.leavesBlock = Blocks.leaves;
-		decoFallenTree.leavesMeta = (byte)-1;
-		decoFallenTree.minSize = 3;
-		decoFallenTree.maxSize = 4;
-		this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigBOPHeathland.decorationLogsId));
+    public RealisticBiomeBOPHeathland(BiomeConfig config) {
+        super(
+            config,
+            bopBiome,
+            BiomeGenBase.river,
+            new TerrainBOPHeathland(),
+            new SurfaceBOPHeathland(config, topBlock, fillerBlock));
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
-	}
+        DecoFallenTree decoFallenTree = new DecoFallenTree();
+        decoFallenTree.distribution.noiseDivisor = 80f;
+        decoFallenTree.distribution.noiseFactor = 60f;
+        decoFallenTree.distribution.noiseAddend = -15f;
+        decoFallenTree.logCondition = LogCondition.X_DIVIDED_BY_STRENGTH;
+        decoFallenTree.logConditionNoise = 8f;
+        decoFallenTree.logConditionChance = 1;
+        decoFallenTree.logBlock = Blocks.log;
+        decoFallenTree.logMeta = (byte) 0;
+        decoFallenTree.leavesBlock = Blocks.leaves;
+        decoFallenTree.leavesMeta = (byte) -1;
+        decoFallenTree.minSize = 3;
+        decoFallenTree.maxSize = 4;
+        this.addDeco(decoFallenTree, this.config._boolean(BiomeConfigBOPHeathland.decorationLogsId));
+
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
+    }
 }

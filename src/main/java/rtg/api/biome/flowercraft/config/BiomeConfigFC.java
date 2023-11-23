@@ -8,9 +8,7 @@ public class BiomeConfigFC {
 
     public static BiomeConfig[] getBiomeConfigs() {
 
-        BiomeConfig[] biomeConfigs = new BiomeConfig[]{
-                biomeConfigFCPhantasia
-        };
+        BiomeConfig[] biomeConfigs = new BiomeConfig[] { biomeConfigFCPhantasia };
 
         return biomeConfigs;
     }

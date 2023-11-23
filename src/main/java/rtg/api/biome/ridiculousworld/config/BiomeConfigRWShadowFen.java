@@ -1,10 +1,8 @@
 package rtg.api.biome.ridiculousworld.config;
 
+public class BiomeConfigRWShadowFen extends BiomeConfigRWBase {
 
-public class BiomeConfigRWShadowFen extends BiomeConfigRWBase
-{
-    public BiomeConfigRWShadowFen()
-    {
+    public BiomeConfigRWShadowFen() {
         super("shadowfen");
     }
 }

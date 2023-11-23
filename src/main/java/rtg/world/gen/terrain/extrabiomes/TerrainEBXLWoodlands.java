@@ -4,11 +4,9 @@ import rtg.world.gen.terrain.BlendedHillEffect;
 import rtg.world.gen.terrain.FunctionalTerrainBase;
 import rtg.world.gen.terrain.GroundEffect;
 
+public class TerrainEBXLWoodlands extends FunctionalTerrainBase {
 
-public class TerrainEBXLWoodlands extends FunctionalTerrainBase{
-
-	public TerrainEBXLWoodlands()
-	{
+    public TerrainEBXLWoodlands() {
         base = 66;
 
         BlendedHillEffect bumps = new BlendedHillEffect();
@@ -17,7 +15,6 @@ public class TerrainEBXLWoodlands extends FunctionalTerrainBase{
         bumps.hillBottomSimplexValue = 0.5f; // not too common
 
         height = bumps.plus(new GroundEffect(2));
-	}
-
+    }
 
 }

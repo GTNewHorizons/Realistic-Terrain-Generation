@@ -11,23 +11,23 @@ import java.util.Set;
  *
  * @author Zeno410
  */
-public class LimitedMap<Key,Value> implements Map<Key,Value> {
+public class LimitedMap<Key, Value> implements Map<Key, Value> {
 
     private int limit;
     private int nextIndex = 0;
     private boolean reachedLimit = false;
     private final ArrayList<Key> keyList;
-    private final HashMap<Key,Value> map;
+    private final HashMap<Key, Value> map;
 
     public LimitedMap(int maximumSize) {
         limit = maximumSize;
         keyList = new ArrayList<Key>(limit);
-        map = new HashMap<Key,Value>(limit);
+        map = new HashMap<Key, Value>(limit);
     }
 
     public int size() {
-       if (reachedLimit) return limit;
-       return nextIndex;
+        if (reachedLimit) return limit;
+        return nextIndex;
     }
 
     public boolean isEmpty() {
@@ -39,9 +39,9 @@ public class LimitedMap<Key,Value> implements Map<Key,Value> {
     }
 
     public boolean containsValue(Object arg0) {
-        for (Value value: map.values()) {
+        for (Value value : map.values()) {
             if (value.equals(arg0)) return true;
-        };
+        } ;
         return false;
     }
 
@@ -58,7 +58,7 @@ public class LimitedMap<Key,Value> implements Map<Key,Value> {
             }
         } else {
             keyList.add(arg0);
-            nextIndex ++;
+            nextIndex++;
             if (nextIndex >= limit) {
                 reachedLimit = true;
                 nextIndex = 0;
@@ -72,8 +72,8 @@ public class LimitedMap<Key,Value> implements Map<Key,Value> {
     }
 
     public void putAll(Map<? extends Key, ? extends Value> arg0) {
-        for (Key key: arg0.keySet()) {
-            put(key,arg0.get(key));
+        for (Key key : arg0.keySet()) {
+            put(key, arg0.get(key));
         }
     }
 

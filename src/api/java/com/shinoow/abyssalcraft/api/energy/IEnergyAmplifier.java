@@ -7,7 +7,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.energy;
 
@@ -24,8 +24,8 @@ import com.shinoow.abyssalcraft.api.energy.EnergyEnum.AmplifierType;
  */
 public interface IEnergyAmplifier {
 
-	/**
-	 * Gets the amplifier type associated with the block
-	 */
-	public AmplifierType getAmplifierType();
+    /**
+     * Gets the amplifier type associated with the block
+     */
+    public AmplifierType getAmplifierType();
 }

@@ -10,10 +10,10 @@ import rtg.world.gen.terrain.RaiseEffect;
 import rtg.world.gen.terrain.TerrainBase;
 import rtg.world.gen.terrain.VariableRuggednessEffect;
 
-public class TerrainGCBambooForest extends TerrainBase
-{
+public class TerrainGCBambooForest extends TerrainBase {
 
-    /* Basic idea: High hilly terrain mixed with ground-noisy flats
+    /*
+     * Basic idea: High hilly terrain mixed with ground-noisy flats
      * using a transition that also generates the hills
      */
 
@@ -26,25 +26,23 @@ public class TerrainGCBambooForest extends TerrainBase
 
     private JitterEffect biomeHeight;// this includes the base
 
-
-    public TerrainGCBambooForest()
-    {
+    public TerrainGCBambooForest() {
         // bumpy hills on top
         BumpyHillsEffect onTop = new BumpyHillsEffect();
-        onTop.hillHeight = hillockVariance ;
+        onTop.hillHeight = hillockVariance;
         onTop.hillWavelength = hillockWavelength;
         onTop.spikeHeight = hillockSpikeHeight;
         onTop.spikeWavelength = hillockSpikeWidth;
         onTop.hillOctave = 1;// same octave as variableRuggedness
 
         // plus raised a bit
-        HeightEffect hillLevel = onTop.plus(new RaiseEffect(hillockBoost+terrainBase));
+        HeightEffect hillLevel = onTop.plus(new RaiseEffect(hillockBoost + terrainBase));
 
         // but only
         VariableRuggednessEffect hills = new VariableRuggednessEffect();
         hills.ruggedTerrain = hillLevel;
         hills.smoothTerrain = new RaiseEffect(terrainBase);
-        hills.octave =1;// just to make it clear;
+        hills.octave = 1;// just to make it clear;
         hills.startTransition = 0.1f;
         hills.transitionWidth = 0.35f;
         hills.wavelength = hillockWavelength;
@@ -60,11 +58,10 @@ public class TerrainGCBambooForest extends TerrainBase
     }
 
     @Override
-    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river)
-    {
+    public float generateNoise(OpenSimplexNoise simplex, CellNoise cell, int x, int y, float border, float river) {
         float result = biomeHeight.added(simplex, cell, x, y);
         if (result < 60) throw new RuntimeException();
         return result;
-        //return terrainPlains(x, y, simplex, river, 160f, 10f, 60f, 80f, 65f);
+        // return terrainPlains(x, y, simplex, river, 160f, 10f, 60f, 80f, 65f);
     }
 }

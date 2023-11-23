@@ -1,77 +1,62 @@
 package rtg.world.gen.surface.thaumcraft;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.util.CellNoise;
 import rtg.util.CliffCalculator;
 import rtg.util.OpenSimplexNoise;
 import rtg.world.gen.surface.SurfaceBase;
 
-import java.util.Random;
+public class SurfaceTCTaintedLand extends SurfaceBase {
 
-public class SurfaceTCTaintedLand extends SurfaceBase
-{
+    public SurfaceTCTaintedLand(BiomeConfig config, Block top, Block filler) {
+        super(config, top, (byte) 0, filler, (byte) 0);
+    }
 
-	public SurfaceTCTaintedLand(BiomeConfig config, Block top, Block filler)
-	{
-		super(config, top, (byte)0, filler, (byte)0);
-	}
+    @Override
+    public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world,
+        Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base) {
+        float c = CliffCalculator.calc(x, y, noise);
+        boolean cliff = c > 1.4f ? true : false;
 
-	@Override
-	public void paintTerrain(Block[] blocks, byte[] metadata, int i, int j, int x, int y, int depth, World world, Random rand, OpenSimplexNoise simplex, CellNoise cell, float[] noise, float river, BiomeGenBase[] base)
-	{
-		float c = CliffCalculator.calc(x, y, noise);
-		boolean cliff = c > 1.4f ? true : false;
+        for (int k = 255; k > -1; k--) {
+            Block b = blocks[(y * 16 + x) * 256 + k];
+            if (b == Blocks.air) {
+                depth = -1;
+            } else if (b == Blocks.stone) {
+                depth++;
 
-		for(int k = 255; k > -1; k--)
-		{
-			Block b = blocks[(y * 16 + x) * 256 + k];
-            if(b == Blocks.air)
-            {
-            	depth = -1;
-            }
-            else if(b == Blocks.stone)
-            {
-            	depth++;
-
-            	if(cliff)
-            	{
-            		if(depth > -1 && depth < 2)
-            		{
+                if (cliff) {
+                    if (depth > -1 && depth < 2) {
                         if (rand.nextInt(3) == 0) {
 
                             blocks[(y * 16 + x) * 256 + k] = hcCobble(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcCobbleMeta(world, i, j, x, y, k);
-                        }
-                        else {
+                        } else {
 
                             blocks[(y * 16 + x) * 256 + k] = hcStone(world, i, j, x, y, k);
                             metadata[(y * 16 + x) * 256 + k] = hcStoneMeta(world, i, j, x, y, k);
                         }
-            		}
-            		else if (depth < 10)
-            		{
+                    } else if (depth < 10) {
                         blocks[(y * 16 + x) * 256 + k] = hcStone(world, i, j, x, y, k);
                         metadata[(y * 16 + x) * 256 + k] = hcStoneMeta(world, i, j, x, y, k);
-            		}
-            	}
-            	else
-            	{
-	        		if(depth == 0 && k > 61)
-	        		{
-	        			blocks[(y * 16 + x) * 256 + k] = topBlock;
-	        		    metadata[(y * 16 + x) * 256 + k] = topBlockMeta;
-	        		}
-	        		else if(depth < 4)
-	        		{
-	        			blocks[(y * 16 + x) * 256 + k] = fillerBlock;
-	        		    metadata[(y * 16 + x) * 256 + k] = fillerBlockMeta;
-	        		}
-            	}
+                    }
+                } else {
+                    if (depth == 0 && k > 61) {
+                        blocks[(y * 16 + x) * 256 + k] = topBlock;
+                        metadata[(y * 16 + x) * 256 + k] = topBlockMeta;
+                    } else if (depth < 4) {
+                        blocks[(y * 16 + x) * 256 + k] = fillerBlock;
+                        metadata[(y * 16 + x) * 256 + k] = fillerBlockMeta;
+                    }
+                }
             }
-		}
-	}
+        }
+    }
 }

@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPXericShrubland extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPXericShrubland extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPXericShrubland()
-    {
+    public BiomeConfigBOPXericShrubland() {
         super("xericshrubland");
     }
 }

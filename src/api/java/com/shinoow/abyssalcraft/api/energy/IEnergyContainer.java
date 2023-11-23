@@ -7,7 +7,7 @@
  * http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
  * Contributors:
- *     Shinoow -  implementation
+ * Shinoow - implementation
  ******************************************************************************/
 package com.shinoow.abyssalcraft.api.energy;
 
@@ -22,30 +22,32 @@ package com.shinoow.abyssalcraft.api.energy;
  */
 public interface IEnergyContainer {
 
-	/**
-	 * Gets the Potential Energy contained within the tile entity
-	 */
-	public float getContainedEnergy();
+    /**
+     * Gets the Potential Energy contained within the tile entity
+     */
+    public float getContainedEnergy();
 
-	/**
-	 * Gets the maximum Potential Energy the tile entity can hold
-	 */
-	public int getMaxEnergy();
+    /**
+     * Gets the maximum Potential Energy the tile entity can hold
+     */
+    public int getMaxEnergy();
 
-	/**
-	 * Adds Potential Energy to the tile entity
-	 * @param energy Energy quanta to add
-	 */
-	public void addEnergy(float energy);
+    /**
+     * Adds Potential Energy to the tile entity
+     * 
+     * @param energy Energy quanta to add
+     */
+    public void addEnergy(float energy);
 
-	/**
-	 * Consumes (removes) Potential Energy from the tile entity
-	 * @param energy Energy quanta to consume
-	 */
-	public void consumeEnergy(float energy);
+    /**
+     * Consumes (removes) Potential Energy from the tile entity
+     * 
+     * @param energy Energy quanta to consume
+     */
+    public void consumeEnergy(float energy);
 
-	/**
-	 * Returns Whether or not this container can accept Potential Energy
-	 */
-	public boolean canAcceptPE();
+    /**
+     * Returns Whether or not this container can accept Potential Energy
+     */
+    public boolean canAcceptPE();
 }

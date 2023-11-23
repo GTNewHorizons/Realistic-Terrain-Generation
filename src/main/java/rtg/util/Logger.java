@@ -1,7 +1,8 @@
 package rtg.util;
 
-import cpw.mods.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.FMLLog;
 import rtg.config.rtg.ConfigRTG;
 
 public class Logger {

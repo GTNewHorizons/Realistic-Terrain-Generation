@@ -1,10 +1,8 @@
 package rtg.api.biome.highlands.config;
 
+public class BiomeConfigHLDesertMountains extends BiomeConfigHLBase {
 
-public class BiomeConfigHLDesertMountains extends BiomeConfigHLBase
-{
-    public BiomeConfigHLDesertMountains()
-    {
+    public BiomeConfigHLDesertMountains() {
         super("desertmountains");
     }
 }

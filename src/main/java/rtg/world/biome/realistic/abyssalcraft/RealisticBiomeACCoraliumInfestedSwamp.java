@@ -1,28 +1,28 @@
 package rtg.world.biome.realistic.abyssalcraft;
 
-import com.shinoow.abyssalcraft.api.biome.ACBiomes;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import com.shinoow.abyssalcraft.api.biome.ACBiomes;
+
 import rtg.api.biome.BiomeConfig;
 import rtg.world.biome.deco.DecoBaseBiomeDecorations;
 import rtg.world.gen.surface.abyssalcraft.SurfaceACCoraliumInfestedSwamp;
 import rtg.world.gen.terrain.abyssalcraft.TerrainACCoraliumInfestedSwamp;
 
-public class RealisticBiomeACCoraliumInfestedSwamp extends RealisticBiomeACBase
-{
+public class RealisticBiomeACCoraliumInfestedSwamp extends RealisticBiomeACBase {
 
-	public static BiomeGenBase acBiome = ACBiomes.coralium_infested_swamp;
+    public static BiomeGenBase acBiome = ACBiomes.coralium_infested_swamp;
 
-    public RealisticBiomeACCoraliumInfestedSwamp(BiomeConfig config)
-    {
+    public RealisticBiomeACCoraliumInfestedSwamp(BiomeConfig config) {
 
-        super(config,
+        super(
+            config,
             acBiome,
             BiomeGenBase.river,
             new TerrainACCoraliumInfestedSwamp(),
-            new SurfaceACCoraliumInfestedSwamp(config, acBiome.topBlock, acBiome.fillerBlock)
-        );
+            new SurfaceACCoraliumInfestedSwamp(config, acBiome.topBlock, acBiome.fillerBlock));
 
-		DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
-		this.addDeco(decoBaseBiomeDecorations);
+        DecoBaseBiomeDecorations decoBaseBiomeDecorations = new DecoBaseBiomeDecorations();
+        this.addDeco(decoBaseBiomeDecorations);
     }
 }

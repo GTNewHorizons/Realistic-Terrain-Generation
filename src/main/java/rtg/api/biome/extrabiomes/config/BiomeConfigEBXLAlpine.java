@@ -1,10 +1,8 @@
 package rtg.api.biome.extrabiomes.config;
 
+public class BiomeConfigEBXLAlpine extends BiomeConfigEBXLBase {
 
-public class BiomeConfigEBXLAlpine extends BiomeConfigEBXLBase
-{
-    public BiomeConfigEBXLAlpine()
-    {
+    public BiomeConfigEBXLAlpine() {
         super("alpine");
     }
 }

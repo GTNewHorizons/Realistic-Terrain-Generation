@@ -1,11 +1,8 @@
 package rtg.api.biome.biomesoplenty.config;
 
+public class BiomeConfigBOPSilkglades extends BiomeConfigBOPBase {
 
-
-public class BiomeConfigBOPSilkglades extends BiomeConfigBOPBase
-{
-    public BiomeConfigBOPSilkglades()
-    {
+    public BiomeConfigBOPSilkglades() {
         super("silkglades");
     }
 }
