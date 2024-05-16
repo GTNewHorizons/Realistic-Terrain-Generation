@@ -18,6 +18,7 @@ import rtg.config.ConfigManager;
 import rtg.config.rtg.ConfigRTG;
 import rtg.event.EventManagerRTG;
 import rtg.event.WorldTypeMessageEventHandler;
+import rtg.reference.IncompatibleModException;
 import rtg.util.RealisticBiomePresenceTester;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.realistic.abyssalcraft.RealisticBiomeACBase;
@@ -96,6 +97,10 @@ public class RTG {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        if (Loader.isModLoaded("RWG")) {
+            throw new IncompatibleModException("Realistic World Gen is incompatible with RTG");
+        }
+
         instance = this;
 
         worldtype = new WorldTypeRTG("RTG");
@@ -127,13 +132,7 @@ public class RTG {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        if (Loader.isModLoaded("Realistic World Gen Alpha")) {
-            throw new RuntimeException(
-                "RWG is not compatible with RTG. Please disable one of them and restart Minecraft.");
-        }
-
         RealisticBiomeVanillaBase.addBiomes();
-
         RealisticBiomeBOPBase.addBiomes();
         RealisticBiomeEBBase.addBiomes();
         RealisticBiomeEBXLBase.addBiomes();
