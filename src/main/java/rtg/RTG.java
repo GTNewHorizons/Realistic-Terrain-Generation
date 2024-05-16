@@ -98,9 +98,7 @@ public class RTG {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         if (Loader.isModLoaded("RWG")) {
-            if (event.getSide()
-                .isClient()) throw new IncompatibleModException("Realistic World Gen is incompatible with RTG");
-            else throw new RuntimeException("Realistic World Gen is incompatible with RTG");
+            throw new RuntimeException("Realistic World Gen is incompatible with RTG");
         }
 
         instance = this;
