@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -126,6 +127,11 @@ public class RTG {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+        if (Loader.isModLoaded("Realistic World Gen Alpha")) {
+            throw new RuntimeException(
+                "RWG is not compatible with RTG. Please disable one of them and restart Minecraft.");
+        }
+
         RealisticBiomeVanillaBase.addBiomes();
 
         RealisticBiomeBOPBase.addBiomes();
