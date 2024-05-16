@@ -18,7 +18,6 @@ import rtg.config.ConfigManager;
 import rtg.config.rtg.ConfigRTG;
 import rtg.event.EventManagerRTG;
 import rtg.event.WorldTypeMessageEventHandler;
-import rtg.reference.IncompatibleModException;
 import rtg.util.RealisticBiomePresenceTester;
 import rtg.world.WorldTypeRTG;
 import rtg.world.biome.realistic.abyssalcraft.RealisticBiomeACBase;
