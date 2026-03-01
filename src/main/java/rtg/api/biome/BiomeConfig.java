@@ -1,6 +1,7 @@
 package rtg.api.biome;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -12,6 +13,7 @@ public class BiomeConfig {
     public String biomeSlug;
 
     public ArrayList<BiomeConfigProperty> properties;
+    private final HashMap<String, BiomeConfigProperty> propertyMap;
 
     public static final String allowVillagesId = "allowVillages";
     public static final String allowVillagesName = "Allow Villages";
@@ -66,6 +68,7 @@ public class BiomeConfig {
         this.biomeSlug = biomeSlug;
 
         this.properties = new ArrayList<BiomeConfigProperty>();
+        this.propertyMap = new HashMap<>();
 
         this.addProperty(new BiomeConfigProperty(allowVillagesId, Type.BOOLEAN, allowVillagesName, "", true));
 
@@ -244,24 +247,18 @@ public class BiomeConfig {
     }
 
     public void addProperty(BiomeConfigProperty property) {
-        for (int i = 0; i < this.properties.size(); i++) {
-
-            if (this.properties.get(i).id.contentEquals(property.id)) {
-                removeProperty(property.id);
-                break;
-            }
+        BiomeConfigProperty existing = this.propertyMap.get(property.id);
+        if (existing != null) {
+            this.properties.remove(existing);
         }
-
         this.properties.add(property);
+        this.propertyMap.put(property.id, property);
     }
 
     public void removeProperty(String id) {
-        for (int i = 0; i < this.properties.size(); i++) {
-
-            if (this.properties.get(i).id.contentEquals(id)) {
-                this.properties.remove(i);
-                return;
-            }
+        BiomeConfigProperty removed = this.propertyMap.remove(id);
+        if (removed != null) {
+            this.properties.remove(removed);
         }
     }
 
@@ -270,13 +267,7 @@ public class BiomeConfig {
     }
 
     public BiomeConfigProperty getPropertyById(String id) {
-        for (int i = 0; i < this.properties.size(); i++) {
-
-            if (this.properties.get(i).id.contentEquals(id)) {
-                return this.properties.get(i);
-            }
-        }
-        return null;
+        return this.propertyMap.get(id);
     }
 
     public void setPropertyValueById(String id, boolean value) {

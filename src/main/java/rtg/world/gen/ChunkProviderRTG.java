@@ -51,6 +51,7 @@ import rtg.util.CellNoise;
 import rtg.util.Compass;
 import rtg.util.Converter;
 import rtg.util.Direction;
+import rtg.util.FastRandom;
 import rtg.util.LimitedMap;
 import rtg.util.LimitedSet;
 import rtg.util.Logger;
@@ -79,36 +80,36 @@ public class ChunkProviderRTG implements IChunkProvider {
     private final boolean isRTGWorld;
     private final int sampleSize = 8;
     private final int sampleArraySize;
-    private BiomeAnalyzer analyzer = new BiomeAnalyzer();
-    private int[] xyinverted = analyzer.xyinverted();
+    private final BiomeAnalyzer analyzer = new BiomeAnalyzer();
+    private final int[] xyinverted = analyzer.xyinverted();
 
-    private Block bedrockBlock = GameData.getBlockRegistry()
+    private final Block bedrockBlock = GameData.getBlockRegistry()
         .getObject(ConfigRTG.bedrockBlockId);
-    private byte bedrockByte = (byte) ConfigRTG.bedrockBlockByte;
+    private final byte bedrockByte = (byte) ConfigRTG.bedrockBlockByte;
 
-    private Random rand;
-    private Random mapRand;
-    private World worldObj;
+    private final Random rand;
+    private final Random mapRand;
+    private final World worldObj;
     protected RTGBiomeProvider cmr;
     private final LandscapeGenerator landscapeGenerator;
-    private OpenSimplexNoise simplex;
-    private CellNoise cell;
+    private final OpenSimplexNoise simplex;
+    private final CellNoise cell;
     // private RealisticBiomeBase[] biomesForGeneration;
-    private BiomeGenBase[] baseBiomesList;
-    private int[] biomeData;
-    private float[] testHeight;
-    private boolean[] biomesGeneratedInChunk;
-    private float[] borderNoise;
+    private final BiomeGenBase[] baseBiomesList;
+    private final int[] biomeData;
+    private final float[] testHeight;
+    private final boolean[] biomesGeneratedInChunk;
+    private final float[] borderNoise;
     private float[][] weightings;
-    private long worldSeed;
-    private RealisticBiomePatcher biomePatcher;
-    private HashMap<PlaneLocation, Chunk> inGeneration = new HashMap<PlaneLocation, Chunk>();
-    private HashSet<PlaneLocation> toCheck = new HashSet<PlaneLocation>();
-    private static String rtgTerrain = "RTG Terrain";
-    private static String rtgNoise = "RTG Noise";
+    private final long worldSeed;
+    private final RealisticBiomePatcher biomePatcher;
+    private final HashMap<PlaneLocation, Chunk> inGeneration = new HashMap<PlaneLocation, Chunk>();
+    private final HashSet<PlaneLocation> toCheck = new HashSet<PlaneLocation>();
+    private static final String rtgTerrain = "RTG Terrain";
+    private static final String rtgNoise = "RTG Noise";
 
-    private AICWrapper aic;
-    private boolean isAICExtendingBiomeIdsLimit;
+    private final AICWrapper aic;
+    private final boolean isAICExtendingBiomeIdsLimit;
     private Set<Long> serverLoadingChunks;
     // we have to store this callback because it's a WeakReference in the event manager
     public final Acceptor<ChunkEvent.Load> delayedDecorator = new Acceptor<ChunkEvent.Load>() {
@@ -132,9 +133,9 @@ public class ChunkProviderRTG implements IChunkProvider {
     Accessor<ChunkProviderServer, Set<Long>> forServerLoadingChunks = new Accessor<ChunkProviderServer, Set<Long>>(
         "loadingChunks");
 
-    private Compass compass = new Compass();
+    private final Compass compass = new Compass();
     ArrayList<Direction> directions = compass.directions();
-    private PlaneLocation.Probe probe = new PlaneLocation.Probe(0, 0);
+    private final PlaneLocation.Probe probe = new PlaneLocation.Probe(0, 0);
 
     public ChunkProviderRTG(World world, long l) {
 
@@ -148,7 +149,7 @@ public class ChunkProviderRTG implements IChunkProvider {
 
         landscapeGenerator = new LandscapeGenerator(simplex, cell);
 
-        mapRand = new Random(l);
+        mapRand = new FastRandom(l);
         worldSeed = l;
 
         Map<String, String> m = new HashMap<>();
@@ -232,7 +233,7 @@ public class ChunkProviderRTG implements IChunkProvider {
     }
 
     // private HashSet<PlaneLocation> everGenerated = new HashSet<PlaneLocation>();
-    private TimedHashSet<PlaneLocation> chunkMade = new TimedHashSet<PlaneLocation>(5 * 1000);
+    private final TimedHashSet<PlaneLocation> chunkMade = new TimedHashSet<PlaneLocation>(5 * 1000);
     private final LimitedMap<PlaneLocation, Chunk> availableChunks;
 
     @Override
@@ -670,7 +671,7 @@ public class ChunkProviderRTG implements IChunkProvider {
     private static ChunkProviderRTG populatingProvider;
 
     private final HashSet<PlaneLocation> toDecorate = new HashSet<PlaneLocation>();
-    private LimitedSet<PlaneLocation> alreadyDecorated = new LimitedSet<PlaneLocation>(1000);
+    private final LimitedSet<PlaneLocation> alreadyDecorated = new LimitedSet<PlaneLocation>(1000);
     // private HashSet<PlaneLocation> everDecorated = new HashSet<PlaneLocation>();
 
     private final void addToDecorationList(PlaneLocation toAdd) {

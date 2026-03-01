@@ -26,6 +26,7 @@ public class TimeTracker {
     private long stopTime;
     private long totalOn = 0;
     private long totalOff = 0;
+    private static final boolean ENABLED = Boolean.getBoolean("rtg.timetracker");
     public static final Manager manager = new Manager();
 
     public String report() {
@@ -58,7 +59,7 @@ public class TimeTracker {
 
     public static class Manager {
 
-        private HashMap<String, TimeTracker> trackers = new HashMap<String, TimeTracker>();
+        private final HashMap<String, TimeTracker> trackers = new HashMap<String, TimeTracker>();
 
         private Manager() {
             RTG.instance.runOnServerClose(runReport());
@@ -83,10 +84,12 @@ public class TimeTracker {
         }
 
         public void start(String name) {
+            if (!ENABLED) return;
             tracker(name).start();
         }
 
         public void stop(String name) {
+            if (!ENABLED) return;
             tracker(name).stop();
         }
 

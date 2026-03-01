@@ -1,6 +1,8 @@
 
 package rtg.world.gen;
 
+import java.util.Arrays;
+
 import net.minecraft.world.biome.BiomeGenBase;
 
 import rtg.util.CellNoise;
@@ -21,12 +23,14 @@ public class LandscapeGenerator {
     private final int sampleSize = 8;
     private final int sampleArraySize;
     private final int[] biomeData;
-    private float[][] weightings;
+    private int[][] sparseIndices; // [256][varies] — per-column sparse map sample indices
+    private float[][] sparseWeights; // [256][varies] — per-column sparse weights
     private final OpenSimplexNoise simplex;
     private final CellNoise cell;
-    private float[] weightedBiomes = new float[BiomeGenBase.getBiomeGenArray().length];
-    private BiomeAnalyzer analyzer = new BiomeAnalyzer();
-    private TimedHashMap<PlaneLocation, ChunkLandscape> storage = new TimedHashMap<PlaneLocation, ChunkLandscape>(
+    private final float[] weightedBiomes = new float[BiomeGenBase.getBiomeGenArray().length];
+    private final int[] activeBiomeIds = new int[BiomeGenBase.getBiomeGenArray().length];
+    private final BiomeAnalyzer analyzer = new BiomeAnalyzer();
+    private final TimedHashMap<PlaneLocation, ChunkLandscape> storage = new TimedHashMap<PlaneLocation, ChunkLandscape>(
         60 * 1000);
 
     public LandscapeGenerator(OpenSimplexNoise simplex, CellNoise cell) {
@@ -38,32 +42,40 @@ public class LandscapeGenerator {
     }
 
     public static String biomeLayoutActivity = "Biome Layout";
-    private static String rtgTerrain = "RTG Terrain";
-    private static String rtgNoise = "RTG Noise";
+    private static final String rtgTerrain = "RTG Terrain";
+    private static final String rtgNoise = "RTG Noise";
 
     private void setWeightings() {
-        weightings = new float[sampleArraySize * sampleArraySize][256];
-        int adjustment = 4;// this should actually vary with sampleSize
+        int totalMapPoints = sampleArraySize * sampleArraySize;
+        float limit = (float) Math.pow((56f * 56f), .7);
+
+        sparseIndices = new int[256][];
+        sparseWeights = new float[256][];
+        int[] tmpIndices = new int[totalMapPoints];
+        float[] tmpWeights = new float[totalMapPoints];
+
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                int locationIndex = ((int) (i + adjustment) * 25 + (j + adjustment));
-                TimeTracker.manager.start("Weighting");
-                float totalWeight = 0;
-                float limit = (float) Math.pow((56f * 56f), .7);
-                // float limit = 56f;
+                int col = i * 16 + j;
+                int count = 0;
 
                 for (int mapX = 0; mapX < sampleArraySize; mapX++) {
                     for (int mapZ = 0; mapZ < sampleArraySize; mapZ++) {
                         float xDist = (i - chunkCoordinate(mapX));
                         float yDist = (j - chunkCoordinate(mapZ));
                         float distanceSquared = xDist * xDist + yDist * yDist;
-                        // float distance = (float)Math.sqrt(distanceSquared);
                         float distance = (float) Math.pow(distanceSquared, .7);
                         float weight = 1f - distance / limit;
-                        if (weight < 0) weight = 0;
-                        weightings[mapX * sampleArraySize + mapZ][i * 16 + j] = weight;
+                        if (weight > 0) {
+                            tmpIndices[count] = mapX * sampleArraySize + mapZ;
+                            tmpWeights[count] = weight;
+                            count++;
+                        }
                     }
                 }
+
+                sparseIndices[col] = Arrays.copyOf(tmpIndices, count);
+                sparseWeights[col] = Arrays.copyOf(tmpWeights, count);
             }
         }
     }
@@ -86,21 +98,15 @@ public class LandscapeGenerator {
         ChunkLandscape result = new ChunkLandscape();
         getNewerNoise(cmr, worldX, worldY, result);
         int[] biomeIndices = cmr.getBiomesGens(worldX, worldY, 16, 16);
-        analyzer.newRepair(biomeIndices, result.biome, this.biomeData, this.sampleSize, result.noise, result.river);// -cmr.getRiverStrength(cx
-                                                                                                                    // *
-                                                                                                                    // 16
-                                                                                                                    // +
-                                                                                                                    // 7,
-                                                                                                                    // cy
-                                                                                                                    // *
-                                                                                                                    // 16
-                                                                                                                    // +
-                                                                                                                    // 7));
+        // -cmr.getRiverStrength(cx * 16 + 7, cy * 16 + 7));
+        analyzer.newRepair(biomeIndices, result.biome, this.biomeData, this.sampleSize, result.noise, result.river);
         storage.put(location, result);
         return result;
     }
 
-    private synchronized void getNewerNoise(RTGBiomeProvider cmr, int x, int y, ChunkLandscape landscape) {
+    @SuppressWarnings("unused") // EID compatability injection target
+    private void getNewerNoise(RTGBiomeProvider cmr, int x, int y, ChunkLandscape landscape) {
+        int eidBiomeIdCount = 256;
         // get area biome map
         TimeTracker.manager.start(rtgNoise);
         TimeTracker.manager.start(biomeLayoutActivity);
@@ -114,45 +120,46 @@ public class LandscapeGenerator {
         TimeTracker.manager.stop(biomeLayoutActivity);
         float river;
 
-        int adjustment = 4;// this should actually vary with sampleSize
-        // fill the old smallRender
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
+                int col = i * 16 + j;
                 TimeTracker.manager.start("Weighting");
+
+                // Sparse weight accumulation with active biome tracking
                 float totalWeight = 0;
-                for (int mapX = 0; mapX < sampleArraySize; mapX++) {
-                    for (int mapZ = 0; mapZ < sampleArraySize; mapZ++) {
-                        float weight = weightings[mapX * sampleArraySize + mapZ][i * 16 + j];
-                        if (weight > 0) {
-                            totalWeight += weight;
-                            weightedBiomes[biomeData[mapX * sampleArraySize + mapZ]] += weight;
-                        }
+                int activeBiomeCount = 0;
+                int[] indices = sparseIndices[col];
+                float[] weights = sparseWeights[col];
+                for (int s = 0; s < indices.length; s++) {
+                    int biomeId = biomeData[indices[s]];
+                    if (weightedBiomes[biomeId] == 0f) {
+                        activeBiomeIds[activeBiomeCount++] = biomeId;
                     }
-                }
-                // normalize biome weights
-                for (int biomeIndex = 0; biomeIndex < weightedBiomes.length; biomeIndex++) {
-                    weightedBiomes[biomeIndex] /= totalWeight;
+                    totalWeight += weights[s];
+                    weightedBiomes[biomeId] += weights[s];
                 }
 
-                landscape.noise[i * 16 + j] = 0f;
+                Arrays.sort(activeBiomeIds, 0, activeBiomeCount);
+
+                for (int a = 0; a < activeBiomeCount; a++) {
+                    weightedBiomes[activeBiomeIds[a]] /= totalWeight;
+                }
+
+                landscape.noise[col] = 0f;
 
                 TimeTracker.manager.stop("Weighting");
                 TimeTracker.manager.start("Generating");
                 river = cmr.getRiverStrength(x + i, y + j);
-                landscape.river[i * 16 + j] = -river;
+                landscape.river[col] = -river;
                 float totalBorder = 0f;
 
-                for (int k = 0; k < 256; k++) {
-
-                    if (weightedBiomes[k] > 0f) {
-
-                        totalBorder += weightedBiomes[k];
-                        landscape.noise[i * 16 + j] += RealisticBiomeBase.getBiome(k)
-                            .rNoise(simplex, cell, x + i, y + j, weightedBiomes[k], river + 1f) * weightedBiomes[k];
-                        // 0 for the next column
-                        weightedBiomes[k] = 0f;
-
-                    }
+                for (int a = 0; a < activeBiomeCount; a++) {
+                    int k = activeBiomeIds[a];
+                    totalBorder += weightedBiomes[k];
+                    float rNoiseResult = RealisticBiomeBase.getBiome(k)
+                        .rNoise(simplex, cell, x + i, y + j, weightedBiomes[k], river + 1f);
+                    landscape.noise[col] += rNoiseResult * weightedBiomes[k];
+                    weightedBiomes[k] = 0f;
                 }
                 if (totalBorder < .999 || totalBorder > 1.001) throw new RuntimeException("" + totalBorder);
                 TimeTracker.manager.stop("Generating");
@@ -170,8 +177,6 @@ public class LandscapeGenerator {
 
         TimeTracker.manager.stop(biomeLayoutActivity);
         TimeTracker.manager.stop(rtgNoise);
-        return;
-
     }
 
 }

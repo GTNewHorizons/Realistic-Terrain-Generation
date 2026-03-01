@@ -414,9 +414,11 @@ public class RealisticBiomeBase {
             }
         }
 
-        // Volcanoes generation
-        for (int baseX = chunkX - volcanoGenRadius; baseX <= chunkX + volcanoGenRadius; baseX++) {
-            for (int baseY = chunkY - volcanoGenRadius; baseY <= chunkY + volcanoGenRadius; baseY++) {
+        // Volcanoes generation — step by 4 since rMapVolcanoes requires baseX/baseY % 4 == 0
+        int volStartX = ((chunkX - volcanoGenRadius) + 3) & ~3;
+        int volStartY = ((chunkY - volcanoGenRadius) + 3) & ~3;
+        for (int baseX = volStartX; baseX <= chunkX + volcanoGenRadius; baseX += 4) {
+            for (int baseY = volStartY; baseY <= chunkY + volcanoGenRadius; baseY += 4) {
                 mapRand.setSeed((long) baseX * l + (long) baseY * l1 ^ seed);
                 rMapVolcanoes(
                     blocks,
