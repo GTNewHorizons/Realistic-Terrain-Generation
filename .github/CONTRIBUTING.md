@@ -6,6 +6,8 @@ If you have any questions, you can hop on over to our [discord server](https://d
 
 Happy coding!
 
+Also make sure you're familiar with the [GT:NH Contribution Guidelines](https://github.com/GTNewHorizons/.github/blob/master/CONTRIBUTING.md) before starting.
+
 Braces:
 ----
 No newlines in front of opening braces
